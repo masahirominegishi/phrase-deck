@@ -1,0 +1,14 @@
+{
+  "name": "フレーズデッキ",
+  "short_name": "フレーズ",
+  "description": "自分の実話フレーズで覚える英語単語帳",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

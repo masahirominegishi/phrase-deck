@@ -1,0 +1,187 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --panel2: #334155;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --good: #34d399;
+  --hard: #fbbf24;
+  --again: #f87171;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+#topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: max(env(safe-area-inset-top), 10px) 14px 10px;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.icon-btn {
+  background: var(--panel);
+  color: var(--text);
+  border: none;
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+}
+
+#progress { display: flex; flex-direction: column; line-height: 1.1; }
+#progress #dueCount { font-size: 20px; font-weight: 700; color: var(--accent); }
+#progress small { color: var(--muted); font-size: 11px; }
+
+.mode-switch { margin-left: auto; display: flex; background: var(--panel); border-radius: 12px; padding: 3px; }
+.mode-switch button {
+  background: transparent; border: none; color: var(--muted);
+  font-size: 12px; padding: 7px 10px; border-radius: 9px;
+}
+.mode-switch button.active { background: var(--panel2); color: var(--text); }
+
+#main { padding: 8px 14px 40px; max-width: 640px; margin: 0 auto; }
+.view { display: none; }
+.view.active { display: block; }
+
+/* ---- Card ---- */
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 22px 20px 24px;
+  min-height: 58vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.card .theme-tag {
+  align-self: flex-start;
+  background: var(--panel2);
+  color: var(--accent);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.card .type-tag { color: var(--muted); font-size: 12px; margin-left: 8px; }
+.card .situation {
+  font-size: 14px; color: var(--muted); margin-bottom: 6px;
+}
+.card .prompt-ja {
+  font-size: 23px; font-weight: 700; line-height: 1.45; margin: 4px 0 18px;
+}
+.card .difficulty { color: var(--hard); font-size: 13px; margin-bottom: 8px; }
+
+.reveal { border-top: 1px solid var(--panel2); padding-top: 16px; margin-top: auto; }
+.reveal .en-line {
+  font-size: 21px; font-weight: 600; line-height: 1.5; margin-bottom: 4px;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.reveal .en-line .spk {
+  background: var(--panel2); border: none; color: var(--accent);
+  border-radius: 9px; min-width: 34px; height: 34px; font-size: 16px; flex: none;
+}
+.reveal .alt { color: var(--muted); font-size: 16px; }
+.reveal .advice {
+  background: rgba(56,189,248,.08); border-left: 3px solid var(--accent);
+  padding: 10px 12px; border-radius: 8px; margin-top: 14px; font-size: 14px; line-height: 1.6;
+}
+.reveal .related { margin-top: 14px; }
+.reveal .related h4 { margin: 0 0 6px; font-size: 12px; color: var(--muted); font-weight: 600; }
+.reveal .related .chip {
+  display: inline-block; background: var(--panel2); color: var(--text);
+  font-size: 12px; padding: 5px 10px; border-radius: 999px; margin: 0 6px 6px 0;
+}
+
+/* tap to reveal hint */
+.tap-hint { text-align: center; color: var(--muted); font-size: 13px; margin-top: auto; padding: 14px; }
+
+/* ---- Grade buttons ---- */
+.grade-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.grade-row button { border: none; border-radius: 12px; padding: 14px 4px; font-size: 15px; font-weight: 700; color: #0b1220; }
+.grade-row .again { background: var(--again); }
+.grade-row .hard { background: var(--hard); }
+.grade-row .good { background: var(--good); }
+.grade-row button small { display: block; font-weight: 500; font-size: 11px; opacity: .8; }
+
+/* ---- Type mode ---- */
+.type-box { margin-top: 16px; }
+.type-box input {
+  width: 100%; padding: 14px; border-radius: 12px; border: 2px solid var(--panel2);
+  background: var(--bg); color: var(--text); font-size: 17px;
+}
+.type-box .check-btn { width: 100%; margin-top: 10px; background: var(--accent); color: #0b1220; border: none; border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 700; }
+.type-box .judge { margin-top: 10px; font-weight: 700; font-size: 16px; }
+.type-box .judge.ok { color: var(--good); }
+.type-box .judge.ng { color: var(--again); }
+
+/* ---- Shadow mode ---- */
+.shadow-box { margin-top: 16px; display: flex; gap: 8px; }
+.shadow-box button { flex: 1; border: none; border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 700; }
+.shadow-box .play { background: var(--accent); color: #0b1220; }
+.shadow-box .slow { background: var(--panel2); color: var(--text); }
+
+/* ---- Home ---- */
+h1 { font-size: 26px; margin: 16px 0 2px; }
+.sub { color: var(--muted); margin: 0 0 20px; }
+h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
+.big-btn { width: 100%; background: var(--accent); color: #0b1220; border: none; border-radius: var(--radius); padding: 18px; font-size: 18px; font-weight: 700; }
+.big-btn.secondary { background: var(--panel); color: var(--text); margin-top: 10px; }
+.big-btn:disabled { opacity: .5; }
+
+/* register / settings */
+.field-label { display: block; color: var(--muted); font-size: 13px; margin: 16px 0 6px; }
+#registerView textarea, #apiKeyInput {
+  width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--panel2);
+  background: var(--panel); color: var(--text); font-size: 16px; resize: vertical;
+  font-family: inherit;
+}
+#registerView .big-btn { margin-top: 16px; }
+.hint { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 8px 0 0; }
+#settingsBox { background: var(--panel); border-radius: 12px; padding: 16px; }
+.status { font-size: 14px; margin-top: 14px; min-height: 1.2em; line-height: 1.5; }
+.status.ok { color: var(--good); }
+.status.err { color: var(--again); }
+.preview-card { background: var(--panel); border-radius: 12px; padding: 14px 16px; margin-top: 12px; }
+.preview-card .pc-head { color: var(--accent); font-size: 12px; margin-bottom: 6px; }
+.preview-card .pc-en { font-size: 17px; font-weight: 600; }
+.preview-card .pc-ja { font-size: 15px; margin-top: 2px; }
+.preview-card .pc-sit, .preview-card .pc-adv { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.5; }
+.theme-card {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--panel); border: none; color: var(--text);
+  width: 100%; padding: 16px; border-radius: 12px; margin-bottom: 8px; font-size: 16px;
+}
+.theme-card .meta { color: var(--muted); font-size: 13px; }
+#statsBox { background: var(--panel); border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.9; }
+#statsBox .bar { height: 8px; border-radius: 4px; background: var(--panel2); overflow: hidden; margin-top: 4px; }
+#statsBox .bar > span { display: block; height: 100%; background: var(--good); }
+.link-btn { background: none; border: none; color: var(--muted); text-decoration: underline; margin-top: 20px; font-size: 13px; }
+
+#voiceBox { background: var(--panel); border-radius: 12px; padding: 14px 16px; }
+#voiceBox select {
+  width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--panel2);
+  background: var(--bg); color: var(--text); font-size: 15px; -webkit-appearance: none;
+}
+#voiceBox .rate-label { display: block; color: var(--muted); font-size: 13px; margin-top: 14px; }
+#voiceBox .rate-label input { width: 100%; margin-top: 6px; accent-color: var(--accent); }
+#voiceBox .link-btn { margin-top: 12px; }
+.ver { color: var(--panel2); font-size: 11px; margin-top: 24px; }
+
+.empty { text-align: center; color: var(--muted); padding: 60px 20px; }
+.empty .big { font-size: 40px; margin-bottom: 12px; }

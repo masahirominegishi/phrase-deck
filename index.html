@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>フレーズデッキ</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="topbar">
+    <button id="homeBtn" class="icon-btn" title="ホーム">≡</button>
+    <div id="progress">
+      <span id="dueCount">–</span>
+      <small>今日の残り</small>
+    </div>
+    <div id="modeSwitch" class="mode-switch">
+      <button data-mode="recall" class="active">自己採点</button>
+      <button data-mode="type">入力</button>
+      <button data-mode="shadow">発話</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Study view -->
+    <section id="studyView" class="view">
+      <div id="cardArea"></div>
+    </section>
+
+    <!-- Home / menu view -->
+    <section id="homeView" class="view active">
+      <h1>フレーズデッキ</h1>
+      <p class="sub">あなたの実話フレーズで覚える単語帳</p>
+      <button class="big-btn" id="startTodayBtn">今日の復習をはじめる</button>
+      <button class="big-btn secondary" id="goRegisterBtn">＋ 新しいフレーズを登録</button>
+
+      <h2>テーマ別に練習</h2>
+      <div id="themeList"></div>
+
+      <h2>進捗</h2>
+      <div id="statsBox"></div>
+
+      <h2>音声</h2>
+      <div id="voiceBox">
+        <select id="voiceSelect"></select>
+        <label class="rate-label">速さ <span id="rateVal">1.0</span>
+          <input type="range" id="rateRange" min="0.6" max="1.1" step="0.05" value="0.95" />
+        </label>
+        <button class="link-btn" id="voiceTestBtn">🔊 テスト再生</button>
+      </div>
+
+      <h2>設定</h2>
+      <div id="settingsBox">
+        <label class="field-label">Anthropic APIキー（端末内のみに保存）</label>
+        <input id="apiKeyInput" type="password" autocapitalize="off" autocorrect="off"
+               spellcheck="false" placeholder="sk-ant-..." />
+        <p class="hint">登録時の自動エンリッチ（翻訳・難易度・アドバイス等）に使います。キーはこの端末から出ません。</p>
+        <button class="link-btn" id="resetBtn">学習データをリセット</button>
+      </div>
+      <p class="ver" id="verLine"></p>
+    </section>
+
+    <!-- Register view -->
+    <section id="registerView" class="view">
+      <h1>フレーズを登録</h1>
+      <p class="sub">見本のように「単語」「フレーズ」の見出しを付けて貼り付け。｜区切りで自動で振り分けます。</p>
+
+      <label class="field-label">入力（単語・フレーズをまとめて）</label>
+      <textarea id="comboInput" rows="12" placeholder="単語
+jury service | sea bream | instructions | hand-written
+
+フレーズ
+It's been a while | I had to go to court | The AI system is working well"></textarea>
+
+      <button class="big-btn" id="enrichBtn">取り込んで自動エンリッチ</button>
+      <div id="registerStatus" class="status"></div>
+
+      <div id="previewArea"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

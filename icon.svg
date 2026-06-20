@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0f172a"/>
+  <rect x="96" y="150" width="300" height="220" rx="24" fill="#334155"/>
+  <rect x="126" y="120" width="300" height="220" rx="24" fill="#1e293b" stroke="#38bdf8" stroke-width="8"/>
+  <text x="276" y="248" font-family="-apple-system, sans-serif" font-size="120" font-weight="700" fill="#38bdf8" text-anchor="middle">A</text>
+  <text x="276" y="248" font-family="-apple-system, sans-serif" font-size="120" font-weight="700" fill="#f1f5f9" text-anchor="middle" dy="0" opacity="0"></text>
+  <rect x="160" y="288" width="232" height="14" rx="7" fill="#475569"/>
+  <rect x="160" y="316" width="150" height="14" rx="7" fill="#475569"/>
+</svg>
