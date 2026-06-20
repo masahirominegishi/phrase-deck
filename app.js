@@ -721,7 +721,17 @@ async function init() {
   goHome();
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    // 新しい SW が制御を取ったら自動で読み直す (更新を即反映)
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (reloaded) return;
+      reloaded = true;
+      location.reload();
+    });
+    // updateViaCache:'none' で sw.js を毎回ネットから取得 → 更新検知を確実に
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then(reg => reg.update())
+      .catch(() => {});
   }
 }
 

@@ -1,8 +1,8 @@
 /* フレーズデッキ Service Worker
-   反映が遅れないよう network-first:
-   - オンライン時は常に最新を取得し、キャッシュも更新
-   - オフライン時のみキャッシュから返す (アプリは引き続き動く) */
-const CACHE = 'phrasedeck-v2';
+   反映が遅れないよう、ネットワーク優先 + HTTPキャッシュ無視:
+   - オンライン時は毎回サーバの最新を取得 (GitHub Pages の 10分キャッシュも回避)
+   - オフライン時のみ手元のキャッシュから返す (アプリは動き続ける) */
+const CACHE = 'phrasedeck-v3';
 const SHELL = [
   './',
   './index.html',
@@ -28,7 +28,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   e.respondWith(
-    fetch(e.request).then(res => {
+    fetch(e.request, { cache: 'no-store' }).then(res => {
       const copy = res.clone();
       caches.open(CACHE).then(c => c.put(e.request, copy)).catch(() => {});
       return res;
