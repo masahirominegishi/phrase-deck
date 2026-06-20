@@ -38,7 +38,6 @@ let queue = [];
 let current = null;
 let revealed = false;
 let sessionTheme = null;   // 直近セッションのテーマ
-let sessionIds = [];       // 今日のセッションで出題したカード(おかわりはこれを繰り返す)
 
 /* ---------- 永続化 ---------- */
 function loadSrs() {
@@ -123,10 +122,17 @@ function buildQueue(theme) {
   return picked;
 }
 
-// おかわり: 今日のセッションで出たカードだけを、シャッフルしてもう一周。
-// 採点は通常どおりSRSに反映。
+// 今日学習したカードのID（おかわりの対象）
+function todayStudiedIds() {
+  const t0 = todayStart();
+  return ITEMS.filter(it => srs[it.id] && srs[it.id].last >= t0).map(it => it.id);
+}
+
+// おかわり: 今日やった単語をシャッフルしてもう一周。
+// まだ今日やっていなければ、デッキ全体から練習。採点は通常どおりSRSに反映。
 function buildExtraQueue() {
-  const ids = sessionIds.filter(id => BY_ID[id]);
+  let ids = todayStudiedIds();
+  if (!ids.length) ids = ITEMS.map(it => it.id);
   for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -380,15 +386,28 @@ function isCorrect(input, candidates) {
 }
 function renderDone() {
   current = null;
-  const hasCards = sessionIds.some(id => BY_ID[id]);
   const area = document.getElementById('cardArea');
+  if (!ITEMS.length) {
+    area.innerHTML = `
+      <div class="empty">
+        <div class="big">📭</div>
+        <div>カードがまだありません</div>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px;">「登録」からフレーズを追加してください。</p>
+        <button class="big-btn" style="margin-top:24px" onclick="goRegister()">フレーズを登録する</button>
+        <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
+      </div>`;
+    refreshTop();
+    return;
+  }
+  const studied = todayStudiedIds().length;
+  const label = studied ? '今日の単語をもう一周（おかわり）' : '自由に練習する';
   area.innerHTML = `
     <div class="empty">
       <div class="big">🎉</div>
       <div>今のセットは完了！</div>
       <p style="color:var(--muted);font-size:14px;margin-top:8px;">
         またあとで開くと、忘れかけた頃のカードが出てきます。</p>
-      ${hasCards ? `<button class="big-btn" style="margin-top:24px" onclick="goExtra()">今日の単語をもう一周（おかわり）</button>` : ''}
+      <button class="big-btn" style="margin-top:24px" onclick="goExtra()">${label}</button>
       <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
     </div>`;
   refreshTop();
@@ -660,7 +679,6 @@ function saveItems() {
 function startSession(theme) {
   sessionTheme = theme || null;
   queue = buildQueue(sessionTheme);
-  sessionIds = Array.from(new Set(queue));   // 今日の出題セットを記録
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
@@ -737,4 +755,5 @@ async function init() {
 
 window.goHome = goHome;
 window.goExtra = startExtra;
+window.goRegister = goRegister;
 init();
