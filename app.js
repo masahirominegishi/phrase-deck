@@ -37,6 +37,7 @@ let mode = 'recall';
 let queue = [];
 let current = null;
 let revealed = false;
+let sessionTheme = null;   // 直近セッションのテーマ(おかわり練習の継続用)
 
 /* ---------- 永続化 ---------- */
 function loadSrs() {
@@ -119,6 +120,19 @@ function buildQueue(theme) {
     [picked[i], picked[j]] = [picked[j], picked[i]];
   }
   return picked;
+}
+
+// おかわり練習: 期限・新規上限を無視して、テーマ内の全カードから出題。
+// 最近やっていないものを優先しつつシャッフル。採点は通常どおりSRSに反映。
+function buildExtraQueue(theme) {
+  const pool = ITEMS.filter(it => !theme || it.theme === theme);
+  pool.sort((a, b) => (srs[a.id]?.last || 0) - (srs[b.id]?.last || 0));
+  const ids = pool.map(it => it.id);
+  for (let i = ids.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  return ids;
 }
 
 function pseudoRandom(seed) {
@@ -367,6 +381,7 @@ function isCorrect(input, candidates) {
 }
 function renderDone() {
   current = null;
+  const hasCards = ITEMS.some(it => !sessionTheme || it.theme === sessionTheme);
   const area = document.getElementById('cardArea');
   area.innerHTML = `
     <div class="empty">
@@ -374,7 +389,8 @@ function renderDone() {
       <div>今のセットは完了！</div>
       <p style="color:var(--muted);font-size:14px;margin-top:8px;">
         またあとで開くと、忘れかけた頃のカードが出てきます。</p>
-      <button class="big-btn" style="margin-top:24px" onclick="goHome()">ホームへ</button>
+      ${hasCards ? `<button class="big-btn" style="margin-top:24px" onclick="goExtra()">もっと練習する（おかわり）</button>` : ''}
+      <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
     </div>`;
   refreshTop();
 }
@@ -643,7 +659,15 @@ function saveItems() {
 
 /* ---------- セッション/遷移 ---------- */
 function startSession(theme) {
-  queue = buildQueue(theme || null);
+  sessionTheme = theme || null;
+  queue = buildQueue(sessionTheme);
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+
+function startExtra() {
+  queue = buildExtraQueue(sessionTheme);
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
@@ -702,4 +726,5 @@ async function init() {
 }
 
 window.goHome = goHome;
+window.goExtra = startExtra;
 init();
