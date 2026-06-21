@@ -53,12 +53,20 @@
         <button class="link-btn" id="voiceTestBtn">🔊 テスト再生</button>
       </div>
 
+      <h2>バックアップ</h2>
+      <div id="backupBox">
+        <p class="hint">フレーズと進捗をファイルに書き出して iCloud Drive 等に保存できます。リンクを消したり機種変しても、ここから戻せます。フレーズを増やした後などに一度押してください。</p>
+        <button class="big-btn secondary" id="backupBtn">⬆️ バックアップを書き出す</button>
+        <button class="big-btn secondary" id="restoreBtn" style="margin-top:10px">⬇️ バックアップから復元</button>
+        <input type="file" id="restoreFile" accept="application/json,.json" hidden />
+      </div>
+
       <h2>設定</h2>
       <div id="settingsBox">
         <label class="field-label">Anthropic APIキー（端末内のみに保存）</label>
         <input id="apiKeyInput" type="password" autocapitalize="off" autocorrect="off"
                spellcheck="false" placeholder="sk-ant-..." />
-        <p class="hint">登録時の自動エンリッチ（翻訳・難易度・アドバイス等）に使います。キーはこの端末から出ません。</p>
+        <p class="hint">登録時の自動エンリッチ（翻訳・難易度・アドバイス等）に使います。キーはこの端末から出ません。バックアップには含まれません。</p>
         <button class="link-btn" id="resetBtn">学習データをリセット</button>
       </div>
       <p class="ver" id="verLine"></p>

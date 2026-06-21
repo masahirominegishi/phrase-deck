@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .streamlit/secrets.toml
 .DS_Store
+
+# APIキー(秘密)はコミットしない
+.apikey

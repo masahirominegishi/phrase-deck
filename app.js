@@ -558,7 +558,7 @@ async function callAnthropic(apiKey, words, phrases) {
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 4096,
+      max_tokens: 16000,
       system: SYSTEM_PROMPT,
       tools: [ENRICH_TOOL],
       tool_choice: { type: 'tool', name: 'save_items' },
@@ -573,7 +573,12 @@ async function callAnthropic(apiKey, words, phrases) {
   const json = await res.json();
   const block = (json.content || []).find(b => b.type === 'tool_use' && b.name === 'save_items');
   if (!block) throw new Error('構造化結果が返りませんでした');
-  return block.input.items;
+  const items = block.input.items;
+  if (!items || !items.length) {
+    // 出力上限で途中で切れた等
+    throw new Error(`結果を受け取れませんでした (stop_reason=${json.stop_reason})。一度に入れる件数を減らしてください。`);
+  }
+  return items;
 }
 
 function todayISO() {
@@ -704,6 +709,79 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
+/* ---------- バックアップ / 復元 ---------- */
+// フレーズ(DECK)と進捗(srs)と音声設定をまとめる。APIキーは含めない。
+function buildBackup() {
+  return {
+    app: 'phrasedeck',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    deck: DECK,
+    srs: srs,
+    settings: {
+      voice: localStorage.getItem(VOICE_KEY) || '',
+      rate: localStorage.getItem(RATE_KEY) || '',
+    },
+  };
+}
+
+// iPhone では共有シート(→「ファイルに保存」で iCloud Drive)に出す。
+// 非対応環境ではダウンロードにフォールバック。
+async function doBackup() {
+  const text = JSON.stringify(buildBackup(), null, 2);
+  const fname = `phrasedeck-backup-${todayISO()}.json`;
+  const file = new File([text], fname, { type: 'application/json' });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: 'フレーズデッキ バックアップ' }); return; }
+    catch (e) { if (e && e.name === 'AbortError') return; /* それ以外は下へ */ }
+  }
+  const url = URL.createObjectURL(file);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// バックアップ(または Mac の phrases.json)を適用。今の内容に上書き。
+function applyBackup(obj) {
+  if (!obj || typeof obj !== 'object') throw new Error('壊れたファイルです');
+  const deck = Array.isArray(obj.deck) ? obj.deck
+    : (Array.isArray(obj.items) ? obj.items
+      : (Array.isArray(obj) ? obj : null));
+  if (!Array.isArray(deck)) throw new Error('フレーズが見つかりませんでした');
+  DECK = deck; saveDeck();
+  if (obj.srs && typeof obj.srs === 'object') { srs = obj.srs; saveSrs(); }
+  if (obj.settings) {
+    if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
+    if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
+  }
+  // 復元後はシードのマイグレーションを走らせない
+  localStorage.setItem('phrasedeck.migrated.v1', '1');
+  rebuildItems();
+  return DECK.length;
+}
+
+function goRestore() {
+  const f = document.getElementById('restoreFile');
+  if (f) { f.value = ''; f.click(); }
+}
+
+function handleRestoreFile(file) {
+  if (!file) return;
+  if (!confirm('今の内容を、選んだバックアップで置き換えます。よろしいですか？')) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const obj = JSON.parse(String(reader.result));
+      const n = applyBackup(obj);
+      goHome();
+      alert(`復元しました。フレーズ ${n} 件。`);
+    } catch (e) { alert('復元エラー: ' + e.message); }
+  };
+  reader.onerror = () => alert('ファイルを読めませんでした。');
+  reader.readAsText(file);
+}
+
 /* ---------- 初期化 ---------- */
 async function init() {
   loadSrs();
@@ -722,6 +800,9 @@ async function init() {
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goRegisterBtn').onclick = goRegister;
   document.getElementById('enrichBtn').onclick = runEnrich;
+  document.getElementById('backupBtn').onclick = doBackup;
+  document.getElementById('restoreBtn').onclick = goRestore;
+  document.getElementById('restoreFile').onchange = (e) => handleRestoreFile(e.target.files[0]);
   document.getElementById('resetBtn').onclick = () => {
     if (confirm('学習の進捗をすべて消します。よろしいですか？（登録したフレーズは消えません）')) {
       srs = {}; saveSrs(); renderHome();
