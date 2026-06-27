@@ -75,16 +75,38 @@
     <!-- Register view -->
     <section id="registerView" class="view">
       <h1>フレーズを登録</h1>
-      <p class="sub">見本のように「単語」「フレーズ」の見出しを付けて貼り付け。｜区切りで自動で振り分けます。</p>
+      <p class="sub">入力方法を選べます。まとめて貼り付けるか、1つずつ登録できます。</p>
 
-      <label class="field-label">入力（単語・フレーズをまとめて）</label>
-      <textarea id="comboInput" rows="12" placeholder="単語
+      <div class="mode-switch reg-switch" id="regModeSwitch">
+        <button data-regmode="combo" class="active">まとめて貼り付け</button>
+        <button data-regmode="single">1つずつ</button>
+      </div>
+
+      <!-- まとめて貼り付け -->
+      <div id="comboPanel">
+        <p class="hint">「単語」「フレーズ」の見出しを付けて貼り付け。｜区切りで自動で振り分けます。</p>
+        <label class="field-label">入力（単語・フレーズをまとめて）</label>
+        <textarea id="comboInput" rows="12" placeholder="単語
 jury service | sea bream | instructions | hand-written
 
 フレーズ
 It's been a while | I had to go to court | The AI system is working well"></textarea>
+        <button class="big-btn" id="enrichBtn">取り込んで自動エンリッチ</button>
+      </div>
 
-      <button class="big-btn" id="enrichBtn">取り込んで自動エンリッチ</button>
+      <!-- 1つずつ -->
+      <div id="singlePanel" hidden>
+        <p class="hint">種類を選んで英語を1つ入力 →「追加してエンリッチ」。下のプレビューに積まれます。続けて入れられます。</p>
+        <div class="mode-switch type-switch" id="singleTypeSwitch">
+          <button data-stype="word" class="active">単語</button>
+          <button data-stype="phrase">フレーズ</button>
+        </div>
+        <label class="field-label">英語の単語・フレーズ（1つ）</label>
+        <input id="singleInput" type="text" autocapitalize="off" autocorrect="off"
+               spellcheck="false" placeholder="例: jury service" />
+        <button class="big-btn" id="singleAddBtn">追加してエンリッチ</button>
+      </div>
+
       <div id="registerStatus" class="status"></div>
 
       <div id="previewArea"></div>

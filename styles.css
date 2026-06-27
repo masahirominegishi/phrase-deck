@@ -152,6 +152,14 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
   font-family: inherit;
 }
 #registerView .big-btn { margin-top: 16px; }
+.reg-switch { margin: 8px 0 6px; width: 100%; }
+.reg-switch button { flex: 1; font-size: 13px; padding: 9px 10px; }
+#singlePanel .type-switch { margin: 4px 0 0; width: 100%; }
+#singlePanel .type-switch button { flex: 1; }
+#singleInput {
+  width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--panel2);
+  background: var(--panel); color: var(--text); font-size: 16px; font-family: inherit;
+}
 .hint { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 8px 0 0; }
 #settingsBox { background: var(--panel); border-radius: 12px; padding: 16px; }
 .status { font-size: 14px; margin-top: 14px; min-height: 1.2em; line-height: 1.5; }

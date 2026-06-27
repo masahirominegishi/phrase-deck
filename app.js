@@ -588,9 +588,12 @@ function todayISO() {
 }
 
 function finalizeItems(rawItems, nWords) {
-  const used = new Set(ITEMS.map(it => it.id));
+  // 既存(ITEMS)に加えて、まだ保存していないプレビュー分(pendingItems)とも
+  // ID衝突・関連付けが噛み合うようにする(「1つずつ」で積むため)。
+  const prior = ITEMS.concat(pendingItems || []);
+  const used = new Set(prior.map(it => it.id));
   const enIndex = {};
-  ITEMS.forEach(it => (it.en || []).forEach(e => { enIndex[normEn(e)] = it.id; }));
+  prior.forEach(it => (it.en || []).forEach(e => { enIndex[normEn(e)] = it.id; }));
 
   const out = rawItems.map((it, i) => {
     const type = i < nWords ? 'word' : 'phrase';
@@ -636,6 +639,8 @@ async function runEnrich() {
   status.className = 'status';
   status.textContent = `Claude (${MODEL}) で ${words.length + phrases.length} 件をエンリッチ中…`;
   document.getElementById('enrichBtn').disabled = true;
+  // まとめて貼り付けは置き換え。既存のプレビューはクリアしてから生成。
+  pendingItems = null;
   try {
     const raw = await callAnthropic(apiKey, words, phrases);
     pendingItems = finalizeItems(raw, words.length);
@@ -648,6 +653,55 @@ async function runEnrich() {
   } finally {
     document.getElementById('enrichBtn').disabled = false;
   }
+}
+
+/* 「1つずつ」モード: 種類を選んで英語を1件入力 → エンリッチして
+   プレビュー(pendingItems)に積む。続けて入力できる。 */
+let singleType = 'word';
+
+async function runSingleEnrich() {
+  const status = document.getElementById('registerStatus');
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    status.className = 'status err';
+    status.textContent = 'ホーム → 設定 で Anthropic APIキーを入れてください。';
+    return;
+  }
+  const input = document.getElementById('singleInput');
+  const val = input.value.trim();
+  if (!val) {
+    status.className = 'status err';
+    status.textContent = '単語かフレーズを入力してください。';
+    return;
+  }
+  const words = singleType === 'word' ? [val] : [];
+  const phrases = singleType === 'phrase' ? [val] : [];
+  status.className = 'status';
+  status.textContent = `Claude (${MODEL}) でエンリッチ中…`;
+  const btn = document.getElementById('singleAddBtn');
+  btn.disabled = true;
+  try {
+    const raw = await callAnthropic(apiKey, words, phrases);
+    const items = finalizeItems(raw, words.length);
+    pendingItems = (pendingItems || []).concat(items);
+    status.className = 'status ok';
+    status.textContent = `追加しました（プレビュー ${pendingItems.length} 件）。続けて入力するか、下で保存してください。`;
+    input.value = '';
+    input.focus();
+    renderPreview();
+  } catch (e) {
+    status.className = 'status err';
+    status.textContent = 'エラー: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function setRegMode(m) {
+  document.querySelectorAll('#regModeSwitch button').forEach(b =>
+    b.classList.toggle('active', b.dataset.regmode === m));
+  document.getElementById('comboPanel').hidden = (m !== 'combo');
+  document.getElementById('singlePanel').hidden = (m !== 'single');
 }
 
 function renderPreview() {
@@ -698,8 +752,12 @@ function startExtra() {
 function goHome() { showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
+  pendingItems = null;
   document.getElementById('registerStatus').textContent = '';
+  document.getElementById('registerStatus').className = 'status';
   document.getElementById('previewArea').innerHTML = '';
+  const si = document.getElementById('singleInput');
+  if (si) si.value = '';
 }
 
 /* ---------- ユーティリティ ---------- */
@@ -800,6 +858,22 @@ async function init() {
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goRegisterBtn').onclick = goRegister;
   document.getElementById('enrichBtn').onclick = runEnrich;
+
+  // 登録の入力方法切り替え（まとめて貼り付け / 1つずつ）
+  document.querySelectorAll('#regModeSwitch button').forEach(b => {
+    b.onclick = () => setRegMode(b.dataset.regmode);
+  });
+  document.querySelectorAll('#singleTypeSwitch button').forEach(b => {
+    b.onclick = () => {
+      singleType = b.dataset.stype;
+      document.querySelectorAll('#singleTypeSwitch button').forEach(x =>
+        x.classList.toggle('active', x === b));
+    };
+  });
+  document.getElementById('singleAddBtn').onclick = runSingleEnrich;
+  document.getElementById('singleInput').onkeydown = e => {
+    if (e.key === 'Enter') { e.preventDefault(); runSingleEnrich(); }
+  };
   document.getElementById('backupBtn').onclick = doBackup;
   document.getElementById('restoreBtn').onclick = goRestore;
   document.getElementById('restoreFile').onchange = (e) => handleRestoreFile(e.target.files[0]);
