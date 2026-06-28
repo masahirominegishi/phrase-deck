@@ -480,6 +480,128 @@ function renderHome() {
   keyInput.onchange = () => setApiKey(keyInput.value.trim());
 }
 
+/* ---------- 一覧（ながめる用） ---------- */
+const LIST_PAGE_SIZE = 10;
+let listMode = 'recent';    // 'recent' | 'group'
+let listPage = 0;
+
+function goList() {
+  showView('listView');
+  listPage = 0;
+  renderList();
+}
+
+function renderList() {
+  document.querySelectorAll('#listModeSwitch button').forEach(b =>
+    b.classList.toggle('active', b.dataset.listmode === listMode));
+  if (listMode === 'group') renderListGroup();
+  else renderListRecent();
+}
+
+function emptyListHtml() {
+  return `<div class="empty"><div class="big">📭</div><div>まだフレーズがありません</div></div>`;
+}
+
+// 1行: 日本語 + 英語(main) のみ。タップで lr-detail を開く。
+function listRowHtml(it) {
+  const main = (it.en && it.en[0]) || '';
+  return `
+    <div class="list-row" data-id="${esc(it.id)}">
+      <div class="lr-head">
+        <button class="spk" data-en="${esc(main)}">🔊</button>
+        <div class="lr-text">
+          <div class="lr-ja">${esc(it.ja)}</div>
+          <div class="lr-en">${esc(main)}</div>
+        </div>
+      </div>
+      <div class="lr-detail" hidden></div>
+    </div>`;
+}
+
+function listDetailHtml(it) {
+  const alts = (it.en || []).slice(1).map(a => `<div class="alt">= ${esc(a)}</div>`).join('');
+  return `
+    ${alts}
+    ${it.advice_ja ? `<div class="advice">💡 ${esc(it.advice_ja)}</div>` : ''}
+    <div class="lr-meta">${esc(it.theme)} ・ ${it.type === 'word' ? '単語' : 'フレーズ'} ・ 難易度${it.difficulty || 1}</div>`;
+}
+
+function wireListRows(container) {
+  container.querySelectorAll('.list-row').forEach(row => {
+    const it = BY_ID[row.dataset.id];
+    if (!it) return;
+    const detail = row.querySelector('.lr-detail');
+    row.querySelector('.lr-head').onclick = () => {
+      if (detail.hidden) {
+        detail.innerHTML = listDetailHtml(it);
+        detail.hidden = false;
+        row.classList.add('open');
+      } else {
+        detail.hidden = true;
+        row.classList.remove('open');
+      }
+    };
+    const spk = row.querySelector('.spk');
+    spk.onclick = (e) => { e.stopPropagation(); speak(spk.dataset.en); };
+  });
+}
+
+// 最新順（ITEMS は末尾が最新）を 10件ずつページ送り
+function renderListRecent() {
+  const area = document.getElementById('listArea');
+  const all = ITEMS.slice().reverse();
+  if (!all.length) { area.innerHTML = emptyListHtml(); return; }
+  const pages = Math.ceil(all.length / LIST_PAGE_SIZE);
+  listPage = Math.min(Math.max(0, listPage), pages - 1);
+  const start = listPage * LIST_PAGE_SIZE;
+  const slice = all.slice(start, start + LIST_PAGE_SIZE);
+  area.innerHTML =
+    slice.map(listRowHtml).join('') +
+    `<div class="pager">
+       <button class="pg-btn" id="pgPrev"${listPage === 0 ? ' disabled' : ''}>← 前の10件</button>
+       <span class="pg-pos">${listPage + 1} / ${pages}（全${all.length}件）</span>
+       <button class="pg-btn" id="pgNext"${listPage >= pages - 1 ? ' disabled' : ''}>次の10件 →</button>
+     </div>`;
+  wireListRows(area);
+  const prev = document.getElementById('pgPrev');
+  const next = document.getElementById('pgNext');
+  if (prev) prev.onclick = () => { listPage--; renderListRecent(); window.scrollTo(0, 0); };
+  if (next) next.onclick = () => { listPage++; renderListRecent(); window.scrollTo(0, 0); };
+}
+
+// テーマごと（各グループ内も新しい順）。見出しタップで開閉。
+function renderListGroup() {
+  const area = document.getElementById('listArea');
+  if (!ITEMS.length) { area.innerHTML = emptyListHtml(); return; }
+  const groups = {};
+  for (const it of ITEMS) {
+    const t = it.theme || 'その他';
+    (groups[t] = groups[t] || []).push(it);
+  }
+  const order = THEMES.filter(t => groups[t])
+    .concat(Object.keys(groups).filter(t => !THEMES.includes(t)));
+  area.innerHTML = order.map(t => {
+    const rows = groups[t].slice().reverse().map(listRowHtml).join('');
+    return `
+      <div class="list-group">
+        <button class="lg-head" data-theme="${esc(t)}">
+          <span>${esc(t)}</span>
+          <span class="lg-count">${groups[t].length}件 ▾</span>
+        </button>
+        <div class="lg-body" hidden>${rows}</div>
+      </div>`;
+  }).join('');
+  area.querySelectorAll('.lg-head').forEach(h => {
+    h.onclick = () => {
+      const body = h.nextElementSibling;
+      const open = body.hidden;
+      body.hidden = !open;
+      h.classList.toggle('open', open);
+    };
+  });
+  wireListRows(area);
+}
+
 /* ---------- 登録 (Claude API でエンリッチ) ---------- */
 function splitInput(raw) {
   // ｜(全角) と |(半角) と改行で分割
@@ -856,7 +978,12 @@ async function init() {
 
   document.getElementById('homeBtn').onclick = goHome;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
+  document.getElementById('goListBtn').onclick = goList;
   document.getElementById('goRegisterBtn').onclick = goRegister;
+
+  document.querySelectorAll('#listModeSwitch button').forEach(b => {
+    b.onclick = () => { listMode = b.dataset.listmode; listPage = 0; renderList(); window.scrollTo(0, 0); };
+  });
   document.getElementById('enrichBtn').onclick = runEnrich;
 
   // 登録の入力方法切り替え（まとめて貼り付け / 1つずつ）

@@ -193,3 +193,43 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 
 .empty { text-align: center; color: var(--muted); padding: 60px 20px; }
 .empty .big { font-size: 40px; margin-bottom: 12px; }
+
+/* ---- List (ながめる用) ---- */
+.list-switch { margin: 8px 0 14px; width: 100%; }
+.list-switch button { flex: 1; font-size: 13px; padding: 9px 10px; }
+
+.list-row { background: var(--panel); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+.list-row .lr-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+.list-row .spk {
+  background: var(--panel2); border: none; color: var(--accent);
+  border-radius: 9px; min-width: 36px; height: 36px; font-size: 15px; flex: none;
+}
+.list-row .lr-text { flex: 1; min-width: 0; }
+.list-row .lr-ja { font-size: 15px; font-weight: 600; line-height: 1.4; }
+.list-row .lr-en { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.list-row.open .lr-en { color: var(--accent); }
+.list-row .lr-detail { padding: 0 14px 14px 60px; }
+.list-row .lr-detail .alt { color: var(--muted); font-size: 14px; }
+.list-row .lr-detail .advice {
+  background: rgba(56,189,248,.08); border-left: 3px solid var(--accent);
+  padding: 8px 10px; border-radius: 8px; margin-top: 8px; font-size: 13px; line-height: 1.55;
+}
+.list-row .lr-meta { color: var(--muted); font-size: 12px; margin-top: 8px; }
+
+.pager { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 16px 0 8px; }
+.pager .pg-btn {
+  background: var(--panel); color: var(--text); border: none;
+  border-radius: 10px; padding: 12px 10px; font-size: 13px; font-weight: 600; flex: none;
+}
+.pager .pg-btn:disabled { opacity: .35; }
+.pager .pg-pos { color: var(--muted); font-size: 12px; text-align: center; flex: 1; }
+
+.list-group { margin-bottom: 8px; }
+.list-group .lg-head {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--panel2); border: none; color: var(--text);
+  width: 100%; padding: 14px 16px; border-radius: 12px; font-size: 15px; font-weight: 600;
+}
+.list-group .lg-count { color: var(--muted); font-size: 13px; font-weight: 500; }
+.list-group .lg-head.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.list-group .lg-body { padding-top: 8px; }
