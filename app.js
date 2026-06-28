@@ -13,6 +13,7 @@ const SEED_URL = 'data/phrases.json';
 const DECK_KEY = 'phrasedeck.deck.v1';     // ユーザーが追加した items
 const STORE_KEY = 'phrasedeck.srs.v1';     // SRS 進捗
 const APIKEY_KEY = 'phrasedeck.apikey';
+const STAR_KEY = 'phrasedeck.stars.v1';    // 特に覚えたい(★)の id 集合
 
 // エンリッチに使うモデル。コスト重視で Sonnet。品質優先なら 'claude-opus-4-8'。
 const MODEL = 'claude-sonnet-4-6';
@@ -54,6 +55,34 @@ function saveDeck() { localStorage.setItem(DECK_KEY, JSON.stringify(DECK)); }
 
 function getApiKey() { return localStorage.getItem(APIKEY_KEY) || ''; }
 function setApiKey(v) { localStorage.setItem(APIKEY_KEY, v); }
+
+/* ---------- 星マーク（特に覚えたい） ---------- */
+let STARS = new Set();
+function loadStars() {
+  try { STARS = new Set(JSON.parse(localStorage.getItem(STAR_KEY)) || []); }
+  catch { STARS = new Set(); }
+}
+function saveStars() { localStorage.setItem(STAR_KEY, JSON.stringify([...STARS])); }
+function isStarred(id) { return STARS.has(id); }
+function toggleStar(id) {
+  if (STARS.has(id)) STARS.delete(id); else STARS.add(id);
+  saveStars();
+  return STARS.has(id);
+}
+function starBtnHtml(id, extraClass) {
+  const on = isStarred(id);
+  return `<button class="star-btn${extraClass ? ' ' + extraClass : ''}${on ? ' on' : ''}" `
+    + `data-id="${esc(id)}" aria-label="特に覚えたい">${on ? '★' : '☆'}</button>`;
+}
+function wireStarBtn(btn, after) {
+  btn.onclick = (e) => {
+    e.stopPropagation();
+    const on = toggleStar(btn.dataset.id);
+    btn.classList.toggle('on', on);
+    btn.textContent = on ? '★' : '☆';
+    if (after) after(on);
+  };
+}
 
 function todayStart() {
   const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime();
@@ -271,12 +300,17 @@ function renderCard() {
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
   area.innerHTML = `
     <div class="card">
-      <span class="theme-tag">${esc(it.theme)}<span class="type-tag">${it.type === 'word' ? '単語' : 'フレーズ'}</span></span>
+      <div class="card-top">
+        <span class="theme-tag">${esc(it.theme)}<span class="type-tag">${it.type === 'word' ? '単語' : 'フレーズ'}</span></span>
+        ${starBtnHtml(it.id, 'card-star')}
+      </div>
       <div class="difficulty">難易度 ${diffStars}</div>
       <div class="situation">${esc(it.situation_ja)}</div>
       <div class="prompt-ja">${esc(it.ja)}</div>
       <div id="answerZone"></div>
     </div>`;
+  const star = area.querySelector('.card-star');
+  if (star) wireStarBtn(star);
   renderAnswerZone();
 }
 
@@ -487,6 +521,14 @@ let listPage = 0;
 
 function goList() {
   showView('listView');
+  listMode = 'recent';
+  listPage = 0;
+  renderList();
+}
+
+function goStar() {
+  showView('listView');
+  listMode = 'star';
   listPage = 0;
   renderList();
 }
@@ -495,6 +537,7 @@ function renderList() {
   document.querySelectorAll('#listModeSwitch button').forEach(b =>
     b.classList.toggle('active', b.dataset.listmode === listMode));
   if (listMode === 'group') renderListGroup();
+  else if (listMode === 'star') renderListStar();
   else renderListRecent();
 }
 
@@ -513,6 +556,7 @@ function listRowHtml(it) {
           <div class="lr-ja">${esc(it.ja)}</div>
           <div class="lr-en">${esc(main)}</div>
         </div>
+        ${starBtnHtml(it.id)}
       </div>
       <div class="lr-detail" hidden></div>
     </div>`;
@@ -543,15 +587,15 @@ function wireListRows(container) {
     };
     const spk = row.querySelector('.spk');
     spk.onclick = (e) => { e.stopPropagation(); speak(spk.dataset.en); };
+    const star = row.querySelector('.star-btn');
+    if (star) wireStarBtn(star, () => { if (listMode === 'star') renderList(); });
   });
 }
 
-// 最新順（ITEMS は末尾が最新）を 10件ずつページ送り
-function renderListRecent() {
+// 新しい順の配列を 10件ずつページ送りで描画（最新順 / ★だけ で共用）
+function renderListPaged(all) {
   const area = document.getElementById('listArea');
-  const all = ITEMS.slice().reverse();
-  if (!all.length) { area.innerHTML = emptyListHtml(); return; }
-  const pages = Math.ceil(all.length / LIST_PAGE_SIZE);
+  const pages = Math.max(1, Math.ceil(all.length / LIST_PAGE_SIZE));
   listPage = Math.min(Math.max(0, listPage), pages - 1);
   const start = listPage * LIST_PAGE_SIZE;
   const slice = all.slice(start, start + LIST_PAGE_SIZE);
@@ -565,8 +609,30 @@ function renderListRecent() {
   wireListRows(area);
   const prev = document.getElementById('pgPrev');
   const next = document.getElementById('pgNext');
-  if (prev) prev.onclick = () => { listPage--; renderListRecent(); window.scrollTo(0, 0); };
-  if (next) next.onclick = () => { listPage++; renderListRecent(); window.scrollTo(0, 0); };
+  if (prev) prev.onclick = () => { listPage--; renderList(); window.scrollTo(0, 0); };
+  if (next) next.onclick = () => { listPage++; renderList(); window.scrollTo(0, 0); };
+}
+
+// 最新順（ITEMS は末尾が最新）
+function renderListRecent() {
+  const all = ITEMS.slice().reverse();
+  if (!all.length) { document.getElementById('listArea').innerHTML = emptyListHtml(); return; }
+  renderListPaged(all);
+}
+
+// ★を付けたものだけ（新しい順）
+function renderListStar() {
+  const all = ITEMS.filter(it => isStarred(it.id)).reverse();
+  if (!all.length) {
+    document.getElementById('listArea').innerHTML =
+      `<div class="empty">
+         <div class="big">☆</div>
+         <div>★を付けたフレーズがありません</div>
+         <p style="font-size:14px;margin-top:8px;">一覧やカードの ☆ をタップすると、ここに集まります。</p>
+       </div>`;
+    return;
+  }
+  renderListPaged(all);
 }
 
 // テーマごと（各グループ内も新しい順）。見出しタップで開閉。
@@ -898,6 +964,7 @@ function buildBackup() {
     exportedAt: new Date().toISOString(),
     deck: DECK,
     srs: srs,
+    stars: [...STARS],
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -931,6 +998,7 @@ function applyBackup(obj) {
   if (!Array.isArray(deck)) throw new Error('フレーズが見つかりませんでした');
   DECK = deck; saveDeck();
   if (obj.srs && typeof obj.srs === 'object') { srs = obj.srs; saveSrs(); }
+  if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -965,6 +1033,7 @@ function handleRestoreFile(file) {
 /* ---------- 初期化 ---------- */
 async function init() {
   loadSrs();
+  loadStars();
   await loadData();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
@@ -979,6 +1048,7 @@ async function init() {
   document.getElementById('homeBtn').onclick = goHome;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goListBtn').onclick = goList;
+  document.getElementById('goStarBtn').onclick = goStar;
   document.getElementById('goRegisterBtn').onclick = goRegister;
 
   document.querySelectorAll('#listModeSwitch button').forEach(b => {
