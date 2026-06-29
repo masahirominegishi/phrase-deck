@@ -2,7 +2,7 @@
    反映が遅れないよう、ネットワーク優先 + HTTPキャッシュ無視:
    - オンライン時は毎回サーバの最新を取得 (GitHub Pages の 10分キャッシュも回避)
    - オフライン時のみ手元のキャッシュから返す (アプリは動き続ける) */
-const CACHE = 'phrasedeck-v7';
+const CACHE = 'phrasedeck-v8';
 const SHELL = [
   './',
   './index.html',

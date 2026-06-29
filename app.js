@@ -14,6 +14,10 @@ const DECK_KEY = 'phrasedeck.deck.v1';     // ユーザーが追加した items
 const STORE_KEY = 'phrasedeck.srs.v1';     // SRS 進捗
 const APIKEY_KEY = 'phrasedeck.apikey';
 const STAR_KEY = 'phrasedeck.stars.v1';    // 特に覚えたい(★)の id 集合
+const DAILY_KEY = 'phrasedeck.daily.v1';   // 日別の学習ログ {ISO: {reviews, ms}}
+
+// 1枚あたりの学習時間の上限(置きっぱなし対策)。これ以上は加算しない。
+const CARD_TIME_CAP = 120000;
 
 // エンリッチに使うモデル。コスト重視で Sonnet。品質優先なら 'claude-opus-4-8'。
 const MODEL = 'claude-sonnet-4-6';
@@ -55,6 +59,23 @@ function saveDeck() { localStorage.setItem(DECK_KEY, JSON.stringify(DECK)); }
 
 function getApiKey() { return localStorage.getItem(APIKEY_KEY) || ''; }
 function setApiKey(v) { localStorage.setItem(APIKEY_KEY, v); }
+
+/* ---------- 日別の学習ログ ---------- */
+let daily = {};
+let cardShownTs = 0;   // 現在のカードを表示した時刻(分の計測用)
+function loadDaily() {
+  try { daily = JSON.parse(localStorage.getItem(DAILY_KEY)) || {}; }
+  catch { daily = {}; }
+}
+function saveDaily() { localStorage.setItem(DAILY_KEY, JSON.stringify(daily)); }
+function recordStudy(ms) {
+  const key = todayISO();
+  const d = daily[key] || { reviews: 0, ms: 0 };
+  d.reviews += 1;
+  d.ms += Math.max(0, ms);
+  daily[key] = d;
+  saveDaily();
+}
 
 /* ---------- 星マーク（特に覚えたい） ---------- */
 let STARS = new Set();
@@ -203,9 +224,13 @@ function grade(item, g) {
   const interval = g === 'again' ? 0 : BOX_INTERVALS[s.box];
   s.due = g === 'again' ? Date.now() : (todayStart() + interval * DAY);
   s.seen = (s.seen || 0) + 1;
-  s.last = Date.now();
+  const now = Date.now();
+  s.last = now;
   srs[item.id] = s;
   saveSrs();
+  // 学習ログ(日別の回数・時間)。カード表示〜採点までを上限付きで加算。
+  recordStudy(cardShownTs ? Math.min(now - cardShownTs, CARD_TIME_CAP) : 0);
+  cardShownTs = now;
   if (g === 'again') queue.push(item.id);
 }
 
@@ -296,6 +321,7 @@ function nextCard() {
 
 function renderCard() {
   const it = current;
+  cardShownTs = Date.now();
   const area = document.getElementById('cardArea');
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
   area.innerHTML = `
@@ -512,6 +538,94 @@ function renderHome() {
   const keyInput = document.getElementById('apiKeyInput');
   keyInput.value = getApiKey();
   keyInput.onchange = () => setApiKey(keyInput.value.trim());
+}
+
+/* ---------- 学習の記録（グラフ） ---------- */
+let statsDays = 14;   // 14 | 30
+
+function isoOf(t) {
+  const d = new Date(t);
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+// 今日から過去 n 日分の系列(古い→新しい)
+function dailySeries(n) {
+  const base = todayStart();
+  const out = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const t = base - i * DAY;
+    const d = new Date(t);
+    const rec = daily[isoOf(t)] || { reviews: 0, ms: 0 };
+    out.push({
+      t,
+      label: `${d.getMonth() + 1}/${d.getDate()}`,
+      dow: d.getDay(),
+      reviews: rec.reviews,
+      min: rec.ms / 60000,
+    });
+  }
+  return out;
+}
+
+// 1本の棒グラフ。values は数値配列。fmt は棒上のラベル整形。
+function barChartHtml(title, series, getVal, fmt, color) {
+  const vals = series.map(getVal);
+  const max = Math.max(1, ...vals);
+  const showNums = series.length <= 14;
+  const cols = series.map((d, i) => {
+    const v = vals[i];
+    const h = v > 0 ? Math.max(4, Math.round(v / max * 100)) : 0;
+    const today = i === series.length - 1;
+    const weekend = d.dow === 0 || d.dow === 6;
+    const numHtml = showNums ? `<div class="cbar-num">${v > 0 ? fmt(v) : ''}</div>` : '';
+    const lab = showNums || i % 5 === 0 ? d.label : '';
+    return `<div class="cbar-col${today ? ' today' : ''}">
+        ${numHtml}
+        <div class="cbar-track"><div class="cbar" style="height:${h}%;background:${v > 0 ? color : 'var(--panel2)'}"></div></div>
+        <div class="cbar-x${weekend ? ' we' : ''}">${lab}</div>
+      </div>`;
+  }).join('');
+  return `<div class="chart">
+      <div class="chart-title">${title}</div>
+      <div class="chart-bars">${cols}</div>
+    </div>`;
+}
+
+function goStats() {
+  showView('statsView');
+  renderStats();
+}
+
+function renderStats() {
+  document.querySelectorAll('#statsRangeSwitch button').forEach(b =>
+    b.classList.toggle('active', Number(b.dataset.days) === statsDays));
+  const area = document.getElementById('statsArea');
+  const series = dailySeries(statsDays);
+  const totalRev = series.reduce((a, d) => a + d.reviews, 0);
+  const totalMin = series.reduce((a, d) => a + d.min, 0);
+  const activeDays = series.filter(d => d.reviews > 0).length;
+
+  if (totalRev === 0) {
+    area.innerHTML = `<div class="empty">
+        <div class="big">📊</div>
+        <div>まだ記録がありません</div>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+          学習すると、その日から日別の回数と時間がここに貯まります。</p>
+      </div>`;
+    return;
+  }
+
+  const fmtMin = m => m >= 1 ? String(Math.round(m)) : (m > 0 ? '·' : '');
+  area.innerHTML = `
+    <div class="stats-summary">
+      <div class="ss-item"><span class="ss-num">${totalRev}</span><span class="ss-lab">回</span></div>
+      <div class="ss-item"><span class="ss-num">${Math.round(totalMin)}</span><span class="ss-lab">分</span></div>
+      <div class="ss-item"><span class="ss-num">${activeDays}</span><span class="ss-lab">日</span></div>
+    </div>
+    <p class="hint">直近 ${statsDays} 日の合計（回数 / 学習時間 / 学習した日数）</p>
+    ${barChartHtml('日別 回数（回）', series, d => d.reviews, v => String(v), 'var(--accent)')}
+    ${barChartHtml('日別 学習時間（分）', series, d => d.min, fmtMin, 'var(--good)')}`;
 }
 
 /* ---------- 一覧（ながめる用） ---------- */
@@ -965,6 +1079,7 @@ function buildBackup() {
     deck: DECK,
     srs: srs,
     stars: [...STARS],
+    daily: daily,
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -999,6 +1114,7 @@ function applyBackup(obj) {
   DECK = deck; saveDeck();
   if (obj.srs && typeof obj.srs === 'object') { srs = obj.srs; saveSrs(); }
   if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
+  if (obj.daily && typeof obj.daily === 'object') { daily = obj.daily; saveDaily(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1034,6 +1150,7 @@ function handleRestoreFile(file) {
 async function init() {
   loadSrs();
   loadStars();
+  loadDaily();
   await loadData();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
@@ -1049,6 +1166,10 @@ async function init() {
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goListBtn').onclick = goList;
   document.getElementById('goStarBtn').onclick = goStar;
+  document.getElementById('goStatsBtn').onclick = goStats;
+  document.querySelectorAll('#statsRangeSwitch button').forEach(b => {
+    b.onclick = () => { statsDays = Number(b.dataset.days); renderStats(); };
+  });
   document.getElementById('goRegisterBtn').onclick = goRegister;
 
   document.querySelectorAll('#listModeSwitch button').forEach(b => {

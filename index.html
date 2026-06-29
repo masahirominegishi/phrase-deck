@@ -38,6 +38,7 @@
       <button class="big-btn" id="startTodayBtn">今日の復習をはじめる</button>
       <button class="big-btn secondary" id="goListBtn">📋 一覧で見る</button>
       <button class="big-btn secondary" id="goStarBtn">★ を一覧で見る</button>
+      <button class="big-btn secondary" id="goStatsBtn">📊 学習の記録</button>
       <button class="big-btn secondary" id="goRegisterBtn">＋ 新しいフレーズを登録</button>
 
       <h2>テーマ別に練習</h2>
@@ -124,6 +125,17 @@ It's been a while | I had to go to court | The AI system is working well"></text
         <button data-listmode="star">★だけ</button>
       </div>
       <div id="listArea"></div>
+    </section>
+
+    <!-- Stats view -->
+    <section id="statsView" class="view">
+      <h1>学習の記録</h1>
+      <p class="sub">毎日の回数と学習時間を記録します。</p>
+      <div class="mode-switch list-switch" id="statsRangeSwitch">
+        <button data-days="14" class="active">14日</button>
+        <button data-days="30">30日</button>
+      </div>
+      <div id="statsArea"></div>
     </section>
   </main>
 
