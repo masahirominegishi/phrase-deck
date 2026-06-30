@@ -111,6 +111,13 @@ html, body {
   font-size: 12px; padding: 5px 10px; border-radius: 999px; margin: 0 6px 6px 0;
 }
 
+.reveal .teacher-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 14px; padding: 12px; border-radius: 12px;
+  background: var(--panel2); color: var(--text);
+  font-size: 14px; font-weight: 700; text-decoration: none;
+}
+
 /* tap to reveal hint */
 .tap-hint { text-align: center; color: var(--muted); font-size: 13px; margin-top: auto; padding: 14px; }
 

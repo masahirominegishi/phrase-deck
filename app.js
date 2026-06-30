@@ -16,6 +16,12 @@ const APIKEY_KEY = 'phrasedeck.apikey';
 const STAR_KEY = 'phrasedeck.stars.v1';    // 特に覚えたい(★)の id 集合
 const DAILY_KEY = 'phrasedeck.daily.v1';   // 日別の学習ログ {ISO: {reviews, ms}}
 
+// 「やさしい英語先生」カスタム GPT。?q= で英語フレーズを入力欄にプリフィル。
+const TEACHER_GPT_URL = 'https://chatgpt.com/g/g-68114d4beb74819189947148dab70783-yasasiiying-yu-xian-sheng';
+function teacherUrl(en) {
+  return `${TEACHER_GPT_URL}?q=${encodeURIComponent(en)}`;
+}
+
 // 1枚あたりの学習時間の上限(置きっぱなし対策)。これ以上は加算しない。
 const CARD_TIME_CAP = 120000;
 
@@ -424,6 +430,7 @@ function revealHtml(it) {
       ${alts.map(a => `<div class="alt">= ${esc(a)}</div>`).join('')}
       ${it.advice_ja ? `<div class="advice">💡 ${esc(it.advice_ja)}</div>` : ''}
       ${related ? `<div class="related"><h4>関連表現</h4>${related}</div>` : ''}
+      <a class="teacher-btn" href="${esc(teacherUrl(main))}" target="_blank" rel="noopener">👨‍🏫 先生に質問する</a>
     </div>`;
 }
 function wireReveal(zone) {
