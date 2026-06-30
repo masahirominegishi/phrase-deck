@@ -430,12 +430,35 @@ function revealHtml(it) {
       ${alts.map(a => `<div class="alt">= ${esc(a)}</div>`).join('')}
       ${it.advice_ja ? `<div class="advice">💡 ${esc(it.advice_ja)}</div>` : ''}
       ${related ? `<div class="related"><h4>関連表現</h4>${related}</div>` : ''}
-      <a class="teacher-btn" href="${esc(teacherUrl(main))}" target="_blank" rel="noopener">👨‍🏫 先生に質問する</a>
+      <a class="teacher-btn" href="${esc(teacherUrl(main))}" target="_blank" rel="noopener" data-en="${esc(main)}">👨‍🏫 先生に質問する</a>
     </div>`;
 }
 function wireReveal(zone) {
   const spk = zone.querySelector('.spk');
   if (spk) spk.onclick = (e) => { e.stopPropagation(); speak(spk.dataset.en); };
+  const teacher = zone.querySelector('.teacher-btn');
+  if (teacher) teacher.onclick = (e) => {
+    e.stopPropagation();
+    // iPhone はリンクの ?q= がアプリ側で無視されるため、確実にコピーしてから開く
+    const en = teacher.dataset.en || '';
+    if (navigator.clipboard) navigator.clipboard.writeText(en).catch(() => {});
+    toast('フレーズをコピーしました。先生に貼り付けて送ってね');
+    // ここでは preventDefault せず、リンクの遷移(新規タブで GPT を開く)はそのまま進める
+  };
+}
+
+let toastTimer = null;
+function toast(msg) {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
 function gradeRowHtml() {
   return `
