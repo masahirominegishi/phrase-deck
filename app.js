@@ -439,12 +439,43 @@ function wireReveal(zone) {
   const teacher = zone.querySelector('.teacher-btn');
   if (teacher) teacher.onclick = (e) => {
     e.stopPropagation();
-    // iPhone はリンクの ?q= がアプリ側で無視されるため、確実にコピーしてから開く
+    // iPhone はリンクの ?q= がアプリ側で無視されるため、確実にコピーしてから開く。
+    // navigator.clipboard は非同期で、リンク遷移→フォーカス喪失でキャンセルされるため
+    // iOS では同期完結する execCommand('copy') 方式を使う。preventDefault はしない。
     const en = teacher.dataset.en || '';
-    if (navigator.clipboard) navigator.clipboard.writeText(en).catch(() => {});
-    toast('フレーズをコピーしました。先生に貼り付けて送ってね');
-    // ここでは preventDefault せず、リンクの遷移(新規タブで GPT を開く)はそのまま進める
+    const ok = copyTextSync(en);
+    toast(ok ? 'フレーズをコピーしました。先生に貼り付けて送ってね' : 'コピーできませんでした。手入力してね');
   };
+}
+
+// iOS Safari/PWA でユーザー操作中に同期コピーするためのフォールバック実装。
+function copyTextSync(text) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.contentEditable = 'true';
+    ta.readOnly = false;
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.left = '0';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    const range = document.createRange();
+    range.selectNodeContents(ta);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    ta.setSelectionRange(0, text.length);
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (_) {}
+    document.body.removeChild(ta);
+    // 念のため非同期 API も試す(対応ブラウザでより確実に)
+    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+    return ok;
+  } catch (_) {
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).catch(() => {}); return true; }
+    return false;
+  }
 }
 
 let toastTimer = null;
