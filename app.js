@@ -243,6 +243,7 @@ function grade(item, g) {
 /* ---------- 音声(TTS) ---------- */
 const VOICE_KEY = 'phrasedeck.voice';
 const RATE_KEY = 'phrasedeck.rate';
+const MUTE_KEY = 'phrasedeck.muted';
 const NOVELTY = [
   'albert', 'bad news', 'bahh', 'bells', 'boing', 'bubbles', 'cellos', 'wobble',
   'good news', 'jester', 'organ', 'pipe organ', 'superstar', 'trinoids', 'whisper',
@@ -256,6 +257,7 @@ const PREFERRED = [
 
 let VOICES = [];
 let speechRate = parseFloat(localStorage.getItem(RATE_KEY)) || 0.95;
+let muted = localStorage.getItem(MUTE_KEY) === '1';
 
 function isNovelty(v) {
   const n = v.name.toLowerCase();
@@ -289,6 +291,7 @@ function currentVoiceName() {
   return autoVoiceName();
 }
 function speak(text, rate) {
+  if (muted) return;
   if (!('speechSynthesis' in window)) return;
   if (!VOICES.length) refreshVoices();
   window.speechSynthesis.cancel();
@@ -300,6 +303,14 @@ function speak(text, rate) {
   u.pitch = 1.0;
   u.volume = 1.0;
   window.speechSynthesis.speak(u);
+}
+
+function renderMuteBtn() {
+  const b = document.getElementById('muteBtn');
+  if (!b) return;
+  b.textContent = muted ? '🔇' : '🔊';
+  b.classList.toggle('muted', muted);
+  b.title = muted ? '音: オフ（タップでオン）' : '音: オン（タップでオフ）';
 }
 
 /* ---------- 画面遷移 ---------- */
@@ -1261,6 +1272,17 @@ async function init() {
       srs = {}; saveSrs(); renderHome();
     }
   };
+
+  const muteBtn = document.getElementById('muteBtn');
+  if (muteBtn) {
+    muteBtn.onclick = () => {
+      muted = !muted;
+      localStorage.setItem(MUTE_KEY, muted ? '1' : '0');
+      if (muted && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+      renderMuteBtn();
+    };
+    renderMuteBtn();
+  }
 
   if ('speechSynthesis' in window) {
     refreshVoices();
