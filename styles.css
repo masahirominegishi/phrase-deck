@@ -227,8 +227,8 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
   border-radius: 9px; min-width: 36px; height: 36px; font-size: 15px; flex: none;
 }
 .list-row .lr-text { flex: 1; min-width: 0; }
-.list-row .lr-ja { font-size: 15px; font-weight: 600; line-height: 1.4; }
-.list-row .lr-en { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.list-row .lr-en { font-size: 15px; font-weight: 600; line-height: 1.4; }
+.list-row .lr-ja { color: var(--muted); font-size: 14px; margin-top: 2px; }
 .list-row.open .lr-en { color: var(--accent); }
 .list-row .lr-detail { padding: 0 14px 14px 60px; }
 .list-row .lr-detail .alt { color: var(--muted); font-size: 14px; }

@@ -731,7 +731,7 @@ function emptyListHtml() {
   return `<div class="empty"><div class="big">📭</div><div>まだフレーズがありません</div></div>`;
 }
 
-// 1行: 日本語 + 英語(main) のみ。タップで lr-detail を開く。
+// 1行: 英語(main) + 日本語 のみ。タップで lr-detail を開く。
 function listRowHtml(it) {
   const main = (it.en && it.en[0]) || '';
   return `
@@ -739,8 +739,8 @@ function listRowHtml(it) {
       <div class="lr-head">
         <button class="spk" data-en="${esc(main)}">🔊</button>
         <div class="lr-text">
-          <div class="lr-ja">${esc(it.ja)}</div>
           <div class="lr-en">${esc(main)}</div>
+          <div class="lr-ja">${esc(it.ja)}</div>
         </div>
         ${starBtnHtml(it.id)}
       </div>
