@@ -34,6 +34,16 @@ const BOX_INTERVALS = [0, 1, 3, 7, 14, 30];
 const NEW_PER_DAY = 8;
 const MAX_BOX = BOX_INTERVALS.length - 1;
 
+/* ---------- 徹底モード（会話の骨組み30） ----------
+   通常の SRS とは別勘定。「3日ぶん連続で言えたら卒業」。
+   同じ日に何度正解しても連続日数は 1 しか進まない（詰め込みで卒業できない）。
+   1回でも言えなければ連続日数は 0 に戻り、そのセッション中に必ず再登場する。 */
+const CORE_THEME = '会話の骨組み30';
+const DRILL_KEY = 'phrasedeck.drill.v1';
+const DRILL_GOAL = 3;                  // 卒業に必要な「連続で言えた日数」
+const DRILL_RECHECK_DAYS = [7, 30];    // 卒業後の確認テスト（何日後か）
+const DRILL_REQUEUE_GAP = 3;           // 言えなかったカードが再登場するまでの枚数
+
 const THEMES = [
   '裁判員の話', '魚市場・仕事', 'お店・レストラン', '高松の暮らし・食',
   '一人の時間・性格', '果物・地方', 'あいさつ・近況', '一般表現',
@@ -49,6 +59,9 @@ let queue = [];
 let current = null;
 let revealed = false;
 let sessionTheme = null;   // 直近セッションのテーマ
+let drill = {};            // 徹底モードの進捗 { id: {streak, lastDay, done, doneAt, checks} }
+let drillMode = false;     // 今のセッションが徹底モードか
+let drillRecheck = false;  // 今出しているカードが「確認テスト」か
 
 /* ---------- 永続化 ---------- */
 function loadSrs() {
@@ -163,6 +176,8 @@ function buildQueue(theme) {
   const newIds = [];
   for (const it of ITEMS) {
     if (theme && it.theme !== theme) continue;
+    // 骨組み30 は徹底モードの専任。ふだんの復習では二重に出さない。
+    if (!theme && it.theme === CORE_THEME) continue;
     const s = srs[it.id];
     if (!s) { newIds.push(it.id); continue; }
     if (s.due <= now) dueIds.push(it.id);
@@ -188,7 +203,7 @@ function todayStudiedIds() {
 // まだ今日やっていなければ、デッキ全体から練習。採点は通常どおりSRSに反映。
 function buildExtraQueue() {
   let ids = todayStudiedIds();
-  if (!ids.length) ids = ITEMS.map(it => it.id);
+  if (!ids.length) ids = ITEMS.filter(it => it.theme !== CORE_THEME).map(it => it.id);
   for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -210,13 +225,14 @@ function countNewToday() {
 
 function dueCountAll() {
   const now = Date.now();
+  const pool = ITEMS.filter(it => it.theme !== CORE_THEME);
   let due = 0;
-  for (const it of ITEMS) {
+  for (const it of pool) {
     const s = srs[it.id];
     if (s && s.due <= now) due++;
   }
   const newRoom = Math.max(0, NEW_PER_DAY - countNewToday());
-  const newAvail = ITEMS.filter(it => !srs[it.id]).length;
+  const newAvail = pool.filter(it => !srs[it.id]).length;
   return due + Math.min(newRoom, newAvail);
 }
 
@@ -238,6 +254,111 @@ function grade(item, g) {
   recordStudy(cardShownTs ? Math.min(now - cardShownTs, CARD_TIME_CAP) : 0);
   cardShownTs = now;
   if (g === 'again') queue.push(item.id);
+}
+
+// 採点の入口。徹底モードとふつうの復習で採点の意味が違うので、ここで振り分ける。
+function gradeCurrent(g) {
+  if (drillMode) return gradeDrill(current, g === 'ok');
+  grade(current, g);
+}
+
+/* ---------- 徹底モード ---------- */
+function loadDrill() {
+  try { drill = JSON.parse(localStorage.getItem(DRILL_KEY)) || {}; }
+  catch { drill = {}; }
+}
+function saveDrill() { localStorage.setItem(DRILL_KEY, JSON.stringify(drill)); }
+
+function coreItems() { return ITEMS.filter(it => it.theme === CORE_THEME); }
+
+function drillState(id) {
+  return drill[id] || { streak: 0, lastDay: '', done: false, doneAt: 0, checks: 0 };
+}
+
+// 卒業した文の「確認テスト」の期限。2回パスしたら完全卒業（もう出さない）。
+function recheckDue(st) {
+  if (!st.done) return Infinity;
+  const days = DRILL_RECHECK_DAYS[st.checks];
+  if (days == null) return Infinity;
+  return (st.lastCheck || st.doneAt) + days * DAY;
+}
+
+// 今日クリアすべき文＝まだ卒業しておらず、今日まだ言えていないもの＋期限のきた確認テスト。
+function buildDrillQueue() {
+  const today = todayISO();
+  const now = Date.now();
+  const todo = [], checks = [];
+  for (const it of coreItems()) {
+    const st = drillState(it.id);
+    if (st.done) { if (recheckDue(st) <= now) checks.push(it.id); continue; }
+    if (st.lastDay === today) continue;
+    todo.push(it.id);
+  }
+  // 連続日数が少ない（＝苦手な）ものから
+  todo.sort((a, b) => drillState(a).streak - drillState(b).streak);
+  return checks.concat(todo);
+}
+
+// 今日やる分をすべてクリアした後の「おかわり」。連続日数は動かさない。
+function buildDrillExtraQueue() {
+  const ids = coreItems().map(it => it.id);
+  for (let i = ids.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  return ids;
+}
+
+function gradeDrill(item, ok) {
+  const st = drillState(item.id);
+  const today = todayISO();
+  const now = Date.now();
+  if (ok) {
+    if (st.done) {
+      // 確認テストに合格。次の確認まで先送り。
+      st.checks = (st.checks || 0) + 1;
+      st.lastCheck = now;
+    } else if (st.lastDay !== today) {
+      st.streak = (st.streak || 0) + 1;
+      st.lastDay = today;
+      if (st.streak >= DRILL_GOAL) { st.done = true; st.doneAt = now; st.checks = 0; }
+    }
+  } else {
+    // 言えなければ振り出しに戻す。卒業済みでも現役に戻る。
+    st.streak = 0;
+    st.lastDay = '';
+    if (st.done) { st.done = false; st.doneAt = 0; st.checks = 0; }
+    // 同じセッション中に必ずもう一度出す
+    queue.splice(Math.min(DRILL_REQUEUE_GAP, queue.length), 0, item.id);
+  }
+  st.seen = (st.seen || 0) + 1;
+  drill[item.id] = st;
+  saveDrill();
+  recordStudy(cardShownTs ? Math.min(now - cardShownTs, CARD_TIME_CAP) : 0);
+  cardShownTs = now;
+}
+
+function drillSummary() {
+  const items = coreItems();
+  const today = todayISO();
+  let done = 0, clearedToday = 0;
+  for (const it of items) {
+    const st = drillState(it.id);
+    if (st.done) { done++; clearedToday++; continue; }
+    if (st.lastDay === today) clearedToday++;
+  }
+  return { total: items.length, done, clearedToday, remaining: buildDrillQueue().length };
+}
+
+// レッスン前に「今日これを使う」と決めるための3文。苦手なものから選ぶ。
+function pickThreeForToday() {
+  const all = coreItems();
+  const rest = all
+    .filter(it => !drillState(it.id).done)
+    .sort((a, b) => drillState(a).streak - drillState(b).streak);
+  // 卒業が進んで残りが3未満になったら、卒業ずみからも補って必ず3文出す。
+  const pool = rest.concat(all.filter(it => drillState(it.id).done));
+  return pool.slice(0, 3);
 }
 
 /* ---------- 音声(TTS) ---------- */
@@ -319,7 +440,9 @@ function showView(id) {
   document.getElementById(id).classList.add('active');
 }
 function refreshTop() {
-  document.getElementById('dueCount').textContent = dueCountAll();
+  // 徹底モード中は「このセッションの残り枚数」を出す（言えなければ増える）。
+  const n = drillMode ? queue.length + (current ? 1 : 0) : dueCountAll();
+  document.getElementById('dueCount').textContent = n;
 }
 
 /* ---------- カード描画 ---------- */
@@ -336,9 +459,19 @@ function nextCard() {
   renderDone();
 }
 
+// 徹底モードのカード上部：あと何日連続で言えれば卒業かを見せる。
+function drillMeterHtml(id) {
+  const st = drillState(id);
+  if (st.done) return `<div class="drill-meter done">卒業ずみ ─ 確認テスト</div>`;
+  const dots = Array.from({ length: DRILL_GOAL }, (_, i) =>
+    `<span class="dot${i < st.streak ? ' on' : ''}"></span>`).join('');
+  return `<div class="drill-meter">${dots}<span class="drill-meter-label">連続 ${st.streak}/${DRILL_GOAL} 日</span></div>`;
+}
+
 function renderCard() {
   const it = current;
   cardShownTs = Date.now();
+  drillRecheck = drillMode && drillState(it.id).done;
   const area = document.getElementById('cardArea');
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
   area.innerHTML = `
@@ -347,7 +480,7 @@ function renderCard() {
         <span class="theme-tag">${esc(it.theme)}<span class="type-tag">${it.type === 'word' ? '単語' : 'フレーズ'}</span></span>
         ${starBtnHtml(it.id, 'card-star')}
       </div>
-      <div class="difficulty">難易度 ${diffStars}</div>
+      ${drillMode ? drillMeterHtml(it.id) : `<div class="difficulty">難易度 ${diffStars}</div>`}
       <div class="situation">${esc(it.situation_ja)}</div>
       <div class="prompt-ja">${esc(it.ja)}</div>
       <div id="answerZone"></div>
@@ -374,7 +507,7 @@ function renderRecallMode(zone) {
   zone.innerHTML = revealHtml(current) + gradeRowHtml();
   wireReveal(zone);
   zone.querySelectorAll('.grade-row button').forEach(b => {
-    b.onclick = () => { grade(current, b.dataset.g); refreshTop(); nextCard(); };
+    b.onclick = () => { gradeCurrent(b.dataset.g); refreshTop(); nextCard(); };
   });
   speak(current.en[0]);
 }
@@ -400,7 +533,7 @@ function renderTypeMode(zone) {
         zone.innerHTML = revealHtml(current) + gradeRowHtml(ok);
         wireReveal(zone);
         zone.querySelectorAll('.grade-row button').forEach(b => {
-          b.onclick = () => { grade(current, b.dataset.g); refreshTop(); nextCard(); };
+          b.onclick = () => { gradeCurrent(b.dataset.g); refreshTop(); nextCard(); };
         });
         speak(current.en[0]);
       }, 700);
@@ -422,7 +555,7 @@ function renderShadowMode(zone) {
   zone.querySelector('#playBtn').onclick = () => speak(current.en[0], 1.0);
   zone.querySelector('#slowBtn').onclick = () => speak(current.en[0], 0.6);
   zone.querySelectorAll('.grade-row button').forEach(b => {
-    b.onclick = () => { grade(current, b.dataset.g); refreshTop(); nextCard(); };
+    b.onclick = () => { gradeCurrent(b.dataset.g); refreshTop(); nextCard(); };
   });
   speak(current.en[0]);
 }
@@ -503,6 +636,15 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
 function gradeRowHtml() {
+  // 徹底モードは「言えたか、言えなかったか」の2択だけ。
+  // あやふや＝言えなかった、として扱わないと連続日数が意味を持たなくなる。
+  if (drillMode) {
+    return `
+      <div class="grade-row drill">
+        <button class="again" data-g="ng">言えなかった<small>今すぐまた出る</small></button>
+        <button class="good" data-g="ok">言えた<small>${drillRecheck ? '確認クリア' : '連続日数 +1'}</small></button>
+      </div>`;
+  }
   return `
     <div class="grade-row">
       <button class="again" data-g="again">もう一度<small>今日また</small></button>
@@ -519,6 +661,7 @@ function isCorrect(input, candidates) {
 function renderDone() {
   current = null;
   const area = document.getElementById('cardArea');
+  if (drillMode) { renderDrillDone(area); return; }
   if (!ITEMS.length) {
     area.innerHTML = `
       <div class="empty">
@@ -540,6 +683,25 @@ function renderDone() {
       <p style="color:var(--muted);font-size:14px;margin-top:8px;">
         またあとで開くと、忘れかけた頃のカードが出てきます。</p>
       <button class="big-btn" style="margin-top:24px" onclick="goExtra()">${label}</button>
+      <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
+    </div>`;
+  refreshTop();
+}
+
+function renderDrillDone(area) {
+  const s = drillSummary();
+  const pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+  const allDone = s.total > 0 && s.done === s.total;
+  area.innerHTML = `
+    <div class="empty">
+      <div class="big">${allDone ? '🏆' : '✅'}</div>
+      <div>${allDone ? '30文すべて卒業！' : '今日の分は終わり'}</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+        卒業 ${s.done}/${s.total} 文。${allDone
+          ? 'あとは7日後と30日後の確認テストだけです。'
+          : '明日また開くと、連続日数の続きが積み上がります。'}</p>
+      <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
+      <button class="big-btn" style="margin-top:16px" onclick="goDrillExtra()">もう一周する（おかわり）</button>
       <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
     </div>`;
   refreshTop();
@@ -576,12 +738,54 @@ function renderVoiceUI() {
     () => speak('It’s been a while. Have you tried peaches from Yamanashi?');
 }
 
+function renderDrillHome() {
+  const box = document.getElementById('drillBox');
+  if (!box) return;
+  const s = drillSummary();
+  if (!s.total) { box.hidden = true; return; }
+  box.hidden = false;
+  const pct = Math.round(s.done / s.total * 100);
+  document.getElementById('drillCount').textContent = `卒業 ${s.done}/${s.total}`;
+  document.getElementById('drillBar').style.width = pct + '%';
+  document.getElementById('drillHint').textContent = s.remaining
+    ? `今日やる分が ${s.remaining} 文あります。言えるまで何度でも出てきます。`
+    : `今日の分は終わりました。今日クリア ${s.clearedToday}/${s.total} 文。`;
+  const start = document.getElementById('startDrillBtn');
+  start.textContent = s.remaining ? `30文をやる（今日 ${s.remaining} 文）` : '30文をもう一周する';
+  document.getElementById('drillPick').innerHTML = '';
+}
+
+// レッスン直前に「今日はこれを使う」と決めるための3文。
+function renderDrillPick() {
+  const zone = document.getElementById('drillPick');
+  const three = pickThreeForToday();
+  if (!three.length) { zone.innerHTML = ''; return; }
+  zone.innerHTML = `
+    <div class="pick-card">
+      <h4>今日のレッスンで、この3文を必ず使う</h4>
+      ${three.map(it => `
+        <div class="pick-row">
+          <div class="pick-en">${esc(it.en[0])}</div>
+          <div class="pick-ja">${esc(it.ja)}</div>
+        </div>`).join('')}
+      <button class="link-btn" id="pickCopyBtn">3文をコピーする</button>
+      <p class="hint">レッスンが終わったら、先生のメモにこの3文が出てきたか見てください。
+        また書かれていたら、まだ身についていないということです。</p>
+    </div>`;
+  document.getElementById('pickCopyBtn').onclick = () => {
+    const ok = copyTextSync(three.map(it => `${it.en[0]}  （${it.ja}）`).join('\n'));
+    toast(ok ? '3文をコピーしました' : 'コピーできませんでした');
+  };
+}
+
 function renderHome() {
   refreshTop();
   renderVoiceUI();
+  renderDrillHome();
 
   const themes = {};
   for (const it of ITEMS) {
+    if (it.theme === CORE_THEME) continue;   // 専用の枠が上にあるので重複させない
     const t = it.theme || 'その他';
     themes[t] = themes[t] || { total: 0, learned: 0 };
     themes[t].total++;
@@ -1110,6 +1314,7 @@ function saveItems() {
 
 /* ---------- セッション/遷移 ---------- */
 function startSession(theme) {
+  drillMode = false;
   sessionTheme = theme || null;
   queue = buildQueue(sessionTheme);
   showView('studyView');
@@ -1118,12 +1323,29 @@ function startSession(theme) {
 }
 
 function startExtra() {
+  drillMode = false;
   queue = buildExtraQueue(sessionTheme);
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { showView('homeView'); renderHome(); }
+
+function startDrill() {
+  drillMode = true;
+  sessionTheme = CORE_THEME;
+  queue = buildDrillQueue();
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+function goDrillExtra() {
+  drillMode = true;
+  queue = buildDrillExtraQueue();
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+function goHome() { drillMode = false; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1223,6 +1445,7 @@ async function init() {
   loadSrs();
   loadStars();
   loadDaily();
+  loadDrill();
   await loadData();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
@@ -1235,6 +1458,8 @@ async function init() {
   });
 
   document.getElementById('homeBtn').onclick = goHome;
+  document.getElementById('startDrillBtn').onclick = startDrill;
+  document.getElementById('drillPickBtn').onclick = renderDrillPick;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goListBtn').onclick = goList;
   document.getElementById('goStarBtn').onclick = goStar;
