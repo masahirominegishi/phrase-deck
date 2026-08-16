@@ -1201,7 +1201,12 @@ const ENRICH_TOOL = {
             situation_ja: { type: 'string', description: 'この表現が出てくる具体的な場面(日本語, 30字以内目安)' },
             theme: { type: 'string', enum: THEMES, description: "最も近いテーマ。なければ '一般表現'。" },
             difficulty: { type: 'integer', minimum: 1, maximum: 3, description: '1=易 2=中 3=難' },
-            advice_ja: { type: 'string', description: '覚える/使うためのワンポイント文法・語法アドバイス(日本語)' },
+            advice_ja: { type: 'string',
+              description: '覚える/使うためのアドバイス(日本語, 60〜130字)。'
+                + '前半に文法・語法の要点、後半に「この後こう続けると会話が伸びる」という'
+                + '具体的な一言を英文＋日本語訳で必ず入れる。'
+                + '例: 続けて It was better than I expected.(思ったよりよかった) と足す。'
+                + '他のカードを番号で指さず、英文そのものを書くこと。' },
             related_hint: { type: 'array', items: { type: 'string' },
               description: 'この表現と関連が深い他の英語表現(英文そのまま)。' },
           },
