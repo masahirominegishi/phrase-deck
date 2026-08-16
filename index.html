@@ -39,7 +39,7 @@
 
       <div id="drillBox" class="drill-box" hidden>
         <div class="drill-head">
-          <span class="drill-title">会話の骨組み30</span>
+          <span class="drill-title" id="drillTitle">会話の骨組み</span>
           <span class="drill-count" id="drillCount">–</span>
         </div>
         <div class="bar"><span id="drillBar" style="width:0%"></span></div>
@@ -47,6 +47,15 @@
         <button class="big-btn" id="startDrillBtn">30文をやる</button>
         <button class="big-btn secondary" id="drillPickBtn" style="margin-top:10px">🎯 今日のレッスンで使う3文</button>
         <div id="drillPick"></div>
+      </div>
+
+      <div id="reviewBox" class="drill-box review-box" hidden>
+        <div class="drill-head">
+          <span class="drill-title">卒業した文の復習</span>
+          <span class="drill-count" id="reviewCount">–</span>
+        </div>
+        <p class="hint" id="reviewHint"></p>
+        <button class="big-btn" id="startReviewBtn">復習する</button>
       </div>
 
       <h2>ふだんの復習</h2>

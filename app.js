@@ -34,14 +34,15 @@ const BOX_INTERVALS = [0, 1, 3, 7, 14, 30];
 const NEW_PER_DAY = 8;
 const MAX_BOX = BOX_INTERVALS.length - 1;
 
-/* ---------- 徹底モード（会話の骨組み30） ----------
-   通常の SRS とは別勘定。「3日ぶん連続で言えたら卒業」。
+/* ---------- 徹底モード（会話の骨組み） ----------
+   通常の SRS とは別勘定。30文で1パック。「3日ぶん連続で言えたら卒業」。
    同じ日に何度正解しても連続日数は 1 しか進まない（詰め込みで卒業できない）。
-   1回でも言えなければ連続日数は 0 に戻り、そのセッション中に必ず再登場する。 */
-const CORE_THEME = '会話の骨組み30';
+   1回でも言えなければ連続日数は 0 に戻り、そのセッション中に必ず再登場する。
+   パックの30文がすべて卒業すると、次のパックが開く。
+   卒業した文はパックをまたいで「復習」に貯まり、いつでも全部まとめて回せる。 */
+const CORE_THEME = '会話の骨組み';
 const DRILL_KEY = 'phrasedeck.drill.v1';
 const DRILL_GOAL = 3;                  // 卒業に必要な「連続で言えた日数」
-const DRILL_RECHECK_DAYS = [7, 30];    // 卒業後の確認テスト（何日後か）
 const DRILL_REQUEUE_GAP = 3;           // 言えなかったカードが再登場するまでの枚数
 
 const THEMES = [
@@ -59,9 +60,9 @@ let queue = [];
 let current = null;
 let revealed = false;
 let sessionTheme = null;   // 直近セッションのテーマ
-let drill = {};            // 徹底モードの進捗 { id: {streak, lastDay, done, doneAt, checks} }
-let drillMode = false;     // 今のセッションが徹底モードか
-let drillRecheck = false;  // 今出しているカードが「確認テスト」か
+let drill = {};            // 徹底モードの進捗 { id: {streak, lastDay, done, doneAt} }
+let drillMode = false;     // false | 'pack'（新規パック） | 'review'（卒業ぶんの復習）
+let drillPackNo = 0;       // 今やっているパック番号（'pack' セッション用）
 
 /* ---------- 永続化 ---------- */
 function loadSrs() {
@@ -271,63 +272,89 @@ function saveDrill() { localStorage.setItem(DRILL_KEY, JSON.stringify(drill)); }
 
 function coreItems() { return ITEMS.filter(it => it.theme === CORE_THEME); }
 
+// pack が無い古いデータはパック1 とみなす。
+function packOf(it) { return Number(it.pack) || 1; }
+function packItems(no) { return coreItems().filter(it => packOf(it) === no); }
+function packNumbers() {
+  return [...new Set(coreItems().map(packOf))].sort((a, b) => a - b);
+}
+function packTitle(no) {
+  const it = packItems(no)[0];
+  return (it && it.pack_title) || `パック${no}`;
+}
+
+// いま開いているパック＝まだ全部は卒業していない、いちばん若いパック。
+// すべて卒業ずみなら 0（新しいパック待ち）。
+function currentPackNo() {
+  for (const no of packNumbers()) {
+    const items = packItems(no);
+    if (items.some(it => !drillState(it.id).done)) return no;
+  }
+  return 0;
+}
+
 function drillState(id) {
-  return drill[id] || { streak: 0, lastDay: '', done: false, doneAt: 0, checks: 0 };
+  return drill[id] || { streak: 0, lastDay: '', done: false, doneAt: 0 };
 }
 
-// 卒業した文の「確認テスト」の期限。2回パスしたら完全卒業（もう出さない）。
-function recheckDue(st) {
-  if (!st.done) return Infinity;
-  const days = DRILL_RECHECK_DAYS[st.checks];
-  if (days == null) return Infinity;
-  return (st.lastCheck || st.doneAt) + days * DAY;
-}
-
-// 今日クリアすべき文＝まだ卒業しておらず、今日まだ言えていないもの＋期限のきた確認テスト。
-function buildDrillQueue() {
+// 今日クリアすべき文＝このパックのうち、まだ卒業しておらず今日まだ言えていないもの。
+function buildDrillQueue(no) {
   const today = todayISO();
-  const now = Date.now();
-  const todo = [], checks = [];
-  for (const it of coreItems()) {
+  const todo = [];
+  for (const it of packItems(no)) {
     const st = drillState(it.id);
-    if (st.done) { if (recheckDue(st) <= now) checks.push(it.id); continue; }
+    if (st.done) continue;
     if (st.lastDay === today) continue;
     todo.push(it.id);
   }
   // 連続日数が少ない（＝苦手な）ものから
   todo.sort((a, b) => drillState(a).streak - drillState(b).streak);
-  return checks.concat(todo);
+  return todo;
+}
+
+function shuffled(ids) {
+  const a = ids.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 // 今日やる分をすべてクリアした後の「おかわり」。連続日数は動かさない。
-function buildDrillExtraQueue() {
-  const ids = coreItems().map(it => it.id);
-  for (let i = ids.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [ids[i], ids[j]] = [ids[j], ids[i]];
-  }
-  return ids;
+function buildDrillExtraQueue(no) {
+  return shuffled(packItems(no).map(it => it.id));
 }
+
+// 復習＝卒業した文ぜんぶ。パックをまたいでシャッフルし、上限なしで1周する。
+function graduatedIds() {
+  return coreItems().filter(it => drillState(it.id).done).map(it => it.id);
+}
+function buildReviewQueue() { return shuffled(graduatedIds()); }
 
 function gradeDrill(item, ok) {
   const st = drillState(item.id);
   const today = todayISO();
   const now = Date.now();
-  if (ok) {
-    if (st.done) {
-      // 確認テストに合格。次の確認まで先送り。
-      st.checks = (st.checks || 0) + 1;
-      st.lastCheck = now;
-    } else if (st.lastDay !== today) {
+  if (drillMode === 'review') {
+    // 復習では卒業を取り消さない。取り消すとパックの完了判定が揺れてしまう。
+    // 言えなければ、そのセッション中にもう一度出すだけ。
+    if (ok) { st.reviewOk = (st.reviewOk || 0) + 1; }
+    else {
+      st.reviewNg = (st.reviewNg || 0) + 1;
+      queue.splice(Math.min(DRILL_REQUEUE_GAP, queue.length), 0, item.id);
+    }
+    st.lastReview = now;
+  } else if (ok) {
+    if (st.lastDay !== today) {
       st.streak = (st.streak || 0) + 1;
       st.lastDay = today;
-      if (st.streak >= DRILL_GOAL) { st.done = true; st.doneAt = now; st.checks = 0; }
+      if (st.streak >= DRILL_GOAL) { st.done = true; st.doneAt = now; }
     }
   } else {
-    // 言えなければ振り出しに戻す。卒業済みでも現役に戻る。
+    // 言えなければ振り出しに戻す。
     st.streak = 0;
     st.lastDay = '';
-    if (st.done) { st.done = false; st.doneAt = 0; st.checks = 0; }
     // 同じセッション中に必ずもう一度出す
     queue.splice(Math.min(DRILL_REQUEUE_GAP, queue.length), 0, item.id);
   }
@@ -339,7 +366,9 @@ function gradeDrill(item, ok) {
 }
 
 function drillSummary() {
-  const items = coreItems();
+  const no = currentPackNo();
+  const nums = packNumbers();
+  const items = no ? packItems(no) : [];
   const today = todayISO();
   let done = 0, clearedToday = 0;
   for (const it of items) {
@@ -347,18 +376,28 @@ function drillSummary() {
     if (st.done) { done++; clearedToday++; continue; }
     if (st.lastDay === today) clearedToday++;
   }
-  return { total: items.length, done, clearedToday, remaining: buildDrillQueue().length };
+  return {
+    pack: no,
+    title: no ? packTitle(no) : '',
+    packIndex: no ? nums.indexOf(no) + 1 : nums.length,
+    packCount: nums.length,
+    total: items.length,
+    done, clearedToday,
+    remaining: no ? buildDrillQueue(no).length : 0,
+    graduated: graduatedIds().length,
+    coreTotal: coreItems().length,
+  };
 }
 
 // レッスン前に「今日これを使う」と決めるための3文。苦手なものから選ぶ。
 function pickThreeForToday() {
-  const all = coreItems();
-  const rest = all
+  const no = currentPackNo();
+  const rest = (no ? packItems(no) : [])
     .filter(it => !drillState(it.id).done)
     .sort((a, b) => drillState(a).streak - drillState(b).streak);
   // 卒業が進んで残りが3未満になったら、卒業ずみからも補って必ず3文出す。
-  const pool = rest.concat(all.filter(it => drillState(it.id).done));
-  return pool.slice(0, 3);
+  const grad = shuffled(graduatedIds()).map(id => BY_ID[id]).filter(Boolean);
+  return rest.concat(grad).slice(0, 3);
 }
 
 /* ---------- 音声(TTS) ---------- */
@@ -462,7 +501,7 @@ function nextCard() {
 // 徹底モードのカード上部：あと何日連続で言えれば卒業かを見せる。
 function drillMeterHtml(id) {
   const st = drillState(id);
-  if (st.done) return `<div class="drill-meter done">卒業ずみ ─ 確認テスト</div>`;
+  if (drillMode === 'review') return `<div class="drill-meter done">復習 ─ 卒業した文</div>`;
   const dots = Array.from({ length: DRILL_GOAL }, (_, i) =>
     `<span class="dot${i < st.streak ? ' on' : ''}"></span>`).join('');
   return `<div class="drill-meter">${dots}<span class="drill-meter-label">連続 ${st.streak}/${DRILL_GOAL} 日</span></div>`;
@@ -471,13 +510,14 @@ function drillMeterHtml(id) {
 function renderCard() {
   const it = current;
   cardShownTs = Date.now();
-  drillRecheck = drillMode && drillState(it.id).done;
   const area = document.getElementById('cardArea');
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
+  // 徹底モードのときは、テーマ名よりパック名のほうが今やっていることが分かる。
+  const tag = drillMode && it.theme === CORE_THEME ? (it.pack_title || it.theme) : it.theme;
   area.innerHTML = `
     <div class="card">
       <div class="card-top">
-        <span class="theme-tag">${esc(it.theme)}<span class="type-tag">${it.type === 'word' ? '単語' : 'フレーズ'}</span></span>
+        <span class="theme-tag">${esc(tag)}<span class="type-tag">${it.type === 'word' ? '単語' : 'フレーズ'}</span></span>
         ${starBtnHtml(it.id, 'card-star')}
       </div>
       ${drillMode ? drillMeterHtml(it.id) : `<div class="difficulty">難易度 ${diffStars}</div>`}
@@ -642,7 +682,7 @@ function gradeRowHtml() {
     return `
       <div class="grade-row drill">
         <button class="again" data-g="ng">言えなかった<small>今すぐまた出る</small></button>
-        <button class="good" data-g="ok">言えた<small>${drillRecheck ? '確認クリア' : '連続日数 +1'}</small></button>
+        <button class="good" data-g="ok">言えた<small>${drillMode === 'review' ? '次へ' : '連続日数 +1'}</small></button>
       </div>`;
   }
   return `
@@ -689,19 +729,43 @@ function renderDone() {
 }
 
 function renderDrillDone(area) {
+  if (drillMode === 'review') { renderReviewDone(area); return; }
   const s = drillSummary();
-  const pct = s.total ? Math.round(s.done / s.total * 100) : 0;
-  const allDone = s.total > 0 && s.done === s.total;
+  // このセッションでパックを終わらせたか（終わらせると currentPackNo が次へ動く）
+  const cleared = drillPackNo && s.pack !== drillPackNo;
+  const total = cleared ? packItems(drillPackNo).length : s.total;
+  const done = cleared ? total : s.done;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  let msg;
+  if (cleared && s.pack) {
+    msg = `次は「${esc(packTitle(s.pack))}」が開きました。ホームから始められます。`;
+  } else if (cleared) {
+    msg = '用意してあるパックはこれで全部です。新しいパックは準備中。復習で回し続けてください。';
+  } else {
+    msg = '明日また開くと、連続日数の続きが積み上がります。';
+  }
   area.innerHTML = `
     <div class="empty">
-      <div class="big">${allDone ? '🏆' : '✅'}</div>
-      <div>${allDone ? '30文すべて卒業！' : '今日の分は終わり'}</div>
+      <div class="big">${cleared ? '🏆' : '✅'}</div>
+      <div>${cleared ? `「${esc(packTitle(drillPackNo))}」${total}文すべて卒業！` : '今日の分は終わり'}</div>
       <p style="color:var(--muted);font-size:14px;margin-top:8px;">
-        卒業 ${s.done}/${s.total} 文。${allDone
-          ? 'あとは7日後と30日後の確認テストだけです。'
-          : '明日また開くと、連続日数の続きが積み上がります。'}</p>
+        卒業 ${done}/${total} 文。${msg}</p>
       <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
-      <button class="big-btn" style="margin-top:16px" onclick="goDrillExtra()">もう一周する（おかわり）</button>
+      ${cleared ? '' : `<button class="big-btn" style="margin-top:16px" onclick="goDrillExtra()">もう一周する（おかわり）</button>`}
+      <button class="big-btn${cleared ? '' : ' secondary'}" style="margin-top:${cleared ? 16 : 10}px" onclick="goHome()">ホームへ</button>
+    </div>`;
+  refreshTop();
+}
+
+function renderReviewDone(area) {
+  const n = graduatedIds().length;
+  area.innerHTML = `
+    <div class="empty">
+      <div class="big">🎉</div>
+      <div>復習を一周しました</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+        卒業ずみ ${n} 文。何度でも回せます。</p>
+      <button class="big-btn" style="margin-top:24px" onclick="startReview()">もう一周する</button>
       <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
     </div>`;
   refreshTop();
@@ -742,17 +806,51 @@ function renderDrillHome() {
   const box = document.getElementById('drillBox');
   if (!box) return;
   const s = drillSummary();
-  if (!s.total) { box.hidden = true; return; }
+  if (!s.coreTotal) { box.hidden = true; renderReviewHome(s); return; }
   box.hidden = false;
-  const pct = Math.round(s.done / s.total * 100);
-  document.getElementById('drillCount').textContent = `卒業 ${s.done}/${s.total}`;
-  document.getElementById('drillBar').style.width = pct + '%';
-  document.getElementById('drillHint').textContent = s.remaining
-    ? `今日やる分が ${s.remaining} 文あります。言えるまで何度でも出てきます。`
-    : `今日の分は終わりました。今日クリア ${s.clearedToday}/${s.total} 文。`;
+
+  const title = document.getElementById('drillTitle');
   const start = document.getElementById('startDrillBtn');
-  start.textContent = s.remaining ? `30文をやる（今日 ${s.remaining} 文）` : '30文をもう一周する';
+  const pickBtn = document.getElementById('drillPickBtn');
+
+  if (!s.pack) {
+    // 用意してあるパックを全部卒業した状態。
+    title.textContent = `パック${s.packCount}まで卒業`;
+    document.getElementById('drillCount').textContent = `${s.graduated} 文`;
+    document.getElementById('drillBar').style.width = '100%';
+    document.getElementById('drillHint').textContent =
+      '新しいパックは準備中です。下の復習で回し続けてください。';
+    start.hidden = true;
+    pickBtn.hidden = false;
+  } else {
+    const pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+    title.textContent = `パック${s.packIndex} ${s.title}`;
+    document.getElementById('drillCount').textContent = `卒業 ${s.done}/${s.total}`;
+    document.getElementById('drillBar').style.width = pct + '%';
+    document.getElementById('drillHint').textContent = s.remaining
+      ? `今日やる分が ${s.remaining} 文あります。言えるまで何度でも出てきます。`
+      : `今日の分は終わりました。今日クリア ${s.clearedToday}/${s.total} 文。`;
+    start.hidden = false;
+    start.textContent = s.remaining
+      ? `${s.total}文をやる（今日 ${s.remaining} 文）`
+      : `${s.total}文をもう一周する`;
+    pickBtn.hidden = false;
+  }
   document.getElementById('drillPick').innerHTML = '';
+  renderReviewHome(s);
+}
+
+// 卒業した文を貯めておく箱。パックをまたいで、いつでも全部やれる。
+function renderReviewHome(s) {
+  const box = document.getElementById('reviewBox');
+  if (!box) return;
+  const n = s.graduated;
+  if (!n) { box.hidden = true; return; }
+  box.hidden = false;
+  document.getElementById('reviewCount').textContent = `${n} 文`;
+  document.getElementById('reviewHint').textContent =
+    `これまでに卒業した ${n} 文を、パックをまたいでランダムに全部出します。`;
+  document.getElementById('startReviewBtn').textContent = `復習する（${n}文）`;
 }
 
 // レッスン直前に「今日はこれを使う」と決めるための3文。
@@ -1331,21 +1429,36 @@ function startExtra() {
 }
 
 function startDrill() {
-  drillMode = true;
+  const no = currentPackNo();
+  if (!no) return;
+  drillMode = 'pack';
+  drillPackNo = no;
   sessionTheme = CORE_THEME;
-  queue = buildDrillQueue();
+  queue = buildDrillQueue(no);
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
 function goDrillExtra() {
-  drillMode = true;
-  queue = buildDrillExtraQueue();
+  const no = drillPackNo || currentPackNo();
+  if (!no) return;
+  drillMode = 'pack';
+  drillPackNo = no;
+  queue = buildDrillExtraQueue(no);
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { drillMode = false; showView('homeView'); renderHome(); }
+function startReview() {
+  drillMode = 'review';
+  drillPackNo = 0;
+  sessionTheme = CORE_THEME;
+  queue = buildReviewQueue();
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+function goHome() { drillMode = false; drillPackNo = 0; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1460,6 +1573,7 @@ async function init() {
   document.getElementById('homeBtn').onclick = goHome;
   document.getElementById('startDrillBtn').onclick = startDrill;
   document.getElementById('drillPickBtn').onclick = renderDrillPick;
+  document.getElementById('startReviewBtn').onclick = startReview;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
   document.getElementById('goListBtn').onclick = goList;
   document.getElementById('goStarBtn').onclick = goStar;

@@ -302,7 +302,7 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 .cbar-x { font-size: 9px; color: var(--muted); height: 14px; line-height: 14px; margin-top: 3px; white-space: nowrap; }
 .cbar-x.we { color: var(--again); }
 
-/* ---------- 徹底モード（会話の骨組み30） ---------- */
+/* ---------- 徹底モード（会話の骨組み） ---------- */
 .drill-box {
   background: var(--panel); border: 1px solid var(--panel2);
   border-radius: var(--radius); padding: 16px; margin-bottom: 22px;
@@ -316,6 +316,10 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 }
 .drill-box .bar > span { display: block; height: 100%; background: var(--good); transition: width .3s ease; }
 .drill-box .hint { margin: 0 0 14px; }
+
+/* 卒業した文を貯めておく箱。新規パックと見分けがつくよう少し落とした色に。 */
+.review-box { margin-top: -8px; opacity: .95; }
+.review-box .drill-count { color: var(--muted); }
 
 /* 2択の採点ボタン */
 .grade-row.drill { grid-template-columns: repeat(2, 1fr); }
