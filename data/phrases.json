@@ -1,2096 +1,2021 @@
 {
-  "version": 3,
-  "items": [
-    {
-      "id": "core30-01",
-      "type": "phrase",
-      "en": [
-        "How's it going?",
-        "How are you doing?"
-      ],
-      "ja": "調子はどう？",
-      "situation_ja": "入口 ─ 会って最初のひとこと。相手にも聞き返す。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "How are you? よりくだけた言い方で、先生もこちらをよく使う。聞かれたら Pretty good. How about you?（まあまあ。そちらは？）と、聞き返しまでセットで返す。",
-      "related": [
-        "core30-02"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-02",
-      "type": "phrase",
-      "en": [
-        "Same as usual.",
-        "Same old, same old."
-      ],
-      "ja": "相変わらずだよ。",
-      "situation_ja": "入口 ─ 「調子どう？」「仕事どう？」と聞かれて。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "Fine, thank you で止まらないための一手。このあと I've been busy with work.（仕事が立て込んでいて）を足すと、そこから仕事の話に入れる。",
-      "related": [
-        "core30-01",
-        "core30-05"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-03",
-      "type": "phrase",
-      "en": [
-        "Long time no see.",
-        "It's been a while."
-      ],
-      "ja": "久しぶりですね。",
-      "situation_ja": "入口 ─ しばらく会っていなかった相手に。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "It's been a while. のほうが大人っぽく、仕事の相手にも使える。続けて How have you been?（どうしてました？）と聞くと、空いた時間がそのまま話題になる。",
-      "related": [],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-04",
-      "type": "phrase",
-      "en": [
-        "How was your weekend?",
-        "How was your holiday?"
-      ],
-      "ja": "週末はどうだった？",
-      "situation_ja": "入口 ─ 相手に話をふって、会話の主導権を渡す。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "自分が話すより先に相手に聞く。聞いている間に自分の話を組み立てられる。相手が答えたら That sounds fun. Where did you go?（楽しそう。どこへ？）で掘り下げる。",
-      "related": [],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-05",
-      "type": "phrase",
-      "en": [
-        "I've been busy with work.",
-        "Work has been keeping me busy."
-      ],
-      "ja": "仕事が立て込んでいてね。",
-      "situation_ja": "入口 ─ 近況を一言で説明する。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "現在完了で「ずっと〜な状態が続いている」。I was busy だと今は暇に聞こえる。続けて but it's calming down now.（でも落ち着いてきた）と足すと近況になる。",
-      "related": [
-        "core30-02"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-06",
-      "type": "phrase",
-      "en": [
-        "It was nice talking to you.",
-        "It was good talking to you."
-      ],
-      "ja": "話せてよかったです。",
-      "situation_ja": "出口 ─ 別れ際の定番。返しは You too.",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "レッスン記録での再登場4回。最も多く教わっている表現。言われたら You too. と即返す。自分から言うなら Let's talk again soon.（またお話ししましょう）を続ける。",
-      "related": [
-        "core30-07"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-07",
-      "type": "phrase",
-      "en": [
-        "Have a nice day.",
-        "Have a good one."
-      ],
-      "ja": "よい一日を。",
-      "situation_ja": "出口 ─ 店を出るとき、通話を切るとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "言われたら You too. / Thanks, you too. と即返す。ここで詰まると別れ際が気まずくなる。夜なら Have a good evening.、週末前なら Have a good weekend.。",
-      "related": [
-        "core30-06"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-08",
-      "type": "phrase",
-      "en": [
-        "I won't keep you.",
-        "I'll let you go."
-      ],
-      "ja": "お引き止めしません、そろそろ。",
-      "situation_ja": "出口 ─ 自分から会話を切り上げたいとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "相手を気づかう形で終わらせるので、黙って終わるより印象がいい。続けて I know you're busy. Let's catch up soon.（お忙しいでしょうし、また今度）まで言えると自然。",
-      "related": [
-        "core30-06"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-09",
-      "type": "phrase",
-      "en": [
-        "Sorry to hear that.",
-        "I'm so sorry to hear that."
-      ],
-      "ja": "それは大変でしたね。",
-      "situation_ja": "相槌 ─ 相手が悪い知らせを話したとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "謝罪の Sorry ではなく同情の Sorry。再登場3回。そのあと That must have been hard.（大変でしたね）を足すと、聞き流した感じにならない。",
-      "related": [
-        "core30-10"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-10",
-      "type": "phrase",
-      "en": [
-        "Really? What happened?",
-        "Oh really? Tell me more."
-      ],
-      "ja": "え、何があったの？",
-      "situation_ja": "相槌 ─ 話の先を促す。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "相槌だけで終わらせず質問で返すと、自分が話す番を先に延ばせる。さらに And then what?（それでどうなったの？）でもう一段引き出せる。",
-      "related": [
-        "core30-09"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-11",
-      "type": "phrase",
-      "en": [
-        "I'm jealous of you.",
-        "I'm so jealous."
-      ],
-      "ja": "うらやましい。",
-      "situation_ja": "相槌 ─ 相手のいい話に反応する。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "envy より会話ではこちら。冗談まじりの軽い反応。続けて I want to go there too. How was it?（私も行きたい。どうだった？）で相手にもっと話させる。",
-      "related": [],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-12",
-      "type": "phrase",
-      "en": [
-        "That sounds great.",
-        "That sounds fun."
-      ],
-      "ja": "いいね、楽しそう。",
-      "situation_ja": "相槌 ─ 相手の予定や提案に反応する。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "sounds は「（聞いた感じ）〜そう」。looks（見た感じ）と使い分ける。続けて Who are you going with?（誰と行くの？）と聞くと予定の話が続く。",
-      "related": [],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-13",
-      "type": "phrase",
-      "en": [
-        "Sorry, I didn't catch that."
-      ],
-      "ja": "ごめん、聞き取れなかった。",
-      "situation_ja": "聞き返し ─ 相手の言葉が聞き取れなかったとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "3年で「聞き返し」は7件しか習っていない、いちばん大きな穴。ここが言えないと安全な話題に逃げてしまう。続けて Could you say that again?（もう一度お願いします）まで一息で。",
-      "related": [
-        "core30-14",
-        "core30-15"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-14",
-      "type": "phrase",
-      "en": [
-        "Could you say that again, more slowly?",
-        "Could you repeat that, please?"
-      ],
-      "ja": "もう一度、ゆっくり言ってもらえますか。",
-      "situation_ja": "聞き返し ─ 速すぎて追えなかったとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "more slowly を足すのが要点。ただの repeat だと同じ速さで返ってくる。それでも分からなければ Could you say it in another way?（別の言い方で言えますか）と重ねる。",
-      "related": [
-        "core30-13"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-15",
-      "type": "phrase",
-      "en": [
-        "What do you mean by that?",
-        "What do you mean?"
-      ],
-      "ja": "それはどういう意味？",
-      "situation_ja": "聞き返し ─ 単語は聞こえたが意味が分からないとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "「聞こえなかった」は Sorry, I didn't catch that.、「意味が分からない」はこちら。Do you mean ~?（つまり〜ということ？）と自分の理解を言って確かめる手もある。",
-      "related": [
-        "core30-13"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-16",
-      "type": "phrase",
-      "en": [
-        "How do you say this in English?",
-        "What's this called in English?"
-      ],
-      "ja": "これ、英語で何て言うの？",
-      "situation_ja": "聞き返し ─ 言いたい単語が出てこないとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "黙って考え込む代わりにこれを言う。相手が単語を教えてくれて会話が進む。日本語しか出てこないときは How do you say \"ざっくり\" in English? のように、その言葉ごと聞いていい。",
-      "related": [
-        "core30-17",
-        "core30-18"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-17",
-      "type": "phrase",
-      "en": [
-        "I couldn't say what I wanted to say."
-      ],
-      "ja": "言いたいことが言えなかった。",
-      "situation_ja": "聞き返し ─ うまく表現できなかったと伝える。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "レッスン記録に3回登場。詰まった状態を言葉にできると、相手が助けに回ってくれる。続けて Can you help me say it?（言い方を教えてもらえますか）まで言うと、そこが勉強の時間になる。",
-      "related": [
-        "core30-16"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-18",
-      "type": "phrase",
-      "en": [
-        "Let me think for a second.",
-        "Give me a second."
-      ],
-      "ja": "ちょっと考えさせて。",
-      "situation_ja": "聞き返し ─ 答えを組み立てる時間をもらう。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "沈黙は「分からない」と受け取られる。これを挟むと数秒稼げて、相手も待ってくれる。まとまったら OK, so ...（ええと、つまり…）で話し始める。",
-      "related": [
-        "core30-16"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-19",
-      "type": "phrase",
-      "en": [
-        "If I had to choose, I'd say this one.",
-        "If I had to pick one, I'd say ~"
-      ],
-      "ja": "どちらかと言えば、こっちかな。",
-      "situation_ja": "意見 ─ 選びきれないが答えを出したいとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "再登場3回（2023年11月・2024年5月・2026年7月）。3年たっても定着していない筆頭。理由まで足すと強い: If I had to choose, I'd say this one, because it's simpler.（こっちかな、そのほうが簡単だから）",
-      "related": [
-        "core30-20"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-20",
-      "type": "phrase",
-      "en": [
-        "I like them both.",
-        "I like both of them."
-      ],
-      "ja": "どっちも好き。",
-      "situation_ja": "意見 ─ 二択を出されて、両方いいとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "them both の語順が出てこないのが原因。かたまりで覚える。続けて but for different reasons.（ただ理由は違う）と足すと、選べないのではなく考えている人に聞こえる。",
-      "related": [
-        "core30-19"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-21",
-      "type": "phrase",
-      "en": [
-        "I'm really into it.",
-        "I'm not really into it."
-      ],
-      "ja": "ハマってる。／あまり興味がない。",
-      "situation_ja": "意見 ─ 趣味や好みの強さを伝える。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "6レッスンで登場。否定形の I'm not really into it. は I don't like it より角が立たない断り方になる。続けて I've been into it for a few years.（何年かハマってる）で深さも出せる。",
-      "related": [
-        "core30-22"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-22",
-      "type": "phrase",
-      "en": [
-        "I'm not so familiar with that.",
-        "I don't know much about it."
-      ],
-      "ja": "それはあまり詳しくないんです。",
-      "situation_ja": "意見 ─ 知らない話題をふられたとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "知らないと認めたうえで Could you tell me about it?（教えてもらえますか）と続けると、知らない話題が逆に会話の種になる。黙るのがいちばんもったいない。",
-      "related": [
-        "core30-21"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-23",
-      "type": "phrase",
-      "en": [
-        "What time and where do you want to meet?",
-        "What time do you want to meet?"
-      ],
-      "ja": "何時に、どこで会う？",
-      "situation_ja": "約束 ─ 待ち合わせを決める。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "レッスン記録での再登場4回。3年間で最も多く教わっている、最優先の一文。丸投げせず Does 2 p.m. work for you?（14時はどう？）と案を出すと早く決まる。",
-      "related": [
-        "core30-24"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-24",
-      "type": "phrase",
-      "en": [
-        "Does 2 p.m. work for you?",
-        "Is 2 p.m. good for you?"
-      ],
-      "ja": "14時で大丈夫？",
-      "situation_ja": "約束 ─ 時間を提案して相手に確認する。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "work for you は「都合が合う」。Is it OK? より自然で、仕事のメールでも使える。合わなければ相手が How about three?（3時は？）と返してくれる。",
-      "related": [
-        "core30-23"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-25",
-      "type": "phrase",
-      "en": [
-        "I haven't decided yet.",
-        "I haven't decided what to do yet."
-      ],
-      "ja": "まだ決めてないんだ。",
-      "situation_ja": "約束 ─ 予定を聞かれて未定のとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "現在完了＋yet。I don't decide とは言わない。続けて I might go to Osaka.（大阪に行くかも）と might で濁すと、未定のまま話を続けられる。",
-      "related": [],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-26",
-      "type": "phrase",
-      "en": [
-        "Excuse me, can you help me?",
-        "Excuse me, could you help me?"
-      ],
-      "ja": "すみません、手伝ってもらえますか。",
-      "situation_ja": "依頼 ─ 見知らぬ人に助けを求める。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "Excuse me を先に置いて相手の注意を引いてから頼む。続けて I'm looking for ~（〜を探しています）や Could you tell me how to get to ~?（〜への行き方を教えてください）で用件に入る。",
-      "related": [
-        "core30-27"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-27",
-      "type": "phrase",
-      "en": [
-        "Leave it to me.",
-        "I'm on it."
-      ],
-      "ja": "任せて。",
-      "situation_ja": "依頼 ─ 仕事や用事を引き受ける。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "引き受けるときの一言。逆に相手に任せるときは It's up to you.。続けて I'll take care of it by Friday.（金曜までにやっておきます）と期限まで言えると仕事で効く。",
-      "related": [
-        "core30-28"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-28",
-      "type": "phrase",
-      "en": [
-        "It's up to you.",
-        "I'll leave it to you."
-      ],
-      "ja": "お任せします。",
-      "situation_ja": "依頼 ─ 判断を相手にゆだねる。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "Leave it to me. と対。どちらが引き受けるかを一言で決められると会話が速い。冷たく聞こえそうなら Either is fine with me.（どちらでもいいので）を前に置く。",
-      "related": [
-        "core30-27"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-29",
-      "type": "phrase",
-      "en": [
-        "Can I change the topic?",
-        "By the way, ..."
-      ],
-      "ja": "話を変えてもいい？",
-      "situation_ja": "転換 ─ 話題を切り替えたいとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 1,
-      "advice_ja": "話題が尽きたときに黙るのではなく、自分から切り替える。カジュアルには By the way, ...（ところで）だけでいい。続けて I've been meaning to ask you ...（前から聞きたかったんですが）が使える。",
-      "related": [
-        "core30-30"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core30-30",
-      "type": "phrase",
-      "en": [
-        "I've just remembered something.",
-        "That reminds me."
-      ],
-      "ja": "今、思い出した。",
-      "situation_ja": "転換 ─ 話の途中で別のことを思い出したとき。",
-      "theme": "会話の骨組み",
-      "difficulty": 2,
-      "advice_ja": "That reminds me. は相手の話から連想したとき、I've just remembered something. は自分の中から出てきたとき。続けて Did I tell you about ~?（〜の話しましたっけ？）で新しい話を始められる。",
-      "related": [
-        "core30-29"
-      ],
-      "added": "2026-08-12",
-      "pack": 1,
-      "pack_title": "入口と出口"
-    },
-    {
-      "id": "core-p02-01",
-      "type": "phrase",
-      "en": [
-        "What did you do on the weekend?",
-        "What did you get up to on the weekend?"
-      ],
-      "ja": "週末は何をしましたか？",
-      "situation_ja": "質問 ─ 会話の最初に相手へふる、いちばん多い質問。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "get up to はくだけた言い方。イギリス人講師は at the weekend とも言う。相手が答えたら That sounds fun. Who did you go with?（楽しそう。誰と？）で掘り下げる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-02",
-      "type": "phrase",
-      "en": [
-        "I didn't do much.",
-        "Nothing special."
-      ],
-      "ja": "特に何もしていません。",
-      "situation_ja": "答え ─ 話すことが思いつかないときの受け。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "これだけで止めると会話が終わる。必ず but を足す: I didn't do much, but I watched a movie at home.（大したことはしてないけど、家で映画を見た）。小さい出来事で十分。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-03",
-      "type": "phrase",
-      "en": [
-        "I stayed home all day.",
-        "I was home all day."
-      ],
-      "ja": "一日じゅう家にいました。",
-      "situation_ja": "答え ─ 出かけなかった週末を一言で。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "一人なら I was home by myself.、家族となら with my family.。続けて I just relaxed and watched TV.（のんびりテレビを見てた）と中身を足す。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-04",
-      "type": "phrase",
-      "en": [
-        "I went to see a movie.",
-        "I went to the movie theater."
-      ],
-      "ja": "映画を見に行きました。",
-      "situation_ja": "出来事 ─ 週末の定番の答え。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "作品名は I went to see \"Dune\". のように続ける。感想まで一息で: It was better than I expected.（思ったよりよかった）。何を見たかだけだと話が止まる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-05",
-      "type": "phrase",
-      "en": [
-        "Who did you go with?",
-        "Who were you with?"
-      ],
-      "ja": "誰と行ったんですか？",
-      "situation_ja": "質問 ─ 相手の話を一段掘り下げる。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "答えは I went with my wife. のように with を落とさない。さらに Was it your first time?（初めてだった？）と重ねると会話が伸びる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-06",
-      "type": "phrase",
-      "en": [
-        "I went with my wife.",
-        "I went there with my family."
-      ],
-      "ja": "妻と行きました。",
-      "situation_ja": "答え ─ 誰と、を足して情景を出す。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "by myself なら一人で。alone より自然。続けて She really liked it.（妻はすごく気に入ってた）と相手の反応まで話すと場面が見える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-07",
-      "type": "phrase",
-      "en": [
-        "It was my first time.",
-        "That was my first time there."
-      ],
-      "ja": "初めてでした。",
-      "situation_ja": "出来事 ─ 初体験だったことを添える。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "文の後ろに置く形もある: I went there for the first time.。続けて I didn't know it was so big.（あんなに大きいとは知らなかった）で感想につなぐ。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-08",
-      "type": "phrase",
-      "en": [
-        "I really enjoyed it.",
-        "I enjoyed it a lot."
-      ],
-      "ja": "とても楽しめました。",
-      "situation_ja": "感想 ─ 出来事のあとに必ず一言。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "It was fun. より少し大人びた言い方。何が良かったかを1つ足すと話が広がる: I really enjoyed it, especially the music.（特に音楽がよかった）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-09",
-      "type": "phrase",
-      "en": [
-        "It wasn't as good as I expected.",
-        "It wasn't as good as I'd hoped."
-      ],
-      "ja": "思ったほどではありませんでした。",
-      "situation_ja": "感想 ─ 期待はずれをやわらかく言う。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "not as ~ as ... の型。バッサリ言わずに済む。理由を足すと角が立たない: It wasn't as good as I expected, but the visuals were great.（期待ほどではなかったけど、映像はよかった）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-10",
-      "type": "phrase",
-      "en": [
-        "I worked late.",
-        "I finished work late."
-      ],
-      "ja": "仕事が遅くまでかかりました。",
-      "situation_ja": "仕事 ─ 忙しかった日の説明。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "残業は overtime。I did some overtime. とも言える。続けて so I couldn't do much this weekend.（だから週末は何もできなかった）とつなぐと話が一本になる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-11",
-      "type": "phrase",
-      "en": [
-        "I ate dinner by myself.",
-        "I had dinner alone."
-      ],
-      "ja": "一人で夕飯を食べました。",
-      "situation_ja": "出来事 ─ 理由をつけて話を伸ばす種。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "because を足すと会話が続く: I ate dinner by myself because I finished work late.（仕事が遅くなったので一人で食べた）。理由をセットにする癖をつける。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-12",
-      "type": "phrase",
-      "en": [
-        "I've been busy with work lately.",
-        "Work has been keeping me busy."
-      ],
-      "ja": "最近は仕事が立て込んでいます。",
-      "situation_ja": "近況 ─ 「調子どう？」への中身のある答え。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "現在完了進行形で「ここ最近ずっと」。続けて but it's calming down.（でも落ち着いてきた）や I hope it slows down next month.（来月は落ち着くといいな）で先の話にできる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-13",
-      "type": "phrase",
-      "en": [
-        "I didn't sleep well last night.",
-        "I couldn't sleep well last night."
-      ],
-      "ja": "昨日はよく眠れませんでした。",
-      "situation_ja": "体調 ─ 元気がない理由を先に言っておく。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "続けて so I'm a little tired today.（だから今日は少し疲れている）とつなぐのが自然な流れ。理由まで言うなら because I had a lot on my mind.（考えごとが多くて）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-14",
-      "type": "phrase",
-      "en": [
-        "I woke up at three and couldn't get back to sleep.",
-        "I woke up in the middle of the night and couldn't get back to sleep."
-      ],
-      "ja": "夜中に目が覚めて、そのまま眠れませんでした。",
-      "situation_ja": "体調 ─ 眠れなかった中身を具体的に。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "get back to sleep で「寝直す」。sleep again とは言わない。続けて I ended up watching YouTube until five.（結局5時までYouTubeを見てた）のような落ちがあると笑ってもらえる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-15",
-      "type": "phrase",
-      "en": [
-        "I'm a little tired today.",
-        "I'm a bit tired today."
-      ],
-      "ja": "今日は少し疲れています。",
-      "situation_ja": "体調 ─ 調子を聞かれたときの正直な答え。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "a little / a bit をつけると重くならない。理由を足すのがコツ: I'm a little tired today because I didn't sleep well.。何もなければ but I'm OK.（でも大丈夫）で締める。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-16",
-      "type": "phrase",
-      "en": [
-        "I went to see a doctor.",
-        "I went to the doctor's."
-      ],
-      "ja": "病院に行きました。",
-      "situation_ja": "体調 ─ 通院を一言で。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "go to the hospital は入院や大病の響き。ふだんは doctor's。続けて Nothing serious.（大したことはなかった）と足すと相手を心配させずに済む。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-17",
-      "type": "phrase",
-      "en": [
-        "I was stuck in traffic for an hour.",
-        "I got stuck in traffic for an hour."
-      ],
-      "ja": "1時間、渋滞にはまりました。",
-      "situation_ja": "移動 ─ 遅れた理由、疲れた理由として。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "stuck は「動けない」。電車の遅延は My train was delayed.。続けて I was late for the meeting.（会議に遅れた）や It was really frustrating.（参った）で気持ちまで。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-18",
-      "type": "phrase",
-      "en": [
-        "I rented a car.",
-        "I drove a rental car."
-      ],
-      "ja": "レンタカーを借りました。",
-      "situation_ja": "移動 ─ 旅行や出張の足を説明する。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "rent a car が借りる側。続けて I drove around for two days.（2日間ドライブした）や The roads were empty.（道が空いていた）で旅の中身に入れる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-19",
-      "type": "phrase",
-      "en": [
-        "I went to Hiroshima on vacation.",
-        "I took a trip to Hiroshima."
-      ],
-      "ja": "休みに広島へ行きました。",
-      "situation_ja": "出来事 ─ 旅行の話を切り出す。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "on vacation / on holiday。行き先だけで止めない: I went to Hiroshima on vacation and visited the Peace Museum.（広島へ行って平和記念資料館に寄った）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-20",
-      "type": "phrase",
-      "en": [
-        "I used to live there.",
-        "I lived there before."
-      ],
-      "ja": "昔そこに住んでいました。",
-      "situation_ja": "昔 ─ 今はもうしていない習慣や状態。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "used to は「昔は〜だった、今は違う」。続けて but I moved to Takamatsu five years ago.（でも5年前に高松に越した）と今との差を言うと話が立体的になる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-21",
-      "type": "phrase",
-      "en": [
-        "That was about ten years ago.",
-        "That was around ten years ago."
-      ],
-      "ja": "10年くらい前のことです。",
-      "situation_ja": "昔 ─ いつの話かを添える。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "about / around は数字の前、ago は最後。続けて Time flies.（早いものですね）を添えると会話らしくなる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-22",
-      "type": "phrase",
-      "en": [
-        "When I was a student, I played baseball.",
-        "I played baseball when I was a student."
-      ],
-      "ja": "学生のころ、野球をしていました。",
-      "situation_ja": "昔 ─ 昔の自分を一文で語る。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "When I was ~ を前に置くと、聞き手が昔話だと身構えられる。続けて I wasn't very good, though.（でも下手だったけど）のような一言があると人柄が出る。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-23",
-      "type": "phrase",
-      "en": [
-        "I just got back from a business trip.",
-        "I've just come back from a business trip."
-      ],
-      "ja": "出張から戻ったところです。",
-      "situation_ja": "仕事 ─ 近況としてよく使う。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "just got back が口語。行き先は from Osaka のように足す。続けて It was a short one, just two days.（2日だけの短い出張でした）で具体的に。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-24",
-      "type": "phrase",
-      "en": [
-        "I had a meeting with a client.",
-        "I met a client."
-      ],
-      "ja": "取引先と打ち合わせがありました。",
-      "situation_ja": "仕事 ─ 何をしていたかを説明する。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "client は取引先。社内なら a meeting with my team.。続けて It went well.（うまくいった）や It ran longer than expected.（予定より長引いた）で結果まで。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-25",
-      "type": "phrase",
-      "en": [
-        "It didn't go as planned.",
-        "Things didn't go as planned."
-      ],
-      "ja": "予定どおりにはいきませんでした。",
-      "situation_ja": "仕事 ─ うまくいかなかったことを一言で。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "as planned は決まり文句。細かい説明の前置きになる。続けて but we managed.（でもなんとかなった）や We had to start over.（やり直しになった）で中身を出す。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-26",
-      "type": "phrase",
-      "en": [
-        "We finally finished the project.",
-        "We finally got the project done."
-      ],
-      "ja": "ようやく案件が終わりました。",
-      "situation_ja": "仕事 ─ 終わった達成感を伝える。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "finally を入れると苦労が伝わる。続けて It took us three months.（3か月かかった）や I'm so relieved.（ほっとしています）で気持ちまで。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-27",
-      "type": "phrase",
-      "en": [
-        "Did you do anything else?",
-        "Anything else?"
-      ],
-      "ja": "ほかには何かしましたか？",
-      "situation_ja": "質問 ─ 相手の答えが短いときにもう一段ふる。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "これが言えると、相手の一言で会話が終わらなくなる。相手が Not really. と言ったら Sounds like a relaxing weekend.（のんびりできた週末ですね）で受ける。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-28",
-      "type": "phrase",
-      "en": [
-        "How was your week?",
-        "How has your week been?"
-      ],
-      "ja": "今週はどうでしたか？",
-      "situation_ja": "質問 ─ 週の途中や週明けの切り出し。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "答えは It was OK, not too busy.（まあまあ、そんなに忙しくなかった）くらいで十分。返すときは How about yours?（そちらは？）を忘れずに。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-29",
-      "type": "phrase",
-      "en": [
-        "Sorry for the late reply.",
-        "Sorry, I've been out of touch."
-      ],
-      "ja": "返事が遅くなってすみません。",
-      "situation_ja": "仕事 ─ 間があいたあとの第一声。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 2,
-      "advice_ja": "メールでも会話でも使える。理由は I've been busy with work.（仕事が立て込んでいて）で足りる。締めは Thanks for waiting.（お待たせしました）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p02-30",
-      "type": "phrase",
-      "en": [
-        "Do you have any plans for the weekend?",
-        "Any plans this weekend?"
-      ],
-      "ja": "週末の予定はありますか？",
-      "situation_ja": "質問 ─ 別れ際に次へつなげる問いかけ。",
-      "theme": "会話の骨組み",
-      "pack": 2,
-      "pack_title": "週末と近況を話す",
-      "difficulty": 1,
-      "advice_ja": "答えは Nothing special, but I might go out.（特にないけど、出かけるかも）のように might で濁せる。聞き返すと別れ際が自然に締まる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-01",
-      "type": "phrase",
-      "en": [
-        "It's about eight degrees.",
-        "It's around eight degrees."
-      ],
-      "ja": "8度くらいです。",
-      "situation_ja": "概算 ─ 数字をぼかして言う基本形。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "about / around は数字の直前。天気の話で毎回使える。続けて It's colder than yesterday.（昨日より寒いですね）で会話にする。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-02",
-      "type": "phrase",
-      "en": [
-        "It takes about an hour.",
-        "It's about an hour away."
-      ],
-      "ja": "1時間くらいかかります。",
-      "situation_ja": "概算 ─ 所要時間を答える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "It takes ~ が所要時間の型。主語は it のまま動かさない。手段を足すと具体的: It takes about an hour by train.（電車で1時間くらい）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-03",
-      "type": "phrase",
-      "en": [
-        "We live about an hour from each other.",
-        "We live under an hour apart."
-      ],
-      "ja": "お互い1時間くらいの距離に住んでいます。",
-      "situation_ja": "概算 ─ 距離を時間で言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "under ~ は「〜未満」で、日本語の「小1時間」に近い。続けて so we don't meet very often.（だからあまり会わない）と関係まで話せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-04",
-      "type": "phrase",
-      "en": [
-        "It's almost two o'clock.",
-        "It's nearly two."
-      ],
-      "ja": "もうすぐ2時です。",
-      "situation_ja": "日時 ─ 時計を見て言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "almost / nearly はまだ達していないとき。過ぎたら It's just after two.。続けて We should get going.（そろそろ行きましょう）と切り上げに使える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-05",
-      "type": "phrase",
-      "en": [
-        "How long does it take?",
-        "How long is it from here?"
-      ],
-      "ja": "どのくらいかかりますか？",
-      "situation_ja": "質問 ─ 所要時間をたずねる。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "How much time ではなく How long。長さも時間も同じ形。相手が答えたら That's not too bad.（そんなに遠くないですね）で受ける。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-06",
-      "type": "phrase",
-      "en": [
-        "How many are there?",
-        "How many do you have?"
-      ],
-      "ja": "いくつありますか？",
-      "situation_ja": "質問 ─ 数をたずねる。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "数えられるものは many、量は much。episodes, people は many。続けて Which one should I start with?（どれから見ればいい？）のように次の質問へ。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-07",
-      "type": "phrase",
-      "en": [
-        "It's a small company. Only eight employees.",
-        "We're a small company with just eight people."
-      ],
-      "ja": "小さい会社で、社員は8人だけです。",
-      "situation_ja": "数 ─ 自分の会社を説明する。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "only / just を入れると「〜だけ」の気持ちが出る。続けて so we all know each other well.（だから全員が顔見知りです）と、数字から中身の話に移せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-08",
-      "type": "phrase",
-      "en": [
-        "They're fifty dollars each.",
-        "They cost fifty dollars each."
-      ],
-      "ja": "1つ50ドルです。",
-      "situation_ja": "値段 ─ 単価を言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "each を後ろに置くと「1つあたり」。値段は they're で始めていい。続けて That's a bit more than I expected.（思ったより高いですね）で反応できる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-09",
-      "type": "phrase",
-      "en": [
-        "It's way too expensive.",
-        "It's much too expensive."
-      ],
-      "ja": "高すぎます。",
-      "situation_ja": "程度 ─ 度を越していることを強調する。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "way / much / far は too の前。強めたいときに足す。続けて Is there a cheaper one?（もっと安いのはありますか）で買い物が進む。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-10",
-      "type": "phrase",
-      "en": [
-        "It's a little too small.",
-        "It's a bit too small."
-      ],
-      "ja": "少し小さすぎます。",
-      "situation_ja": "程度 ─ やんわり不満を言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "a little too ~ は角が立たない。試着なら Do you have this in a bigger size?（大きいサイズはありますか）まで続ける。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-11",
-      "type": "phrase",
-      "en": [
-        "I spend a lot of money in August.",
-        "August costs me a lot."
-      ],
-      "ja": "8月はお金をたくさん使います。",
-      "situation_ja": "程度 ─ 多い少ないを金額で言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "spend money on ~ で使い道を足せる: I spend a lot of money on travel in August.（8月は旅行にお金を使う）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-12",
-      "type": "phrase",
-      "en": [
-        "I don't remember much.",
-        "I don't remember it very well."
-      ],
-      "ja": "あまり覚えていません。",
-      "situation_ja": "程度 ─ 記憶があいまいなとき。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "much は否定文で「あまり」。I remember much とは言わない。続けて It was a long time ago.（だいぶ前のことなので）と理由を添える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-13",
-      "type": "phrase",
-      "en": [
-        "There were only a few people.",
-        "There weren't many people."
-      ],
-      "ja": "人はほとんどいませんでした。",
-      "situation_ja": "数 ─ 少なさを言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "a few は少しある、few だけだとほぼゼロ。only をつけると安全。続けて It was very quiet.（とても静かでした）で場面が伝わる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-14",
-      "type": "phrase",
-      "en": [
-        "A couple of days ago.",
-        "Two or three days ago."
-      ],
-      "ja": "2、3日前です。",
-      "situation_ja": "日時 ─ 近い過去をぼかす。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "a couple of は厳密に2ではなく「2、3の」。使い勝手がいい。文にするなら I saw him a couple of days ago.（2、3日前に彼に会った）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-15",
-      "type": "phrase",
-      "en": [
-        "I'll finish it by the end of this month.",
-        "I need to get it done by the end of the month."
-      ],
-      "ja": "今月中に終わらせます。",
-      "situation_ja": "期限 ─ 締め切りを伝える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "by は「〜までに」、until は「〜までずっと」。締め切りは by。自信がなければ I'll try to finish it by then.（それまでに終わらせるようにします）とやわらげる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-16",
-      "type": "phrase",
-      "en": [
-        "I'll be there in about ten minutes.",
-        "I'll be there in ten minutes or so."
-      ],
-      "ja": "10分くらいで着きます。",
-      "situation_ja": "概算 ─ 待ち合わせで遅れそうなとき。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "未来の「〜後に」は in。after ten minutes とは言わない。続けて Sorry to keep you waiting.（お待たせしてすみません）を添える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-17",
-      "type": "phrase",
-      "en": [
-        "My busy season is from May to August.",
-        "My peak season runs from May to August."
-      ],
-      "ja": "繁忙期は5月から8月です。",
-      "situation_ja": "期間 ─ 仕事の山を説明する。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "from A to B。もう一つあるなら The other one is at the end of the year.（もう一つは年末です）と足せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-18",
-      "type": "phrase",
-      "en": [
-        "I've been doing this job for over ten years.",
-        "I've worked here for more than ten years."
-      ],
-      "ja": "この仕事を10年以上やっています。",
-      "situation_ja": "期間 ─ 続けている年数を言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "for + 期間。since なら since 2015 のように起点。続けて I still enjoy it.（今でも楽しいです）や Time flies.（早いものです）で感想まで。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-19",
-      "type": "phrase",
-      "en": [
-        "I go there about once a month.",
-        "I go there roughly once a month."
-      ],
-      "ja": "月に1回くらい行きます。",
-      "situation_ja": "頻度 ─ どのくらいの頻度かを言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "once / twice a month。3回以上は three times a month。続けて mostly on weekends.（たいてい週末に）で具体的になる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-20",
-      "type": "phrase",
-      "en": [
-        "I hardly ever go there.",
-        "I almost never go there."
-      ],
-      "ja": "めったに行きません。",
-      "situation_ja": "頻度 ─ ほとんどしないことを言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "hardly ever は否定語なので not をつけない。続けて Maybe once a year.（年に1回くらいかな）と頻度を足すと伝わりやすい。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-21",
-      "type": "phrase",
-      "en": [
-        "Most of the time, I work from the office.",
-        "I work from the office most of the time."
-      ],
-      "ja": "たいていは会社で働いています。",
-      "situation_ja": "頻度 ─ 基本はこう、という言い方。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "文頭でも文末でも置ける。続けて but I work from home on Fridays.（金曜は在宅です）と例外を足すと自然。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-22",
-      "type": "phrase",
-      "en": [
-        "About half of them are new.",
-        "Around half are new."
-      ],
-      "ja": "半分くらいは新しいものです。",
-      "situation_ja": "概算 ─ 割合をざっくり言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "half of them の of them を落としがち。数字なら 50% でもいい。続けて and the rest have been here for years.（残りは何年もいる人たちです）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-23",
-      "type": "phrase",
-      "en": [
-        "It's on the fifth floor.",
-        "You'll find it on the fifth floor."
-      ],
-      "ja": "5階にあります。",
-      "situation_ja": "場所 ─ 階を答える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "階は序数＋on the。1階はアメリカ the first floor、イギリス the ground floor。続けて Take the elevator on your right.（右のエレベーターで）と案内できる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-24",
-      "type": "phrase",
-      "en": [
-        "Take the second right.",
-        "Turn right at the second corner."
-      ],
-      "ja": "2つ目を右に曲がってください。",
-      "situation_ja": "場所 ─ 道を教える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "序数がすぐ出るかが勝負。first, second, third, fifth。続けて It's on your left, next to the bank.（左手、銀行の隣です）で目印まで。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-25",
-      "type": "phrase",
-      "en": [
-        "My appointment is on the twenty-fifth.",
-        "I have an appointment on the twenty-fifth."
-      ],
-      "ja": "予約は25日です。",
-      "situation_ja": "日時 ─ 日付を言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "日付は on the ＋ 序数。曜日も on Monday。続けて so I can't make it that day.（その日は都合がつきません）と用件につなぐ。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-26",
-      "type": "phrase",
-      "en": [
-        "The movie starts at three.",
-        "It starts at three p.m."
-      ],
-      "ja": "映画は3時に始まります。",
-      "situation_ja": "日時 ─ 開始時刻を答える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "時刻は at。What time does it start? への答えの形。続けて Let's meet at two thirty.（2時半に待ち合わせよう）で予定を決められる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-27",
-      "type": "phrase",
-      "en": [
-        "I'm free after lunch.",
-        "I'll be free after lunch."
-      ],
-      "ja": "昼のあとなら空いています。",
-      "situation_ja": "日時 ─ 都合のよい時間を伝える。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "空いている＝free / available。忙しいは tied up。続けて Would two o'clock work for you?（2時はどうですか）と案を出す。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-28",
-      "type": "phrase",
-      "en": [
-        "I've lived in Takamatsu for three years.",
-        "I've been in Takamatsu for three years."
-      ],
-      "ja": "高松に3年住んでいます。",
-      "situation_ja": "期間 ─ 今も続いていることを言う。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 2,
-      "advice_ja": "I live here for three years とは言わない。今も続いているので現在完了。続けて and I really like it here.（気に入っています）で会話にする。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-29",
-      "type": "phrase",
-      "en": [
-        "Do we have enough time?",
-        "Is there enough time?"
-      ],
-      "ja": "時間は足りますか？",
-      "situation_ja": "数 ─ 足りるかどうかを確かめる。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 1,
-      "advice_ja": "enough は名詞の前。time / money / people いずれにも使う。足りなければ We should hurry.（急いだほうがいいですね）と続ける。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p03-30",
-      "type": "phrase",
-      "en": [
-        "At least on my end.",
-        "At least from my side."
-      ],
-      "ja": "少なくとも私の側では。",
-      "situation_ja": "程度 ─ 断言を避けて範囲を限る。",
-      "theme": "会話の骨組み",
-      "pack": 3,
-      "pack_title": "数と時間",
-      "difficulty": 3,
-      "advice_ja": "言い切ったあとに足すと、押しつけがましくならない。例: I think it's going well — at least on my end.（うまくいっていると思います、少なくとも私の側では）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-01",
-      "type": "phrase",
-      "en": [
-        "What did you think of it?",
-        "How did you like it?"
-      ],
-      "ja": "どうでしたか？",
-      "situation_ja": "質問 ─ 相手の感想を引き出す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "How did you think of it? は誤り。think of なら What で始める。答えにくそうなら Did you like it?（気に入った？）と二択にしてあげる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-02",
-      "type": "phrase",
-      "en": [
-        "It was fun.",
-        "It was a lot of fun."
-      ],
-      "ja": "楽しかったです。",
-      "situation_ja": "感想 ─ いちばん短い感想。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "funny は「おかしい」、楽しいは fun。取り違えやすい。続けて I'd go again.（また行きたい）や especially the last part.（特に最後がよかった）で中身を足す。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-03",
-      "type": "phrase",
-      "en": [
-        "I highly recommend it.",
-        "You should definitely try it."
-      ],
-      "ja": "強くおすすめします。",
-      "situation_ja": "感想 ─ 人にすすめる。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "場所なら I highly recommend going to Okinawa. と動名詞。続けて You should try it if you get the chance.（機会があればぜひ）でおすすめが伝わる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-04",
-      "type": "phrase",
-      "en": [
-        "I didn't expect much, but it was great.",
-        "I didn't have high expectations, but it was great."
-      ],
-      "ja": "期待していませんでしたが、よかったです。",
-      "situation_ja": "感想 ─ 期待とのギャップを語る。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "but の前後で落差を作ると話が面白くなる。続けて It was a nice surprise.（うれしい誤算でした）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-05",
-      "type": "phrase",
-      "en": [
-        "It's not my thing.",
-        "I'm not really into it."
-      ],
-      "ja": "自分の好みではありません。",
-      "situation_ja": "好み ─ 嫌いとまで言わずに外す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "I hate it より角が立たない。Golf is not my thing. のようにも使う。続けて but I know a lot of people love it.（好きな人が多いのは分かります）と足すと感じがいい。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-06",
-      "type": "phrase",
-      "en": [
-        "I like it, but not that much.",
-        "I like it, but not so much."
-      ],
-      "ja": "好きですが、それほどでも。",
-      "situation_ja": "好み ─ 温度差を正直に伝える。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "not that much で「そこまでではない」。続けて I'd rather watch something else.（別のものを見たいかな）で希望まで言える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-07",
-      "type": "phrase",
-      "en": [
-        "I prefer this one.",
-        "I like this one better."
-      ],
-      "ja": "こちらのほうが好きです。",
-      "situation_ja": "比較 ─ 二択で選ぶ。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "prefer A to B。than ではなく to を使う。理由を足すと強い: I prefer this one because it's simpler.（こっちのほうが簡単だから）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-08",
-      "type": "phrase",
-      "en": [
-        "I prefer beef to pork.",
-        "I like beef more than pork."
-      ],
-      "ja": "豚肉より牛肉が好きです。",
-      "situation_ja": "比較 ─ 具体的に比べて言う。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "prefer は to、like more は than。混ざりやすいので型で覚える。続けて especially when it's grilled.（特に焼いたのが）で具体的に。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-09",
-      "type": "phrase",
-      "en": [
-        "One thing I liked was the music.",
-        "What I liked was the music."
-      ],
-      "ja": "気に入ったのは音楽です。",
-      "situation_ja": "感想 ─ 良かった点を1つ挙げる。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "感想を語り出すときの便利な枠。逆も作れる: One thing I didn't like was the ending.（気に入らなかったのは結末です）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-10",
-      "type": "phrase",
-      "en": [
-        "I found the story a little slow.",
-        "The story was a bit slow for me."
-      ],
-      "ja": "話が少し間延びして感じました。",
-      "situation_ja": "感想 ─ 気になった点をやわらかく言う。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 3,
-      "advice_ja": "I found ~ ... は「私には〜に思えた」。断定を避けられる。続けて but the acting was good.（でも演技はよかった）とフォローを入れる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-11",
-      "type": "phrase",
-      "en": [
-        "In my opinion, the first one is the best.",
-        "For me, the first one is the best."
-      ],
-      "ja": "私の考えでは、1作目がいちばんです。",
-      "situation_ja": "意見 ─ あくまで自分の見方だと示す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "頭に置くと、議論になっても引きやすい。理由まで: In my opinion, the first one is the best because the story is the simplest.（話がいちばん分かりやすいので）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-12",
-      "type": "phrase",
-      "en": [
-        "I think you'd enjoy it.",
-        "I think you'd like it."
-      ],
-      "ja": "あなたも気に入ると思いますよ。",
-      "situation_ja": "感想 ─ 相手に向けてすすめる。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "you'd = you would。仮定の would が入ると押しつけが弱まる。続けて It's your kind of movie.（あなた好みの映画だと思う）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-13",
-      "type": "phrase",
-      "en": [
-        "So do I.",
-        "Me too."
-      ],
-      "ja": "私もです。",
-      "situation_ja": "同意 ─ 相手と同じだと短く返す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "過去の話なら So did I.、be動詞なら So am I.。相手の時制に合わせるのが要点。続けて What did you like about it?（どこがよかった？）で話を戻せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-14",
-      "type": "phrase",
-      "en": [
-        "Neither do I.",
-        "Me neither."
-      ],
-      "ja": "私もそうではありません。",
-      "situation_ja": "同意 ─ 否定に同意する。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 3,
-      "advice_ja": "Me too は否定には使えない。ここが落とし穴。過去なら Neither did I.。続けて It's just not my thing.（単に好みじゃないだけです）で理由を添える。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-15",
-      "type": "phrase",
-      "en": [
-        "I feel the same way.",
-        "I feel that way too."
-      ],
-      "ja": "同じ気持ちです。",
-      "situation_ja": "同意 ─ 気持ちの面で寄り添う。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "意見だけでなく気持ちに同意するときに効く。続けて I was thinking the same thing.（同じことを考えていました）で重ねられる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-16",
-      "type": "phrase",
-      "en": [
-        "That's true, but ...",
-        "You have a point, but ..."
-      ],
-      "ja": "たしかに。ただ……",
-      "situation_ja": "反応 ─ いったん受けてから違う意見を出す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "先に認めるのが英語の作法。but の前で一呼吸置く。例: That's true, but I still think the first one is better.（たしかに。ただ、やはり1作目のほうがいいと思います）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-17",
-      "type": "phrase",
-      "en": [
-        "I see what you mean.",
-        "I know what you mean."
-      ],
-      "ja": "言いたいことはわかります。",
-      "situation_ja": "反応 ─ 理解したと伝える。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "I understand より会話らしい。相槌としても使える。続けて I hadn't thought of it that way.（そういう見方はしていませんでした）と足すと、ちゃんと聞いていたことが伝わる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-18",
-      "type": "phrase",
-      "en": [
-        "I'm not sure about that.",
-        "I'm not so sure."
-      ],
-      "ja": "それはどうでしょうか。",
-      "situation_ja": "反応 ─ やんわり同意しない。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "I don't think so より柔らかい。反対の入口として安全。続けて What makes you say that?（どうしてそう思うんですか）と聞き返すと議論になる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-19",
-      "type": "phrase",
-      "en": [
-        "I'm curious about it.",
-        "I'm interested in it."
-      ],
-      "ja": "気になっています。",
-      "situation_ja": "好み ─ 興味があることを伝える。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "curious は「知りたい」寄り。interested in の in を落とさない。続けて How does it work?（どういう仕組みなんですか）で質問につなぐ。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-20",
-      "type": "phrase",
-      "en": [
-        "I enjoy my job because I like creating things.",
-        "I like my job because I get to create things."
-      ],
-      "ja": "ものを作るのが好きなので、仕事は楽しいです。",
-      "situation_ja": "好み ─ 理由まで含めて話す。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "because のあとを用意しておくと、答えが一言で終わらない。さらに I've been doing it for over twenty years.（20年以上やっています）で厚みが出る。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-21",
-      "type": "phrase",
-      "en": [
-        "I can't stand the cold.",
-        "I hate cold weather."
-      ],
-      "ja": "寒いのが苦手です。",
-      "situation_ja": "好み ─ 強い苦手を言う。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "can't stand は「我慢できない」。hate より会話でよく出る。続けて That's why I like summer.（だから夏が好きなんです）で好みの話に移せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-22",
-      "type": "phrase",
-      "en": [
-        "It smells good.",
-        "It smells nice."
-      ],
-      "ja": "いい匂いですね。",
-      "situation_ja": "反応 ─ 匂いに反応する。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "smell は形容詞をそのまま続ける。smells well は誤り。続けて What is it?（何ですか）や I'm getting hungry.（お腹が空いてきました）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-23",
-      "type": "phrase",
-      "en": [
-        "It looks delicious.",
-        "That looks really good."
-      ],
-      "ja": "おいしそうですね。",
-      "situation_ja": "反応 ─ 出てきた料理に反応する。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "食べる前は looks、食べたあとは It was delicious.。続けて Can I try some?（少しもらってもいいですか）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-24",
-      "type": "phrase",
-      "en": [
-        "I feel like ramen tonight.",
-        "I'm in the mood for ramen tonight."
-      ],
-      "ja": "今夜はラーメンの気分です。",
-      "situation_ja": "好み ─ その時の気分を言う。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "feel like のあとは名詞か動名詞。I feel like going out. も使える。続けて Do you know a good place?（いい店を知りませんか）で誘いになる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-25",
-      "type": "phrase",
-      "en": [
-        "It's worth seeing.",
-        "It's worth a look."
-      ],
-      "ja": "見る価値はあります。",
-      "situation_ja": "感想 ─ 手放しでほめずにすすめる。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 3,
-      "advice_ja": "worth のあとは動名詞。worth to see とは言わない。続けて even if you're not a fan.（ファンでなくても）で押し出せる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-26",
-      "type": "phrase",
-      "en": [
-        "It was better than I thought.",
-        "It was better than I expected."
-      ],
-      "ja": "思っていたよりよかったです。",
-      "situation_ja": "感想 ─ 上方修正を伝える。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "than I thought は使い回しが利く。worse に替えれば逆になる。続けて I'm glad I went.（行ってよかった）で締まる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-27",
-      "type": "phrase",
-      "en": [
-        "I was disappointed.",
-        "It was disappointing."
-      ],
-      "ja": "がっかりしました。",
-      "situation_ja": "感想 ─ 期待に届かなかったとき。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "人は disappointed、物は disappointing。取り違えやすい。理由を足す: I was disappointed because the ending was rushed.（結末が駆け足だったので）",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-28",
-      "type": "phrase",
-      "en": [
-        "It's hard to explain.",
-        "It's difficult to put into words."
-      ],
-      "ja": "説明しづらいのですが。",
-      "situation_ja": "反応 ─ うまく言えないときの前置き。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "黙る代わりにこれを言うと時間を稼げる。続けて Let me put it another way.（言い換えますね）や How do you say this in English?（英語で何て言うんでしょう）につなげる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-29",
-      "type": "phrase",
-      "en": [
-        "I'm glad to hear that.",
-        "That's good to hear."
-      ],
-      "ja": "それはよかったです。",
-      "situation_ja": "反応 ─ 相手のいい話を受ける。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 1,
-      "advice_ja": "悪い知らせなら Sorry to hear that. と対。続けて You must be relieved.（ほっとしたでしょう）で相手の気持ちに寄れる。",
-      "related": [],
-      "added": "2026-08-17"
-    },
-    {
-      "id": "core-p04-30",
-      "type": "phrase",
-      "en": [
-        "That's a shame.",
-        "That's too bad."
-      ],
-      "ja": "それは残念ですね。",
-      "situation_ja": "反応 ─ 相手の残念な話を受ける。",
-      "theme": "会話の骨組み",
-      "pack": 4,
-      "pack_title": "好きと感想",
-      "difficulty": 2,
-      "advice_ja": "shame は「恥」ではなく「残念」。会話では非常によく出る。続けて Maybe next time.（また次の機会に）で前向きに締める。",
-      "related": [],
-      "added": "2026-08-17"
-    }
-  ]
+ "version": 3,
+ "items": [
+  {
+   "id": "core30-01",
+   "type": "phrase",
+   "en": [
+    "How's it going?",
+    "How are you doing?"
+   ],
+   "ja": "調子はどう？",
+   "situation_ja": "入口 ─ 会って最初のひとこと。相手にも聞き返す。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "How are you? よりくだけた言い方。聞かれたら I'm good. How about you?（元気だよ、そっちは？）と、聞き返しまでセットで返す。この返しもレッスンで出た形。",
+   "related": [
+    "core30-02"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-02",
+   "type": "phrase",
+   "en": [
+    "Same as usual."
+   ],
+   "ja": "相変わらずだよ。",
+   "situation_ja": "入口 ─ 「仕事どう？」と聞かれて。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "レッスンでは How's work? への返しとして出た。一般的には Same old, same old. とも言う。続けて How about you?（そっちは？）と聞き返すと会話が回り出す。",
+   "related": [
+    "core30-01",
+    "core30-05"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-03",
+   "type": "phrase",
+   "en": [
+    "It's been a while."
+   ],
+   "ja": "久しぶりですね。",
+   "situation_ja": "入口 ─ しばらく会っていなかった相手に。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "有名な Long time no see. より、実際の会話ではこちらのほうが自然に使われることが多い。続けて How have you been?（元気にしてた？）まで一息で。",
+   "related": [],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-04",
+   "type": "phrase",
+   "en": [
+    "How was your weekend?",
+    "How was your holiday?"
+   ],
+   "ja": "週末はどうだった？",
+   "situation_ja": "入口 ─ 相手に話をふって、会話の主導権を渡す。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "自分が話すより先に相手に聞く。聞いている間に自分の話を組み立てられる。相手が答えたら That sounds fun. Where did you go?（楽しそう。どこへ？）で掘り下げる。",
+   "related": [],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-05",
+   "type": "phrase",
+   "en": [
+    "I've been a little busy at work recently."
+   ],
+   "ja": "最近、仕事が少し立て込んでいてね。",
+   "situation_ja": "入口 ─ 近況を一言で説明する。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "have been busy で「ここのところずっと忙しい」。a little を挟むと重くならない。続けて But it's getting better.（でも落ち着いてきた）と足すと明るく締まる。",
+   "related": [
+    "core30-02"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-06",
+   "type": "phrase",
+   "en": [
+    "It was nice talking to you.",
+    "It was good talking to you."
+   ],
+   "ja": "話せてよかったです。",
+   "situation_ja": "出口 ─ 別れ際の定番。返しは You too.",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "レッスン記録での再登場4回。最も多く教わっている表現。言われたら You too. と即返す。自分から言うなら Let's talk again soon.（またお話ししましょう）を続ける。",
+   "related": [
+    "core30-07"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-07",
+   "type": "phrase",
+   "en": [
+    "Have a nice day."
+   ],
+   "ja": "よい一日を。",
+   "situation_ja": "出口 ─ 店を出るとき、通話を切るとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "言われた側の返しは You too.（あなたも）だけでいい。レッスンでも Have a nice day → You too のセットで出た。くだけた場では Have a good one. とも言う。",
+   "related": [
+    "core30-06"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-08",
+   "type": "phrase",
+   "en": [
+    "I won't keep you.",
+    "I'll let you go."
+   ],
+   "ja": "お引き止めしません、そろそろ。",
+   "situation_ja": "出口 ─ 自分から会話を切り上げたいとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "相手を気づかう形で終わらせるので、黙って終わるより印象がいい。続けて I know you're busy. Let's catch up soon.（お忙しいでしょうし、また今度）まで言えると自然。",
+   "related": [
+    "core30-06"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-09",
+   "type": "phrase",
+   "en": [
+    "Sorry to hear that.",
+    "I'm so sorry to hear that."
+   ],
+   "ja": "それは大変でしたね。",
+   "situation_ja": "相槌 ─ 相手が悪い知らせを話したとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "謝罪の Sorry ではなく同情の Sorry。再登場3回。そのあと That must have been hard.（大変でしたね）を足すと、聞き流した感じにならない。",
+   "related": [
+    "core30-10"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-10",
+   "type": "phrase",
+   "en": [
+    "Really? What happened?"
+   ],
+   "ja": "え、何があったの？",
+   "situation_ja": "相槌 ─ 話の先を促す。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "レッスンでは I have some bad news への返しとして出た。Really? だけで止めず What happened? まで続けるのが聞き上手。良い知らせなら That's great! で受ける。",
+   "related": [
+    "core30-09"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-11",
+   "type": "phrase",
+   "en": [
+    "I'm jealous of him."
+   ],
+   "ja": "彼がうらやましいよ。",
+   "situation_ja": "相槌 ─ 人のいい話をうらやんでみせる。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "jealous of の後ろは人。目の前の相手になら I'm jealous of you. / I'm so jealous.（いいなあ）。ねたみではなく「いいなあ」の軽さで使える。",
+   "related": [],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-12",
+   "type": "phrase",
+   "en": [
+    "Sounds great!"
+   ],
+   "ja": "いいね！",
+   "situation_ja": "相槌 ─ 相手の提案や誘いに乗る。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "レッスンでは Let's catch up sometime への返しとして出た。That sounds great. の頭を落としたくだけた形。乗れないときは Sounds good but I have other plans.（いいね、でも先約が）。",
+   "related": [],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-13",
+   "type": "phrase",
+   "en": [
+    "Could you just repeat that?"
+   ],
+   "ja": "もう一度言ってもらえますか。",
+   "situation_ja": "聞き返し ─ 聞き取れなかったら、すぐこれ。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "just が入ると「ちょっともう一回だけ」と軽くなる。一般的には Sorry, I didn't catch that.（聞き取れなかった）も定番。黙ってうなずくより、すぐ聞き返すほうが印象がいい。",
+   "related": [
+    "core30-14",
+    "core30-15"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-14",
+   "type": "phrase",
+   "en": [
+    "Sorry, I can't understand what you're saying."
+   ],
+   "ja": "すみません、言っていることが分からなくて。",
+   "situation_ja": "聞き返し ─ 部分でなく全体が分からないとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "続けて Could you just repeat that?（もう一度お願いします）までがワンセット。レッスンでもこの2文続きで出た。ゆっくり頼むなら Could you say that again, more slowly?",
+   "related": [
+    "core30-13"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-15",
+   "type": "phrase",
+   "en": [
+    "I'm not sure I understand."
+   ],
+   "ja": "ちゃんと分かっているか自信がありません。",
+   "situation_ja": "聞き返し ─ 単語は聞こえたが意味がつかめない。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "I don't understand. より角が立たない言い方。相手の真意を聞くなら、一般的には What do you mean?（どういう意味？）と続ける。",
+   "related": [
+    "core30-13"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-16",
+   "type": "phrase",
+   "en": [
+    "I'll try to remember that word."
+   ],
+   "ja": "その単語、覚えるようにします。",
+   "situation_ja": "聞き返し ─ 教わった言葉を受け取る。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "教わりっぱなしにせず、この一言で返すと先生も嬉しい。そもそも言葉が出てこないときは、一般的に How do you say this in English?（これ英語で何て言う？）と聞けばいい。",
+   "related": [
+    "core30-17",
+    "core30-18"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-17",
+   "type": "phrase",
+   "en": [
+    "I couldn't say what I wanted to say."
+   ],
+   "ja": "言いたいことが言えなかった。",
+   "situation_ja": "聞き返し ─ うまく表現できなかったと伝える。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "レッスン記録に3回登場。詰まった状態を言葉にできると、相手が助けに回ってくれる。続けて Can you help me say it?（言い方を教えてもらえますか）まで言うと、そこが勉強の時間になる。",
+   "related": [
+    "core30-16"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-18",
+   "type": "phrase",
+   "en": [
+    "Maybe..."
+   ],
+   "ja": "うーん、たぶん…。",
+   "situation_ja": "聞き返し ─ 即答できないとき、考えながらつなぐ。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "沈黙で固まるより Maybe... とつぶやきながら考えると会話が切れない。考える時間がほしいと伝えるなら、一般的には Let me think.（ちょっと考えさせて）。",
+   "related": [
+    "core30-16"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-19",
+   "type": "phrase",
+   "en": [
+    "If I had to choose, I'd say..."
+   ],
+   "ja": "どちらかと言えば、〜かな。",
+   "situation_ja": "意見 ─ 選びきれないが答えを出したいとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "選びきれない質問への大人の答え方。I'd say のあとに答えを置く。続けて because で理由をひとつ足すと会話が伸びる。",
+   "related": [
+    "core30-20"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-20",
+   "type": "phrase",
+   "en": [
+    "I like them both.",
+    "I like both of them."
+   ],
+   "ja": "どっちも好き。",
+   "situation_ja": "意見 ─ 二択を出されて、両方いいとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "them both の語順が出てこないのが原因。かたまりで覚える。続けて but for different reasons.（ただ理由は違う）と足すと、選べないのではなく考えている人に聞こえる。",
+   "related": [
+    "core30-19"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-21",
+   "type": "phrase",
+   "en": [
+    "I'm really into..."
+   ],
+   "ja": "〜にハマってるんだ。",
+   "situation_ja": "意見 ─ 趣味や好みの強さを伝える。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "into のあとに好きなものを置く。逆に興味が薄いなら I'm not really interested in golf.（ゴルフはあまり…）のように not interested で。",
+   "related": [
+    "core30-22"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-22",
+   "type": "phrase",
+   "en": [
+    "I'm not so familiar with that.",
+    "I don't know much about it."
+   ],
+   "ja": "それはあまり詳しくないんです。",
+   "situation_ja": "意見 ─ 知らない話題をふられたとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "familiar with ＝ なじみがある。知らない話題でも会話を止めず、続けて Tell me more.（もっと教えて）と返せば相手が喜んで話してくれる。",
+   "related": [
+    "core30-21"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-23",
+   "type": "phrase",
+   "en": [
+    "What time do you want to meet?",
+    "Where do you want to meet?"
+   ],
+   "ja": "何時に会いましょうか。",
+   "situation_ja": "約束 ─ 待ち合わせを決める。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "時間と場所は分けて2発で聞くとテンポがいい。答える側は Is 2 pm OK for you? のように具体案で返す。",
+   "related": [
+    "core30-24"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-24",
+   "type": "phrase",
+   "en": [
+    "Is 2 pm OK for you?",
+    "Is 2 pm good for you?"
+   ],
+   "ja": "14時で大丈夫？",
+   "situation_ja": "約束 ─ 時間を提案して相手に確認する。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "一般的には Does 2 pm work for you? も同じ意味。OKなら 2 pm works for me.（2時で大丈夫）。この返しもレッスンで出た。",
+   "related": [
+    "core30-23"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-25",
+   "type": "phrase",
+   "en": [
+    "I haven't decided yet.",
+    "I haven't decided what to do yet."
+   ],
+   "ja": "まだ決めてないんだ。",
+   "situation_ja": "約束 ─ 予定を聞かれて未定のとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "現在完了＋yet。I don't decide とは言わない。続けて I might go to Osaka.（大阪に行くかも）と might で濁すと、未定のまま話を続けられる。",
+   "related": [],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-26",
+   "type": "phrase",
+   "en": [
+    "Excuse me, can you help me?",
+    "Excuse me, could you help me?"
+   ],
+   "ja": "すみません、手伝ってもらえますか。",
+   "situation_ja": "依頼 ─ 見知らぬ人に助けを求める。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "Excuse me を先に置いて相手の注意を引いてから頼む。続けて I'm looking for ~（〜を探しています）や Could you tell me how to get to ~?（〜への行き方を教えてください）で用件に入る。",
+   "related": [
+    "core30-27"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-27",
+   "type": "phrase",
+   "en": [
+    "Leave it to me.",
+    "I'm on it.",
+    "I'll do it."
+   ],
+   "ja": "任せて。",
+   "situation_ja": "依頼 ─ 仕事や用事を引き受ける。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "3つとも同じ場面で使える（レッスンでこの3点セットで出た）。仕事で頼まれた瞬間に I'm on it.（今やります）と返せると頼もしい。",
+   "related": [
+    "core30-28"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-28",
+   "type": "phrase",
+   "en": [
+    "I'll leave it to you."
+   ],
+   "ja": "お任せします。",
+   "situation_ja": "依頼 ─ 判断を相手にゆだねる。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "一般的な It's up to you.（あなたが決めて）は判断を渡す言い方。I'll leave it to you. は仕事や選択を委ねる言い方で、少し役割が違う。",
+   "related": [
+    "core30-27"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-29",
+   "type": "phrase",
+   "en": [
+    "Can I change the topic?",
+    "By the way, ..."
+   ],
+   "ja": "話を変えてもいい？",
+   "situation_ja": "転換 ─ 話題を切り替えたいとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 1,
+   "advice_ja": "話題が尽きたときに黙るのではなく、自分から切り替える。カジュアルには By the way, ...（ところで）だけでいい。続けて I've been meaning to ask you ...（前から聞きたかったんですが）が使える。",
+   "related": [
+    "core30-30"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core30-30",
+   "type": "phrase",
+   "en": [
+    "I've just remembered something."
+   ],
+   "ja": "今、思い出した。",
+   "situation_ja": "転換 ─ 話の途中で別のことを思い出したとき。",
+   "theme": "会話の骨組み",
+   "difficulty": 2,
+   "advice_ja": "have just ＋ 過去分詞で「たった今〜した」。続けて中身をすぐ話す。一般的には That reminds me.（それで思い出した）も同じ場面で使える。",
+   "related": [
+    "core30-29"
+   ],
+   "added": "2026-08-12",
+   "pack": 1,
+   "pack_title": "入口と出口"
+  },
+  {
+   "id": "core-p02-01",
+   "type": "phrase",
+   "en": [
+    "What did you do on the weekend?",
+    "What did you get up to on the weekend?"
+   ],
+   "ja": "週末は何をしましたか？",
+   "situation_ja": "質問 ─ 会話の最初に相手へふる、いちばん多い質問。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "get up to はくだけた言い方。イギリス人講師は at the weekend とも言う。相手が答えたら That sounds fun. Who did you go with?（楽しそう。誰と？）で掘り下げる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-02",
+   "type": "phrase",
+   "en": [
+    "Nothing special.",
+    "Not much."
+   ],
+   "ja": "特に何も。",
+   "situation_ja": "答え ─ 予定や出来事を聞かれて、特にないとき。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "レッスンでは Any plans this weekend? への返しとして出た。ここで止めず but I might go on a picnic（でもピクニックに行くかも）と一言足すのが、会話を続けるコツ。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-03",
+   "type": "phrase",
+   "en": [
+    "I did some laundry."
+   ],
+   "ja": "洗濯をしました。",
+   "situation_ja": "出来事 ─ 家で過ごした週末の中身を一言。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "do laundry で「洗濯する」。まとめて言うなら、一般的には I stayed home all day.（一日家にいた）。家事は do some ~ing の形が使い回せる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-04",
+   "type": "phrase",
+   "en": [
+    "I went to the Yurakucho Picadilly for the 1st time."
+   ],
+   "ja": "初めて有楽町ピカデリーに行きました。",
+   "situation_ja": "出来事 ─ 映画に行った話を固有名詞から切り出す。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "一般形は I went to see a movie.（映画を見に行った）。場所の固有名詞から話し始めると、相手が What did you see?（何を見たの？）と聞きたくなる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-05",
+   "type": "phrase",
+   "en": [
+    "Who did you go with?",
+    "Who were you with?"
+   ],
+   "ja": "誰と行ったんですか？",
+   "situation_ja": "質問 ─ 相手の話を一段掘り下げる。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "答えは I went with my wife. のように with を落とさない。さらに Was it your first time?（初めてだった？）と重ねると会話が伸びる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-06",
+   "type": "phrase",
+   "en": [
+    "I went on a fishing trip with my son."
+   ],
+   "ja": "息子と釣りに行きました。",
+   "situation_ja": "答え ─ 誰と行ったかまで話して情景を出す。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "go on a trip で「出かける」。妻となら with my wife、一人なら by myself（alone より自然）。続けて相手の様子まで話すと場面が見える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-07",
+   "type": "phrase",
+   "en": [
+    "It was my 1st time going there."
+   ],
+   "ja": "そこへ行くのは初めてでした。",
+   "situation_ja": "出来事 ─ 初体験だったことを添える。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "my 1st time ~ing の形。場所から言うなら I went to Nagoya for the 1st time. のようにも（レッスンではこの2形がセットで出た）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-08",
+   "type": "phrase",
+   "en": [
+    "I enjoyed it.",
+    "I had fun."
+   ],
+   "ja": "楽しかったです。",
+   "situation_ja": "感想 ─ 出来事のあとに必ず一言。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "出来事＋感想の2文セットを癖にする。It was fun. も同じ場面。物足りなければ I really enjoyed it. と really を足す。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-09",
+   "type": "phrase",
+   "en": [
+    "It wasn't as good as I expected.",
+    "It wasn't as good as I'd hoped."
+   ],
+   "ja": "思ったほどではありませんでした。",
+   "situation_ja": "感想 ─ 期待はずれをやわらかく言う。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "not as ~ as ... の型。バッサリ言わずに済む。理由を足すと角が立たない: It wasn't as good as I expected, but the visuals were great.（期待ほどではなかったけど、映像はよかった）",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-10",
+   "type": "phrase",
+   "en": [
+    "I usually work late 3 days a week during the peak season."
+   ],
+   "ja": "繁忙期は週3日くらい遅くまで働きます。",
+   "situation_ja": "仕事 ─ 忙しさを数字で語る。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "単発の話なら、一般的には I worked late.（遅くまで仕事だった）。usually＋頻度＋during で「この時期はこう」と言える型。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-11",
+   "type": "phrase",
+   "en": [
+    "I ate dinner by myself because I finished work late."
+   ],
+   "ja": "仕事が遅く終わったので、一人で夕飯を食べました。",
+   "situation_ja": "出来事 ─ 理由まで一息で話す。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "by myself は「一人で」（alone より自然）。because で理由をつなぐと、一文でその日の様子が伝わる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-12",
+   "type": "phrase",
+   "en": [
+    "I've been drinking too much recently."
+   ],
+   "ja": "最近ちょっと飲みすぎています。",
+   "situation_ja": "近況 ─ 正直な近況で場を和ませる。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "have been ~ing で「最近ずっと」。続けて I should reduce the amount and frequency I drink.（量と頻度を減らさないと）まで言えたら上級。どちらもレッスンで出た実話。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-13",
+   "type": "phrase",
+   "en": [
+    "I'm a little tired because I didn't sleep well last night."
+   ],
+   "ja": "昨夜よく眠れなくて、少し疲れています。",
+   "situation_ja": "体調 ─ 元気がない理由を先に言っておく。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "調子を聞かれたら理由までセットで。回復したら I slept well last night, so I feel much better.（よく眠れたのでだいぶ楽）。この返しもレッスンで出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-14",
+   "type": "phrase",
+   "en": [
+    "I woke up at 3 and I couldn't get back to sleep."
+   ],
+   "ja": "夜中に目が覚めて、そのまま眠れませんでした。",
+   "situation_ja": "体調 ─ 眠れなかった中身を具体的に。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "wake up は「目が覚める」、get back to sleep で「眠り直す」。続けて So I'm a little tired today. と今の状態へつなぐ。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-15",
+   "type": "phrase",
+   "en": [
+    "I'm OK but I'm a little tired today."
+   ],
+   "ja": "大丈夫ですが、今日は少し疲れています。",
+   "situation_ja": "体調 ─ 調子を聞かれたときの正直な答え。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "How are you? への正直な返し。OK と言ってから but で本音を足す型は、体調以外にもいろいろ使い回せる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-16",
+   "type": "phrase",
+   "en": [
+    "I went to see a doctor.",
+    "I went to the doctor's."
+   ],
+   "ja": "病院に行きました。",
+   "situation_ja": "体調 ─ 通院を一言で。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "go to the hospital は入院や大病の響き。ふだんは doctor's。続けて Nothing serious.（大したことはなかった）と足すと相手を心配させずに済む。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-17",
+   "type": "phrase",
+   "en": [
+    "I was stuck in traffic for an hour.",
+    "I got stuck in traffic for an hour."
+   ],
+   "ja": "1時間、渋滞にはまりました。",
+   "situation_ja": "移動 ─ 遅れた理由、疲れた理由として。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "stuck は「動けない」。電車の遅延は My train was delayed.。続けて I was late for the meeting.（会議に遅れた）や It was really frustrating.（参った）で気持ちまで。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-18",
+   "type": "phrase",
+   "en": [
+    "I rented a car for 1 day."
+   ],
+   "ja": "1日レンタカーを借りました。",
+   "situation_ja": "移動 ─ 旅行や出張の足を説明する。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "rent は「お金を払って借りる」。for 1 day のように期間を後ろに。続けて I drove after a long time.（久しぶりに運転した）—これもレッスンで出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-19",
+   "type": "phrase",
+   "en": [
+    "I went to Hiroshima on vacation.",
+    "I took a trip to Hiroshima."
+   ],
+   "ja": "休みに広島へ行きました。",
+   "situation_ja": "出来事 ─ 旅行の話を切り出す。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "on vacation / on holiday。行き先だけで止めない: I went to Hiroshima on vacation and visited the Peace Museum.（広島へ行って平和記念資料館に寄った）",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-20",
+   "type": "phrase",
+   "en": [
+    "I used to live in Setagaya ward."
+   ],
+   "ja": "昔は世田谷区に住んでいました。",
+   "situation_ja": "昔 ─ 今はもうしていない習慣や状態。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "used to で「昔は〜していた（今は違う）」。続けて That was about 10 years ago.（10年くらい前のこと）と時期を添える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-21",
+   "type": "phrase",
+   "en": [
+    "I went to the Maldives on my honeymoon about 15 years ago."
+   ],
+   "ja": "15年ほど前、新婚旅行でモルディブに行きました。",
+   "situation_ja": "昔 ─ いつ・どこで・何を、を一文で。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "about ~ years ago で「〜年くらい前」。on my honeymoon のような「何の折に」を挟むと話が立体的になる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-22",
+   "type": "phrase",
+   "en": [
+    "I used to do judo when I was a high school student.",
+    "I used to learn judo when I was a high school student."
+   ],
+   "ja": "高校生のころ柔道をしていました。",
+   "situation_ja": "昔 ─ 昔の自分を一文で語る。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "when I was ~ で時期を示す。続けて But I quit.（でも辞めた）のように今との違いへつなぐと、used to が生きる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-23",
+   "type": "phrase",
+   "en": [
+    "I went on a few business trips this week."
+   ],
+   "ja": "今週は出張が何回かありました。",
+   "situation_ja": "仕事 ─ 近況としてよく使う。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "go on a business trip が「出張する」の基本形。回数は a few / 2 で数える。続けて I've been exhausted because of my business trips.（出張続きでくたくた）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-24",
+   "type": "phrase",
+   "en": [
+    "I went to Takamatsu to meet a client.",
+    "I went to Takamatsu to attend a meeting."
+   ],
+   "ja": "高松へ取引先に会いに行きました。",
+   "situation_ja": "仕事 ─ 何をしていたかを説明する。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "to＋動詞で「〜しに行った」と目的を言う。一般的には I had a meeting with a client.（取引先と打ち合わせだった）とも。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-25",
+   "type": "phrase",
+   "en": [
+    "I couldn't finish all of my tasks by the weekend."
+   ],
+   "ja": "週末までに仕事を全部は終えられませんでした。",
+   "situation_ja": "仕事 ─ 積み残しを一言で。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "not all で「全部は〜ない」の部分否定。一般的には It didn't go as planned.（予定どおりいかなかった）というまとめ方もある。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-26",
+   "type": "phrase",
+   "en": [
+    "I've finished my big tasks."
+   ],
+   "ja": "大きな仕事は終わりました。",
+   "situation_ja": "仕事 ─ 終わった達成感を伝える。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "続けて The rest of my tasks are easy.（残りは楽なものだけ）まで言うと安堵感が伝わる。レッスンでもこの2文セットで出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-27",
+   "type": "phrase",
+   "en": [
+    "Did you do anything else?"
+   ],
+   "ja": "ほかには何かしましたか？",
+   "situation_ja": "質問 ─ 相手の答えが短いときにもう一段ふる。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "anything else で「ほかに何か」。レッスンでは on the weekend を付けた形でも出た。相手の答えが短いときに、もう一段ふる質問。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-28",
+   "type": "phrase",
+   "en": [
+    "Any news?"
+   ],
+   "ja": "何か変わったことある？",
+   "situation_ja": "質問 ─ 週の途中で近況をふる。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "Do you have any news? の略。一般的には How was your week?（今週どうだった？）も同じ役割。返す側は Nothing special but ~ で何かひとつ話す。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-29",
+   "type": "phrase",
+   "en": [
+    "Sorry I'm late."
+   ],
+   "ja": "遅れてすみません。",
+   "situation_ja": "出だし ─ 遅刻・遅れの第一声。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 2,
+   "advice_ja": "会うのが遅れたらまずこれ。メールの返信の遅れなら、一般的には Sorry for the late reply.（返事が遅くなってすみません）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p02-30",
+   "type": "phrase",
+   "en": [
+    "Any plans this weekend?"
+   ],
+   "ja": "週末の予定は？",
+   "situation_ja": "質問 ─ 別れ際に次へつなげる問いかけ。",
+   "theme": "会話の骨組み",
+   "pack": 2,
+   "pack_title": "週末と近況を話す",
+   "difficulty": 1,
+   "advice_ja": "丁寧に言うなら Do you have any plans for the weekend? 休み前なら for your winter vacation などに置き換えて使い回す。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-01",
+   "type": "phrase",
+   "en": [
+    "It's about 8 degrees."
+   ],
+   "ja": "8度くらいです。",
+   "situation_ja": "概算 ─ 数字をぼかして言う基本形。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "about で概算に。摂氏だと明示するなら Celsius を後ろに付ける（レッスンでは It's about 8 degrees (Celsius) の形で出た）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-02",
+   "type": "phrase",
+   "en": [
+    "It takes about 10 minutes to cook."
+   ],
+   "ja": "作るのに10分くらいかかります。",
+   "situation_ja": "概算 ─ 所要時間を答える。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "It takes ~ to ... で「…するのに〜かかる」。移動なら一般的に It takes about an hour to get there.（そこまで1時間くらい）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-03",
+   "type": "phrase",
+   "en": [
+    "We live under an hour from each other.",
+    "We live near each other."
+   ],
+   "ja": "お互い1時間くらいの距離に住んでいます。",
+   "situation_ja": "概算 ─ 距離を時間で言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "under an hour で「1時間かからない」。about（〜くらい）より「未満」を言いたいときに。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-04",
+   "type": "phrase",
+   "en": [
+    "It's almost 2.",
+    "It's nearly 2."
+   ],
+   "ja": "もうすぐ2時です。",
+   "situation_ja": "日時 ─ 時計を見て言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "レッスンでは「1:58 ＝ It's almost/nearly 2」と教わった。o'clock は付けなくていい。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-05",
+   "type": "phrase",
+   "en": [
+    "How long does it take to get there?"
+   ],
+   "ja": "そこまでどのくらいかかりますか。",
+   "situation_ja": "質問 ─ 所要時間をたずねる。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "出発点も言うなら from here を後ろに。短く聞くなら一般的に How long does it take? だけでも通じる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-06",
+   "type": "phrase",
+   "en": [
+    "How many episodes are there?"
+   ],
+   "ja": "何話あるんですか？",
+   "situation_ja": "質問 ─ ドラマやシリーズの長さを聞く。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "How many ~ are there? が「いくつある？」の型。episodes を people や rooms に替えて使い回す。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-07",
+   "type": "phrase",
+   "en": [
+    "It's a small company. Only 8 employees."
+   ],
+   "ja": "小さい会社で、社員は8人だけです。",
+   "situation_ja": "数 ─ 自分の会社を説明する。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "Only＋数字で「たった〜」。続けて But everyone is nice.（でもみんないい人）のように一言足すと会社紹介になる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-08",
+   "type": "phrase",
+   "en": [
+    "They are $50 each."
+   ],
+   "ja": "1つ50ドルです。",
+   "situation_ja": "値段 ─ 単価を言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "each を最後に置くだけで「1つあたり」。$50 は fifty dollars と読む。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-09",
+   "type": "phrase",
+   "en": [
+    "It's way too expensive.",
+    "It's much too expensive."
+   ],
+   "ja": "高すぎます。",
+   "situation_ja": "程度 ─ 度を越していることを強調する。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "way too で「あまりに〜すぎる」。値段以外にも way too humid（蒸し暑すぎ）など何にでも使える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-10",
+   "type": "phrase",
+   "en": [
+    "It's way too humid today."
+   ],
+   "ja": "今日は蒸し暑すぎます。",
+   "situation_ja": "程度 ─ too で「〜すぎる」と嘆く。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "too の前に way を置くと強く、a little を置くとやわらぐ: It's a little too small.（ちょっと小さすぎ）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-11",
+   "type": "phrase",
+   "en": [
+    "I spend a lot of money in August.",
+    "August costs me a lot."
+   ],
+   "ja": "8月はお金をたくさん使います。",
+   "situation_ja": "程度 ─ 多い少ないを金額で言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "spend money on ~ で使い道を足せる: I spend a lot of money on travel in August.（8月は旅行にお金を使う）",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-12",
+   "type": "phrase",
+   "en": [
+    "I have seen that movie but I don't remember much."
+   ],
+   "ja": "その映画は見たけど、あまり覚えていません。",
+   "situation_ja": "程度 ─ 記憶があいまいなとき。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "not ~ much で「あまり〜ない」。思い出した瞬間は I've just remembered!（今思い出した！）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-13",
+   "type": "phrase",
+   "en": [
+    "There were 40 people at the party."
+   ],
+   "ja": "パーティーには40人いました。",
+   "situation_ja": "数 ─ 人数を言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "There were＋数＋people の型。少なければ only a few people、混み具合を聞くなら Was it crowded?（混んでた？）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-14",
+   "type": "phrase",
+   "en": [
+    "A couple of days ago.",
+    "Two or three days ago."
+   ],
+   "ja": "2、3日前です。",
+   "situation_ja": "日時 ─ 近い過去をぼかす。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "a couple of は厳密に2ではなく「2、3の」。使い勝手がいい。文にするなら I saw him a couple of days ago.（2、3日前に彼に会った）",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-15",
+   "type": "phrase",
+   "en": [
+    "I'm going to Takamatsu again at the end of this month."
+   ],
+   "ja": "今月末にまた高松へ行きます。",
+   "situation_ja": "期限 ─ 月末・年末の予定を言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "at the end of this month で「今月末に」。締め切りの「〜までに」は by: I'll finish it by the end of this month.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-16",
+   "type": "phrase",
+   "en": [
+    "I can get to central Tokyo in about 10 minutes."
+   ],
+   "ja": "都心まで10分くらいで出られます。",
+   "situation_ja": "概算 ─ 所要時間で便利さを言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "in about ~ minutes で「〜分くらいで」。徒歩なら I can walk there in about 20 minutes.（これもレッスンで出た）。待ち合わせなら I'll be there in about 10 minutes.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-17",
+   "type": "phrase",
+   "en": [
+    "1 of my peak seasons is from May to August."
+   ],
+   "ja": "繁忙期のひとつは5月から8月です。",
+   "situation_ja": "期間 ─ 仕事の山を説明する。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "from A to B で期間。続けて The other is at the end of the year.（もうひとつは年末）—レッスンでもこの2文セットで出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-18",
+   "type": "phrase",
+   "en": [
+    "I've been working with the same crew for over 10 years."
+   ],
+   "ja": "同じ撮影チームと10年以上仕事をしています。",
+   "situation_ja": "期間 ─ 続けている年数を言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "have been ~ing＋for over ~ years で「〜年以上ずっと」。仕事一般なら I've been doing this job for over 10 years.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-19",
+   "type": "phrase",
+   "en": [
+    "I eat sushi about twice a month.",
+    "I usually eat sushi twice a month."
+   ],
+   "ja": "月に2回くらい寿司を食べます。",
+   "situation_ja": "頻度 ─ どのくらいの頻度かを言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "once / twice a month で頻度。3回からは three times a month。週なら a week に替えるだけ。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-20",
+   "type": "phrase",
+   "en": [
+    "I hardly watch TV.",
+    "I rarely watch TV.",
+    "I don't watch TV very often."
+   ],
+   "ja": "テレビはほとんど見ません。",
+   "situation_ja": "頻度 ─ ほとんどしないことを言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "3つとも同じ意味（レッスンで3点セットで出た）。never まではいかない「めったにしない」。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-21",
+   "type": "phrase",
+   "en": [
+    "I only go to Starbucks when I'm on business trips."
+   ],
+   "ja": "スタバは出張のときしか行きません。",
+   "situation_ja": "頻度 ─ only when で「〜のときだけ」。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "only ~ when ... の型。「基本はこう」と言うなら、一般的には Most of the time, I ~（たいていは〜）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-22",
+   "type": "phrase",
+   "en": [
+    "I achieved about half of my goals."
+   ],
+   "ja": "目標の半分くらいは達成しました。",
+   "situation_ja": "概算 ─ 割合をざっくり言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "about half of ~ で「〜の半分くらい」。most of ~（大半）、a few of ~（少し）と並べて覚える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-23",
+   "type": "phrase",
+   "en": [
+    "The ramen theme park is on the 5th floor."
+   ],
+   "ja": "ラーメンのテーマパークは5階にあります。",
+   "situation_ja": "場所 ─ 階を答える。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "on the ~ floor で階を言う。自宅なら I live on the 29th floor.（これもレッスンで出た実話）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-24",
+   "type": "phrase",
+   "en": [
+    "Take the 5th right."
+   ],
+   "ja": "5つ目の角を右です。",
+   "situation_ja": "場所 ─ 道を教える。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "Take the ~ right/left で「〜個目を右／左」。一般的には Turn right at the 5th corner. とも言える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-25",
+   "type": "phrase",
+   "en": [
+    "My LPA is on the 25th."
+   ],
+   "ja": "私のLPAは25日です。",
+   "situation_ja": "日時 ─ 日付を言う（LPA＝Gabaのレベルチェック）。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "日付は on the＋序数。予約なら My appointment is on the 25th.（予約は25日）と言い換えるだけ。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-26",
+   "type": "phrase",
+   "en": [
+    "It starts at 3 pm."
+   ],
+   "ja": "3時に始まります。",
+   "situation_ja": "日時 ─ 開始時刻を答える。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "聞く側は What time does the movie start?（何時に始まる？）。レッスンでは問いと答えのセットで出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-27",
+   "type": "phrase",
+   "en": [
+    "How about Monday afternoon?",
+    "Is Monday afternoon OK?"
+   ],
+   "ja": "月曜の午後はどうですか？",
+   "situation_ja": "日時 ─ 都合のいい時間を提案する。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "How about ~? で案を出す。自分の空きを言うなら、一般的には I'm free after lunch.（昼のあとなら空いてる）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-28",
+   "type": "phrase",
+   "en": [
+    "I've lived in Tokyo all my life."
+   ],
+   "ja": "生まれてからずっと東京に住んでいます。",
+   "situation_ja": "期間 ─ 住んでいる長さを言う。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 2,
+   "advice_ja": "all my life で「生まれてからずっと」。年数で言うなら for: She has lived in Hawaii for 3 years.（これもレッスンで出た）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-29",
+   "type": "phrase",
+   "en": [
+    "Do you have enough time?"
+   ],
+   "ja": "時間は足りますか？",
+   "situation_ja": "数 ─ 足りるかどうかを確かめる。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 1,
+   "advice_ja": "enough＋名詞で「足りる」。time を money に替えても使える（レッスンでは time / money / flour の3例で出た）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p03-30",
+   "type": "phrase",
+   "en": [
+    "At least on my end.",
+    "At least from my side."
+   ],
+   "ja": "少なくとも私の側では。",
+   "situation_ja": "程度 ─ 断言を避けて範囲を限る。",
+   "theme": "会話の骨組み",
+   "pack": 3,
+   "pack_title": "数と時間",
+   "difficulty": 3,
+   "advice_ja": "言い切ったあとに足すと、押しつけがましくならない。例: I think it's going well — at least on my end.（うまくいっていると思います、少なくとも私の側では）",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-01",
+   "type": "phrase",
+   "en": [
+    "What did you like about the movie?"
+   ],
+   "ja": "その映画のどこがよかったですか？",
+   "situation_ja": "質問 ─ 相手の感想を引き出す。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "What ~ about で「どこが」。ざっくり聞くなら、一般的には What did you think of it? / How was it?（どうだった？）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-02",
+   "type": "phrase",
+   "en": [
+    "It was fun.",
+    "It was a lot of fun."
+   ],
+   "ja": "楽しかったです。",
+   "situation_ja": "感想 ─ いちばん短い感想。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "funny は「おかしい」、楽しいは fun。取り違えやすい。続けて I'd go again.（また行きたい）や especially the last part.（特に最後がよかった）で中身を足す。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-03",
+   "type": "phrase",
+   "en": [
+    "I highly recommend going to Okinawa.",
+    "You should definitely go to Okinawa."
+   ],
+   "ja": "沖縄は本当におすすめです。",
+   "situation_ja": "感想 ─ 人にすすめる。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "recommend ~ing の形。物や作品なら I highly recommend it.（強くおすすめ）と言えばいい。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-04",
+   "type": "phrase",
+   "en": [
+    "I had low expectations, but it was pretty good."
+   ],
+   "ja": "期待していなかったけど、かなりよかったです。",
+   "situation_ja": "感想 ─ 期待とのギャップを語る。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "逆のパターンもレッスンで出た: I had high expectations before the movie, but it was terrible.（期待してたのにひどかった）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-05",
+   "type": "phrase",
+   "en": [
+    "Golf is not my thing."
+   ],
+   "ja": "ゴルフは自分向きじゃないんです。",
+   "situation_ja": "好み ─ 嫌いとまで言わずに外す。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "not my thing は「嫌い」をやわらげる便利表現。ゴルフの部分を入れ替えれば、Karaoke is not really my thing. のように何にでも使える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-06",
+   "type": "phrase",
+   "en": [
+    "I didn't like the sequel so much."
+   ],
+   "ja": "続編はそれほど好きになれませんでした。",
+   "situation_ja": "好み ─ so much で温度を下げる。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "not ~ so much で「それほどでは」。今の好みについてなら、一般的には I like it, but not that much.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-07",
+   "type": "phrase",
+   "en": [
+    "I prefer this one."
+   ],
+   "ja": "こちらのほうが好きです。",
+   "situation_ja": "比較 ─ 二択で選ぶ。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "prefer 一語で「こっちのほうが好き」。一般的には I like this one better. とも言う。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-08",
+   "type": "phrase",
+   "en": [
+    "I prefer the R33 to the R34."
+   ],
+   "ja": "R34よりR33のほうが好きです。",
+   "situation_ja": "比較 ─ prefer A to B の型。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "to の後ろが「負けるほう」。食べ物なら I prefer beef to pork.（豚より牛）。車の話で実際に出た一文。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-09",
+   "type": "phrase",
+   "en": [
+    "One thing I liked about the movie was the music."
+   ],
+   "ja": "気に入ったのは音楽です。",
+   "situation_ja": "感想 ─ 良かった点を1つ挙げる。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "2つ目は Another thing I liked was ~ で続ける（レッスンでこのセットで出た）。感想を構造的に話せる型。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-10",
+   "type": "phrase",
+   "en": [
+    "It wasn't very interesting."
+   ],
+   "ja": "あまり面白くなかったです。",
+   "situation_ja": "感想 ─ いまいちだったとき。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 3,
+   "advice_ja": "not very で直球すぎない否定に。さらにやわらげるなら The story was a little slow for me.（少し間延びして感じた）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-11",
+   "type": "phrase",
+   "en": [
+    "In my opinion, the 2nd movie is the best in the trilogy."
+   ],
+   "ja": "私の考えでは、3部作なら2作目が最高です。",
+   "situation_ja": "意見 ─ あくまで自分の見方だと示す。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "In my opinion を頭に置くと断定がやわらぐ。the best in ~ で「〜の中で一番」。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-12",
+   "type": "phrase",
+   "en": [
+    "I think you'd enjoy it.",
+    "You should try it."
+   ],
+   "ja": "あなたも気に入ると思いますよ。",
+   "situation_ja": "感想 ─ 相手に向けてすすめる。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "you'd（= you would）で「あなたならきっと」。この2つはレッスンでセットで出た、人にすすめる言い方。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-13",
+   "type": "phrase",
+   "en": [
+    "I think so too.",
+    "I agree with you."
+   ],
+   "ja": "私もそう思います。",
+   "situation_ja": "同意 ─ 相手と同じだと短く返す。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "レッスンでは North Face is a good brand への返しとして出た。一般的には Me too. / So do I. も同じ場面で使える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-14",
+   "type": "phrase",
+   "en": [
+    "He must have some bad points."
+   ],
+   "ja": "彼にも悪いところがあるはずですよ。",
+   "situation_ja": "意見 ─ must で「〜に違いない」と推測する。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 3,
+   "advice_ja": "レッスンでは大谷選手の話で出た冗談まじりの一文。must＋動詞で「きっと〜のはず」。否定への同意は、一般的には Me neither.（私も〜ない）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-15",
+   "type": "phrase",
+   "en": [
+    "My wife and son often have similar or the same opinions."
+   ],
+   "ja": "妻と息子はよく意見が同じになります。",
+   "situation_ja": "同意 ─ 意見が合う・合わないを語る。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "have the same opinion で「意見が同じ」。自分が相手と同じ気持ちなら、一般的には I feel the same way.（同じ気持ちです）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-16",
+   "type": "phrase",
+   "en": [
+    "Sounds good but I have other plans tonight."
+   ],
+   "ja": "いいですね、でも今夜は先約があって。",
+   "situation_ja": "反応 ─ いったん受けてから断る。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "まず受けてから but、が角を立てないコツ。意見に対してなら That's true, but ...（たしかに、ただ…）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-17",
+   "type": "phrase",
+   "en": [
+    "I know what you mean."
+   ],
+   "ja": "言いたいことはわかります。",
+   "situation_ja": "反応 ─ 理解したと伝える。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "相手の話を受け止める万能の一言。「分かるよ」であって、同意までは言っていない、という温度でも使える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-18",
+   "type": "phrase",
+   "en": [
+    "I'm not interested in any new movies."
+   ],
+   "ja": "最近の新作映画には興味がないんです。",
+   "situation_ja": "好み ─ 興味がないと正直に言う。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "not interested in ~ の型。相手の意見への「どうかな」は、一般的には I'm not sure about that.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-19",
+   "type": "phrase",
+   "en": [
+    "I'm curious about it.",
+    "I'm interested in it."
+   ],
+   "ja": "気になっています。",
+   "situation_ja": "好み ─ 興味があることを伝える。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "curious は「気になって知りたい」。レッスンでは I'm curious about the manufacturing process.（製造工程が気になる）の形で出た。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-20",
+   "type": "phrase",
+   "en": [
+    "I enjoy my job because I like creating things.",
+    "I enjoy my job because I like being creative."
+   ],
+   "ja": "ものを作るのが好きなので、仕事は楽しいです。",
+   "situation_ja": "好み ─ 理由まで含めて話す。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "because で理由まで言うと人柄が伝わる。仕事・趣味どちらの自己紹介にも使える型。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-21",
+   "type": "phrase",
+   "en": [
+    "I hate the cold."
+   ],
+   "ja": "寒いのは大嫌いです。",
+   "situation_ja": "好み ─ 強い苦手を言う。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "hate は強め。同じ強さで、一般的には I can't stand the cold.（寒さに耐えられない）とも言える。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-22",
+   "type": "phrase",
+   "en": [
+    "I don't like chicken liver because it smells bad."
+   ],
+   "ja": "鶏レバーは匂いがだめなんです。",
+   "situation_ja": "好み ─ 匂いを理由に苦手を言う。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "smell＋形容詞で「〜な匂いがする」。いい匂いなら It smells good.（いい匂い）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-23",
+   "type": "phrase",
+   "en": [
+    "It looks tasty."
+   ],
+   "ja": "おいしそうですね。",
+   "situation_ja": "反応 ─ 出てきた料理に反応する。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "look＋形容詞で「〜そうに見える」。delicious でもいいが、会話では tasty のほうが軽い。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-24",
+   "type": "phrase",
+   "en": [
+    "I feel like ramen tonight.",
+    "I'm in the mood for ramen tonight."
+   ],
+   "ja": "今夜はラーメンの気分です。",
+   "situation_ja": "好み ─ その時の気分を言う。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "feel like のあとは名詞か動名詞。I feel like going out. も使える。続けて Do you know a good place?（いい店を知りませんか）で誘いになる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-25",
+   "type": "phrase",
+   "en": [
+    "I don't recommend watching it at the theater."
+   ],
+   "ja": "映画館で見るほどではないかな。",
+   "situation_ja": "感想 ─ 手放しでほめずに評する。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 3,
+   "advice_ja": "続けて You can just watch it on Amazon Prime.（配信で十分）—レッスンでもこのセット。価値ありなら It's worth seeing.（見る価値はある）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-26",
+   "type": "phrase",
+   "en": [
+    "MUJI furniture is definitely better than IKEA."
+   ],
+   "ja": "無印の家具はイケアより断然いいです。",
+   "situation_ja": "比較 ─ definitely で強く断言する。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "better than で比較。予想との比較なら、一般的には It was better than I expected.（思ったよりよかった）。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-27",
+   "type": "phrase",
+   "en": [
+    "I was so disappointed because I was looking forward to having a soft cream."
+   ],
+   "ja": "ソフトクリームを楽しみにしていたのに、本当にがっかりでした。",
+   "situation_ja": "感想 ─ 期待に届かなかったとき。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "look forward to ~ing（楽しみにする）とセットで、「楽しみ→がっかり」の流れが一文で言える。短くは I was disappointed.",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-28",
+   "type": "phrase",
+   "en": [
+    "I often forget things."
+   ],
+   "ja": "物忘れが多いんです。",
+   "situation_ja": "性格 ─ 自分の弱点を軽く言う。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "レッスンでは I forget a lot / I'm forgetful とも教わった。説明に詰まったら、一般的には It's hard to explain.（説明しづらい）と前置きする。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-29",
+   "type": "phrase",
+   "en": [
+    "I'm glad to hear that.",
+    "That's good to hear."
+   ],
+   "ja": "それはよかったです。",
+   "situation_ja": "反応 ─ 相手のいい話を受ける。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 1,
+   "advice_ja": "悪い知らせなら Sorry to hear that. と対。続けて You must be relieved.（ほっとしたでしょう）で相手の気持ちに寄れる。",
+   "related": [],
+   "added": "2026-08-17"
+  },
+  {
+   "id": "core-p04-30",
+   "type": "phrase",
+   "en": [
+    "That's a shame.",
+    "That's a pity."
+   ],
+   "ja": "それは残念ですね。",
+   "situation_ja": "反応 ─ 相手の残念な話を受ける。",
+   "theme": "会話の骨組み",
+   "pack": 4,
+   "pack_title": "好きと感想",
+   "difficulty": 2,
+   "advice_ja": "相手の残念な話への定番。That's too bad. も同じ。深刻な話には Sorry to hear that. のほうが合う。",
+   "related": [],
+   "added": "2026-08-17"
+  }
+ ]
 }
