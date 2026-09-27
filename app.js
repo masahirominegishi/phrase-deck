@@ -45,6 +45,25 @@ const DRILL_KEY = 'phrasedeck.drill.v1';
 const DRILL_GOAL = 3;                  // 卒業に必要な「連続で言えた日数」
 const DRILL_REQUEUE_GAP = 3;           // 言えなかったカードが再登場するまでの枚数
 
+/* ---------- 選んで覚える（今週のフレーズ） ----------
+   GABA のレッスン後に、習ったフレーズから覚えたいものだけを選ぶ。
+   選んだカードには picked（選んだ日）が付き、徹底モードと同じ
+   「3日続けて言えたら卒業」で回す。骨組みパックはホームから外した（データは残す）。 */
+// 選んだ印はカードとは別に持つ（{id: 選んだ日}）。骨組みのカードは起動のたびに
+// 公開シードから読み直されるので、カード自体に印を付けると消えてしまうため。
+const PICKED_KEY = 'phrasedeck.picked.v1';
+let PICKED = {};
+function loadPicked() {
+  try { PICKED = JSON.parse(localStorage.getItem(PICKED_KEY)) || {}; }
+  catch { PICKED = {}; }
+}
+function savePicked() { localStorage.setItem(PICKED_KEY, JSON.stringify(PICKED)); }
+function pickedDay(it) { return (it && PICKED[it.id]) || ''; }
+function isPicked(it) { return !!pickedDay(it); }
+// 徹底モードの専任カード。ふだんの復習（SRS）には出さない。
+function isDrillItem(it) { return it.theme === CORE_THEME || isPicked(it); }
+function pickedItems() { return ITEMS.filter(isPicked); }
+
 const THEMES = [
   '裁判員の話', '魚市場・仕事', 'お店・レストラン', '高松の暮らし・食',
   '一人の時間・性格', '果物・地方', 'あいさつ・近況', '一般表現',
@@ -61,7 +80,7 @@ let current = null;
 let revealed = false;
 let sessionTheme = null;   // 直近セッションのテーマ
 let drill = {};            // 徹底モードの進捗 { id: {streak, lastDay, done, doneAt} }
-let drillMode = false;     // false | 'pack'（新規パック） | 'review'（卒業ぶんの復習）
+let drillMode = false;     // false | 'mine'（今週のフレーズ） | 'pack'（骨組みパック） | 'review'（卒業ぶんの復習）
 let drillPackNo = 0;       // 今やっているパック番号（'pack' セッション用）
 
 /* ---------- 永続化 ---------- */
@@ -177,8 +196,8 @@ function buildQueue(theme) {
   const newIds = [];
   for (const it of ITEMS) {
     if (theme && it.theme !== theme) continue;
-    // 骨組み30 は徹底モードの専任。ふだんの復習では二重に出さない。
-    if (!theme && it.theme === CORE_THEME) continue;
+    // 骨組み・選んだフレーズは徹底モードの専任。ふだんの復習では二重に出さない。
+    if (isDrillItem(it)) continue;
     const s = srs[it.id];
     if (!s) { newIds.push(it.id); continue; }
     if (s.due <= now) dueIds.push(it.id);
@@ -204,7 +223,7 @@ function todayStudiedIds() {
 // まだ今日やっていなければ、デッキ全体から練習。採点は通常どおりSRSに反映。
 function buildExtraQueue() {
   let ids = todayStudiedIds();
-  if (!ids.length) ids = ITEMS.filter(it => it.theme !== CORE_THEME).map(it => it.id);
+  if (!ids.length) ids = ITEMS.filter(it => !isDrillItem(it)).map(it => it.id);
   for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -226,7 +245,7 @@ function countNewToday() {
 
 function dueCountAll() {
   const now = Date.now();
-  const pool = ITEMS.filter(it => it.theme !== CORE_THEME);
+  const pool = ITEMS.filter(it => !isDrillItem(it));
   let due = 0;
   for (const it of pool) {
     const s = srs[it.id];
@@ -326,9 +345,49 @@ function buildDrillExtraQueue(no) {
   return shuffled(packItems(no).map(it => it.id));
 }
 
-// 復習＝卒業した文ぜんぶ。パックをまたいでシャッフルし、上限なしで1周する。
+// 復習＝卒業した文ぜんぶ（選んだものも骨組みも）。シャッフルし、上限なしで1周する。
 function graduatedIds() {
-  return coreItems().filter(it => drillState(it.id).done).map(it => it.id);
+  return ITEMS.filter(it => isDrillItem(it) && drillState(it.id).done).map(it => it.id);
+}
+
+// 今週のフレーズ: 今日クリアすべき文＝まだ卒業しておらず、今日まだ言えていないもの。
+function buildMineQueue() {
+  const today = todayISO();
+  const todo = pickedItems()
+    .filter(it => { const st = drillState(it.id); return !st.done && st.lastDay !== today; })
+    .map(it => it.id);
+  todo.sort((a, b) => drillState(a).streak - drillState(b).streak);
+  return todo;
+}
+function buildMineExtraQueue() {
+  return shuffled(pickedItems().filter(it => !drillState(it.id).done).map(it => it.id));
+}
+function mineSummary() {
+  const items = pickedItems();
+  const today = todayISO();
+  let done = 0, clearedToday = 0;
+  for (const it of items) {
+    const st = drillState(it.id);
+    if (st.done) done++;
+    else if (st.lastDay === today) clearedToday++;
+  }
+  return { total: items.length, done, active: items.length - done, clearedToday,
+    remaining: buildMineQueue().length };
+}
+// 選んだ日ごとのまとまり（新しい日が上）。
+function mineGroups() {
+  const g = {};
+  for (const it of pickedItems()) {
+    const k = pickedDay(it);
+    g[k] = g[k] || { day: k, total: 0, done: 0 };
+    g[k].total++;
+    if (drillState(it.id).done) g[k].done++;
+  }
+  return Object.values(g).sort((a, b) => (a.day < b.day ? 1 : -1));
+}
+function shortDay(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || '');
+  return m ? `${Number(m[2])}/${Number(m[3])}` : iso;
 }
 function buildReviewQueue() { return shuffled(graduatedIds()); }
 
@@ -389,10 +448,9 @@ function drillSummary() {
   };
 }
 
-// レッスン前に「今日これを使う」と決めるための3文。苦手なものから選ぶ。
+// レッスン前に「今日これを使う」と決めるための3文。選んだものの中から苦手な順に。
 function pickThreeForToday() {
-  const no = currentPackNo();
-  const rest = (no ? packItems(no) : [])
+  const rest = pickedItems()
     .filter(it => !drillState(it.id).done)
     .sort((a, b) => drillState(a).streak - drillState(b).streak);
   // 卒業が進んで残りが3未満になったら、卒業ずみからも補って必ず3文出す。
@@ -513,7 +571,8 @@ function renderCard() {
   const area = document.getElementById('cardArea');
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
   // 徹底モードのときは、テーマ名よりパック名のほうが今やっていることが分かる。
-  const tag = drillMode && it.theme === CORE_THEME ? (it.pack_title || it.theme) : it.theme;
+  const tag = drillMode && isPicked(it) ? `${shortDay(pickedDay(it))} に選んだ`
+    : drillMode && it.theme === CORE_THEME ? (it.pack_title || it.theme) : it.theme;
   area.innerHTML = `
     <div class="card">
       <div class="card-top">
@@ -730,6 +789,7 @@ function renderDone() {
 
 function renderDrillDone(area) {
   if (drillMode === 'review') { renderReviewDone(area); return; }
+  if (drillMode === 'mine') { renderMineDone(area); return; }
   const s = drillSummary();
   // このセッションでパックを終わらせたか（終わらせると currentPackNo が次へ動く）
   const cleared = drillPackNo && s.pack !== drillPackNo;
@@ -753,6 +813,25 @@ function renderDrillDone(area) {
       <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
       ${cleared ? '' : `<button class="big-btn" style="margin-top:16px" onclick="goDrillExtra()">もう一周する（おかわり）</button>`}
       <button class="big-btn${cleared ? '' : ' secondary'}" style="margin-top:${cleared ? 16 : 10}px" onclick="goHome()">ホームへ</button>
+    </div>`;
+  refreshTop();
+}
+
+function renderMineDone(area) {
+  const s = mineSummary();
+  const allDone = !s.active;
+  const pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+  area.innerHTML = `
+    <div class="empty">
+      <div class="big">${allDone ? '🏆' : '✅'}</div>
+      <div>${allDone ? '選んだフレーズをすべて卒業！' : '今日の分は終わり'}</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+        卒業 ${s.done}/${s.total} 文。${allDone
+          ? '次のレッスンのあとで、また選んでください。'
+          : '明日また開くと、連続日数の続きが積み上がります。'}</p>
+      <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
+      ${allDone ? '' : `<button class="big-btn" style="margin-top:16px" onclick="goMineExtra()">もう一周する（おかわり）</button>`}
+      <button class="big-btn${allDone ? '' : ' secondary'}" style="margin-top:${allDone ? 16 : 10}px" onclick="goHome()">ホームへ</button>
     </div>`;
   refreshTop();
 }
@@ -802,42 +881,38 @@ function renderVoiceUI() {
     () => speak('It’s been a while. Have you tried peaches from Yamanashi?');
 }
 
-function renderDrillHome() {
-  const box = document.getElementById('drillBox');
-  if (!box) return;
-  const s = drillSummary();
-  if (!s.coreTotal) { box.hidden = true; renderReviewHome(s); return; }
-  box.hidden = false;
-
-  const title = document.getElementById('drillTitle');
-  const start = document.getElementById('startDrillBtn');
+// ホーム一番上「今週のフレーズ」。骨組みパックの枠（drillBox）は出さない。
+function renderMineHome() {
+  const s = mineSummary();
+  const bar = document.getElementById('mineBar');
+  const start = document.getElementById('startMineBtn');
   const pickBtn = document.getElementById('drillPickBtn');
-
-  if (!s.pack) {
-    // 用意してあるパックを全部卒業した状態。
-    title.textContent = `パック${s.packCount}まで卒業`;
-    document.getElementById('drillCount').textContent = `${s.graduated} 文`;
-    document.getElementById('drillBar').style.width = '100%';
-    document.getElementById('drillHint').textContent =
-      '新しいパックは準備中です。下の復習で回し続けてください。';
-    start.hidden = true;
-    pickBtn.hidden = false;
-  } else {
-    const pct = s.total ? Math.round(s.done / s.total * 100) : 0;
-    title.textContent = `パック${s.packIndex} ${s.title}`;
-    document.getElementById('drillCount').textContent = `卒業 ${s.done}/${s.total}`;
-    document.getElementById('drillBar').style.width = pct + '%';
-    document.getElementById('drillHint').textContent = s.remaining
-      ? `今日やる分が ${s.remaining} 文あります。言えるまで何度でも出てきます。`
-      : `今日の分は終わりました。今日クリア ${s.clearedToday}/${s.total} 文。`;
-    start.hidden = false;
-    start.textContent = s.remaining
-      ? `${s.total}文をやる（今日 ${s.remaining} 文）`
-      : `${s.total}文をもう一周する`;
-    pickBtn.hidden = false;
-  }
+  const hint = document.getElementById('mineHint');
   document.getElementById('drillPick').innerHTML = '';
-  renderReviewHome(s);
+  if (!s.total) {
+    document.getElementById('mineCount').textContent = '';
+    bar.parentElement.hidden = true;
+    hint.textContent = 'レッスンが終わったら、レッスン記録のフレーズを貼って、覚えたいものだけを選びます。';
+    start.hidden = true; pickBtn.hidden = true;
+  } else {
+    bar.parentElement.hidden = false;
+    document.getElementById('mineCount').textContent = `卒業 ${s.done}/${s.total}`;
+    bar.style.width = Math.round(s.done / s.total * 100) + '%';
+    if (!s.active) {
+      hint.textContent = '選んだものは全部卒業しました。次のレッスンのあとで、また選んでください。';
+      start.hidden = true;
+    } else {
+      hint.textContent = s.remaining
+        ? `今日やる分が ${s.remaining} 文あります。3日続けて言えたら卒業です。`
+        : `今日の分は終わりました。明日また続きをやりましょう。`;
+      start.hidden = false;
+      start.textContent = s.remaining ? `今週のフレーズをやる（今日 ${s.remaining} 文）` : `もう一周する（${s.active} 文）`;
+    }
+    pickBtn.hidden = !s.active;
+  }
+  document.getElementById('mineGroups').innerHTML = mineGroups().map(g => `
+    <div class="mine-group"><span>${esc(shortDay(g.day))} に選んだ ${g.total} 文</span>
+      <span class="meta">卒業 ${g.done}</span></div>`).join('');
 }
 
 // 卒業した文を貯めておく箱。パックをまたいで、いつでも全部やれる。
@@ -849,7 +924,7 @@ function renderReviewHome(s) {
   box.hidden = false;
   document.getElementById('reviewCount').textContent = `${n} 文`;
   document.getElementById('reviewHint').textContent =
-    `これまでに卒業した ${n} 文を、パックをまたいでランダムに全部出します。`;
+    `これまでに卒業した ${n} 文を、ランダムに全部出します。`;
   document.getElementById('startReviewBtn').textContent = `復習する（${n}文）`;
 }
 
@@ -860,7 +935,7 @@ function renderDrillPick() {
   if (!three.length) { zone.innerHTML = ''; return; }
   zone.innerHTML = `
     <div class="pick-card">
-      <h4>今日のレッスンで、この3文を必ず使う</h4>
+      <h4>次のレッスンで、この3文を必ず使う</h4>
       ${three.map(it => `
         <div class="pick-row">
           <div class="pick-en">${esc(it.en[0])}</div>
@@ -879,11 +954,12 @@ function renderDrillPick() {
 function renderHome() {
   refreshTop();
   renderVoiceUI();
-  renderDrillHome();
+  renderMineHome();
+  renderReviewHome({ graduated: graduatedIds().length });
 
   const themes = {};
   for (const it of ITEMS) {
-    if (it.theme === CORE_THEME) continue;   // 専用の枠が上にあるので重複させない
+    if (isDrillItem(it)) continue;   // 専用の枠が上にあるので重複させない
     const t = it.theme || 'その他';
     themes[t] = themes[t] || { total: 0, learned: 0 };
     themes[t].total++;
@@ -1421,6 +1497,132 @@ function saveItems() {
     `収録 ${ITEMS.length} 件（うち追加 ${DECK.length} 件）`;
 }
 
+/* ---------- 選ぶ画面（レッスンのフレーズから選ぶ） ---------- */
+let pickLines = [];   // [{text, type, existingId, core, on}]
+
+// 貼られた文を1行ずつに分ける。見出し（Words / Phrases 等）は種類の切り替えにだけ使う。
+function splitPickLines(raw) {
+  const out = [];
+  const seen = new Set();
+  let type = 'phrase';
+  for (const line of raw.split('\n')) {
+    for (let t of line.split(/[|｜]/)) {
+      t = t.trim().replace(/^[・•\-*]+\s*/, '').replace(/^\d+[.)]\s+/, '').trim();
+      if (!t) continue;
+      if (/^(単語|words?|vocabulary|new words?)[ 　]*[:：]?$/i.test(t)) { type = 'word'; continue; }
+      if (/^(フレーズ|phrases?|expressions?|useful (phrases|expressions))[ 　]*[:：]?$/i.test(t)) { type = 'phrase'; continue; }
+      if (/^(発音|pronunciation)[ 　]*[:：]?$/i.test(t)) { type = 'word'; continue; }
+      if (!/[a-z]/i.test(t)) continue;          // 英字の無い行（日本語のメモ等）は出さない
+      const key = normEn(t);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push({ text: t, type });
+    }
+  }
+  return out;
+}
+
+function findExisting(text) {
+  const key = normEn(text);
+  return ITEMS.find(it => (it.en || []).some(e => normEn(e) === key)) || null;
+}
+
+function goPick() {
+  showView('pickView');
+  pickLines = [];
+  document.getElementById('pickInput').value = '';
+  document.getElementById('pickInputBox').hidden = false;
+  document.getElementById('pickStatus').textContent = '';
+  document.getElementById('pickStatus').className = 'status';
+  renderPickList();
+  window.scrollTo(0, 0);
+}
+
+function parsePickInput() {
+  const lines = splitPickLines(document.getElementById('pickInput').value);
+  const status = document.getElementById('pickStatus');
+  if (!lines.length) {
+    status.className = 'status err';
+    status.textContent = '英語の行が見つかりませんでした。レッスン記録のフレーズをコピーして貼ってください。';
+    return;
+  }
+  pickLines = lines.map(l => {
+    const ex = findExisting(l.text);
+    return { ...l, existingId: ex ? ex.id : null, already: !!(ex && isPicked(ex)),
+      graduated: !!(ex && !isPicked(ex) && drillState(ex.id).done), on: false };
+  });
+  status.className = 'status';
+  status.textContent = `${pickLines.length} 行あります。覚えたいものにチェックを入れてください。`;
+  document.getElementById('pickInputBox').hidden = true;
+  renderPickList();
+  window.scrollTo(0, 0);
+}
+
+function renderPickList() {
+  const area = document.getElementById('pickList');
+  const btn = document.getElementById('pickSaveBtn');
+  if (!pickLines.length) { area.innerHTML = ''; btn.hidden = true; return; }
+  area.innerHTML = pickLines.map((l, i) => {
+    const note = l.already ? '選びずみ' : l.graduated ? '卒業ずみ（復習に出ます）' : l.existingId ? '登録ずみ' : '';
+    const off = l.already || l.graduated;
+    return `
+    <button class="pick-line${l.on ? ' on' : ''}${off ? ' off' : ''}" data-i="${i}"${off ? ' disabled' : ''}>
+      <span class="pl-box">${l.on ? '✓' : ''}</span>
+      <span class="pl-text">${esc(l.text)}${note ? `<small>${note}</small>` : ''}</span>
+    </button>`;
+  }).join('') + `<button class="link-btn" id="pickRedoBtn">貼り直す</button>`;
+  area.querySelectorAll('.pick-line').forEach(b => {
+    b.onclick = () => { const l = pickLines[Number(b.dataset.i)]; l.on = !l.on; renderPickList(); };
+  });
+  document.getElementById('pickRedoBtn').onclick = goPick;
+  const n = pickLines.filter(l => l.on).length;
+  btn.hidden = false;
+  btn.disabled = !n;
+  btn.textContent = n ? `選んだ ${n} 文をやる` : 'チェックを入れてください';
+}
+
+async function runPick() {
+  const chosen = pickLines.filter(l => l.on);
+  if (!chosen.length) return;
+  const status = document.getElementById('pickStatus');
+  const btn = document.getElementById('pickSaveBtn');
+  const day = todayISO();
+  const fresh = chosen.filter(l => !l.existingId);
+  const moved = chosen.filter(l => l.existingId);
+  if (fresh.length && !getApiKey()) {
+    status.className = 'status err';
+    status.textContent = 'ホーム → 設定 で Anthropic APIキーを入れてください。';
+    return;
+  }
+  btn.disabled = true;
+  try {
+    let added = [];
+    if (fresh.length) {
+      status.className = 'status';
+      status.textContent = `${fresh.length} 文に日本語と場面を付けています…`;
+      const words = fresh.filter(l => l.type === 'word').map(l => l.text);
+      const phrases = fresh.filter(l => l.type !== 'word').map(l => l.text);
+      pendingItems = null;
+      const raw = await callAnthropic(getApiKey(), words, phrases);
+      added = finalizeItems(raw, words.length);
+    }
+    DECK = DECK.concat(added);
+    saveDeck();
+    rebuildItems();
+    // 登録ずみのカードは、そのまま今週のフレーズへ移す（AI は呼ばない）。
+    added.forEach(it => { PICKED[it.id] = day; });
+    moved.forEach(l => { PICKED[l.existingId] = day; });
+    savePicked();
+    pickLines = [];
+    goHome();
+    toast(`${added.length + moved.length} 文を今週のフレーズに入れました`);
+  } catch (e) {
+    status.className = 'status err';
+    status.textContent = 'エラー: ' + e.message;
+    btn.disabled = false;
+  }
+}
+
 /* ---------- セッション/遷移 ---------- */
 function startSession(theme) {
   drillMode = false;
@@ -1456,6 +1658,23 @@ function goDrillExtra() {
   drillMode = 'pack';
   drillPackNo = no;
   queue = buildDrillExtraQueue(no);
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+function startMine() {
+  drillMode = 'mine';
+  drillPackNo = 0;
+  sessionTheme = null;
+  queue = buildMineQueue();
+  if (!queue.length) queue = buildMineExtraQueue();   // 今日の分が済んでいれば、おかわり
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+}
+function goMineExtra() {
+  drillMode = 'mine';
+  queue = buildMineExtraQueue();
   showView('studyView');
   if (!queue.length) { renderDone(); return; }
   nextCard();
@@ -1498,6 +1717,8 @@ function buildBackup() {
     srs: srs,
     stars: [...STARS],
     daily: daily,
+    drill: drill,
+    picked: PICKED,
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -1533,6 +1754,8 @@ function applyBackup(obj) {
   if (obj.srs && typeof obj.srs === 'object') { srs = obj.srs; saveSrs(); }
   if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
   if (obj.daily && typeof obj.daily === 'object') { daily = obj.daily; saveDaily(); }
+  if (obj.drill && typeof obj.drill === 'object') { drill = obj.drill; saveDrill(); }
+  if (obj.picked && typeof obj.picked === 'object') { PICKED = obj.picked; savePicked(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1570,6 +1793,7 @@ async function init() {
   loadStars();
   loadDaily();
   loadDrill();
+  loadPicked();
   await loadData();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
@@ -1582,7 +1806,10 @@ async function init() {
   });
 
   document.getElementById('homeBtn').onclick = goHome;
-  document.getElementById('startDrillBtn').onclick = startDrill;
+  document.getElementById('startMineBtn').onclick = startMine;
+  document.getElementById('goPickBtn').onclick = goPick;
+  document.getElementById('pickParseBtn').onclick = parsePickInput;
+  document.getElementById('pickSaveBtn').onclick = runPick;
   document.getElementById('drillPickBtn').onclick = renderDrillPick;
   document.getElementById('startReviewBtn').onclick = startReview;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);
