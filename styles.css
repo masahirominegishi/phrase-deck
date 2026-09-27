@@ -168,7 +168,7 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 
 /* register / settings */
 .field-label { display: block; color: var(--muted); font-size: 13px; margin: 16px 0 6px; }
-#registerView textarea, #pickInput, #apiKeyInput {
+#registerView textarea, #apiKeyInput {
   width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--panel2);
   background: var(--panel); color: var(--text); font-size: 16px; resize: vertical;
   font-family: inherit;
@@ -355,18 +355,3 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 }
 .mine-group:first-child { margin-top: 14px; }
 .mine-group .meta { color: var(--good); }
-#pickView .big-btn { margin-top: 16px; }
-.pick-line {
-  display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left;
-  background: var(--panel); border: 1px solid var(--panel2); color: var(--text);
-  border-radius: 12px; padding: 12px 14px; margin-top: 8px; font-size: 16px; line-height: 1.4;
-}
-.pick-line.on { border-color: var(--good); }
-.pick-line.off { opacity: .45; }
-.pick-line .pl-box {
-  flex: none; width: 24px; height: 24px; border-radius: 6px; border: 2px solid var(--panel2);
-  display: flex; align-items: center; justify-content: center; color: #0b1220; font-weight: 700; font-size: 15px;
-}
-.pick-line.on .pl-box { background: var(--good); border-color: var(--good); }
-.pick-line .pl-text small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
-.pick-save { position: sticky; bottom: 12px; }

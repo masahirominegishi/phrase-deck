@@ -47,18 +47,11 @@ const DRILL_REQUEUE_GAP = 3;           // 言えなかったカードが再登�
 
 /* ---------- 選んで覚える（今週のフレーズ） ----------
    GABA のレッスン後に、習ったフレーズから覚えたいものだけを選ぶ。
+   選ぶのは Mac の Claude と一緒に行い、カードは data/phrases.json に入る。
    選んだカードには picked（選んだ日）が付き、徹底モードと同じ
    「3日続けて言えたら卒業」で回す。骨組みパックはホームから外した（データは残す）。 */
-// 選んだ印はカードとは別に持つ（{id: 選んだ日}）。骨組みのカードは起動のたびに
-// 公開シードから読み直されるので、カード自体に印を付けると消えてしまうため。
-const PICKED_KEY = 'phrasedeck.picked.v1';
-let PICKED = {};
-function loadPicked() {
-  try { PICKED = JSON.parse(localStorage.getItem(PICKED_KEY)) || {}; }
-  catch { PICKED = {}; }
-}
-function savePicked() { localStorage.setItem(PICKED_KEY, JSON.stringify(PICKED)); }
-function pickedDay(it) { return (it && PICKED[it.id]) || ''; }
+// 選んだ日（picked）は Claude がレッスン記録から作って data/phrases.json に書く。
+function pickedDay(it) { return (it && it.picked) || ''; }
 function isPicked(it) { return !!pickedDay(it); }
 // 徹底モードの専任カード。ふだんの復習（SRS）には出さない。
 function isDrillItem(it) { return it.theme === CORE_THEME || isPicked(it); }
@@ -827,7 +820,7 @@ function renderMineDone(area) {
       <div>${allDone ? '選んだフレーズをすべて卒業！' : '今日の分は終わり'}</div>
       <p style="color:var(--muted);font-size:14px;margin-top:8px;">
         卒業 ${s.done}/${s.total} 文。${allDone
-          ? '次のレッスンのあとで、また選んでください。'
+          ? '次のレッスンのあとで、また Claude と選んでください。'
           : '明日また開くと、連続日数の続きが積み上がります。'}</p>
       <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
       ${allDone ? '' : `<button class="big-btn" style="margin-top:16px" onclick="goMineExtra()">もう一周する（おかわり）</button>`}
@@ -892,14 +885,14 @@ function renderMineHome() {
   if (!s.total) {
     document.getElementById('mineCount').textContent = '';
     bar.parentElement.hidden = true;
-    hint.textContent = 'レッスンが終わったら、レッスン記録のフレーズを貼って、覚えたいものだけを選びます。';
+    hint.textContent = 'レッスンが終わったら Mac の Claude に「GABA 終わった」と伝えてください。覚えたいフレーズを一緒に選んで、ここに入れます。';
     start.hidden = true; pickBtn.hidden = true;
   } else {
     bar.parentElement.hidden = false;
     document.getElementById('mineCount').textContent = `卒業 ${s.done}/${s.total}`;
     bar.style.width = Math.round(s.done / s.total * 100) + '%';
     if (!s.active) {
-      hint.textContent = '選んだものは全部卒業しました。次のレッスンのあとで、また選んでください。';
+      hint.textContent = '選んだものは全部卒業しました。次のレッスンのあとで、また Claude と選んでください。';
       start.hidden = true;
     } else {
       hint.textContent = s.remaining
@@ -1497,132 +1490,6 @@ function saveItems() {
     `収録 ${ITEMS.length} 件（うち追加 ${DECK.length} 件）`;
 }
 
-/* ---------- 選ぶ画面（レッスンのフレーズから選ぶ） ---------- */
-let pickLines = [];   // [{text, type, existingId, core, on}]
-
-// 貼られた文を1行ずつに分ける。見出し（Words / Phrases 等）は種類の切り替えにだけ使う。
-function splitPickLines(raw) {
-  const out = [];
-  const seen = new Set();
-  let type = 'phrase';
-  for (const line of raw.split('\n')) {
-    for (let t of line.split(/[|｜]/)) {
-      t = t.trim().replace(/^[・•\-*]+\s*/, '').replace(/^\d+[.)]\s+/, '').trim();
-      if (!t) continue;
-      if (/^(単語|words?|vocabulary|new words?)[ 　]*[:：]?$/i.test(t)) { type = 'word'; continue; }
-      if (/^(フレーズ|phrases?|expressions?|useful (phrases|expressions))[ 　]*[:：]?$/i.test(t)) { type = 'phrase'; continue; }
-      if (/^(発音|pronunciation)[ 　]*[:：]?$/i.test(t)) { type = 'word'; continue; }
-      if (!/[a-z]/i.test(t)) continue;          // 英字の無い行（日本語のメモ等）は出さない
-      const key = normEn(t);
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      out.push({ text: t, type });
-    }
-  }
-  return out;
-}
-
-function findExisting(text) {
-  const key = normEn(text);
-  return ITEMS.find(it => (it.en || []).some(e => normEn(e) === key)) || null;
-}
-
-function goPick() {
-  showView('pickView');
-  pickLines = [];
-  document.getElementById('pickInput').value = '';
-  document.getElementById('pickInputBox').hidden = false;
-  document.getElementById('pickStatus').textContent = '';
-  document.getElementById('pickStatus').className = 'status';
-  renderPickList();
-  window.scrollTo(0, 0);
-}
-
-function parsePickInput() {
-  const lines = splitPickLines(document.getElementById('pickInput').value);
-  const status = document.getElementById('pickStatus');
-  if (!lines.length) {
-    status.className = 'status err';
-    status.textContent = '英語の行が見つかりませんでした。レッスン記録のフレーズをコピーして貼ってください。';
-    return;
-  }
-  pickLines = lines.map(l => {
-    const ex = findExisting(l.text);
-    return { ...l, existingId: ex ? ex.id : null, already: !!(ex && isPicked(ex)),
-      graduated: !!(ex && !isPicked(ex) && drillState(ex.id).done), on: false };
-  });
-  status.className = 'status';
-  status.textContent = `${pickLines.length} 行あります。覚えたいものにチェックを入れてください。`;
-  document.getElementById('pickInputBox').hidden = true;
-  renderPickList();
-  window.scrollTo(0, 0);
-}
-
-function renderPickList() {
-  const area = document.getElementById('pickList');
-  const btn = document.getElementById('pickSaveBtn');
-  if (!pickLines.length) { area.innerHTML = ''; btn.hidden = true; return; }
-  area.innerHTML = pickLines.map((l, i) => {
-    const note = l.already ? '選びずみ' : l.graduated ? '卒業ずみ（復習に出ます）' : l.existingId ? '登録ずみ' : '';
-    const off = l.already || l.graduated;
-    return `
-    <button class="pick-line${l.on ? ' on' : ''}${off ? ' off' : ''}" data-i="${i}"${off ? ' disabled' : ''}>
-      <span class="pl-box">${l.on ? '✓' : ''}</span>
-      <span class="pl-text">${esc(l.text)}${note ? `<small>${note}</small>` : ''}</span>
-    </button>`;
-  }).join('') + `<button class="link-btn" id="pickRedoBtn">貼り直す</button>`;
-  area.querySelectorAll('.pick-line').forEach(b => {
-    b.onclick = () => { const l = pickLines[Number(b.dataset.i)]; l.on = !l.on; renderPickList(); };
-  });
-  document.getElementById('pickRedoBtn').onclick = goPick;
-  const n = pickLines.filter(l => l.on).length;
-  btn.hidden = false;
-  btn.disabled = !n;
-  btn.textContent = n ? `選んだ ${n} 文をやる` : 'チェックを入れてください';
-}
-
-async function runPick() {
-  const chosen = pickLines.filter(l => l.on);
-  if (!chosen.length) return;
-  const status = document.getElementById('pickStatus');
-  const btn = document.getElementById('pickSaveBtn');
-  const day = todayISO();
-  const fresh = chosen.filter(l => !l.existingId);
-  const moved = chosen.filter(l => l.existingId);
-  if (fresh.length && !getApiKey()) {
-    status.className = 'status err';
-    status.textContent = 'ホーム → 設定 で Anthropic APIキーを入れてください。';
-    return;
-  }
-  btn.disabled = true;
-  try {
-    let added = [];
-    if (fresh.length) {
-      status.className = 'status';
-      status.textContent = `${fresh.length} 文に日本語と場面を付けています…`;
-      const words = fresh.filter(l => l.type === 'word').map(l => l.text);
-      const phrases = fresh.filter(l => l.type !== 'word').map(l => l.text);
-      pendingItems = null;
-      const raw = await callAnthropic(getApiKey(), words, phrases);
-      added = finalizeItems(raw, words.length);
-    }
-    DECK = DECK.concat(added);
-    saveDeck();
-    rebuildItems();
-    // 登録ずみのカードは、そのまま今週のフレーズへ移す（AI は呼ばない）。
-    added.forEach(it => { PICKED[it.id] = day; });
-    moved.forEach(l => { PICKED[l.existingId] = day; });
-    savePicked();
-    pickLines = [];
-    goHome();
-    toast(`${added.length + moved.length} 文を今週のフレーズに入れました`);
-  } catch (e) {
-    status.className = 'status err';
-    status.textContent = 'エラー: ' + e.message;
-    btn.disabled = false;
-  }
-}
-
 /* ---------- セッション/遷移 ---------- */
 function startSession(theme) {
   drillMode = false;
@@ -1718,7 +1585,6 @@ function buildBackup() {
     stars: [...STARS],
     daily: daily,
     drill: drill,
-    picked: PICKED,
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -1755,7 +1621,6 @@ function applyBackup(obj) {
   if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
   if (obj.daily && typeof obj.daily === 'object') { daily = obj.daily; saveDaily(); }
   if (obj.drill && typeof obj.drill === 'object') { drill = obj.drill; saveDrill(); }
-  if (obj.picked && typeof obj.picked === 'object') { PICKED = obj.picked; savePicked(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1793,7 +1658,6 @@ async function init() {
   loadStars();
   loadDaily();
   loadDrill();
-  loadPicked();
   await loadData();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
@@ -1807,9 +1671,6 @@ async function init() {
 
   document.getElementById('homeBtn').onclick = goHome;
   document.getElementById('startMineBtn').onclick = startMine;
-  document.getElementById('goPickBtn').onclick = goPick;
-  document.getElementById('pickParseBtn').onclick = parsePickInput;
-  document.getElementById('pickSaveBtn').onclick = runPick;
   document.getElementById('drillPickBtn').onclick = renderDrillPick;
   document.getElementById('startReviewBtn').onclick = startReview;
   document.getElementById('startTodayBtn').onclick = () => startSession(null);

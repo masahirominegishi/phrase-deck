@@ -45,7 +45,6 @@
         <div class="bar"><span id="mineBar" style="width:0%"></span></div>
         <p class="hint" id="mineHint"></p>
         <button class="big-btn" id="startMineBtn">今週のフレーズをやる</button>
-        <button class="big-btn secondary" id="goPickBtn">＋ レッスンのフレーズを選ぶ</button>
         <button class="big-btn secondary" id="drillPickBtn">🎯 次のレッスンで使う3文</button>
         <div id="drillPick"></div>
         <div id="mineGroups"></div>
@@ -139,22 +138,6 @@ It's been a while | I had to go to court | The AI system is working well"></text
       <div id="registerStatus" class="status"></div>
 
       <div id="previewArea"></div>
-    </section>
-
-    <!-- Pick view（レッスンのフレーズから選ぶ） -->
-    <section id="pickView" class="view">
-      <h1>レッスンのフレーズを選ぶ</h1>
-      <p class="sub">覚えたいものだけにチェック。3日続けて言えたら卒業です。</p>
-      <div id="pickInputBox">
-        <p class="hint">GABA のレッスン記録を開き、Phrases（と Words）の欄をまるごとコピーして貼ってください。1行が1枚になります。</p>
-        <textarea id="pickInput" rows="12" placeholder="It's been a while.
-I couldn't say what I wanted to say.
-How was your weekend?"></textarea>
-        <button class="big-btn" id="pickParseBtn">1行ずつに分ける</button>
-      </div>
-      <div id="pickStatus" class="status"></div>
-      <div id="pickList"></div>
-      <button class="big-btn pick-save" id="pickSaveBtn" hidden>選んだ文をやる</button>
     </section>
 
     <!-- List view -->
