@@ -431,3 +431,22 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 .mmap.g-方向性 { border-left-color: var(--hard); }
 .mmap.g-可能性 { border-left-color: var(--accent); }
 body.in-modal #modeSwitch { display: none; }
+/* 説明の段組み: 押した助動詞だと → 正解の本のイメージ → この文での決め手 → 本の感覚 */
+#modalNextSwitch { margin: 0 0 14px; }
+#modalNextSwitch button { font-size: 12px; padding: 8px 6px; }
+.mfeed .mwhy { font-size: 14px; }
+.mx-tag {
+  display: inline-block; border-radius: 6px; padding: 1px 8px; margin-right: 8px;
+  font-weight: 700; font-size: 13px; color: #0b1220;
+}
+.mx-tag.ok { background: var(--good); }
+.mx-tag.ng { background: var(--again); }
+.mx-tag.alt { background: var(--hard); }
+.mx-tapped { color: var(--text); margin-top: 4px; line-height: 1.7; }
+.mx-ans { margin-top: 10px; line-height: 1.7; }
+.mx-ans b { color: var(--good); }
+.mx-why { margin-top: 10px; font-weight: 700; line-height: 1.7; }
+.mx-deep { margin-top: 8px; color: var(--text); line-height: 1.8; font-size: 15px; }
+.mx-feel { margin-top: 8px; color: var(--muted); line-height: 1.7; font-size: 13px; border-left: 3px solid var(--panel2); padding-left: 10px; }
+.mrow .deep { color: var(--muted); font-size: 13px; line-height: 1.7; margin-top: 6px; }
+.mrow .deep b { color: var(--again); }

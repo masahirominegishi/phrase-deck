@@ -1667,7 +1667,10 @@ const MODAL_KEY = 'phrasedeck.modal.v1';
 const MODAL_ROUND = 20;          // 1回の問題数
 const MODAL_FAST_MS = 2000;      // これより速ければ ⚡
 const MODAL_REQUEUE_GAP = 3;     // 間違えた問題が再登場するまでの枚数
-const MODAL_AUTO_NEXT_MS = 1500; // 正解のとき次へ進むまで
+const MODAL_AUTO_NEXT_MS = 1500; // 自動で進む設定のとき、正解から次へ進むまで
+const MODAL_AUTONEXT_KEY = 'phrasedeck.modal.autonext';  // '1' なら正解のとき自動で次へ。初期は「次へ」ボタン
+let MSWAP = {};                  // 取り違えたらこう聞こえる（助動詞ごとの一般の言い方）
+function modalAutoNext() { return localStorage.getItem(MODAL_AUTONEXT_KEY) === '1'; }
 
 let MODALS = [];                 // 助動詞 7 つ（順番は本のランキング）
 let MITEMS = [];                 // 問題
@@ -1696,6 +1699,7 @@ async function loadModals() {
   } catch { /* オフラインなら SW のキャッシュから来る。来なければ空のまま */ }
   MODALS = (j.modals || []).slice().sort((a, b) => a.rank - b.rank);
   MITEMS = j.items || [];
+  MSWAP = j.swap || {};
   MBY_ID = {};
   for (const it of MITEMS) MBY_ID[it.id] = it;
 }
@@ -1857,16 +1861,14 @@ function answerModal(key) {
   const sec = (ms / 1000).toFixed(1);
   const timeCls = !correct ? 'wrong' : (ms <= MODAL_FAST_MS ? 'fast' : 'slow');
   const timeTxt = !correct ? `✗ ${sec}秒` : (ms <= MODAL_FAST_MS ? `⚡ ${sec}秒` : `${sec}秒`);
-  const head = kind === 'ok' ? '' : kind === 'alt'
-    ? `<b>${esc(key)}</b> でも通じる。本の推しは <b>${esc(it.a)}</b>。`
-    : `<b>${esc(it.a)}</b> ─ ${esc(modalOf(it.a)?.title || '')}`;
+  const auto = kind === 'ok' && modalAutoNext();
   document.getElementById('mFeed').innerHTML = `
     <div class="mtime ${timeCls}">${timeTxt}</div>
-    <div class="mwhy">${head ? head + '<br>' : ''}${esc(it.why || '')}</div>
-    ${kind === 'ok' ? '' : `<button class="big-btn mnext" id="mNextBtn">次へ</button>`}`;
+    ${modalExplainHtml(it, kind, key)}
+    ${auto ? '' : `<button class="big-btn mnext" id="mNextBtn">次へ</button>`}`;
   const nb = document.getElementById('mNextBtn');
   if (nb) nb.onclick = nextModal;
-  if (kind === 'ok') {
+  if (auto) {
     mAutoTimer = setTimeout(nextModal, MODAL_AUTO_NEXT_MS);
     // 待たずに進みたければ画面のどこかをタップ
     // （今のタップがそのまま .mcard まで上がってくるので、登録は次のティックで）
@@ -1876,6 +1878,26 @@ function answerModal(key) {
       clearTimeout(mAutoTimer); nextModal();
     }, { once: true }), 0);
   }
+}
+
+// 説明。間違えたときは「押した助動詞だとこう聞こえる → 正解の本のイメージ → この文での決め手」の順。
+function modalExplainHtml(it, kind, tapped) {
+  const m = modalOf(it.a) || {};
+  const parts = [];
+  if (kind === 'ng') {
+    // 文の頭の「will だと」「will にすると」は札で出すので外す
+    const vs = ((it.vs && it.vs[tapped]) || MSWAP[tapped] || '').replace(new RegExp(`^${tapped}\\s*(だと|にすると)\\s*`), '');
+    if (vs) parts.push(`<div class="mx-tapped"><span class="mx-tag ng">${esc(tapped)} だと</span>${esc(vs)}</div>`);
+    parts.push(`<div class="mx-ans"><span class="mx-tag ok">${esc(it.a)}</span><b>${esc(m.title || '')}</b></div>`);
+  } else if (kind === 'alt') {
+    parts.push(`<div class="mx-ans"><span class="mx-tag alt">${esc(tapped)}</span>でも通じる。本の推しは <b>${esc(it.a)}</b> ─ ${esc(m.title || '')}</div>`);
+  } else {
+    parts.push(`<div class="mx-ans"><span class="mx-tag ok">${esc(it.a)}</span><b>${esc(m.title || '')}</b></div>`);
+  }
+  if (it.why) parts.push(`<div class="mx-why">${esc(it.why)}</div>`);
+  if (it.deep) parts.push(`<div class="mx-deep">${esc(it.deep)}</div>`);
+  if (kind !== 'ng' && m.feel) parts.push(`<div class="mx-feel">${esc(m.feel)}</div>`);
+  return `<div class="mwhy">${parts.join('')}</div>`;
 }
 
 function finishModalRound(quit) {
@@ -1912,6 +1934,8 @@ function finishModalRound(quit) {
         return `<div class="mrow">
           <div class="en">${modalBlankHtml(it, { kind: 'ok' }).replace(/class="hit"/g, '')}</div>
           <div class="meta">${esc(it.ja)} ─ ${l.kind === 'ng' ? `${esc(l.tapped)} を押した` : `${(l.ms / 1000).toFixed(1)}秒`}</div>
+          ${l.kind === 'ng' && it.vs && it.vs[l.tapped] ? `<div class="deep"><b>${esc(l.tapped)} だと</b> ${esc(it.vs[l.tapped].replace(new RegExp(`^${l.tapped}\\s*(だと|にすると)\\s*`), ''))}</div>` : ''}
+          ${it.deep ? `<div class="deep">${esc(it.deep)}</div>` : ''}
         </div>`; }).join('') : (n ? '<p class="hint" style="text-align:center">全部、2秒以内に正解でした。</p>' : '')}
       <button class="big-btn" style="margin-top:24px" id="mAgainBtn">もう ${MODAL_ROUND} 問</button>
       <button class="big-btn secondary" id="mHomeBtn">ホームへ</button>
@@ -1938,6 +1962,10 @@ function renderModalHome() {
   document.getElementById('modalChips').innerHTML = MODALS.map(m =>
     `<button class="chip${act.has(m.key) ? ' on' : ''}" data-key="${esc(m.key)}">${esc(m.key)}</button>`).join('');
   document.querySelectorAll('#modalChips .chip').forEach(b => { b.onclick = () => toggleModalKey(b.dataset.key); });
+  document.querySelectorAll('#modalNextSwitch button').forEach(b => {
+    b.classList.toggle('active', (b.dataset.auto === '1') === modalAutoNext());
+    b.onclick = () => { localStorage.setItem(MODAL_AUTONEXT_KEY, b.dataset.auto); renderModalHome(); };
+  });
   const startBtn = document.getElementById('startModalBtn');
   startBtn.textContent = act.size === MODALS.length ? `${MODAL_ROUND}問やる` : `${MODAL_ROUND}問やる（${[...act].join(' / ')}）`;
   startBtn.disabled = !MITEMS.length;

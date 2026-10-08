@@ -2,129 +2,1562 @@
   "version": 1,
   "note": "助動詞の反射練習。本の読み方（助動詞＝頭の中の空想を語る言葉）に沿って、場面から助動詞を一つ選ぶ。a=本の推し, also=それでも通じるもの。",
   "modals": [
-    { "key": "will",   "group": "実現",   "rank": 1, "title": "真っ白なキャンバスに、確信ある未来を描く",
+    {
+      "key": "will",
+      "group": "実現",
+      "rank": 1,
+      "title": "真っ白なキャンバスに、確信ある未来を描く",
       "feel": "「こうなる」と確信している。今その場で決めたこと・相手への約束や宣言も will。ただの「未来」ではない。",
-      "top": ["will be", "will you", "will never", "will not", "will have", "will get", "will do", "will always", "will come", "will make"] },
-    { "key": "can",    "group": "可能性", "rank": 2, "title": "現実を見た上で、確実に選べる未来を示す",
+      "top": [
+        "will be",
+        "will you",
+        "will never",
+        "will not",
+        "will have",
+        "will get",
+        "will do",
+        "will always",
+        "will come",
+        "will make"
+      ]
+    },
+    {
+      "key": "can",
+      "group": "可能性",
+      "rank": 2,
+      "title": "現実を見た上で、確実に選べる未来を示す",
       "feel": "お金もパスポートもある、だから行ける。現実的な根拠があって「できる・ありうる」。能力・許可もここ。",
-      "top": ["can I", "can you", "can do", "can we", "can be", "can get", "can see", "can go", "can have", "can tell"] },
-    { "key": "would",  "group": "妄想",   "rank": 3, "title": "本当はこうだった、パラレルワールドを妄想する",
+      "top": [
+        "can I",
+        "can you",
+        "can do",
+        "can we",
+        "can be",
+        "can get",
+        "can see",
+        "can go",
+        "can have",
+        "can tell"
+      ]
+    },
+    {
+      "key": "would",
+      "group": "妄想",
+      "rank": 3,
+      "title": "本当はこうだった、パラレルワールドを妄想する",
       "feel": "ありえない仮定の中の自分。「鳥だったら」「私があなただったら」。現実ではないから丁寧な響きにもなる。",
-      "top": ["would be", "would you", "would have", "would never", "would like", "would I", "would love", "would do", "would make", "would it be"] },
-    { "key": "could",  "group": "可能性", "rank": 4, "title": "未来の選択肢のアイデアを「やさしく」提案する",
+      "top": [
+        "would be",
+        "would you",
+        "would have",
+        "would never",
+        "would like",
+        "would I",
+        "would love",
+        "would do",
+        "would make",
+        "would it be"
+      ]
+    },
+    {
+      "key": "could",
+      "group": "可能性",
+      "rank": 4,
+      "title": "未来の選択肢のアイデアを「やさしく」提案する",
       "feel": "「山もありやな、映画もありやな」。いくつかの選択肢を押しつけずに置く。かもしれない・できたらいいな、もここ。",
-      "top": ["could you", "could be", "could have", "could do", "could get", "could I", "could just", "could go", "could we", "could use"] },
-    { "key": "should", "group": "方向性", "rank": 5, "title": "いくつかの選択肢から、よりよい未来を提案する",
+      "top": [
+        "could you",
+        "could be",
+        "could have",
+        "could do",
+        "could get",
+        "could I",
+        "could just",
+        "could go",
+        "could we",
+        "could use"
+      ]
+    },
+    {
+      "key": "should",
+      "group": "方向性",
+      "rank": 5,
+      "title": "いくつかの選択肢から、よりよい未来を提案する",
       "feel": "could で並べたアイデアの中から「これがいい！」と指さす。「すべき」の強制感はなく「したらええやん」。",
-      "top": ["should be", "should have", "should go", "should get", "should I", "should just", "should we", "should do", "should know", "should probably"] },
-    { "key": "might",  "group": "可能性", "rank": 6, "title": "そうなるかもしれない未来",
+      "top": [
+        "should be",
+        "should have",
+        "should go",
+        "should get",
+        "should I",
+        "should just",
+        "should we",
+        "should do",
+        "should know",
+        "should probably"
+      ]
+    },
+    {
+      "key": "might",
+      "group": "可能性",
+      "rank": 6,
+      "title": "そうなるかもしれない未来",
       "feel": "根拠は弱いけど「〜かもしれんな」。未来のこと・わからないことへの、話し手の空想。may の過去形ではない。",
-      "top": ["might be", "might have", "might not", "might as well", "might get", "might want to", "might like", "might need", "might wanna", "might say"] },
-    { "key": "may",    "group": "可能性", "rank": 7, "title": "might とニュアンスは全く同じ",
+      "top": [
+        "might be",
+        "might have",
+        "might not",
+        "might as well",
+        "might get",
+        "might want to",
+        "might like",
+        "might need",
+        "might wanna",
+        "might say"
+      ]
+    },
+    {
+      "key": "may",
+      "group": "可能性",
+      "rank": 7,
+      "title": "might とニュアンスは全く同じ",
       "feel": "「たぶん〜かも」。might と入れ替えても同じ。May I 〜？ は接客や年配の方のフォーマルな響き。",
-      "top": ["may have", "may be", "may I", "may not", "may never", "may sound", "may as well", "may seem", "may come"] }
+      "top": [
+        "may have",
+        "may be",
+        "may I",
+        "may not",
+        "may never",
+        "may sound",
+        "may as well",
+        "may seem",
+        "may come"
+      ]
+    }
   ],
   "items": [
-    { "id": "m-001", "a": "will",  "ja": "（会議中に）トイレ行ってくる。", "cue": "今その場で決めた", "en": "I'll go to the bathroom.", "why": "今決めたことは will。be going to は「前から決めていた」。" },
-    { "id": "m-002", "a": "will",  "ja": "折り返し電話するね。", "cue": "相手への約束", "en": "I'll call you right back.", "why": "相手に向けた約束・宣言は will。" },
-    { "id": "m-003", "a": "will",  "ja": "あなたが帰るまで、ここにいるよ。", "cue": "相手への約束", "en": "I'll stay here until you come home.", "why": "「〜するからね」と相手に言い切る will。" },
-    { "id": "m-004", "a": "will",  "ja": "明日は雨だ。", "cue": "天気予報を見て確信", "en": "It will rain tomorrow.", "why": "「絶対そうなる」と確信して空想を描く will。" },
-    { "id": "m-005", "a": "will",  "ja": "彼はよくなるよ。", "cue": "確信している", "en": "He will get better.", "why": "根拠が弱いなら I think をつければよい。確信の芯は will。" },
-    { "id": "m-006", "a": "will",  "ja": "チャンドラーがここに引っ越してくるの。", "cue": "決まっている・確信", "en": "Chandler will move in here.", "why": "確信している未来。will の後ろに具体的な動詞をつけるだけ。" },
-    { "id": "m-007", "a": "will",  "ja": "もちろん、やるよ。", "cue": "誘いを受けて即答", "en": "Of course I will.", "why": "その場で決めて宣言する will。" },
-    { "id": "m-008", "a": "will",  "ja": "ねえ、楽しいよ！", "cue": "誘いを押す一言", "en": "Come on, it will be fun!", "why": "「絶対楽しくなる」と確信を語る will。" },
-    { "id": "m-009", "a": "will",  "ja": "仕事が終わるまで休むつもりはない。", "cue": "自分に課す宣言", "en": "I will not rest until the job is done.", "why": "will not で相手に申し出る強い意志。" },
-    { "id": "m-010", "a": "will",  "ja": "彼、もうすぐ帰ってくる？", "cue": "相手の確信を聞く", "en": "Will he be back soon?", "why": "「そうなる？」と相手の確信を尋ねる will。" },
-    { "id": "m-011", "a": "will",  "ja": "きっと特別なものになるよ。", "cue": "確信", "en": "I'm sure it will be special.", "why": "I'm sure と相性がいいのは will。" },
-    { "id": "m-012", "a": "will",  "ja": "来月ニューヨーク行くぞ！", "cue": "今この瞬間に決めた", "en": "I will go to New York next month!", "why": "その場で決めるニュアンスが will。すでに航空券があるなら be going to。" },
-    { "id": "m-013", "a": "will",  "ja": "コーヒー飲もう。", "cue": "今決めた", "en": "I will have coffee.", "why": "「飲む」と決めて宣言する will。" },
-    { "id": "m-014", "a": "will",  "ja": "1ヶ月間、あなたの服を洗濯するから。", "cue": "相手への約束", "en": "I will do your laundry for a month.", "why": "相手に向けた約束は will。" },
-
-    { "id": "m-020", "a": "can",   "ja": "それ、できるよ。", "cue": "一番シンプルな「できる」", "en": "I can do that.", "why": "現実的にできる。頼りがいを示す定番。" },
-    { "id": "m-021", "a": "can",   "ja": "したいようにできる。それは僕の自由だ。", "cue": "現実的な自由", "en": "I can do whatever I want.", "why": "今ここで確実に選べる、が can。" },
-    { "id": "m-022", "a": "can",   "ja": "見たいなら、私たちのテープ見ていいよ。", "cue": "許可", "en": "You can watch our tape if you want.", "why": "許可するときの can。" },
-    { "id": "m-023", "a": "can",   "ja": "質問してもいい？", "cue": "気軽に聞く", "en": "Can I ask you a question?", "why": "質問するときの鉄板フレーズ。", "also": ["could"] },
-    { "id": "m-024", "a": "can",   "ja": "もう一枚もらえる？", "cue": "ティッシュを取ってと頼む", "en": "Can I have another one?", "why": "「もう一つ」欲しいときの can。could なら少しやわらかい。", "also": ["could"] },
-    { "id": "m-025", "a": "can",   "ja": "ねえ、電気消してくれる？", "cue": "お願い", "en": "Hey, can you turn the lights off?", "why": "お願いするときも can you。could you より気軽。", "also": ["could"] },
-    { "id": "m-026", "a": "can",   "ja": "ものすごく大変なこともある。", "cue": "客観的に見た感想", "en": "It can be quite hard.", "why": "現実的にありうる可能性は can be。" },
-    { "id": "m-027", "a": "can",   "ja": "5分でそこに着けるよ。", "cue": "確実にできる", "en": "We can be there in five minutes.", "why": "arrive を使わなくても be there で着ける、を表せる。" },
-    { "id": "m-028", "a": "can",   "ja": "お金もパスポートもある。ニューヨークに行ける。", "cue": "現実的な根拠がある", "en": "I can go to New York.", "why": "根拠を元に冷静に「選べる」のが can。will より気持ちが冷静。" },
-    { "id": "m-029", "a": "can",   "ja": "ピアノ弾いていい？", "cue": "許可を求める", "en": "Can I play the piano?", "why": "許可の can。" },
-    { "id": "m-030", "a": "can",   "ja": "コーヒー飲めるよ（飲める状況だよ）。", "cue": "現実的にできる", "en": "I can have coffee.", "why": "飲める状況にある、という現実。" },
-    { "id": "m-031", "a": "can",   "ja": "受験は大変なこともある。", "cue": "受験生の母の現実的な見方", "en": "It can be hard.", "why": "It is hard と言い切るのは変。現実的な可能性は can。" },
-    { "id": "m-032", "a": "can",   "ja": "欲しいだけチョコを食べていいよ。", "cue": "許可", "en": "You can have all the chocolate you want.", "why": "「〜していいよ」の許可は can。" },
-
-    { "id": "m-040", "a": "would", "ja": "もし鳥だったら、あなたの元に飛んでいく。", "cue": "ありえない仮定", "en": "If I were a bird, I would fly to you.", "why": "鳥になることはない。ありえない仮定を語る would。" },
-    { "id": "m-041", "a": "would", "ja": "（別の人生なら）彼女と付き合っているのに。", "cue": "パラレルワールド", "en": "I would go out with her.", "why": "現実はそうなっていない。妄想の中の自分は would。" },
-    { "id": "m-042", "a": "would", "ja": "彼女と付き合ってたかもしれないのに。", "cue": "過去の妄想", "en": "I would have gone out with her.", "why": "過去に対する妄想は would + have + 過去分詞。" },
-    { "id": "m-043", "a": "would", "ja": "俺なら誘うけどな。", "cue": "私があなただったら", "en": "I would ask her out.", "why": "「私があなただったら」の would。should より押しつけがましくない。" },
-    { "id": "m-044", "a": "would", "ja": "俺なら行くけどな。", "cue": "私があなただったら", "en": "I would go.", "why": "If I were you をつけなくても would だけで伝わる。" },
-    { "id": "m-045", "a": "would", "ja": "時間があれば行くんだけど（行けない）。", "cue": "断りの言い訳", "en": "I would go if I had time.", "why": "現実的に時間がない。ありえない現実を言い訳に使う would。" },
-    { "id": "m-046", "a": "would", "ja": "それはよさそう！", "cue": "相手の申し出に「ありがとう」の気持ちで", "en": "That would be great!", "why": "申し出に対して would be great。実現可能性が低い感じが丁寧になる。" },
-    { "id": "m-047", "a": "would", "ja": "私が掃除してもいいでしょうか？", "cue": "丁寧に申し出る", "en": "Would it be OK if I cleaned it?", "why": "would は実現可能性が低い＝無理ならいいのですが、の丁寧さ。" },
-    { "id": "m-048", "a": "would", "ja": "私も彼にそうしろって言ったでしょうね。", "cue": "もし自分だったら", "en": "I would have told him to do it too.", "why": "「私だったら」の過去バージョン。" },
-    { "id": "m-049", "a": "would", "ja": "電話したかったんだけど、番号をなくしちゃって。", "cue": "本当はそうしたかった", "en": "I would have called, but I lost your number.", "why": "would have は本当は電話していたはずの過去。言い訳に使う。" },
-    { "id": "m-050", "a": "would", "ja": "私ならそれ、帽子として被るわ。", "cue": "私があなただったら", "en": "I would wear that thing for a hat.", "why": "「私なら」の would。" },
-    { "id": "m-051", "a": "would", "ja": "もし私たちがあなたと同じことをしたら、男は二度と電話してこない。", "cue": "ありえない仮定", "en": "If we did what you did, a man would never call.", "why": "仮定の中の結果は would。" },
-    { "id": "m-052", "a": "would", "ja": "ジャニスが男なら、今ごろ他の女と寝てる。", "cue": "ありえない仮定", "en": "If Janice were a guy, she would be sleeping with somebody else by now.", "why": "were + would のセット。" },
-    { "id": "m-053", "a": "would", "ja": "いつかディナーでもどうですか？", "cue": "丁寧なお誘い", "en": "Would you like to have dinner sometime?", "why": "「現実的ではないかもしれないけど…」の控えめさが would like to。" },
-    { "id": "m-054", "a": "would", "ja": "彼女が私の靴を取ったなら、サンダルを置いていったはず。", "cue": "ありえない仮定の帰結", "en": "If she took my shoes, she would've left her sandals.", "why": "仮定の帰結は would have。" },
-    { "id": "m-055", "a": "would", "ja": "彼女でも（空想なら）コーヒー飲むよ。", "cue": "隣の人の空想", "en": "She would have coffee.", "why": "現実ではなく空想の中の彼女。" },
-    { "id": "m-056", "a": "would", "ja": "私なら、それを毎日はくね。", "cue": "私があなただったら", "en": "I would wear it every day.", "why": "「私なら」は would。" },
-
-    { "id": "m-060", "a": "could", "ja": "山に行くのもありだね。", "cue": "選択肢の一つを置く", "en": "We could go to the mountain.", "why": "「選ばない自由」も相手に残す、やさしい提案。" },
-    { "id": "m-061", "a": "could", "ja": "ディズニーもあるね。", "cue": "選択肢の一つを置く", "en": "We could go to Disneyland.", "why": "アイデアを並べる could。" },
-    { "id": "m-062", "a": "could", "ja": "英語を勉強するのもいいかも（私なら）。", "cue": "子どもに気持ちを尊重して言う", "en": "You could study English.", "why": "You have to より、気持ちを尊重した言い方。" },
-    { "id": "m-063", "a": "could", "ja": "（何時に終わる？に）遅くなるかもね。", "cue": "ありうる未来をやんわり", "en": "It could be really late.", "why": "could be = ありうる可能性をやさしく置く。", "also": ["might", "may"] },
-    { "id": "m-064", "a": "could", "ja": "ワインだけ飲むのもありね。", "cue": "選択肢を提案", "en": "We could just drink wine.", "why": "「〜だけにする」という選択肢の提案。" },
-    { "id": "m-065", "a": "could", "ja": "みんなで食事に行くのもいいわね。", "cue": "選択肢を提案", "en": "We could all go out to dinner.", "why": "ありうる未来を提案する could。" },
-    { "id": "m-066", "a": "could", "ja": "私がその気なら、あなたと寝てたわ。", "cue": "過去にできたはずのこと", "en": "I could have had you if I wanted you.", "why": "could have = 過去に選べたであろう未来。" },
-    { "id": "m-067", "a": "could", "ja": "ちょっと待ってもらえます？", "cue": "丁寧なお願い", "en": "Could you give us a second?", "why": "can you より丁寧。could は押しつけが弱い。", "also": ["can"] },
-    { "id": "m-068", "a": "could", "ja": "一緒に行けたらいいんだけど（行けない）。", "cue": "やんわり断る", "en": "I wish I could join you guys, but I got to get back to work.", "why": "I wish I could で「行けたらいいんだけど」。but を続けると自然。" },
-    { "id": "m-069", "a": "could", "ja": "お金があれば、ディズニーに行けるんだけど。", "cue": "仮定の中の選択肢", "en": "If we had money, we could go to Disneyland.", "why": "ありえない仮定の中でも「行ける」は could。" },
-    { "id": "m-070", "a": "could", "ja": "明日雨なら、映画もありだし。", "cue": "if と組み合わせた提案", "en": "If it rains tomorrow, we could go to the movie.", "why": "if と could で、気軽に意見が言える。" },
-    { "id": "m-071", "a": "could", "ja": "ディズニー、いいかもね！", "cue": "ディズニーについて言い切らない", "en": "Disneyland could be great!", "why": "is を could be に置き換えると「私が思っている」主観的な響き。" },
-    { "id": "m-072", "a": "could", "ja": "これは難しいかも。", "cue": "言い切らず意見を言う", "en": "This could be difficult.", "why": "難しいと言い切るより、could be で可能性として。", "also": ["might", "may"] },
-    { "id": "m-073", "a": "could", "ja": "僕らで何か作るのもいいかもね。", "cue": "選択肢の一つ", "en": "We could cook for ourselves.", "why": "提案を一つ置く could。" },
-    { "id": "m-074", "a": "could", "ja": "コーヒー飲むのもありかな。", "cue": "選択肢として", "en": "I could have coffee.", "why": "飲んでもいいかな、の「あり」。" },
-    { "id": "m-075", "a": "could", "ja": "奥さんに渡すこともできますよ。", "cue": "100万円の使い道を一つ出す", "en": "You could give it to your wife.", "why": "ここで should だと「これがいい」になる。まだアイデア出し。" },
-    { "id": "m-076", "a": "could", "ja": "世界中を旅することもできますよ。", "cue": "100万円の使い道を一つ出す", "en": "You could travel around the world.", "why": "アイデアを並べているうちは could。" },
-    { "id": "m-077", "a": "could", "ja": "へそくりすることもできますよね。", "cue": "もう一人の自分の声", "en": "You could save up secretly.", "why": "まだ候補の一つ。should ではない。" },
-    { "id": "m-078", "a": "could", "ja": "もっと勉強できたのに（しなかった）。", "cue": "過去に選べたこと", "en": "I could have studied more.", "why": "could have = 選べたのに選ばなかった過去。" },
-
-    { "id": "m-080", "a": "should", "ja": "へそくりしよう！（これがいい！）", "cue": "候補の中から決めた", "en": "I should save up secretly!", "why": "could で並べた中から「これだ」と指さす should。" },
-    { "id": "m-081", "a": "should", "ja": "奥さんにあげるのがいいよ、いつも大事にしてくれてるから。", "cue": "理由つきで勧める", "en": "You should give it to your wife because she always takes care of you.", "why": "because で理由をつけると説得力が増す should。" },
-    { "id": "m-082", "a": "should", "ja": "彼女、誘いなよ。", "cue": "はっきり勧める", "en": "You should ask her out.", "why": "would（俺なら）より押しが強い。方向を示す。" },
-    { "id": "m-083", "a": "should", "ja": "行きなよ。", "cue": "はっきり勧める", "en": "You should go.", "why": "「行くべき」というより「行ったらええやん」。" },
-    { "id": "m-084", "a": "should", "ja": "コーヒー飲むといいよ。", "cue": "勧める", "en": "You should have coffee.", "why": "選択肢の中の「これ」。" },
-    { "id": "m-085", "a": "should", "ja": "かわりに赤ワインを飲むのがいいよ。", "cue": "別の選択肢を推す", "en": "You should drink red wine instead.", "why": "instead で「それより、こっち」。" },
-    { "id": "m-086", "a": "should", "ja": "先に彼女に話しておくべきだった。", "cue": "過去への後悔", "en": "I should have talked to her first.", "why": "should have = 選ばなかった「よりよい未来」への後悔。" },
-    { "id": "m-087", "a": "should", "ja": "もう帰ったほうがいいかな？", "cue": "自分の方向を相手に聞く", "en": "Should I go home now?", "why": "Should I 〜? で「〜したらいい？」。" },
-    { "id": "m-088", "a": "should", "ja": "知っておいたほうがいいよ。", "cue": "勧める", "en": "You should know.", "why": "方向性を示す should。" },
-    { "id": "m-089", "a": "should", "ja": "たぶん寝るのがいいね。", "cue": "やわらかく方向を示す", "en": "I should probably go to bed.", "why": "probably をつけると should の方向がやわらぐ。" },
-
-    { "id": "m-100", "a": "might", "also": ["may"], "ja": "楽しくなりそう。", "cue": "これから始まるディナーのことを想像", "en": "That might be fun.", "why": "未来のことを「〜かも」と空想する might。" },
-    { "id": "m-101", "a": "might", "also": ["may"], "ja": "あ〜、それは変な感じがするかも。", "cue": "誘いを断る", "en": "Oh, it might be weird.", "why": "「変かも」とやんわり。" },
-    { "id": "m-102", "a": "might", "also": ["may"], "ja": "もうここを引っ越す時かもしれない。", "cue": "確信は弱い", "en": "It might be time to move.", "why": "根拠弱め。might be time to 〜。" },
-    { "id": "m-103", "a": "might", "also": ["may"], "ja": "寒いだろうなと思って。", "cue": "相手を思いやって", "en": "I thought you might be cold.", "why": "I thought と might で、相手の気持ちの空想。" },
-    { "id": "m-104", "a": "might", "also": ["may"], "ja": "今日、それが起こる予感がしてた。", "cue": "悪い予感", "en": "I thought this might happen today.", "why": "「かも」と思っていた過去。" },
-    { "id": "m-105", "a": "might", "also": ["may"], "ja": "何か他に、俺言ったかな？", "cue": "記憶があいまい", "en": "Something else I might have said?", "why": "might have = 過去のことの「かも」。" },
-    { "id": "m-106", "a": "might", "also": ["may"], "ja": "トレイが回復するまで、ここにいるのがよさそうね。", "cue": "消去法で「それがいいか」", "en": "I might as well stay until Trey's recovered.", "why": "might as well = それが一番無難かな。should より弱い提案。" },
-    { "id": "m-107", "a": "might", "also": ["may"], "ja": "すごく大変かもしれない。", "cue": "根拠は弱い", "en": "It might be too hard.", "why": "「かも」の might。" },
-    { "id": "m-108", "a": "might", "also": ["may"], "ja": "解雇されるかも。", "cue": "弱い可能性", "en": "I might get fired.", "why": "話し手の空想。" },
-    { "id": "m-109", "a": "might", "also": ["may"], "ja": "バスに乗ったほうがいいかもね。", "cue": "消去法の提案", "en": "We might as well take a bus.", "why": "might as well で「〜したほうがいいかも」。" },
-    { "id": "m-110", "a": "might", "also": ["may"], "ja": "それはいいアイデアかもしれない。", "cue": "弱い確信", "en": "That might be a good idea.", "why": "確信が弱いときは might。" },
-    { "id": "m-111", "a": "might", "also": ["may"], "ja": "（たぶん）彼女来るかも、と今思う。", "cue": "現在の空想", "en": "I think you might come.", "why": "I think（現在形）と might。may も同じ。" },
-
-    { "id": "m-120", "a": "may",  "ja": "お手伝いしましょうか？", "cue": "店員・改まった場で", "en": "May I help you?", "why": "改まった場の May I。普段は Can I / Could I で十分。" },
-    { "id": "m-121", "a": "may",  "also": ["can", "could"], "ja": "その漫画、見せてもらえますか？", "cue": "友達に超丁寧に", "en": "Okay, may I see the comics?", "why": "May I を友達に使うのが笑いどころ。普段は Can I。" },
-    { "id": "m-122", "a": "may",  "also": ["might"], "ja": "その答えにたぶんあなたは驚くよ。", "cue": "前フリ", "en": "The answer may surprise you.", "why": "may = might。前フリに使う。" },
-    { "id": "m-123", "a": "may",  "also": ["might"], "ja": "ちょっと気まずいかも。", "cue": "言いにくいことの前フリ", "en": "This may be a little awkward.", "why": "may be で「かも」。" },
-    { "id": "m-124", "a": "may",  "also": ["might"], "ja": "前にも言ったかもしれないけど……。", "cue": "過去のことの「かも」", "en": "I may have said those things before, but…", "why": "may have = 過去の「かも」。might have と同じ。" },
-    { "id": "m-125", "a": "may",  "also": ["might"], "ja": "ほかの理由があるかもしれない。", "cue": "意見を控えめに", "en": "I think there may be another reason.", "why": "I think と may で控えめに意見。" },
-    { "id": "m-126", "a": "may",  "also": ["might"], "ja": "あなたはアルコール依存症かもしれない。", "cue": "言いにくいことをやわらげる", "en": "I think you may have a drinking problem.", "why": "may で断定を避ける。" },
-    { "id": "m-127", "a": "may",  "also": ["might"], "ja": "今回は本当にやってしまったかもしれない。", "cue": "過去の「かも」", "en": "I think we may have really done it this time.", "why": "may have = 過去の「かも」。" },
-    { "id": "m-128", "a": "may",  "also": ["might"], "ja": "彼を知ってるかもしれない。", "cue": "現在の「かも」", "en": "You may know him.", "why": "現在の可能性は may know。" },
-    { "id": "m-129", "a": "may",  "also": ["might"], "ja": "彼をすでに知っていたかもしれない。", "cue": "過去の「かも」", "en": "You may have known him.", "why": "過去は may have + 過去分詞。might ではない。" }
-  ]
+    {
+      "id": "m-001",
+      "a": "will",
+      "ja": "（会議中に）トイレ行ってくる。",
+      "cue": "今その場で決めた",
+      "en": "I'll go to the bathroom.",
+      "why": "今決めたことは will。be going to は「前から決めていた」。",
+      "deep": "会議中にふと「トイレ行こ」と思った。その瞬間に決めたことを口にするのが will。本では、I'm going to go to the bathroom と言うと「前々からトイレに行く予定だった」ことになって、ネイティブの先生が「絶対言わない」と笑った場面。will は「今、頭の中に浮かんだ未来」をそのまま描く。",
+      "vs": {
+        "can": "can だと「トイレに行ける（許可・可能）」で、行く意思ではなく状況の話になる。",
+        "should": "should だと「行ったほうがいい」と自分に勧める形。今決めた勢いが消える。",
+        "would": "would だと「（もし〜なら）行くんだけど」と、行かない前提の妄想になる。"
+      }
+    },
+    {
+      "id": "m-002",
+      "a": "will",
+      "ja": "折り返し電話するね。",
+      "cue": "相手への約束",
+      "en": "I'll call you right back.",
+      "why": "相手に向けた約束・宣言は will。",
+      "deep": "「折り返すね」は相手に向けた約束。本の表 (p.151) で will だけに◯がつく欄が「相手に向けた約束・申し出」。be going to は「自分の中で決まっていた予定」を淡々と言うだけで、相手への約束にならない。相手の目を見て「〜するからね」と言うときは will 一択。",
+      "vs": {
+        "can": "can だと「折り返すことができる」という能力の話。約束の熱が無い。",
+        "could": "could だと「折り返すこともできますけど…」と選択肢を置くだけで、約束にならない。",
+        "should": "should だと「折り返すべきかな」と自分の方向を考えている形。"
+      }
+    },
+    {
+      "id": "m-003",
+      "a": "will",
+      "ja": "あなたが帰るまで、ここにいるよ。",
+      "cue": "相手への約束",
+      "en": "I'll stay here until you come home.",
+      "why": "「〜するからね」と相手に言い切る will。",
+      "deep": "「帰るまでここにいるよ」も相手への約束。will の芯は「確信して描く未来」で、約束や宣言はその中で一番強い使い方。本では I'll stay here until you come home を「相手に向けた約束」の例に挙げている。",
+      "vs": {
+        "can": "can だと「ここにいられる（状況的に可能）」で、相手への約束ではなくなる。",
+        "would": "would だと「（もし〜なら）いるんだけど」と、現実にはいない話になる。",
+        "should": "should だと「ここにいたほうがいい」と自分の方向性の話。"
+      }
+    },
+    {
+      "id": "m-004",
+      "a": "will",
+      "ja": "明日は雨だ。",
+      "cue": "天気予報を見て確信",
+      "en": "It will rain tomorrow.",
+      "why": "「絶対そうなる」と確信して空想を描く will。",
+      "deep": "天気予報を見て「絶対雨だ」と確信している。will は「真っ白なキャンバスに、確信ある未来を描く」。根拠が弱いなら I think をつければよく、will 自体は確信の言葉。「未来だから will」ではなく「確信しているから will」。",
+      "vs": {
+        "might": "might だと「雨かもしれんな」と確信が弱い。予報を見て確信しているなら will。",
+        "can": "can だと「雨が降ることもありうる」という一般的な可能性の話になる。",
+        "could": "could だと「雨もありうるね」と可能性の一つを置くだけで、確信が無い。"
+      }
+    },
+    {
+      "id": "m-005",
+      "a": "will",
+      "ja": "彼はよくなるよ。",
+      "cue": "確信している",
+      "en": "He will get better.",
+      "why": "根拠が弱いなら I think をつければよい。確信の芯は will。",
+      "deep": "「彼はよくなる」と確信して描く未来。主語が自分以外でも、話し手が確信していれば will。本では「根拠がないと言えないのでは？」という不安に対して「I think をつけて言えばいい。I think + will はドラマで何百回も出てくる鉄板」と答えている。",
+      "vs": {
+        "might": "might だと「よくなるかも」と半信半疑になる。励ますなら will。",
+        "can": "can だと「よくなることもある（一般論）」で、彼のことを確信して言う感じが消える。",
+        "should": "should だと「よくなるべき」と変な響き。"
+      }
+    },
+    {
+      "id": "m-006",
+      "a": "will",
+      "ja": "チャンドラーがここに引っ越してくるの。",
+      "cue": "決まっている・確信",
+      "en": "Chandler will move in here.",
+      "why": "確信している未来。will の後ろに具体的な動詞をつけるだけ。",
+      "deep": "「チャンドラーがここに引っ越してくる」は、もう決まっていて確信している未来。will の後ろに move in という具体的な動詞をつけるだけで、ドラマのセリフになる。be going to でも言えるが、確信して描くなら will で十分。",
+      "vs": {
+        "might": "might だと「引っ越してくるかも」と、まだ決まっていない話になる。",
+        "would": "would だと「（もし〜なら）引っ越してくるのに」と、現実には来ない妄想になる。",
+        "can": "can だと「引っ越してくることができる」で、決まっている確信が消える。"
+      }
+    },
+    {
+      "id": "m-007",
+      "a": "will",
+      "ja": "もちろん、やるよ。",
+      "cue": "誘いを受けて即答",
+      "en": "Of course I will.",
+      "why": "その場で決めて宣言する will。",
+      "deep": "誘われて「もちろん、やるよ」と即答。その場で決めて宣言するのが will。Of course I will. は will の後ろの動詞を省いて「やるよ」とだけ言う形で、ドラマで断れないときや押しに負けたときに使われる。",
+      "vs": {
+        "can": "can だと「もちろんできるよ」で、能力の話。「やる」という意思にならない。",
+        "could": "could だと「やることもできますけど」と腰が引ける。即答の勢いが消える。",
+        "should": "should だと「やるべきだね」と他人事になる。"
+      }
+    },
+    {
+      "id": "m-008",
+      "a": "will",
+      "ja": "ねえ、楽しいよ！",
+      "cue": "誘いを押す一言",
+      "en": "Come on, it will be fun!",
+      "why": "「絶対楽しくなる」と確信を語る will。",
+      "deep": "「ねえ、楽しいよ！」と誘いを押すとき。「絶対楽しくなる」と確信して相手に言うのが will。Come on と it will be fun はセットで、断られそうなときの押しの一言。",
+      "vs": {
+        "might": "might だと「楽しいかもよ」と弱腰。誘いを押すなら will で言い切る。",
+        "can": "can だと「楽しいこともありうる」と一般論。誘いの熱が無い。",
+        "could": "could だと「楽しいかもしれないね」と可能性を置くだけ。"
+      }
+    },
+    {
+      "id": "m-009",
+      "a": "will",
+      "ja": "仕事が終わるまで休むつもりはない。",
+      "cue": "自分に課す宣言",
+      "en": "I will not rest until the job is done.",
+      "why": "will not で相手に申し出る強い意志。",
+      "deep": "「仕事が終わるまで休まない」は、自分に課す宣言。will not は「〜しない」と確信して言い切る形で、相手に対して「任せて」と申し出るニュアンス。ドラマでは真面目なキャラの決意表明。",
+      "vs": {
+        "can": "can't だと「休めない（状況的に不可能）」で、意思ではなく制約の話になる。",
+        "should": "shouldn't だと「休むべきじゃない」と自分に言い聞かせる形。宣言の強さが無い。",
+        "would": "wouldn't だと「（もし〜なら）休まないのに」と妄想になる。"
+      }
+    },
+    {
+      "id": "m-010",
+      "a": "will",
+      "ja": "彼、もうすぐ帰ってくる？",
+      "cue": "相手の確信を聞く",
+      "en": "Will he be back soon?",
+      "why": "「そうなる？」と相手の確信を尋ねる will。",
+      "deep": "「彼、もうすぐ帰ってくる？」は、相手の確信を尋ねる形。Will he 〜? で「そうなる？」と聞く。back は「戻った状態」を表す英語独特の言い方で、be back soon で「もうすぐ戻る」。",
+      "vs": {
+        "can": "can だと「帰ってこられる？」と能力・可能の質問になる。",
+        "might": "might だと「帰ってくるかも？」と変な聞き方。確信を聞くなら will。",
+        "should": "should だと「帰ってくるべき？」になる。"
+      }
+    },
+    {
+      "id": "m-011",
+      "a": "will",
+      "ja": "きっと特別なものになるよ。",
+      "cue": "確信",
+      "en": "I'm sure it will be special.",
+      "why": "I'm sure と相性がいいのは will。",
+      "deep": "「きっと特別になる」と確信している。I'm sure（確信している）と will（確信の未来）は相性が良い。will は根拠が無くても「そうなる」と描けるところが特徴で、I'm sure をつければ確信の強さがさらに伝わる。",
+      "vs": {
+        "might": "might だと「特別かも」で、I'm sure（確信）と食い違う。",
+        "can": "can だと「特別でありうる」と事実の話。「きっと」の気持ちが消える。",
+        "could": "could だと「特別かもしれないね」と可能性を置くだけ。"
+      }
+    },
+    {
+      "id": "m-012",
+      "a": "will",
+      "ja": "来月ニューヨーク行くぞ！",
+      "cue": "今この瞬間に決めた",
+      "en": "I will go to New York next month!",
+      "why": "その場で決めるニュアンスが will。すでに航空券があるなら be going to。",
+      "deep": "「来月ニューヨーク行くぞ！」とその場で決めた。本では、すでに航空券を持っているなら be going to、今決めるなら will と整理している。「その場で決める」ニュアンスを出せるのは will だけ。",
+      "vs": {
+        "can": "can だと「ニューヨークに行ける」で、お金やパスポートがあるという現実的な可能性の話。意思の宣言ではない。",
+        "would": "would だと「（もし〜なら）行くのに」と行かない前提になる。",
+        "should": "should だと「行ったほうがいいな」と方向を考えている形。"
+      }
+    },
+    {
+      "id": "m-013",
+      "a": "will",
+      "ja": "コーヒー飲もう。",
+      "cue": "今決めた",
+      "en": "I will have coffee.",
+      "why": "「飲む」と決めて宣言する will。",
+      "deep": "「コーヒー飲もう」と今決めた。本の冒頭（p.146）の例で、I will have coffee / I could have coffee / I can have coffee / I should have coffee を並べて「どれもコーヒーを飲んでいない。空想の方向が違うだけ」と説明している。will は「飲む」と決めて描く。",
+      "vs": {
+        "could": "could だと「飲むのもありかな」と候補の一つ。まだ決めていない。",
+        "can": "can だと「飲める（飲める状況だ）」という事実。",
+        "should": "should だと「飲むといい・飲むべき」と方向を指さす形。"
+      }
+    },
+    {
+      "id": "m-014",
+      "a": "will",
+      "ja": "1ヶ月間、あなたの服を洗濯するから。",
+      "cue": "相手への約束",
+      "en": "I will do your laundry for a month.",
+      "why": "相手に向けた約束は will。",
+      "deep": "「1ヶ月間、洗濯するから」は相手への約束。本の英作文の回答例。will は相手に向けて「〜するからね」と言い切るときの言葉で、be going to では約束にならない。",
+      "vs": {
+        "can": "can だと「洗濯できる」で約束にならない。",
+        "could": "could だと「洗濯することもできますけど」と腰が引けて、約束の重みが無い。",
+        "should": "should だと「洗濯すべき」で、自分の方向の話。"
+      }
+    },
+    {
+      "id": "m-020",
+      "a": "can",
+      "ja": "それ、できるよ。",
+      "cue": "一番シンプルな「できる」",
+      "en": "I can do that.",
+      "why": "現実的にできる。頼りがいを示す定番。",
+      "deep": "「それ、できるよ」。can は「現実を見た上で確実に選べる」。一番シンプルな「できる」で、頼りがいを示すときにドラマで何度も出る。could だと「できるかも」と弱くなる。",
+      "vs": {
+        "could": "could だと「できるかもしれない」と自信が無い響き。頼りがいを見せるなら can。",
+        "will": "will だと「やるよ」と意思の宣言になる。「できる」とは別。",
+        "might": "might だと「できるかも」と根拠が弱い。"
+      }
+    },
+    {
+      "id": "m-021",
+      "a": "can",
+      "ja": "したいようにできる。それは僕の自由だ。",
+      "cue": "現実的な自由",
+      "en": "I can do whatever I want.",
+      "why": "今ここで確実に選べる、が can。",
+      "deep": "「したいようにできる、僕の自由だ」。現実の根拠があって「確実に選べる」のが can。本では can を「現実を見た上で、確実に選べる未来」と定義している。主張するときの can。",
+      "vs": {
+        "could": "could だと「したいようにできるかもね」と弱くなり、主張にならない。",
+        "will": "will だと「したいようにする」と意思の宣言になる。",
+        "would": "would だと「（もし〜なら）したいようにするのに」と現実にはできない話になる。"
+      }
+    },
+    {
+      "id": "m-022",
+      "a": "can",
+      "ja": "見たいなら、私たちのテープ見ていいよ。",
+      "cue": "許可",
+      "en": "You can watch our tape if you want.",
+      "why": "許可するときの can。",
+      "deep": "「見たいなら見ていいよ」は許可。can は能力だけでなく「許可」にも使う。本では「許可するときにも can が使える」と挙げている。You can 〜 if you want. で「〜したければどうぞ」。",
+      "vs": {
+        "could": "could だと「見ることもできるけど」と選択肢を置くだけ。許可の「どうぞ」にならない。",
+        "will": "will だと「あなたは見る」と確信の未来になって変。",
+        "may": "may だと「見てもよろしい」と改まりすぎて、友達同士では不自然。"
+      }
+    },
+    {
+      "id": "m-023",
+      "a": "can",
+      "ja": "質問してもいい？",
+      "cue": "気軽に聞く",
+      "en": "Can I ask you a question?",
+      "why": "質問するときの鉄板フレーズ。",
+      "also": [
+        "could"
+      ],
+      "deep": "「質問してもいい？」。本では Can I ask you a question? を「質問するときの鉄板フレーズ」としている。許可を求める can。Could I なら少し丁寧で、どちらも通じる。",
+      "vs": {
+        "will": "will だと「質問する？」と相手の確信を聞く形。許可を求める形にならない。",
+        "should": "should だと「質問すべき？」と方向を聞く形になる。",
+        "may": "may だと May I ask 〜? で、改まった場の言い方。友達なら Can I。"
+      }
+    },
+    {
+      "id": "m-024",
+      "a": "can",
+      "ja": "もう一枚もらえる？",
+      "cue": "ティッシュを取ってと頼む",
+      "en": "Can I have another one?",
+      "why": "「もう一つ」欲しいときの can。could なら少しやわらかい。",
+      "also": [
+        "could"
+      ],
+      "deep": "ティッシュを「もう一枚もらえる？」。欲しいときの Can I have 〜? は許可を求める can。本では「お願いするときにも can が使える」と挙げている。could だと押しつけが弱くなるが、ティッシュ一枚なら can で十分。",
+      "vs": {
+        "will": "will だと「もう一枚持つ？」と変。欲しいときは Can I have。",
+        "should": "should だと「もう一枚もらうべき？」になる。",
+        "would": "would だと Would I have 〜? で意味が通らない。Would you 〜? なら別の形。"
+      }
+    },
+    {
+      "id": "m-025",
+      "a": "can",
+      "ja": "ねえ、電気消してくれる？",
+      "cue": "お願い",
+      "en": "Hey, can you turn the lights off?",
+      "why": "お願いするときも can you。could you より気軽。",
+      "also": [
+        "could"
+      ],
+      "deep": "「電気消してくれる？」。お願いの can you。本では「お願いするときにも can you が使える」と挙げ、turn off（p.110）の使い方も合わせて紹介している。could you なら少し丁寧。",
+      "vs": {
+        "will": "will you だと「消すつもりある？」と相手の意思を問う形で、お願いとしてはきつく聞こえることがある。",
+        "should": "should だと「消すべき？」になる。",
+        "would": "would you だと丁寧なお願いにはなるが、友達に電気を頼む場面では can / could が自然。"
+      }
+    },
+    {
+      "id": "m-026",
+      "a": "can",
+      "ja": "ものすごく大変なこともある。",
+      "cue": "客観的に見た感想",
+      "en": "It can be quite hard.",
+      "why": "現実的にありうる可能性は can be。",
+      "deep": "「ものすごく大変なこともある」は、客観的に見た感想。can be は「現実的にありうる」で、It is hard と言い切るのとは違う。本では It can be hard を「客観的な可能性を示す」例にしている。",
+      "vs": {
+        "could": "could だと「大変かもね」と主観的な予想になる。客観的に「ありうる」なら can。",
+        "will": "will だと「絶対大変になる」と確信して言い切る形。",
+        "might": "might だと「大変かも」と根拠の弱い空想になる。"
+      }
+    },
+    {
+      "id": "m-027",
+      "a": "can",
+      "ja": "5分でそこに着けるよ。",
+      "cue": "確実にできる",
+      "en": "We can be there in five minutes.",
+      "why": "arrive を使わなくても be there で着ける、を表せる。",
+      "deep": "「5分で着けるよ」。現実的に確実にできることは can。本では arrive を使わなくても be there（そこにいる状態になる）で表せる、と補足している。確実にできるから can。",
+      "vs": {
+        "could": "could だと「5分で着けるかも」と自信が無くなる。確実なら can。",
+        "will": "will だと「5分で着く」と宣言。言えるが、「できる」とは別。",
+        "might": "might だと「5分で着くかも」と頼りない。"
+      }
+    },
+    {
+      "id": "m-028",
+      "a": "can",
+      "ja": "お金もパスポートもある。ニューヨークに行ける。",
+      "cue": "現実的な根拠がある",
+      "en": "I can go to New York.",
+      "why": "根拠を元に冷静に「選べる」のが can。will より気持ちが冷静。",
+      "deep": "お金もパスポートもある。だから「行ける」。本では will go と can go を比べて、will は気持ちが先行する確信、can は根拠を元に冷静に「選べる」と説明している。現実的な根拠があるときの can。",
+      "vs": {
+        "will": "will だと「行く！」と気持ちの宣言。根拠を元に冷静に「行ける」と言うなら can。",
+        "could": "could だと「行くのもありかな」と候補の一つ。確実に選べるなら can。",
+        "would": "would だと「（もし〜なら）行くのに」と、現実には行けない話になる。"
+      }
+    },
+    {
+      "id": "m-029",
+      "a": "can",
+      "ja": "ピアノ弾いていい？",
+      "cue": "許可を求める",
+      "en": "Can I play the piano?",
+      "why": "許可の can。",
+      "deep": "「ピアノ弾いていい？」は許可を求める形。can は許可にも使う。本では Can I play the piano? を「弾いてもよいですか？」の例にしている。",
+      "vs": {
+        "will": "will だと「ピアノ弾く？」と自分の意思を聞く変な形。",
+        "should": "should だと「弾くべき？」と方向を聞く形。",
+        "would": "would だと意味が通らない。"
+      }
+    },
+    {
+      "id": "m-030",
+      "a": "can",
+      "ja": "コーヒー飲めるよ（飲める状況だよ）。",
+      "cue": "現実的にできる",
+      "en": "I can have coffee.",
+      "why": "飲める状況にある、という現実。",
+      "deep": "「コーヒー飲めるよ」は、飲める状況にあるという現実の話。本の冒頭の例で、I can have coffee は「飲める」。飲むと決めたわけでも、飲むべきと言っているわけでもない。",
+      "vs": {
+        "will": "will だと「飲もう」と今決めた形。「飲める」とは別。",
+        "could": "could だと「飲むのもありかな」と候補の一つ。",
+        "should": "should だと「飲むといい」と勧める形。"
+      }
+    },
+    {
+      "id": "m-031",
+      "a": "can",
+      "ja": "受験は大変なこともある。",
+      "cue": "受験生の母の現実的な見方",
+      "en": "It can be hard.",
+      "why": "It is hard と言い切るのは変。現実的な可能性は can。",
+      "deep": "受験生の息子を心配する母に「大変なこともあるよ」。本では It is hard（大変だ）と言い切るのは変で、It can be hard と現実的な可能性を言うのが自然、と説明している。客観的に「ありうる」が can。",
+      "vs": {
+        "could": "could だと「大変かもしれないね」と主観的な予想。客観的に「ありうる」なら can。",
+        "will": "will だと「絶対大変になる」と脅すような響き。",
+        "might": "might だと「大変かも」と頼りない。"
+      }
+    },
+    {
+      "id": "m-032",
+      "a": "can",
+      "ja": "欲しいだけチョコを食べていいよ。",
+      "cue": "許可",
+      "en": "You can have all the chocolate you want.",
+      "why": "「〜していいよ」の許可は can。",
+      "deep": "「欲しいだけチョコを食べていいよ」は許可。本の英作文（p.155）の回答例。You can 〜 で「〜していいよ」。",
+      "vs": {
+        "would": "would だと「（もし〜なら）食べるのに」と妄想になる。許可は can。",
+        "could": "could だと「食べることもできるけど」と選択肢を置くだけで、「どうぞ」にならない。",
+        "should": "should だと「食べるべき」と勧める形。"
+      }
+    },
+    {
+      "id": "m-040",
+      "a": "would",
+      "ja": "もし鳥だったら、あなたの元に飛んでいく。",
+      "cue": "ありえない仮定",
+      "en": "If I were a bird, I would fly to you.",
+      "why": "鳥になることはない。ありえない仮定を語る would。",
+      "deep": "「もし鳥だったら」は絶対にありえない。本では「普通にありえない現実を言うのが would」と説明し、学校で習う「仮定法」の正体はこれ、としている。If I were a bird の were と would はセット。",
+      "vs": {
+        "will": "will だと「鳥だったら飛んでいく（確信）」で、ありえないことを確信して言う変な形になる。",
+        "could": "could だと「飛んでいけるかも」と能力・可能性の話。妄想の「〜するのに」は would。",
+        "can": "can だと「飛べる」で現実の話になり、鳥という仮定と噛み合わない。"
+      }
+    },
+    {
+      "id": "m-041",
+      "a": "would",
+      "ja": "（別の人生なら）彼女と付き合っているのに。",
+      "cue": "パラレルワールド",
+      "en": "I would go out with her.",
+      "why": "現実はそうなっていない。妄想の中の自分は would。",
+      "deep": "本の絵（p.155）で、告白して付き合っている自分と、しなかった自分の2本の線が描かれている。現実は付き合っていない。別のルートを選んだ自分（パラレルワールド）を語るのが would。",
+      "vs": {
+        "will": "will だと「彼女と付き合う」と確信の宣言になり、現実の話になる。",
+        "could": "could だと「付き合えるかも」と可能性の話。現実にはそうではない妄想は would。",
+        "can": "can だと「付き合える」で現実の話になる。"
+      }
+    },
+    {
+      "id": "m-042",
+      "a": "would",
+      "ja": "彼女と付き合ってたかもしれないのに。",
+      "cue": "過去の妄想",
+      "en": "I would have gone out with her.",
+      "why": "過去に対する妄想は would + have + 過去分詞。",
+      "deep": "過去に対する妄想は would + have + 過去分詞。「あのときコクっていたら、付き合っていただろうに」。本では「過去に対する妄想を言うときは would have の形になる」と説明している。",
+      "vs": {
+        "could": "could have だと「付き合えたのに（できたはず）」と可能性の話。would have は「付き合っていただろう」と結果の妄想。",
+        "should": "should have だと「付き合うべきだった」と後悔の方向性になる。",
+        "will": "will だと未来の確信になって、過去の話にならない。"
+      }
+    },
+    {
+      "id": "m-043",
+      "a": "would",
+      "ja": "俺なら誘うけどな。",
+      "cue": "私があなただったら",
+      "en": "I would ask her out.",
+      "why": "「私があなただったら」の would。should より押しつけがましくない。",
+      "deep": "友達が誘うか迷っているときの「俺なら誘うけどな」。本では You should ask her out（誘うべき）も言えるが、実際の会話では If I were you をつけずに would だけで「私があなただったら」と言うことが多い、と説明している。押しつけない助言。",
+      "vs": {
+        "should": "should だと「誘いなよ」とはっきり方向を指す。「私なら」とそっと言うのが would。",
+        "will": "will だと「俺は誘う」と自分の宣言になる。",
+        "could": "could だと「誘うこともできるよ」と選択肢を置くだけ。"
+      }
+    },
+    {
+      "id": "m-044",
+      "a": "would",
+      "ja": "俺なら行くけどな。",
+      "cue": "私があなただったら",
+      "en": "I would go.",
+      "why": "If I were you をつけなくても would だけで伝わる。",
+      "deep": "「俺なら行くけどな」。If I were you をつけなくても、I would go だけで「私があなただったら」と伝わる。本では「私なら」と「I would」を使うことで、アドバイスしつつ押しつけない、と説明している。",
+      "vs": {
+        "should": "should だと「行きなよ」と相手に方向を指す。「私なら」の控えめさは would。",
+        "will": "will だと「俺は行く」と自分の宣言になる。",
+        "could": "could だと「行くこともできるよ」と選択肢を置くだけ。"
+      }
+    },
+    {
+      "id": "m-045",
+      "a": "would",
+      "ja": "時間があれば行くんだけど（行けない）。",
+      "cue": "断りの言い訳",
+      "en": "I would go if I had time.",
+      "why": "現実的に時間がない。ありえない現実を言い訳に使う would。",
+      "deep": "「時間があれば行くんだけど」は、現実には時間が無いことが前提。本では「現実的に時間はないけど、もしあれば行くのに」という言い訳に would を使う、と説明している。ありえない現実を言い訳にする would。",
+      "vs": {
+        "will": "will だと「時間があれば行く」と確信の約束になり、断りにならない。",
+        "could": "could だと「時間があれば行けるのに」と可能性の話。断りの妄想は would。",
+        "can": "can だと「時間があれば行ける」と現実の条件の話になる。"
+      }
+    },
+    {
+      "id": "m-046",
+      "a": "would",
+      "ja": "それはよさそう！",
+      "cue": "相手の申し出に「ありがとう」の気持ちで",
+      "en": "That would be great!",
+      "why": "申し出に対して would be great。実現可能性が低い感じが丁寧になる。",
+      "deep": "相手の申し出に「それはよさそう！」。本では「実現可能性が低い（would）」というニュアンスが「無理ならいいのですが…」という丁寧さになる、と説明している。That would be great! は「ありがとう」の気持ちで使う鉄板。",
+      "vs": {
+        "will": "will だと「それは素晴らしくなる」と確信して言い切る形。申し出への返しとしては押しが強い。",
+        "could": "could だと「よいかもね」と気の無い返事になる。",
+        "can": "can だと「それは素晴らしくなりうる」と事実の話になって変。"
+      }
+    },
+    {
+      "id": "m-047",
+      "a": "would",
+      "ja": "私が掃除してもいいでしょうか？",
+      "cue": "丁寧に申し出る",
+      "en": "Would it be OK if I cleaned it?",
+      "why": "would は実現可能性が低い＝無理ならいいのですが、の丁寧さ。",
+      "deep": "「私が掃除してもいいでしょうか」。would は実現可能性が低い世界の話なので、「無理ならいいのですが」という控えめさが出る。本では Is it OK より Would it be OK の方が丁寧、と説明している。",
+      "vs": {
+        "can": "can だと Can it be OK? で変。「〜してもいい？」の気軽な聞き方は Can I 〜?。",
+        "will": "will だと「OKになる？」と確信を聞く形になる。",
+        "could": "could だと Could it be OK? で「OKでありうる？」と変な聞き方。"
+      }
+    },
+    {
+      "id": "m-048",
+      "a": "would",
+      "ja": "私も彼にそうしろって言ったでしょうね。",
+      "cue": "もし自分だったら",
+      "en": "I would have told him to do it too.",
+      "why": "「私だったら」の過去バージョン。",
+      "deep": "「私もそうしろって言ったでしょうね」は「私があなただったら」の過去バージョン。would have で「私だったら〜していた」。現実には自分は言っていない。",
+      "vs": {
+        "should": "should have だと「言うべきだった」と後悔。「私だったら」の妄想は would have。",
+        "could": "could have だと「言えたのに」と可能性の話。",
+        "will": "will だと未来の話になって噛み合わない。"
+      }
+    },
+    {
+      "id": "m-049",
+      "a": "would",
+      "ja": "電話したかったんだけど、番号をなくしちゃって。",
+      "cue": "本当はそうしたかった",
+      "en": "I would have called, but I lost your number.",
+      "why": "would have は本当は電話していたはずの過去。言い訳に使う。",
+      "deep": "「電話したかったけど、番号なくしちゃって」。would have は「本当は電話していたはずの過去」。本では「would have は本当は電話していたはず（過去）を言っている」と説明している。言い訳に使う。",
+      "vs": {
+        "could": "could have だと「電話できたのに」と可能性の話。「本当はしていたはず」の妄想は would have。",
+        "should": "should have だと「電話すべきだった」と後悔の方向性。",
+        "will": "will だと「電話する」と未来の約束になる。"
+      }
+    },
+    {
+      "id": "m-050",
+      "a": "would",
+      "ja": "私ならそれ、帽子として被るわ。",
+      "cue": "私があなただったら",
+      "en": "I would wear that thing for a hat.",
+      "why": "「私なら」の would。",
+      "deep": "「私なら帽子として被るわ」。超セクシーな美女を褒める「私なら」の would。本では「私なら〜」の一言として挙げている。現実には自分は被っていない。",
+      "vs": {
+        "will": "will だと「私は被る」と自分の宣言になる。",
+        "should": "should だと「被るべき」と相手に方向を指す。",
+        "could": "could だと「被ることもできる」と可能性の話。"
+      }
+    },
+    {
+      "id": "m-051",
+      "a": "would",
+      "ja": "もし私たちがあなたと同じことをしたら、男は二度と電話してこない。",
+      "cue": "ありえない仮定",
+      "en": "If we did what you did, a man would never call.",
+      "why": "仮定の中の結果は would。",
+      "deep": "「私たちがあなたと同じことをしたら、男は二度と電話してこない」。しつこいジャニスを追いかけるチャンドラーに、レイチェルが「普通はこうなる」と教える場面。ありえない仮定（if we did）の結果は would。",
+      "vs": {
+        "will": "will だと「電話してこない（確信）」と現実の話になり、仮定と噛み合わない。",
+        "could": "could だと「電話できない」と能力の話。仮定の結果は would。",
+        "might": "might だと「電話してこないかも」と弱い。「二度と〜ない」なら would never。"
+      }
+    },
+    {
+      "id": "m-052",
+      "a": "would",
+      "ja": "ジャニスが男なら、今ごろ他の女と寝てる。",
+      "cue": "ありえない仮定",
+      "en": "If Janice were a guy, she would be sleeping with somebody else by now.",
+      "why": "were + would のセット。",
+      "deep": "「ジャニスが男なら、今ごろ他の女と寝てる」。If Janice were a guy は絶対にありえない仮定。were と would はセット。本では「ありえない現実を言うのが would」と説明している。",
+      "vs": {
+        "will": "will だと「寝る（確信）」と現実の話になり、仮定と噛み合わない。",
+        "could": "could だと「寝ることもできる」と可能性の話。妄想の結果は would。",
+        "might": "might だと「寝てるかも」と弱くなる。"
+      }
+    },
+    {
+      "id": "m-053",
+      "a": "would",
+      "ja": "いつかディナーでもどうですか？",
+      "cue": "丁寧なお誘い",
+      "en": "Would you like to have dinner sometime?",
+      "why": "「現実的ではないかもしれないけど…」の控えめさが would like to。",
+      "deep": "「いつかディナーでもどうですか？」。本では Would you like to 〜? を「現実的ではないかもしれないけど…」という控えめなニュアンス、としている。丁寧にお願いするときの鉄板。",
+      "vs": {
+        "will": "will you だと「ディナーする？」と相手の意思を直接問う形で、お誘いとしては押しが強い。",
+        "can": "can you だと「ディナーできる？」と都合を聞く形。",
+        "could": "could you だと「ディナーしてもらえる？」とお願いの形になり、お誘いの柔らかさが違う。"
+      }
+    },
+    {
+      "id": "m-054",
+      "a": "would",
+      "ja": "彼女が私の靴を取ったなら、サンダルを置いていったはず。",
+      "cue": "ありえない仮定の帰結",
+      "en": "If she took my shoes, she would've left her sandals.",
+      "why": "仮定の帰結は would have。",
+      "deep": "「彼女が私の靴を取ったなら、サンダルを置いていったはず」。本の英作文（p.157）の回答例。ありえない仮定の帰結は would have。現実には靴は取られていない（か、別の事情がある）。",
+      "vs": {
+        "could": "could have だと「置いていけたのに」と可能性の話。帰結の妄想は would have。",
+        "should": "should have だと「置いていくべきだった」と後悔になる。",
+        "will": "will だと未来の話になって噛み合わない。"
+      }
+    },
+    {
+      "id": "m-055",
+      "a": "would",
+      "ja": "彼女でも（空想なら）コーヒー飲むよ。",
+      "cue": "隣の人の空想",
+      "en": "She would have coffee.",
+      "why": "現実ではなく空想の中の彼女。",
+      "deep": "本の冒頭（p.146）の例。「隣のおっさんが言った場合は、隣のおっさんの空想」。She would have coffee は「彼女なら（空想の中で）コーヒーを飲む」。現実の彼女は飲んでいない。",
+      "vs": {
+        "will": "will だと「彼女はコーヒーを飲む（確信）」と現実の予想になる。",
+        "can": "can だと「彼女は飲める」と事実の話。",
+        "could": "could だと「彼女は飲むかも」と可能性の話。"
+      }
+    },
+    {
+      "id": "m-056",
+      "a": "would",
+      "ja": "私なら、それを毎日はくね。",
+      "cue": "私があなただったら",
+      "en": "I would wear it every day.",
+      "why": "「私なら」は would。",
+      "deep": "「私なら、それを毎日はくね」。本の英作文（p.159）の回答例。「私があなただったら」の would。現実には自分は履いていない。",
+      "vs": {
+        "will": "will だと「私は毎日はく」と自分の宣言になる。",
+        "should": "should だと「毎日はくべき」と相手に方向を指す。",
+        "could": "could だと「毎日はくこともできる」と可能性の話。"
+      }
+    },
+    {
+      "id": "m-060",
+      "a": "could",
+      "ja": "山に行くのもありだね。",
+      "cue": "選択肢の一つを置く",
+      "en": "We could go to the mountain.",
+      "why": "「選ばない自由」も相手に残す、やさしい提案。",
+      "deep": "本の絵（p.158）で、山・映画・ディズニーの3つの吹き出しに could が付いている。「どこに行こうか」と悩む中で「山もありやな」と候補を一つ置く。本では「選ばない自由も相手に与えている」と説明している。",
+      "vs": {
+        "should": "should だと「山に行くのがいい」と一つに絞って方向を指す。まだ候補を並べている段階なら could。",
+        "will": "will だと「山に行く」と決定の宣言。",
+        "can": "can だと「山に行ける」と現実的な可能性の話で、提案にならない。"
+      }
+    },
+    {
+      "id": "m-061",
+      "a": "could",
+      "ja": "ディズニーもあるね。",
+      "cue": "選択肢の一つを置く",
+      "en": "We could go to Disneyland.",
+      "why": "アイデアを並べる could。",
+      "deep": "山・映画の次に「ディズニーもあるね」。候補を並べるときの could。本では「will や can と同じく起こっていないことへの空想だが、could の方が圧倒的に多く使われる」と説明している。",
+      "vs": {
+        "should": "should だと「ディズニーに行くのがいい」と一つに絞る。",
+        "will": "will だと「ディズニーに行く」と決定。",
+        "can": "can だと「ディズニーに行ける」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-062",
+      "a": "could",
+      "ja": "英語を勉強するのもいいかも（私なら）。",
+      "cue": "子どもに気持ちを尊重して言う",
+      "en": "You could study English.",
+      "why": "You have to より、気持ちを尊重した言い方。",
+      "deep": "子どもに「英語を勉強するのもいいかも」。本では You have to study English（勉強しなさい）より、You could study English の方が気持ちを尊重した言い方、と説明している。選ぶかどうかは相手に任せる。",
+      "vs": {
+        "should": "should だと「勉強したほうがいい」と方向を指す。押しつけが強くなる。",
+        "will": "will だと「あなたは勉強する」と確信の未来。",
+        "can": "can だと「勉強できる」と能力の話。"
+      }
+    },
+    {
+      "id": "m-063",
+      "a": "could",
+      "ja": "（何時に終わる？に）遅くなるかもね。",
+      "cue": "ありうる未来をやんわり",
+      "en": "It could be really late.",
+      "why": "could be = ありうる可能性をやさしく置く。",
+      "also": [
+        "might",
+        "may"
+      ],
+      "deep": "「何時に終わる？」に「遅くなるかもね」。could be は「ありうる可能性」をやさしく置く。本では It could be really late を「何時に仕事終わる？への答え方」として挙げている。might / may でも「かも」で通じる。",
+      "vs": {
+        "will": "will だと「絶対遅くなる」と確信して言い切る形。",
+        "can": "can だと「遅くなることもありうる」と一般論の事実。",
+        "should": "should だと「遅くなるべき」で変。"
+      }
+    },
+    {
+      "id": "m-064",
+      "a": "could",
+      "ja": "ワインだけ飲むのもありね。",
+      "cue": "選択肢を提案",
+      "en": "We could just drink wine.",
+      "why": "「〜だけにする」という選択肢の提案。",
+      "deep": "「ワインだけ飲むのもありね」。could just で「〜だけにする」という選択肢の提案。本では「私がその気なら」の例と並べて挙げている。押しつけない提案。",
+      "vs": {
+        "should": "should だと「ワインだけにするのがいい」と方向を指す。",
+        "will": "will だと「ワインだけ飲む」と決定。",
+        "can": "can だと「ワインだけ飲める」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-065",
+      "a": "could",
+      "ja": "みんなで食事に行くのもいいわね。",
+      "cue": "選択肢を提案",
+      "en": "We could all go out to dinner.",
+      "why": "ありうる未来を提案する could。",
+      "deep": "「みんなで食事に行くのもいいわね」。ありうる未来を提案する could。本では「we could を使うことで『行きましょう』と未来を提案している」と説明している。",
+      "vs": {
+        "should": "should だと「食事に行くのがいい」と一つに絞る。",
+        "will": "will だと「みんなで食事に行く」と決定の宣言。",
+        "can": "can だと「食事に行ける」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-066",
+      "a": "could",
+      "ja": "私がその気なら、あなたと寝てたわ。",
+      "cue": "過去にできたはずのこと",
+      "en": "I could have had you if I wanted you.",
+      "why": "could have = 過去に選べたであろう未来。",
+      "deep": "「私がその気なら、あなたと寝てたわ」。could have は「過去に選べたであろう未来」。本では「中1単語だけでここまで言える」「could have で過去に選べたであろう未来を言う」と説明している。",
+      "vs": {
+        "would": "would have だと「寝ていただろう」と帰結の妄想。「できたはず」の可能性は could have。",
+        "should": "should have だと「寝るべきだった」と後悔。",
+        "will": "will だと未来の話になって噛み合わない。"
+      }
+    },
+    {
+      "id": "m-067",
+      "a": "could",
+      "ja": "ちょっと待ってもらえます？",
+      "cue": "丁寧なお願い",
+      "en": "Could you give us a second?",
+      "why": "can you より丁寧。could は押しつけが弱い。",
+      "also": [
+        "can"
+      ],
+      "deep": "「ちょっと待ってもらえます？」。本では Could you 〜? を「ちょっと待って欲しいときの丁寧な表現」としている。could は押しつけが弱いので、can you より丁寧になる。can you でも通じる。",
+      "vs": {
+        "will": "will you だと「待ってくれる気ある？」と相手の意思を問う形で、きつく聞こえることがある。",
+        "should": "should だと「待つべき？」になる。",
+        "would": "would you だと丁寧なお願いにはなる。本の推しは Could you。"
+      }
+    },
+    {
+      "id": "m-068",
+      "a": "could",
+      "ja": "一緒に行けたらいいんだけど（行けない）。",
+      "cue": "やんわり断る",
+      "en": "I wish I could join you guys, but I got to get back to work.",
+      "why": "I wish I could で「行けたらいいんだけど」。but を続けると自然。",
+      "deep": "「一緒に行けたらいいんだけど」。本では I wish I could を「やんわり断るフレーズ」として挙げ、but 〜 と後ろに理由を続けると自然、と説明している。現実には行けない。",
+      "vs": {
+        "would": "would だと I wish I would で変。「〜できたらいいのに」は could。",
+        "can": "can だと「行ける」と現実の話になり、断りにならない。",
+        "will": "will だと「行く」と宣言になって、断りにならない。"
+      }
+    },
+    {
+      "id": "m-069",
+      "a": "could",
+      "ja": "お金があれば、ディズニーに行けるんだけど。",
+      "cue": "仮定の中の選択肢",
+      "en": "If we had money, we could go to Disneyland.",
+      "why": "ありえない仮定の中でも「行ける」は could。",
+      "deep": "「お金があれば、ディズニーに行けるのに」。本では「ありえない妄想（仮定法過去）の両方で could が使える」と説明している。仮定の中で「行ける」は could。",
+      "vs": {
+        "would": "would だと「行くのに」と帰結の妄想。「行ける（可能）」は could。",
+        "can": "can だと「行ける」と現実の話になり、「お金があれば」と噛み合わない。",
+        "will": "will だと「行く」と確信の未来で、仮定と噛み合わない。"
+      }
+    },
+    {
+      "id": "m-070",
+      "a": "could",
+      "ja": "明日雨なら、映画もありだし。",
+      "cue": "if と組み合わせた提案",
+      "en": "If it rains tomorrow, we could go to the movie.",
+      "why": "if と could で、気軽に意見が言える。",
+      "deep": "「明日雨なら、映画もありだし」。本では「if と組み合わせれば、意見を言えるんです」と説明し、If it rains tomorrow, we could go to the movie を例にしている。候補を一つ置く could。",
+      "vs": {
+        "should": "should だと「映画に行くのがいい」と方向を指す。候補の一つなら could。",
+        "will": "will だと「映画に行く」と決定。",
+        "can": "can だと「映画に行ける」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-071",
+      "a": "could",
+      "ja": "ディズニー、いいかもね！",
+      "cue": "ディズニーについて言い切らない",
+      "en": "Disneyland could be great!",
+      "why": "is を could be に置き換えると「私が思っている」主観的な響き。",
+      "deep": "「ディズニー、いいかもね！」。本では Disneyland is great! と言い切る代わりに could be にすると「私が思っている」主観的な響きになり、ネイティブの口癖のように出る、と説明している。be 動詞を could be に置き換える感覚。",
+      "vs": {
+        "will": "will だと「素晴らしくなる」と確信して言い切る形。",
+        "can": "can だと「素晴らしくありうる」と客観的な事実。「私はそう思う」の主観は could be。",
+        "should": "should だと「素晴らしいべき」で変。"
+      }
+    },
+    {
+      "id": "m-072",
+      "a": "could",
+      "ja": "これは難しいかも。",
+      "cue": "言い切らず意見を言う",
+      "en": "This could be difficult.",
+      "why": "難しいと言い切るより、could be で可能性として。",
+      "also": [
+        "might",
+        "may"
+      ],
+      "deep": "「これは難しいかも」。本では This is difficult と言い切らずに This could be difficult と言う方が使える、と説明している。意見を言うときの could be。might / may でも通じる。",
+      "vs": {
+        "will": "will だと「絶対難しくなる」と確信して言い切る形。",
+        "can": "can だと「難しいこともありうる」と一般論。「私はそう思う」の主観は could be。",
+        "should": "should だと「難しいべき」で変。"
+      }
+    },
+    {
+      "id": "m-073",
+      "a": "could",
+      "ja": "僕らで何か作るのもいいかもね。",
+      "cue": "選択肢の一つ",
+      "en": "We could cook for ourselves.",
+      "why": "提案を一つ置く could。",
+      "deep": "「僕らで何か作るのもいいかもね」。本の英作文（p.159）の回答例。候補を一つ置く could。cook for ourselves で「自分たちで作る」。",
+      "vs": {
+        "should": "should だと「作るのがいい」と方向を指す。",
+        "will": "will だと「作る」と決定。",
+        "can": "can だと「作れる」と能力の話。"
+      }
+    },
+    {
+      "id": "m-074",
+      "a": "could",
+      "ja": "コーヒー飲むのもありかな。",
+      "cue": "選択肢として",
+      "en": "I could have coffee.",
+      "why": "飲んでもいいかな、の「あり」。",
+      "deep": "本の冒頭（p.146）の例。I could have coffee は「コーヒー飲むのもありかな」。まだ飲むと決めていない。候補の一つとして置いている。",
+      "vs": {
+        "will": "will だと「飲もう」と今決めた形。",
+        "can": "can だと「飲める」という状況の事実。",
+        "should": "should だと「飲むといい」と方向を指す。"
+      }
+    },
+    {
+      "id": "m-075",
+      "a": "could",
+      "ja": "奥さんに渡すこともできますよ。",
+      "cue": "100万円の使い道を一つ出す",
+      "en": "You could give it to your wife.",
+      "why": "ここで should だと「これがいい」になる。まだアイデア出し。",
+      "deep": "100万円の臨時収入で「奥さんに渡すこともできますよ」。本の絵（p.162）で、奥さん・寄付・旅・東京ドーム・へそくりの5つの吹き出しに could が付いている。まだアイデア出しの段階。",
+      "vs": {
+        "should": "should だと「奥さんにあげるのがいい」と一つに絞る。次の段階（p.163）で should に変わる。",
+        "will": "will だと「奥さんに渡す」と決定。",
+        "can": "can だと「渡せる」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-076",
+      "a": "could",
+      "ja": "世界中を旅することもできますよ。",
+      "cue": "100万円の使い道を一つ出す",
+      "en": "You could travel around the world.",
+      "why": "アイデアを並べているうちは could。",
+      "deep": "100万円の使い道の一つ「世界中を旅することもできますよ」。本の絵の5つの could の一つ。アイデアを並べているうちは could。",
+      "vs": {
+        "should": "should だと「旅するのがいい」と一つに絞る。",
+        "will": "will だと「旅する」と決定。",
+        "can": "can だと「旅できる」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-077",
+      "a": "could",
+      "ja": "へそくりすることもできますよね。",
+      "cue": "もう一人の自分の声",
+      "en": "You could save up secretly.",
+      "why": "まだ候補の一つ。should ではない。",
+      "deep": "「へそくりすることもできますよね」は、もう一人の自分の声。本の絵（p.162）の5つの could の最後。この段階ではまだ候補の一つで、次のページで should に変わる。",
+      "vs": {
+        "should": "should だと「へそくりしよう！（これだ）」と決めた形。それは次の段階。",
+        "will": "will だと「へそくりする」と決定の宣言。",
+        "can": "can だと「へそくりできる」と可能性の事実。"
+      }
+    },
+    {
+      "id": "m-078",
+      "a": "could",
+      "ja": "もっと勉強できたのに（しなかった）。",
+      "cue": "過去に選べたこと",
+      "en": "I could have studied more.",
+      "why": "could have = 選べたのに選ばなかった過去。",
+      "deep": "「もっと勉強できたのに」。could have は「選べたのに選ばなかった過去」。本では could have を「過去に選べたであろう未来」と説明している。",
+      "vs": {
+        "would": "would have だと「勉強していただろう」と帰結の妄想。「できたのに」は could have。",
+        "should": "should have だと「勉強すべきだった」と後悔の方向性。近いが、「できた」は could。",
+        "will": "will だと未来の話になって噛み合わない。"
+      }
+    },
+    {
+      "id": "m-080",
+      "a": "should",
+      "ja": "へそくりしよう！（これがいい！）",
+      "cue": "候補の中から決めた",
+      "en": "I should save up secretly!",
+      "why": "could で並べた中から「これだ」と指さす should。",
+      "deep": "本の絵（p.163）で、could で並んでいた5つの吹き出しの中から、へそくりだけに矢印が伸びて should に変わっている。「アイデアを出したあとに、どれが一番よいかを天秤にかけて提案する」のが should。「すべき」の強制感ではなく「したらええやん」。",
+      "vs": {
+        "could": "could だと「へそくりもありかな」と候補の一つに戻る。「これだ！」と決めたら should。",
+        "will": "will だと「へそくりする」と決定の宣言。方向を選ぶ感じは should。",
+        "must": "must だと「しなければならない」と強制になる。should は強制ではない。"
+      }
+    },
+    {
+      "id": "m-081",
+      "a": "should",
+      "ja": "奥さんにあげるのがいいよ、いつも大事にしてくれてるから。",
+      "cue": "理由つきで勧める",
+      "en": "You should give it to your wife because she always takes care of you.",
+      "why": "because で理由をつけると説得力が増す should。",
+      "deep": "「奥さんにあげるのがいいよ、いつも大事にしてくれてるから」。本では because で理由をつけると説得力が増す、と説明している。候補の中から「これがいい」と指さす should。",
+      "vs": {
+        "could": "could だと「奥さんにあげることもできるよ」と候補の一つに戻る。理由をつけて勧めるなら should。",
+        "will": "will だと「あなたは奥さんにあげる」と確信の未来で変。",
+        "would": "would だと「私なら奥さんにあげる」と「私なら」の助言になる。"
+      }
+    },
+    {
+      "id": "m-082",
+      "a": "should",
+      "ja": "彼女、誘いなよ。",
+      "cue": "はっきり勧める",
+      "en": "You should ask her out.",
+      "why": "would（俺なら）より押しが強い。方向を示す。",
+      "deep": "「彼女、誘いなよ」。本では「学校では If I were you をつけないと減点だが、実際の会話では You should ask her out も I would ask her out も両方使える」と説明している。should ははっきり方向を指す。",
+      "vs": {
+        "would": "would だと「俺なら誘うけどな」と「私なら」の控えめな助言。はっきり勧めるなら should。",
+        "could": "could だと「誘うこともできるよ」と選択肢を置くだけ。",
+        "will": "will だと「あなたは誘う」と確信の未来で変。"
+      }
+    },
+    {
+      "id": "m-083",
+      "a": "should",
+      "ja": "行きなよ。",
+      "cue": "はっきり勧める",
+      "en": "You should go.",
+      "why": "「行くべき」というより「行ったらええやん」。",
+      "deep": "「行きなよ」。本では You should go（行くべき）と I would go（俺なら行く）を並べて、should は方向を指す、would は「私なら」と説明している。",
+      "vs": {
+        "would": "would だと「俺なら行くけどな」と控えめな助言。",
+        "could": "could だと「行くこともできるよ」と選択肢を置くだけ。",
+        "will": "will だと「あなたは行く」と確信の未来で変。"
+      }
+    },
+    {
+      "id": "m-084",
+      "a": "should",
+      "ja": "コーヒー飲むといいよ。",
+      "cue": "勧める",
+      "en": "You should have coffee.",
+      "why": "選択肢の中の「これ」。",
+      "deep": "本の冒頭（p.146）の例。You should have coffee too は「あなたもコーヒー飲むといいよ」。候補の中から「これ」と勧める should。",
+      "vs": {
+        "could": "could だと「飲むのもありかな」と候補の一つ。",
+        "can": "can だと「飲める」と状況の事実。",
+        "will": "will だと「あなたは飲む」と確信の未来で変。"
+      }
+    },
+    {
+      "id": "m-085",
+      "a": "should",
+      "ja": "かわりに赤ワインを飲むのがいいよ。",
+      "cue": "別の選択肢を推す",
+      "en": "You should drink red wine instead.",
+      "why": "instead で「それより、こっち」。",
+      "deep": "「かわりに赤ワインを飲むのがいいよ」。本の英作文（p.163）。instead で「それより、こっち」と別の選択肢を推す。方向を指す should。",
+      "vs": {
+        "could": "could だと「赤ワインもありだね」と候補の一つ。「こっちがいい」なら should。",
+        "will": "will だと「あなたは赤ワインを飲む」と確信の未来で変。",
+        "would": "would だと「私なら赤ワインを飲む」と「私なら」の助言になる。"
+      }
+    },
+    {
+      "id": "m-086",
+      "a": "should",
+      "ja": "先に彼女に話しておくべきだった。",
+      "cue": "過去への後悔",
+      "en": "I should have talked to her first.",
+      "why": "should have = 選ばなかった「よりよい未来」への後悔。",
+      "deep": "「先に彼女に話しておくべきだった」。should have は、選ばなかった「よりよい未来」への後悔。本の英作文（p.167）の回答例。過去の方向性を振り返る形。",
+      "vs": {
+        "would": "would have だと「話していただろう」と帰結の妄想。後悔の「〜すべきだった」は should have。",
+        "could": "could have だと「話せたのに」と可能性の話。「それがよかった」の後悔は should have。",
+        "will": "will だと未来の話になって噛み合わない。"
+      }
+    },
+    {
+      "id": "m-087",
+      "a": "should",
+      "ja": "もう帰ったほうがいいかな？",
+      "cue": "自分の方向を相手に聞く",
+      "en": "Should I go home now?",
+      "why": "Should I 〜? で「〜したらいい？」。",
+      "deep": "「もう帰ったほうがいいかな？」。Should I 〜? で、自分の方向を相手に聞く形。本のランキングに should I（私は〜したらよい？）が入っている。",
+      "vs": {
+        "could": "could だと「帰ることもできる？」と可能性を聞く形。方向を聞くなら should。",
+        "can": "can だと「帰っていい？」と許可を求める形。「〜したほうがいい？」なら should。",
+        "will": "will だと「帰る？」と自分の意思を聞く変な形。"
+      }
+    },
+    {
+      "id": "m-088",
+      "a": "should",
+      "ja": "知っておいたほうがいいよ。",
+      "cue": "勧める",
+      "en": "You should know.",
+      "why": "方向性を示す should。",
+      "deep": "「知っておいたほうがいいよ」。本のランキングに should know（知っておいた方がよい）が入っている。方向を指す should。",
+      "vs": {
+        "could": "could だと「知ることもできる」と可能性の話。",
+        "will": "will だと「あなたは知る」と確信の未来で変。",
+        "might": "might だと「知ってるかも」と推測になる。"
+      }
+    },
+    {
+      "id": "m-089",
+      "a": "should",
+      "ja": "たぶん寝るのがいいね。",
+      "cue": "やわらかく方向を示す",
+      "en": "I should probably go to bed.",
+      "why": "probably をつけると should の方向がやわらぐ。",
+      "deep": "「たぶん寝るのがいいね」。本のランキングに should probably（おそらく〜のはず）が入っている。probably をつけると should の方向がやわらぐ。",
+      "vs": {
+        "could": "could だと「寝るのもありかな」と候補の一つ。",
+        "will": "will だと「寝る」と決定の宣言。",
+        "might": "might だと「寝るかも」と予想になる。"
+      }
+    },
+    {
+      "id": "m-100",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "楽しくなりそう。",
+      "cue": "これから始まるディナーのことを想像",
+      "en": "That might be fun.",
+      "why": "未来のことを「〜かも」と空想する might。",
+      "deep": "「楽しくなりそう」。これから始まるディナーのことを想像している。本では That might be fun を「未来のことを言っている」例にし、might は過去ではなく「未来のこと・わからないことへの話し手の空想」と説明している。may でも同じ。",
+      "vs": {
+        "will": "will だと「絶対楽しくなる」と確信。might は根拠の弱い「かも」。",
+        "could": "could だと「楽しいかもね」と可能性を置く形。近いが、本の推しは might。",
+        "can": "can だと「楽しいこともありうる」と一般論の事実。"
+      }
+    },
+    {
+      "id": "m-101",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "あ〜、それは変な感じがするかも。",
+      "cue": "誘いを断る",
+      "en": "Oh, it might be weird.",
+      "why": "「変かも」とやんわり。",
+      "deep": "ダブルデートの誘いを「あ〜、それは変な感じがするかも」と断る。might be weird で角を立てずに断る。本では weird（p.199）の使い方も紹介している。may でも同じ。",
+      "vs": {
+        "will": "will だと「絶対変になる」と言い切ってしまい、断り方としてきつい。",
+        "could": "could だと「変かもね」と可能性を置く形。近いが、本の推しは might。",
+        "can": "can だと「変なこともありうる」と一般論になる。"
+      }
+    },
+    {
+      "id": "m-102",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "もうここを引っ越す時かもしれない。",
+      "cue": "確信は弱い",
+      "en": "It might be time to move.",
+      "why": "根拠弱め。might be time to 〜。",
+      "deep": "「もう引っ越す時かも」。might be time to 〜 で、確信は弱いが「そろそろ」と空想している。本では「根拠が無くても言える、主観的な未来の空想」と説明している。",
+      "vs": {
+        "will": "will だと「引っ越す時だ」と確信して言い切る形。",
+        "should": "should だと「引っ越すべき時」と方向を指す形。「かも」なら might。",
+        "could": "could だと「引っ越す時かもね」と可能性を置く形。近いが、本の推しは might。"
+      }
+    },
+    {
+      "id": "m-103",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "寒いだろうなと思って。",
+      "cue": "相手を思いやって",
+      "en": "I thought you might be cold.",
+      "why": "I thought と might で、相手の気持ちの空想。",
+      "deep": "男を部屋に連れ込みすぎだと隣人に文句を言われたサマンサの一言「寒いだろうなと思って」。I thought you might be cold で、相手の気持ちを空想している。ドラマでは皮肉の効いたセリフ。",
+      "vs": {
+        "will": "will だと「あなたは寒くなる」と確信の予想になる。思いやりの「かも」は might。",
+        "could": "could だと「寒いかもと思って」で近いが、本の推しは might。",
+        "can": "can だと「寒くなりうる」と一般論になる。"
+      }
+    },
+    {
+      "id": "m-104",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "今日、それが起こる予感がしてた。",
+      "cue": "悪い予感",
+      "en": "I thought this might happen today.",
+      "why": "「かも」と思っていた過去。",
+      "deep": "「今日それが起こる予感がしてた」。悪い予感が的中したときのセリフ。I thought this might happen で「起こるかもと思っていた」。might は過去形ではなく、「かも」の空想。",
+      "vs": {
+        "will": "will だと「起こると確信していた」になり、予感の弱さが消える。",
+        "could": "could だと「起こりうると思っていた」で近いが、本の推しは might。",
+        "should": "should だと「起こるべき」で変。"
+      }
+    },
+    {
+      "id": "m-105",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "何か他に、俺言ったかな？",
+      "cue": "記憶があいまい",
+      "en": "Something else I might have said?",
+      "why": "might have = 過去のことの「かも」。",
+      "deep": "「何か他に、俺言ったかな？」。記憶があいまいなときの might have。本では「過去のことを言うときは might have を使う」と説明している。may have でも同じ。",
+      "vs": {
+        "would": "would have だと「言っていただろう」と帰結の妄想。記憶の「かも」は might have。",
+        "could": "could have だと「言えたかも」と可能性の話。",
+        "should": "should have だと「言うべきだった」と後悔になる。"
+      }
+    },
+    {
+      "id": "m-106",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "トレイが回復するまで、ここにいるのがよさそうね。",
+      "cue": "消去法で「それがいいか」",
+      "en": "I might as well stay until Trey's recovered.",
+      "why": "might as well = それが一番無難かな。should より弱い提案。",
+      "deep": "「トレイが回復するまで、ここにいるのがよさそうね」。might as well は「それが一番無難かな」という消去法の提案。本では「should よりも弱く提案するイメージ」と説明している。[stay + until] も頻出。",
+      "vs": {
+        "should": "should だと「ここにいるべき」とはっきり方向を指す。「それがいいか」の弱い提案は might as well。",
+        "will": "will だと「ここにいる」と決定の宣言。",
+        "could": "could だと「ここにいることもできる」と選択肢を置くだけ。"
+      }
+    },
+    {
+      "id": "m-107",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "すごく大変かもしれない。",
+      "cue": "根拠は弱い",
+      "en": "It might be too hard.",
+      "why": "「かも」の might。",
+      "deep": "「すごく大変かもしれない」。本では It might be too hard を「確信弱めの可能性を語る」例にしている。根拠は弱いが「かも」と空想している。",
+      "vs": {
+        "will": "will だと「絶対大変になる」と確信して言い切る形。",
+        "can": "can だと「大変なこともありうる」と客観的な事実。主観の「かも」は might。",
+        "could": "could だと「大変かもね」と可能性を置く形。近いが、本の推しは might。"
+      }
+    },
+    {
+      "id": "m-108",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "解雇されるかも。",
+      "cue": "弱い可能性",
+      "en": "I might get fired.",
+      "why": "話し手の空想。",
+      "deep": "「解雇されるかも」。本では I might get fired を「解雇されるかもしれない」の例にしている。根拠は弱いが心配して空想している。",
+      "vs": {
+        "will": "will だと「絶対解雇される」と確信してしまう。",
+        "could": "could だと「解雇されうる」と可能性の話。近いが、本の推しは might。",
+        "can": "can だと「解雇されることもある」と一般論の事実。"
+      }
+    },
+    {
+      "id": "m-109",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "バスに乗ったほうがいいかもね。",
+      "cue": "消去法の提案",
+      "en": "We might as well take a bus.",
+      "why": "might as well で「〜したほうがいいかも」。",
+      "deep": "「バスに乗ったほうがいいかもね」。本では We might as well take a bus を「バスに乗ったほうがよいかもね」と訳し、should より弱い提案としている。消去法で「それがいいか」。",
+      "vs": {
+        "should": "should だと「バスに乗ったほうがいい」とはっきり方向を指す。弱い提案は might as well。",
+        "could": "could だと「バスもありだね」と候補を置く形。",
+        "will": "will だと「バスに乗る」と決定。"
+      }
+    },
+    {
+      "id": "m-110",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "それはいいアイデアかもしれない。",
+      "cue": "弱い確信",
+      "en": "That might be a good idea.",
+      "why": "確信が弱いときは might。",
+      "deep": "「それはいいアイデアかもしれない」。確信が弱いときは might。本では Maybe と同じニュアンスで、主語とセットで使える、と説明している。",
+      "vs": {
+        "will": "will だと「絶対いいアイデアになる」と確信。",
+        "could": "could だと「いいかもね」と可能性を置く形。近いが、本の推しは might。",
+        "can": "can だと「いいアイデアでありうる」と一般論になる。"
+      }
+    },
+    {
+      "id": "m-111",
+      "a": "might",
+      "also": [
+        "may"
+      ],
+      "ja": "（たぶん）彼女来るかも、と今思う。",
+      "cue": "現在の空想",
+      "en": "I think you might come.",
+      "why": "I think（現在形）と might。may も同じ。",
+      "deep": "「たぶん彼女来るかも、と今思う」。本では I think（現在形）とセットなら might でも may でも同じ、I thought（過去形）なら might と時制を合わせる、と説明している。現在の空想。",
+      "vs": {
+        "will": "will だと「彼女は来る」と確信。「かも」は might / may。",
+        "could": "could だと「来られるかも」と可能性の話。",
+        "should": "should だと「来るべき」で変。"
+      }
+    },
+    {
+      "id": "m-120",
+      "a": "may",
+      "ja": "お手伝いしましょうか？",
+      "cue": "店員・改まった場で",
+      "en": "May I help you?",
+      "why": "改まった場の May I。普段は Can I / Could I で十分。",
+      "deep": "「お手伝いしましょうか？」。本では May I 〜? を「ホテルの接客や年配の方が使うようなフォーマルな響き」と説明し、普段は Can I / Could I で十分、としている。店員の決まり文句は May I。",
+      "vs": {
+        "can": "can だと Can I help you? でも通じるが、店員の改まった決まり文句は May I。",
+        "could": "could だと Could I help you? で丁寧だが、接客の定型は May I。",
+        "will": "will だと「手伝う？」と自分の意思を聞く変な形。"
+      }
+    },
+    {
+      "id": "m-121",
+      "a": "may",
+      "also": [
+        "can",
+        "could"
+      ],
+      "ja": "その漫画、見せてもらえますか？",
+      "cue": "友達に超丁寧に",
+      "en": "Okay, may I see the comics?",
+      "why": "May I を友達に使うのが笑いどころ。普段は Can I。",
+      "deep": "ジョーイが親友のチャンドラーに「漫画見せてもらえます？」と超丁寧に言う笑いの場面。本では「友達に May I 〜? を使うのが笑いどころ」と説明している。普段は Can I。",
+      "vs": {
+        "will": "will だと「見る？」と自分の意思を聞く変な形。",
+        "should": "should だと「見るべき？」になる。",
+        "would": "would だと Would I see 〜? で意味が通らない。"
+      }
+    },
+    {
+      "id": "m-122",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "その答えにたぶんあなたは驚くよ。",
+      "cue": "前フリ",
+      "en": "The answer may surprise you.",
+      "why": "may = might。前フリに使う。",
+      "deep": "「その答えにたぶんあなたは驚くよ」。本では surprise（驚かせる）の動詞としての使い方と、may surprise you の前フリを紹介している。may = might で「かも」。",
+      "vs": {
+        "will": "will だと「絶対驚く」と確信して言い切る形。前フリの「かも」は may / might。",
+        "could": "could だと「驚くかもね」と可能性を置く形。",
+        "can": "can だと「驚くこともある」と一般論になる。"
+      }
+    },
+    {
+      "id": "m-123",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "ちょっと気まずいかも。",
+      "cue": "言いにくいことの前フリ",
+      "en": "This may be a little awkward.",
+      "why": "may be で「かも」。",
+      "deep": "「ちょっと気まずいかも」。言いにくいことの前フリ。本では awkward（気まずい）はドラマ頻出単語、と紹介している。may be で「かも」。might でも同じ。",
+      "vs": {
+        "will": "will だと「絶対気まずくなる」と確信。前フリの「かも」は may / might。",
+        "could": "could だと「気まずいかもね」と可能性を置く形。",
+        "can": "can だと「気まずくなることもある」と一般論。"
+      }
+    },
+    {
+      "id": "m-124",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "前にも言ったかもしれないけど……。",
+      "cue": "過去のことの「かも」",
+      "en": "I may have said those things before, but…",
+      "why": "may have = 過去の「かも」。might have と同じ。",
+      "deep": "「前にも言ったかもしれないけど……」。もう一度言っておきたい話の前フリ。本では may have を「過去のことを言う」形として挙げている。might have でも同じ。",
+      "vs": {
+        "would": "would have だと「言っていただろう」と帰結の妄想。記憶の「かも」は may have。",
+        "could": "could have だと「言えたのに」と可能性の話。",
+        "should": "should have だと「言うべきだった」と後悔になる。"
+      }
+    },
+    {
+      "id": "m-125",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "ほかの理由があるかもしれない。",
+      "cue": "意見を控えめに",
+      "en": "I think there may be another reason.",
+      "why": "I think と may で控えめに意見。",
+      "deep": "「ほかの理由があるかも」。本では I think と may で「自分の意見を控えめに言う」と説明している。I think there may be で「〜があるかもしれないと思う」。",
+      "vs": {
+        "will": "will だと「ほかの理由がある（確信）」と言い切る形。控えめな意見は may / might。",
+        "could": "could だと「あるかもね」と可能性を置く形。",
+        "can": "can だと「ありうる」と一般論。"
+      }
+    },
+    {
+      "id": "m-126",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "あなたはアルコール依存症かもしれない。",
+      "cue": "言いにくいことをやわらげる",
+      "en": "I think you may have a drinking problem.",
+      "why": "may で断定を避ける。",
+      "deep": "「あなたはアルコール依存症かもしれない」。言いにくいことを may でやわらげる。本では a drinking problem = アルコール依存の状態、と補足している。I think と may のセット。",
+      "vs": {
+        "will": "will だと「アルコール依存症になる」と未来の確信で意味が変わる。",
+        "could": "could だと「依存症かもね」と可能性を置く形。",
+        "can": "can だと「依存症でありうる」と一般論。"
+      }
+    },
+    {
+      "id": "m-127",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "今回は本当にやってしまったかもしれない。",
+      "cue": "過去の「かも」",
+      "en": "I think we may have really done it this time.",
+      "why": "may have = 過去の「かも」。",
+      "deep": "「今回は本当にやってしまったかも」。may have で過去の「かも」。本では「何ができたかは、ドラマをぜひ見てください」と補足している。might have でも同じ。",
+      "vs": {
+        "would": "would have だと「やっていただろう」と帰結の妄想。「かも」は may have。",
+        "could": "could have だと「やれたのに」と可能性の話。",
+        "should": "should have だと「やるべきだった」と後悔になる。"
+      }
+    },
+    {
+      "id": "m-128",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "彼を知ってるかもしれない。",
+      "cue": "現在の「かも」",
+      "en": "You may know him.",
+      "why": "現在の可能性は may know。",
+      "deep": "「彼を知ってるかも」。本では You may know him（現在）と You may have known him（過去）を並べて、過去形にするときは might ではなく may have + 過去分詞、と説明している。現在の「かも」は may know。",
+      "vs": {
+        "will": "will だと「彼を知ることになる」と未来の確信で意味が変わる。",
+        "could": "could だと「知りうる」と可能性の話。",
+        "can": "can だと「知ることができる」と能力の話。"
+      }
+    },
+    {
+      "id": "m-129",
+      "a": "may",
+      "also": [
+        "might"
+      ],
+      "ja": "彼をすでに知っていたかもしれない。",
+      "cue": "過去の「かも」",
+      "en": "You may have known him.",
+      "why": "過去は may have + 過去分詞。might ではない。",
+      "deep": "「彼をすでに知っていたかも」。本では「may の過去形は might ではなく、may have + 過去分詞」と説明している。ここが学校の教え方との違い。",
+      "vs": {
+        "would": "would have だと「知っていただろう」と帰結の妄想。「かも」は may have。",
+        "could": "could have だと「知ることができたのに」と可能性の話。",
+        "should": "should have だと「知っておくべきだった」と後悔になる。"
+      }
+    }
+  ],
+  "swap": {
+    "will": "will にすると「絶対そうなる・そうする」と確信して言い切る響きになる。",
+    "can": "can にすると「現実的にできる・ありうる」という冷静な事実の響きになる。",
+    "would": "would にすると「現実にはそうじゃないけど、もしそうなら」という妄想の世界の話になる。",
+    "could": "could にすると「〜もありかもね」と候補の一つをそっと置くだけの響きになる。",
+    "should": "should にすると「それがいい」と方向を指さす響きになる。",
+    "might": "might にすると「そうなるかもしれんな」と根拠の弱い空想になる。",
+    "may": "may にすると might と同じ「かも」。May I 〜? なら改まったお願いになる。"
+  }
 }
