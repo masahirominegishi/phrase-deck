@@ -528,6 +528,7 @@ function renderMuteBtn() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  document.body.classList.toggle('in-modal', id === 'modalView' || id === 'modalMapView');
 }
 function refreshTop() {
   // 徹底モード中は「このセッションの残り枚数」を出す（言えなければ増える）。
@@ -949,6 +950,7 @@ function renderHome() {
   renderVoiceUI();
   renderMineHome();
   renderReviewHome({ graduated: graduatedIds().length });
+  renderModalHome();
 
   const themes = {};
   for (const it of ITEMS) {
@@ -1555,7 +1557,7 @@ function startReview() {
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { drillMode = false; drillPackNo = 0; showView('homeView'); renderHome(); }
+function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1585,6 +1587,7 @@ function buildBackup() {
     stars: [...STARS],
     daily: daily,
     drill: drill,
+    modal: mstat,
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -1621,6 +1624,7 @@ function applyBackup(obj) {
   if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
   if (obj.daily && typeof obj.daily === 'object') { daily = obj.daily; saveDaily(); }
   if (obj.drill && typeof obj.drill === 'object') { drill = obj.drill; saveDrill(); }
+  if (obj.modal && typeof obj.modal === 'object') { mstat = obj.modal; if (!mstat.items) mstat.items = {}; if (!Array.isArray(mstat.sessions)) mstat.sessions = []; saveModalStat(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1653,12 +1657,349 @@ function handleRestoreFile(file) {
 }
 
 /* ---------- 初期化 ---------- */
+/* ---------- 助動詞の反射（場面 → 助動詞をタップ・反応時間を計る） ----------
+   本の読み方: 助動詞 = 頭の中の空想を語る言葉。
+   will=確信 / can=現実的に選べる / would=ありえない妄想 / could=やさしい提案 /
+   should=方向を示す / might・may=かもしれない。
+   データは data/modals.json。進捗は端末内 (MODAL_KEY)。ふだんの SRS や一覧には混ぜない。 */
+const MODAL_URL = 'data/modals.json';
+const MODAL_KEY = 'phrasedeck.modal.v1';
+const MODAL_ROUND = 20;          // 1回の問題数
+const MODAL_FAST_MS = 2000;      // これより速ければ ⚡
+const MODAL_REQUEUE_GAP = 3;     // 間違えた問題が再登場するまでの枚数
+const MODAL_AUTO_NEXT_MS = 1500; // 正解のとき次へ進むまで
+
+let MODALS = [];                 // 助動詞 7 つ（順番は本のランキング）
+let MITEMS = [];                 // 問題
+let MBY_ID = {};
+let mstat = { items: {}, sessions: [], active: null };  // 進捗
+let mqueue = [];                 // 今の回の残り
+let mcur = null;                 // 今の問題
+let mShownAt = 0;                // 表示した時刻 (performance.now)
+let mAnswered = false;
+let mRound = { n: 0, ok: 0, alt: 0, ng: 0, ms: [], log: [], streak: 0, best: 0 };
+let mAutoTimer = null;
+
+function loadModalStat() {
+  try { mstat = Object.assign({ items: {}, sessions: [], active: null }, JSON.parse(localStorage.getItem(MODAL_KEY)) || {}); }
+  catch { mstat = { items: {}, sessions: [], active: null }; }
+  if (!mstat.items) mstat.items = {};
+  if (!Array.isArray(mstat.sessions)) mstat.sessions = [];
+}
+function saveModalStat() { localStorage.setItem(MODAL_KEY, JSON.stringify(mstat)); }
+
+async function loadModals() {
+  let j = { modals: [], items: [] };
+  try {
+    const res = await fetch(MODAL_URL + '?_=' + Date.now());
+    j = await res.json();
+  } catch { /* オフラインなら SW のキャッシュから来る。来なければ空のまま */ }
+  MODALS = (j.modals || []).slice().sort((a, b) => a.rank - b.rank);
+  MITEMS = j.items || [];
+  MBY_ID = {};
+  for (const it of MITEMS) MBY_ID[it.id] = it;
+}
+
+function modalKeys() { return MODALS.map(m => m.key); }
+function modalOf(key) { return MODALS.find(m => m.key === key); }
+// 絞り込み（ホームのチップ）。null = 全部。
+function activeModalKeys() {
+  const a = mstat.active;
+  const all = modalKeys();
+  if (!Array.isArray(a) || !a.length) return all;
+  const set = new Set(a);
+  const r = all.filter(k => set.has(k));
+  return r.length >= 2 ? r : all;   // 1つだけだと答えが見えてしまうので最低2つ
+}
+function toggleModalKey(key) {
+  let a = Array.isArray(mstat.active) && mstat.active.length ? mstat.active.slice() : modalKeys();
+  if (a.includes(key)) {
+    if (a.length <= 2) { toast('2つ以上は残してください'); return; }
+    a = a.filter(k => k !== key);
+  } else a.push(key);
+  mstat.active = a.length === modalKeys().length ? null : a;
+  saveModalStat();
+  renderModalHome();
+}
+
+function mItemStat(id) { return mstat.items[id] || { n: 0, ok: 0, ng: 0, ms: 0 }; }
+// 苦手度: 間違いが多い・遅い・まだやっていない、の順に高い
+function mWeight(it) {
+  const s = mItemStat(it.id);
+  if (!s.n) return 3;
+  const acc = s.ok / s.n;
+  let w = 1 + (1 - acc) * 3;
+  if (s.ms > MODAL_FAST_MS) w += 1;
+  return w;
+}
+function buildModalQueue() {
+  const keys = new Set(activeModalKeys());
+  const pool = MITEMS.filter(it => keys.has(it.a));
+  // 重みつきで MODAL_ROUND 問を選ぶ（同じ問題は1回に1度）
+  const picked = [];
+  const rest = pool.slice();
+  while (picked.length < MODAL_ROUND && rest.length) {
+    const total = rest.reduce((a, it) => a + mWeight(it), 0);
+    let r = Math.random() * total;
+    let idx = 0;
+    for (; idx < rest.length; idx++) { r -= mWeight(rest[idx]); if (r <= 0) break; }
+    picked.push(rest.splice(Math.min(idx, rest.length - 1), 1)[0]);
+  }
+  // 同じ助動詞が3つ以上続かないよう軽くほぐす
+  for (let i = 2; i < picked.length; i++) {
+    if (picked[i].a === picked[i - 1].a && picked[i].a === picked[i - 2].a) {
+      const j = picked.findIndex((x, k) => k > i && x.a !== picked[i].a);
+      if (j > 0) [picked[i], picked[j]] = [picked[j], picked[i]];
+    }
+  }
+  return picked.map(it => it.id);
+}
+
+function startModal() {
+  if (!MITEMS.length) { toast('問題が読み込めていません。通信のある場所で開き直してください'); return; }
+  mRound = { n: 0, ok: 0, alt: 0, ng: 0, ms: [], log: [], streak: 0, best: 0 };
+  mqueue = buildModalQueue();
+  showView('modalView');
+  nextModal();
+}
+function quitModal() {
+  clearTimeout(mAutoTimer);
+  if (mRound.n) finishModalRound(true);
+  else goHome();
+}
+function nextModal() {
+  clearTimeout(mAutoTimer);
+  mAnswered = false;
+  const id = mqueue.shift();
+  if (!id) { finishModalRound(false); return; }
+  mcur = MBY_ID[id];
+  if (!mcur) { nextModal(); return; }
+  renderModalCard();
+}
+
+// 文の中の助動詞を ____ にする。a（本の推し）が文中に無ければ文末に添える。
+function modalBlankHtml(it, state) {
+  // I'll / I'd の縮約も穴にする
+  const pat = it.a === 'will' ? "\\bwill\\b|'ll" : it.a === 'would' ? "\\bwould\\b|'d\\b" : `\\b${it.a}\\b`;
+  const m = it.en.match(new RegExp(pat, 'i'));
+  if (!m) return esc(it.en);
+  const [before, after] = [it.en.slice(0, m.index), it.en.slice(m.index + m[0].length)];
+  let mid;
+  if (!state) mid = `<span class="blank">　</span>`;
+  else if (state.kind === 'ng') mid = `<span class="miss">${esc(state.tapped)}</span> <span class="hit">${esc(m[0])}</span>`;
+  else mid = `<span class="hit">${esc(m[0])}</span>`;
+  return esc(before) + mid + esc(after);
+}
+
+function renderModalCard() {
+  const it = mcur;
+  const area = document.getElementById('modalArea');
+  const done = mRound.n;
+  const total = done + 1 + mqueue.length;
+  area.innerHTML = `
+    <div class="mcard">
+      <div class="mtop">
+        <span>${done + 1} / ${total}</span>
+        <span class="streak">${mRound.streak >= 3 ? `🔥 ${mRound.streak} 連続` : ''}</span>
+      </div>
+      <div class="mcue">${esc(it.cue || '')}</div>
+      <div class="mja">${esc(it.ja)}</div>
+      <div class="men" id="mEn">${modalBlankHtml(it)}</div>
+      <div class="mfeed" id="mFeed"></div>
+      <div class="mgrid" id="mGrid">
+        ${MODALS.map(m => `<button data-key="${esc(m.key)}">${esc(m.key)}</button>`).join('')}
+      </div>
+      <button class="link-btn mquit" id="mQuitBtn">やめる（ここまでを記録）</button>
+    </div>`;
+  area.querySelectorAll('#mGrid button').forEach(b => { b.onclick = () => answerModal(b.dataset.key); });
+  document.getElementById('mQuitBtn').onclick = quitModal;
+  document.getElementById('dueCount').textContent = mqueue.length + 1;
+  mShownAt = performance.now();
+}
+
+function answerModal(key) {
+  if (mAnswered) return;
+  mAnswered = true;
+  const it = mcur;
+  const ms = Math.round(performance.now() - mShownAt);
+  const kind = key === it.a ? 'ok' : (Array.isArray(it.also) && it.also.includes(key) ? 'alt' : 'ng');
+  const correct = kind !== 'ng';
+
+  // 記録（端末内）。alt は正解扱い。
+  const s = mItemStat(it.id);
+  s.n += 1; if (correct) s.ok += 1; else s.ng += 1;
+  s.ms = s.ms ? Math.round(s.ms * 0.6 + ms * 0.4) : ms;   // 直近寄りの平均
+  s.last = todayISO();
+  mstat.items[it.id] = s;
+  saveModalStat();
+  recordStudy(Math.min(ms, CARD_TIME_CAP));
+
+  mRound.n += 1; mRound[kind] += 1; mRound.ms.push(ms);
+  mRound.log.push({ id: it.id, kind, ms, tapped: key });
+  if (correct) { mRound.streak += 1; mRound.best = Math.max(mRound.best, mRound.streak); }
+  else {
+    mRound.streak = 0;
+    // 間違えた問題は数枚後にもう一度
+    const at = Math.min(MODAL_REQUEUE_GAP, mqueue.length);
+    if (!mqueue.includes(it.id)) mqueue.splice(at, 0, it.id);
+  }
+
+  // ボタンの色
+  const grid = document.getElementById('mGrid');
+  grid.querySelectorAll('button').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.key === key) b.classList.add(kind);
+    if (b.dataset.key === it.a && kind !== 'ok') b.classList.add('answer');
+  });
+  document.getElementById('mEn').innerHTML = modalBlankHtml(it, { kind, tapped: key });
+  speak(it.en);
+
+  const sec = (ms / 1000).toFixed(1);
+  const timeCls = !correct ? 'wrong' : (ms <= MODAL_FAST_MS ? 'fast' : 'slow');
+  const timeTxt = !correct ? `✗ ${sec}秒` : (ms <= MODAL_FAST_MS ? `⚡ ${sec}秒` : `${sec}秒`);
+  const head = kind === 'ok' ? '' : kind === 'alt'
+    ? `<b>${esc(key)}</b> でも通じる。本の推しは <b>${esc(it.a)}</b>。`
+    : `<b>${esc(it.a)}</b> ─ ${esc(modalOf(it.a)?.title || '')}`;
+  document.getElementById('mFeed').innerHTML = `
+    <div class="mtime ${timeCls}">${timeTxt}</div>
+    <div class="mwhy">${head ? head + '<br>' : ''}${esc(it.why || '')}</div>
+    ${kind === 'ok' ? '' : `<button class="big-btn mnext" id="mNextBtn">次へ</button>`}`;
+  const nb = document.getElementById('mNextBtn');
+  if (nb) nb.onclick = nextModal;
+  if (kind === 'ok') {
+    mAutoTimer = setTimeout(nextModal, MODAL_AUTO_NEXT_MS);
+    // 待たずに進みたければ画面のどこかをタップ
+    // （今のタップがそのまま .mcard まで上がってくるので、登録は次のティックで）
+    const card = document.querySelector('#modalArea .mcard');
+    setTimeout(() => card.addEventListener('click', e => {
+      if (e.target.closest('#mQuitBtn')) return;
+      clearTimeout(mAutoTimer); nextModal();
+    }, { once: true }), 0);
+  }
+}
+
+function finishModalRound(quit) {
+  clearTimeout(mAutoTimer);
+  mcur = null;
+  const r = mRound;
+  const n = r.n;
+  const okAll = r.ok + r.alt;
+  const avg = n ? Math.round(r.ms.reduce((a, b) => a + b, 0) / n) : 0;
+  const fast = r.log.filter(l => l.kind !== 'ng' && l.ms <= MODAL_FAST_MS).length;
+  if (n) {
+    mstat.sessions.push({ day: todayISO(), n, ok: okAll, avg, fast });
+    if (mstat.sessions.length > 60) mstat.sessions = mstat.sessions.slice(-60);
+    saveModalStat();
+  }
+  // 間違えた・遅かったものを並べる（同じ問題は1回だけ）
+  const seen = new Set();
+  const weak = r.log.filter(l => (l.kind === 'ng' || l.ms > MODAL_FAST_MS) && !seen.has(l.id) && seen.add(l.id));
+  const area = document.getElementById('modalArea');
+  area.innerHTML = `
+    <div class="mresult">
+      <div class="empty" style="padding:30px 20px 10px">
+        <div class="big">${quit ? '🏁' : (okAll === n && fast === n ? '⚡' : '🎉')}</div>
+        <div>${quit ? 'ここまでを記録しました' : `${MODAL_ROUND} 問おわり${n > MODAL_ROUND ? `（やり直し ${n - MODAL_ROUND} 問を含む）` : ''}`}</div>
+      </div>
+      <div class="stats-summary">
+        <div class="ss-item"><div class="ss-num">${n ? Math.round(okAll / n * 100) : 0}%</div><div class="ss-lab">正解</div></div>
+        <div class="ss-item"><div class="ss-num">${(avg / 1000).toFixed(1)}秒</div><div class="ss-lab">平均の反応</div></div>
+        <div class="ss-item"><div class="ss-num">${fast}</div><div class="ss-lab">2秒以内</div></div>
+      </div>
+      ${r.best >= 5 ? `<p class="hint" style="text-align:center">最長 ${r.best} 連続で正解</p>` : ''}
+      ${weak.length ? `<h3>間違えた・遅かった ${weak.length} 問</h3>` + weak.map(l => {
+        const it = MBY_ID[l.id];
+        return `<div class="mrow">
+          <div class="en">${modalBlankHtml(it, { kind: 'ok' }).replace(/class="hit"/g, '')}</div>
+          <div class="meta">${esc(it.ja)} ─ ${l.kind === 'ng' ? `${esc(l.tapped)} を押した` : `${(l.ms / 1000).toFixed(1)}秒`}</div>
+        </div>`; }).join('') : (n ? '<p class="hint" style="text-align:center">全部、2秒以内に正解でした。</p>' : '')}
+      <button class="big-btn" style="margin-top:24px" id="mAgainBtn">もう ${MODAL_ROUND} 問</button>
+      <button class="big-btn secondary" id="mHomeBtn">ホームへ</button>
+    </div>`;
+  document.getElementById('mAgainBtn').onclick = startModal;
+  document.getElementById('mHomeBtn').onclick = goHome;
+  document.getElementById('dueCount').textContent = '–';
+}
+
+// ホームの箱: 直近の成績・絞り込みのチップ・苦手な助動詞
+function renderModalHome() {
+  const box = document.getElementById('modalBox');
+  if (!box) return;
+  const cnt = document.getElementById('modalCount');
+  const ss = mstat.sessions.slice(-5);
+  if (ss.length) {
+    const n = ss.reduce((a, s) => a + s.n, 0);
+    const ok = ss.reduce((a, s) => a + s.ok, 0);
+    const avg = Math.round(ss.reduce((a, s) => a + s.avg * s.n, 0) / n);
+    cnt.textContent = `直近 ${Math.round(ok / n * 100)}% ・ ${(avg / 1000).toFixed(1)}秒`;
+  } else cnt.textContent = `${MITEMS.length} 問`;
+
+  const act = new Set(activeModalKeys());
+  document.getElementById('modalChips').innerHTML = MODALS.map(m =>
+    `<button class="chip${act.has(m.key) ? ' on' : ''}" data-key="${esc(m.key)}">${esc(m.key)}</button>`).join('');
+  document.querySelectorAll('#modalChips .chip').forEach(b => { b.onclick = () => toggleModalKey(b.dataset.key); });
+  const startBtn = document.getElementById('startModalBtn');
+  startBtn.textContent = act.size === MODALS.length ? `${MODAL_ROUND}問やる` : `${MODAL_ROUND}問やる（${[...act].join(' / ')}）`;
+  startBtn.disabled = !MITEMS.length;
+
+  // 助動詞ごとの正解率（やったことがあるものだけ）
+  const per = {};
+  for (const it of MITEMS) {
+    const s = mstat.items[it.id];
+    if (!s || !s.n) continue;
+    per[it.a] = per[it.a] || { n: 0, ok: 0 };
+    per[it.a].n += s.n; per[it.a].ok += s.ok;
+  }
+  const rows = MODALS.filter(m => per[m.key]).map(m => {
+    const p = per[m.key]; const acc = Math.round(p.ok / p.n * 100);
+    return { key: m.key, acc, n: p.n };
+  });
+  const weakZone = document.getElementById('modalWeak');
+  if (!rows.length) { weakZone.innerHTML = ''; return; }
+  const worst = rows.slice().sort((a, b) => a.acc - b.acc)[0];
+  weakZone.innerHTML = `<div class="modal-weak">${rows.map(r =>
+    `<b>${esc(r.key)}</b> ${r.acc}%`).join('　')}
+    ${rows.length >= 3 && worst.acc < 80 ? `<br><span class="rec">苦手は ${esc(worst.key)}。上のチップでその助動詞と、まぎらわしい相手だけに絞ると効きます。</span>` : ''}</div>`;
+}
+
+// 本の感覚を一枚に。例文は問題から1つ拾って読み上げできるように。
+function goModalMap() {
+  showView('modalMapView');
+  const area = document.getElementById('modalMapArea');
+  const groups = [
+    ['実現', '確信して、未来を描く'],
+    ['可能性', 'どれくらい「ありうる」か'],
+    ['方向性', '選択肢の中から「これ」'],
+    ['妄想', '現実ではない世界の話'],
+  ];
+  area.innerHTML = groups.map(([g, gl]) => {
+    const ms = MODALS.filter(m => m.group === g);
+    if (!ms.length) return '';
+    return `<div class="mmap-group">${esc(g)} ─ ${esc(gl)}</div>` + ms.map(m => {
+      const exs = MITEMS.filter(it => it.a === m.key).slice(0, 3);
+      return `<div class="mmap g-${esc(m.group)}">
+        <div class="mm-head"><span class="mm-key">${esc(m.key)}</span><span class="mm-rank">本の ${m.rank} 位</span></div>
+        <div class="mm-title">${esc(m.title)}</div>
+        <div class="mm-feel">${esc(m.feel)}</div>
+        ${exs.map(it => `<div class="mm-ex"><button class="spk" data-en="${esc(it.en)}">🔊</button>${esc(it.en)}<span style="color:var(--muted)">　${esc(it.ja)}</span></div>`).join('')}
+        <div class="mm-top">よく出る: ${(m.top || []).join(' / ')}</div>
+      </div>`; }).join('');
+  }).join('') + `<button class="big-btn" style="margin-top:20px" id="mapStartBtn">${MODAL_ROUND}問やる</button>
+    <button class="big-btn secondary" id="mapHomeBtn">ホームへ</button>`;
+  area.querySelectorAll('.spk').forEach(b => { b.onclick = () => speak(b.dataset.en); });
+  document.getElementById('mapStartBtn').onclick = startModal;
+  document.getElementById('mapHomeBtn').onclick = goHome;
+  window.scrollTo(0, 0);
+}
+
 async function init() {
   loadSrs();
   loadStars();
   loadDaily();
   loadDrill();
+  loadModalStat();
   await loadData();
+  await loadModals();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
     b.onclick = () => {
@@ -1681,6 +2022,8 @@ async function init() {
     b.onclick = () => { statsDays = Number(b.dataset.days); renderStats(); };
   });
   document.getElementById('goRegisterBtn').onclick = goRegister;
+  document.getElementById('startModalBtn').onclick = startModal;
+  document.getElementById('goModalMapBtn').onclick = goModalMap;
 
   document.querySelectorAll('#listModeSwitch button').forEach(b => {
     b.onclick = () => { listMode = b.dataset.listmode; listPage = 0; renderList(); window.scrollTo(0, 0); };

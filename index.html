@@ -59,6 +59,18 @@
         <button class="big-btn" id="startReviewBtn">復習する</button>
       </div>
 
+      <div id="modalBox" class="drill-box modal-box">
+        <div class="drill-head">
+          <span class="drill-title">助動詞の反射</span>
+          <span class="drill-count" id="modalCount"></span>
+        </div>
+        <p class="hint" id="modalHint">場面を見て、will / can / would / could / should / might / may を考えずにタップ。2秒以内が目標。</p>
+        <div class="modal-chips" id="modalChips"></div>
+        <button class="big-btn" id="startModalBtn">20問やる</button>
+        <button class="big-btn secondary" id="goModalMapBtn">🗺 助動詞の地図（本の感覚）</button>
+        <div id="modalWeak"></div>
+      </div>
+
       <h2>ふだんの復習</h2>
       <button class="big-btn secondary" id="startTodayBtn">今日の復習をはじめる</button>
       <button class="big-btn secondary" id="goListBtn">📋 一覧で見る</button>
@@ -150,6 +162,18 @@ It's been a while | I had to go to court | The AI system is working well"></text
         <button data-listmode="star">★だけ</button>
       </div>
       <div id="listArea"></div>
+    </section>
+
+    <!-- 助動詞の反射 -->
+    <section id="modalView" class="view">
+      <div id="modalArea"></div>
+    </section>
+
+    <!-- 助動詞の地図 -->
+    <section id="modalMapView" class="view">
+      <h1>助動詞の地図</h1>
+      <p class="sub">助動詞は「頭の中の空想」を語る言葉。どの方向に、どれくらいの確信で空想しているかで選ぶ。</p>
+      <div id="modalMapArea"></div>
     </section>
 
     <!-- Stats view -->

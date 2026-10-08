@@ -355,3 +355,79 @@ h2 { font-size: 16px; color: var(--muted); margin: 26px 0 10px; }
 }
 .mine-group:first-child { margin-top: 14px; }
 .mine-group .meta { color: var(--good); }
+
+/* ---------- 助動詞の反射 ---------- */
+.modal-box .hint { margin-bottom: 12px; }
+.modal-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.modal-chips .chip {
+  border: 1px solid var(--panel2); background: var(--bg); color: var(--muted);
+  border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600;
+}
+.modal-chips .chip.on { background: var(--panel2); color: var(--text); border-color: var(--accent); }
+.modal-box .big-btn.secondary { margin-top: 10px; }
+.modal-weak { margin-top: 14px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+.modal-weak b { color: var(--text); }
+.modal-weak .rec { color: var(--good); }
+
+/* 1問の画面 */
+.mcard { display: flex; flex-direction: column; min-height: calc(100vh - 150px); }
+.mcard .mtop { display: flex; justify-content: space-between; align-items: baseline; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.mcard .mtop .streak { color: var(--hard); font-weight: 700; }
+.mcard .mcue { font-size: 13px; color: var(--accent); font-weight: 600; }
+.mcard .mja { font-size: 24px; font-weight: 700; line-height: 1.4; margin: 6px 0 12px; }
+.mcard .men { font-size: 17px; color: var(--muted); line-height: 1.5; min-height: 2.6em; }
+.mcard .men .blank {
+  display: inline-block; min-width: 4.5em; border-bottom: 2px solid var(--accent);
+  text-align: center; color: var(--accent); font-weight: 700;
+}
+.mcard .men .hit { color: var(--good); font-weight: 700; }
+.mcard .men .miss { color: var(--again); font-weight: 700; text-decoration: line-through; }
+.mgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: auto; }
+.mgrid button {
+  border: none; border-radius: 12px; padding: 18px 2px; font-size: 16px; font-weight: 700;
+  background: var(--panel); color: var(--text);
+}
+.mgrid button:nth-child(5) { grid-column: 1 / 2; }
+.mgrid button.ok { background: var(--good); color: #0b1220; }
+.mgrid button.alt { background: var(--hard); color: #0b1220; }
+.mgrid button.ng { background: var(--again); color: #0b1220; }
+.mgrid button.answer { outline: 3px solid var(--good); outline-offset: -3px; }
+.mgrid button:disabled { opacity: .55; }
+.mgrid button.ok:disabled, .mgrid button.alt:disabled, .mgrid button.ng:disabled, .mgrid button.answer:disabled { opacity: 1; }
+.mfeed { margin-top: 14px; min-height: 92px; }
+.mfeed .mtime { font-size: 22px; font-weight: 700; }
+.mfeed .mtime.fast { color: var(--good); }
+.mfeed .mtime.slow { color: var(--hard); }
+.mfeed .mtime.wrong { color: var(--again); }
+.mfeed .mwhy { font-size: 14px; line-height: 1.6; margin-top: 6px; }
+.mfeed .mwhy b { color: var(--accent); }
+.mfeed .mnext { width: 100%; margin-top: 12px; }
+.mquit { margin-top: 18px; }
+
+/* 結果 */
+.mresult .stats-summary { margin-top: 16px; }
+.mresult h3 { font-size: 14px; color: var(--muted); margin: 22px 0 8px; font-weight: 600; }
+.mrow { background: var(--panel); border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; font-size: 14px; }
+.mrow .en { font-weight: 600; }
+.mrow .en b { color: var(--good); }
+.mrow .meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+/* 地図 */
+.mmap-group { margin: 18px 0 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.mmap {
+  background: var(--panel); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+  border-left: 4px solid var(--accent);
+}
+.mmap .mm-head { display: flex; align-items: baseline; gap: 10px; }
+.mmap .mm-key { font-size: 24px; font-weight: 800; }
+.mmap .mm-rank { font-size: 12px; color: var(--muted); }
+.mmap .mm-title { font-size: 15px; font-weight: 700; margin-top: 4px; }
+.mmap .mm-feel { font-size: 14px; color: var(--muted); line-height: 1.7; margin-top: 6px; }
+.mmap .mm-top { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+.mmap .mm-ex { margin-top: 8px; font-size: 14px; line-height: 1.6; }
+.mmap .mm-ex .spk { background: none; border: none; color: var(--accent); font-size: 16px; padding: 0 6px 0 0; }
+.mmap.g-実現 { border-left-color: var(--good); }
+.mmap.g-妄想 { border-left-color: #c084fc; }
+.mmap.g-方向性 { border-left-color: var(--hard); }
+.mmap.g-可能性 { border-left-color: var(--accent); }
+body.in-modal #modeSwitch { display: none; }
