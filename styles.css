@@ -450,3 +450,7 @@ body.in-modal #modeSwitch { display: none; }
 .mx-feel { margin-top: 8px; color: var(--muted); line-height: 1.7; font-size: 13px; border-left: 3px solid var(--panel2); padding-left: 10px; }
 .mrow .deep { color: var(--muted); font-size: 13px; line-height: 1.7; margin-top: 6px; }
 .mrow .deep b { color: var(--again); }
+.mx-others { margin-top: 12px; border-top: 1px solid var(--panel2); padding-top: 10px; }
+.mx-others-h { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.mx-other { font-size: 14px; line-height: 1.7; color: var(--text); margin-top: 4px; }
+.mx-other b { color: var(--hard); margin-right: 4px; }

@@ -1896,7 +1896,13 @@ function modalExplainHtml(it, kind, tapped) {
   }
   if (it.why) parts.push(`<div class="mx-why">${esc(it.why)}</div>`);
   if (it.deep) parts.push(`<div class="mx-deep">${esc(it.deep)}</div>`);
-  if (kind !== 'ng' && m.feel) parts.push(`<div class="mx-feel">${esc(m.feel)}</div>`);
+  if (m.feel) parts.push(`<div class="mx-feel">${esc(m.feel)}</div>`);
+  // 正解でも、取り違えやすい相手だとどう聞こえるかを全部出す（間違えたときは上に出した分を除く）
+  const others = Object.entries(it.vs || {}).filter(([k]) => k !== it.a && !(kind === 'ng' && k === tapped));
+  if (others.length) {
+    parts.push(`<div class="mx-others"><div class="mx-others-h">ほかの助動詞だと</div>${others.map(([k, v]) =>
+      `<div class="mx-other"><b>${esc(k)}</b> ${esc(v.replace(new RegExp(`^${k}\\s*(だと|にすると)\\s*`), ''))}</div>`).join('')}</div>`);
+  }
   return `<div class="mwhy">${parts.join('')}</div>`;
 }
 
