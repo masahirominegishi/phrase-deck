@@ -45,7 +45,7 @@
       "group": "妄想",
       "rank": 3,
       "title": "本当はこうだった、パラレルワールドを妄想する",
-      "feel": "ありえない仮定の中の自分。「鳥だったら」「私があなただったら」。現実ではないから丁寧な響きにもなる。",
+      "feel": "「そっちを選んでたら…」と、本当はこうだったかもしれない現実を妄想する。「俺なら（私があなただったら）」もここ。鳥になる話ではない。現実ではないから丁寧な響きにもなる。",
       "top": [
         "would be",
         "would you",
@@ -139,15 +139,15 @@
     {
       "id": "m-001",
       "a": "will",
-      "ja": "あなたが帰るまで、ここにいるからね。",
-      "cue": "相手に向けた約束",
-      "en": "I'll stay here until you come home.",
-      "why": "相手の目を見て「〜するからね」と言う約束は will。",
-      "deep": "本 (p.150) の例文。I will には「〜してくるからね」という相手に向けた約束のニュアンスが出る。同じ見開きで「トイレ行ってくる」が will にフィットしないと説明されるのはこのため。トイレは自分の意志を言うだけなので be going to。相手に向けて「ここにいるからね」と言い切るときは will。",
+      "ja": "明日は雨になると思う。",
+      "cue": "根拠が弱いので I think でやわらげる",
+      "en": "I think it will rain tomorrow.",
+      "why": "確信の芯は will。根拠が弱いときは I think をつけてやわらげる。",
+      "deep": "本 (p.148) の例文。It will rain tomorrow は「あなたが確信している」。天気予報のような根拠がないときは、I think it will rain tomorrow のように【I think ＋助動詞を含む文】にして確信をやわらげる。ドラマで何百回も使われる鉄板の形。",
       "vs": {
-        "can": "can だと「ここにいられる（可能・許可）」で、相手への約束ではなく状況の話になる。",
-        "should": "should だと「いたほうがいい」と自分に勧める形。相手に向けた約束にならない。",
-        "would": "would だと「（もし〜なら）いるんだけど」と、いない前提の妄想になる。"
+        "might": "might だと「雨かもしれんな」と根拠の弱い空想。will の確信が消える。",
+        "can": "can だと「雨が降ることもありうる」と一般論の事実になる。",
+        "would": "would だと「（もし〜なら）雨が降るのに」と、降らない前提の妄想になる。"
       }
     },
     {
@@ -529,8 +529,8 @@
       "ja": "もし鳥だったら、あなたの元に飛んでいく。",
       "cue": "ありえない仮定",
       "en": "If I were a bird, I would fly to you.",
-      "why": "鳥になることはない。ありえない仮定を語る would。",
-      "deep": "「もし鳥だったら」は絶対にありえない。本では「普通にありえない現実を言うのが would」と説明し、学校で習う「仮定法」の正体はこれ、としている。If I were a bird の were と would はセット。",
+      "why": "ありえない仮定は would。ただし本では、こんなファンタジーは日常でまず言わない、と断っている。",
+      "deep": "学校で習う would の例。本では「鳥人みたいなありえない現実ではなく、普通にありえたはずの現実を言うのが would の本当の使い方」と説明し、「もしも鳥だったら」のようなセリフは日常会話でまず言わない、としている。If I were a bird の were と would はセット。",
       "vs": {
         "will": "will だと「鳥だったら飛んでいく（確信）」で、ありえないことを確信して言う変な形になる。",
         "could": "could だと「飛んでいけるかも」と能力・可能性の話。妄想の「〜するのに」は would。",
@@ -750,11 +750,11 @@
     {
       "id": "m-056",
       "a": "would",
-      "ja": "私なら、それを毎日はくね。",
+      "ja": "僕ならそれを毎日はくね。",
       "cue": "私があなただったら",
-      "en": "I would wear it every day.",
+      "en": "I would wear them every day.",
       "why": "「私なら」は would。",
-      "deep": "「私なら、それを毎日はくね」。本の英作文（p.159）の回答例。「私があなただったら」の would。現実には自分は履いていない。",
+      "deep": "本の英作文 (p.157) の回答例 (p.158)。「私があなただったら」の would。現実には自分は履いていない。",
       "vs": {
         "will": "will だと「私は毎日はく」と自分の宣言になる。",
         "should": "should だと「毎日はくべき」と相手に方向を指す。",
@@ -806,15 +806,15 @@
     {
       "id": "m-063",
       "a": "could",
-      "ja": "（何時に終わる？に）遅くなるかもね。",
+      "ja": "（何時に仕事終わる？に）遅くなるに違いない。",
       "cue": "ありうる未来をやんわり",
       "en": "It could be really late.",
-      "why": "could be = ありうる可能性をやさしく置く。",
+      "why": "could be で「ありうる」を主観で言う。本の訳は「遅くなるに違いない」。",
       "also": [
         "might",
         "may"
       ],
-      "deep": "「何時に終わる？」に「遅くなるかもね」。could be は「ありうる可能性」をやさしく置く。本では It could be really late を「何時に仕事終わる？への答え方」として挙げている。might / may でも「かも」で通じる。",
+      "deep": "「何時に仕事終わる？」への答え方として本が挙げる例。訳は「遅くなるに違いない」で、could be は弱い「かも」ではなく「私はそう思う」という主観を is の代わりに置く形。might / may でも「かも」で通じる。",
       "vs": {
         "will": "will だと「絶対遅くなる」と確信して言い切る形。",
         "can": "can だと「遅くなることもありうる」と一般論の事実。",
@@ -883,9 +883,9 @@
     {
       "id": "m-068",
       "a": "could",
-      "ja": "一緒に行けたらいいんだけど（行けない）。",
+      "ja": "一緒に行けたらいいんだけど、退屈そうな仕事に戻らなくちゃ。",
       "cue": "やんわり断る",
-      "en": "I wish I could join you guys, but I got to get back to work.",
+      "en": "I wish I could join you guys, but I got to get back to apparently boring job.",
       "why": "I wish I could で「行けたらいいんだけど」。but を続けると自然。",
       "deep": "「一緒に行けたらいいんだけど」。本では I wish I could を「やんわり断るフレーズ」として挙げ、but 〜 と後ろに理由を続けると自然、と説明している。現実には行けない。",
       "vs": {
@@ -939,15 +939,15 @@
     {
       "id": "m-072",
       "a": "could",
-      "ja": "これは難しいかも。",
+      "ja": "難しいやろ（難しいかも）。",
       "cue": "言い切らず意見を言う",
-      "en": "This could be difficult.",
+      "en": "It could be difficult.",
       "why": "難しいと言い切るより、could be で可能性として。",
       "also": [
         "might",
         "may"
       ],
-      "deep": "「これは難しいかも」。本では This is difficult と言い切らずに This could be difficult と言う方が使える、と説明している。意見を言うときの could be。might / may でも通じる。",
+      "deep": "本 (p.161) の例。It is difficult と言い切らずに It could be difficult と言う方が使える。be 動詞を could be / would be / might be に変えて、より主観的に言う。might / may でも通じる。",
       "vs": {
         "will": "will だと「絶対難しくなる」と確信して言い切る形。",
         "can": "can だと「難しいこともありうる」と一般論。「私はそう思う」の主観は could be。",
@@ -1368,18 +1368,16 @@
     {
       "id": "m-111",
       "a": "might",
-      "also": [
-        "may"
-      ],
-      "ja": "（たぶん）彼女来るかも、と今思う。",
-      "cue": "現在の空想",
-      "en": "I think you might come.",
-      "why": "I think（現在形）と might。may も同じ。",
-      "deep": "「たぶん彼女来るかも、と今思う」。本では I think（現在形）とセットなら might でも may でも同じ、I thought（過去形）なら might と時制を合わせる、と説明している。現在の空想。",
+      "also": [],
+      "ja": "（たぶん）来るかもって思った。",
+      "cue": "I thought（過去形）に合わせる",
+      "en": "I thought you might come.",
+      "why": "I thought（過去形）なら might。I think（現在形）なら may。時制の一致。",
+      "deep": "本 (p.168) の例。I think you may come（たぶん来るかもって思う）と I thought you might come（たぶん来るかもって思った）。最初の動詞の時制に合わせる「時制の一致」で may と might を使い分ける。ただし、どちらも「来るかも」という未来のことを考えている。might が意味するのは過去ではなく未来。",
       "vs": {
-        "will": "will だと「彼女は来る」と確信。「かも」は might / may。",
-        "could": "could だと「来られるかも」と可能性の話。",
-        "should": "should だと「来るべき」で変。"
+        "may": "may だと I think（現在形）とセット。I thought（過去形）には might を合わせる。意味は同じ「来るかも」。",
+        "will": "will だと「来る」と確信。「かも」は might / may。",
+        "would": "would だと「（もし〜なら）来るのに」と、来ない前提の妄想になる。"
       }
     },
     {
@@ -1548,6 +1546,21 @@
         "would": "would have だと「知っていただろう」と帰結の妄想。「かも」は may have。",
         "could": "could have だと「知ることができたのに」と可能性の話。",
         "should": "should have だと「知っておくべきだった」と後悔になる。"
+      }
+    },
+    {
+      "id": "m-130",
+      "a": "may",
+      "also": [],
+      "ja": "（たぶん）来るかもって思う。",
+      "cue": "I think（現在形）に合わせる",
+      "en": "I think you may come.",
+      "why": "I think（現在形）なら may。I thought（過去形）なら might。時制の一致。",
+      "deep": "本 (p.168) の例。I think you may come（たぶん来るかもって思う）。I thought（過去形）なら I thought you might come。may と might は意味が全く同じで、最初の動詞の時制に合わせて使い分けるだけ。どちらも「来るかも」という未来のこと。",
+      "vs": {
+        "might": "might だと I thought（過去形）とセット。I think（現在形）には may。意味は同じ「来るかも」。",
+        "will": "will だと「来る」と確信。「かも」は may / might。",
+        "would": "would だと「（もし〜なら）来るのに」と、来ない前提の妄想になる。"
       }
     }
   ],
