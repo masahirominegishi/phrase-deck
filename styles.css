@@ -463,18 +463,6 @@ body.in-modal #modeSwitch { display: none; }
 .tb-bar-row .meta { color: var(--good); text-align: right; }
 #tbBars { margin: 6px 0 10px; }
 
-/* カード上の「相手のひとつ前のセリフ」 */
-.tb-cue { margin: 8px 0 4px; }
-.tb-prev {
-  display: flex; align-items: flex-start; gap: 8px; font-size: 15px; line-height: 1.5;
-  background: var(--bg); border-radius: 12px; padding: 10px 12px;
-}
-.tb-prev .spk { flex: none; }
-.tb-prev .who, .tb-line .who, .tb-sline .who {
-  display: block; font-size: 11px; color: var(--muted); font-weight: 700;
-}
-.tb-you { font-size: 12px; color: var(--accent); margin-top: 8px; }
-
 /* レッスン一覧 */
 #tbArea h2 .tb-h-meta { font-size: 13px; color: var(--good); font-weight: 600; margin-left: 8px; }
 .tb-slot {
@@ -504,17 +492,30 @@ body.in-modal #modeSwitch { display: none; }
 .tb-missed .mrow .en { font-size: 16px; }
 .tb-missed .mrow .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-/* 役になりきる */
-.tb-role { min-height: 70vh; padding-bottom: 40px; }
-.tb-role-head { font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; }
-.tb-scene { font-size: 13px; color: var(--muted); margin: 6px 0 14px; }
-.tb-log { display: flex; flex-direction: column; gap: 8px; }
-.tb-line {
-  max-width: 88%; align-self: flex-start; background: var(--panel); border-radius: 14px;
-  padding: 10px 12px; font-size: 15px; line-height: 1.5; opacity: .55;
+/* 3 ステップ */
+.tb-sline .who { display: block; font-size: 11px; color: var(--muted); font-weight: 700; }
+.tb-box .big-btn.secondary { margin-top: 10px; }
+.tb-steps { display: flex; gap: 6px; margin: 8px 0 12px; font-size: 12px; }
+.tb-steps span { flex: 1; text-align: center; padding: 6px 0; border-radius: 999px; background: var(--panel); color: var(--muted); }
+.tb-steps span.on { background: var(--accent); color: #0b1220; font-weight: 700; }
+.tb-steps span.done { color: var(--good); }
+.tb-essence {
+  background: var(--panel); border-left: 4px solid var(--good); border-radius: 12px;
+  padding: 12px 14px; margin: 10px 0 12px; font-size: 15px; line-height: 1.6;
 }
-.tb-line.me { align-self: flex-end; background: #0c4a6e; }
-.tb-line.now { opacity: 1; font-size: 18px; }
-.tb-line.ask { border: 2px dashed var(--accent); }
-.tb-role .tap-hint { text-align: center; margin-top: 14px; }
-.tb-role .link-btn { display: block; margin: 30px auto 0; }
+.tb-essence-h { font-size: 12px; color: var(--good); font-weight: 700; margin-bottom: 4px; }
+.tb-pt { color: var(--hard); }
+.tb-quiz .tb-steps { margin-top: 0; }
+.tb-grid { grid-template-columns: repeat(2, 1fr); }
+.tb-grid button { padding: 16px 6px; font-size: 16px; }
+.tb-result { font-size: 15px; margin: 4px 0 12px; }
+.tb-result b { color: var(--good); font-size: 18px; }
+.tb-recap .drill-title { margin-bottom: 6px; }
+.tb-recap-note { font-size: 14px; line-height: 1.6; color: var(--text); margin: 6px 0 4px; }
+.tb-recap-row { padding: 10px 0; border-top: 1px solid var(--panel2); }
+.tb-recap-label { font-size: 12px; color: var(--accent); font-weight: 700; }
+.tb-recap-en { font-size: 16px; line-height: 1.5; display: flex; gap: 8px; align-items: flex-start; }
+.tb-recap-en .spk { flex: none; }
+.tb-recap-ja { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.tb-h3 { font-size: 14px; color: var(--muted); margin: 22px 0 8px; font-weight: 600; }
+.tb-lesson .link-btn { display: block; margin: 16px auto 0; }
