@@ -2210,13 +2210,21 @@ function renderTbDialog() {
         <button class="big-btn secondary tb-ja-btn" id="tbJaBtn"></button>
       </div>
       <div class="tb-script${tbShowJa() ? '' : ' hide-ja'}" id="tbScript">${lines.map(ln => ln.en ? `
-        <div class="tb-sline"><button class="spk" data-en="${esc(ln.en)}">🔊</button>
+        <div class="tb-sline"><div class="tb-side"><button class="spk" data-en="${esc(ln.en)}">🔊</button>
+          <a class="tb-gpt" href="${esc(teacherUrl(ln.en))}" target="_blank" rel="noopener" data-en="${esc(ln.en)}">👨‍🏫</a></div>
           <div><span class="who">${esc(ln.who)}</span>${tbMark(ln.en, l.point_words)}<div class="ja">${esc(ln.ja)}</div></div></div>` : `
         <div class="tb-sline"><div><span class="who">${esc(ln.who)}</span><i>${esc(ln.ja || ln.action || '')}</i></div></div>`).join('')}</div>
       <button class="big-btn" style="margin-top:20px" id="tbNextBtn">読んだ → 4問へ</button>
       <button class="link-btn" id="tbQuitBtn">やめる</button>
     </div>`;
   area.querySelectorAll('.tb-script .spk').forEach(b => { b.onclick = () => speak(b.dataset.en); });
+  // 先生に質問する: ふだんのカードと同じく、英語をコピーしてから開く（iPhone では ?q= が効かないため）
+  area.querySelectorAll('.tb-gpt').forEach(a => {
+    a.onclick = () => {
+      const ok = copyTextSync(a.dataset.en || '');
+      toast(ok ? 'フレーズをコピーしました。先生に貼り付けて送ってね' : 'コピーできませんでした。手入力してね');
+    };
+  });
   document.getElementById('tbListenBtn').onclick = () => speakList(lines.filter(ln => ln.en).map(ln => ln.en));
   const jaBtn = document.getElementById('tbJaBtn');
   const paintJa = () => {
