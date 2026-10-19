@@ -454,3 +454,67 @@ body.in-modal #modeSwitch { display: none; }
 .mx-others-h { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
 .mx-other { font-size: 14px; line-height: 1.7; color: var(--text); margin-top: 4px; }
 .mx-other b { color: var(--hard); margin-right: 4px; }
+
+/* ---------- 教科書モード ---------- */
+.tb-box .big-btn { margin-top: 4px; }
+.tb-box .link-btn { margin-top: 10px; }
+.tb-bar-row { display: grid; grid-template-columns: 64px 1fr 44px; align-items: center; gap: 8px; font-size: 13px; }
+.tb-bar-row .bar { margin: 6px 0; }
+.tb-bar-row .meta { color: var(--good); text-align: right; }
+#tbBars { margin: 6px 0 10px; }
+
+/* カード上の「相手のひとつ前のセリフ」 */
+.tb-cue { margin: 8px 0 4px; }
+.tb-prev {
+  display: flex; align-items: flex-start; gap: 8px; font-size: 15px; line-height: 1.5;
+  background: var(--bg); border-radius: 12px; padding: 10px 12px;
+}
+.tb-prev .spk { flex: none; }
+.tb-prev .who, .tb-line .who, .tb-sline .who {
+  display: block; font-size: 11px; color: var(--muted); font-weight: 700;
+}
+.tb-you { font-size: 12px; color: var(--accent); margin-top: 8px; }
+
+/* レッスン一覧 */
+#tbArea h2 .tb-h-meta { font-size: 13px; color: var(--good); font-weight: 600; margin-left: 8px; }
+.tb-slot {
+  width: 100%; display: flex; justify-content: space-between; gap: 10px; text-align: left;
+  background: var(--panel); color: var(--text); border: 1px solid var(--panel2);
+  border-radius: 14px; padding: 14px; margin-top: 8px; font-size: 15px;
+}
+.tb-slot .meta { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.tb-slot.passed .meta { color: var(--good); }
+.tb-slot.cur { border-color: var(--accent); }
+.tb-slot:disabled { opacity: .45; }
+
+/* レッスン */
+.tb-topic { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.tb-lesson h1 { margin-bottom: 4px; }
+.tb-pass { color: var(--good); font-weight: 700; margin: 0 0 14px; }
+.tb-lesson .drill-box .big-btn.secondary { margin-top: 10px; }
+.tb-script { margin-top: 10px; }
+.tb-sline {
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 0;
+  border-top: 1px solid var(--panel2); font-size: 15px; line-height: 1.5;
+}
+.tb-sline .ja { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.tb-sline .spk { flex: none; }
+.tb-missed { padding: 0 4px; }
+.tb-missed .mrow { padding: 10px 0; border-top: 1px solid var(--panel2); }
+.tb-missed .mrow .en { font-size: 16px; }
+.tb-missed .mrow .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* 役になりきる */
+.tb-role { min-height: 70vh; padding-bottom: 40px; }
+.tb-role-head { font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.tb-scene { font-size: 13px; color: var(--muted); margin: 6px 0 14px; }
+.tb-log { display: flex; flex-direction: column; gap: 8px; }
+.tb-line {
+  max-width: 88%; align-self: flex-start; background: var(--panel); border-radius: 14px;
+  padding: 10px 12px; font-size: 15px; line-height: 1.5; opacity: .55;
+}
+.tb-line.me { align-self: flex-end; background: #0c4a6e; }
+.tb-line.now { opacity: 1; font-size: 18px; }
+.tb-line.ask { border: 2px dashed var(--accent); }
+.tb-role .tap-hint { text-align: center; margin-top: 14px; }
+.tb-role .link-btn { display: block; margin: 30px auto 0; }

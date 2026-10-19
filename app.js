@@ -54,7 +54,18 @@ const DRILL_REQUEUE_GAP = 3;           // 言えなかったカードが再登�
 function pickedDay(it) { return (it && it.picked) || ''; }
 function isPicked(it) { return !!pickedDay(it); }
 // 徹底モードの専任カード。ふだんの復習（SRS）には出さない。
-function isDrillItem(it) { return it.theme === CORE_THEME || isPicked(it); }
+function isDrillItem(it) { return it.theme === CORE_THEME || isPicked(it) || it.theme === TB_THEME; }
+
+/* ---------- 教科書モード（GABA の Snapshots） ----------
+   教科書の会話を 1 文ずつ（段1）→ 役になりきって通しで（段2）覚える。
+   教科書の文は公開リポジトリに置かず、iCloud Drive のファイルから端末に読み込む。
+   1 文ずつのカードは徹底モードと同じ「3日続けて言えたら卒業」で回す。 */
+const TB_THEME = '教科書';
+const TB_KEY = 'phrasedeck.textbook.v1';    // 読み込んだ教科書 { lessons: [] }
+const TB_PROG_KEY = 'phrasedeck.tbprog.v1'; // 段2 と復習回の記録 { roles: {lessonId: {who: 合格した時刻}}, tests: {slot: {best, passedAt}} }
+const TB_LEVELS = [3, 4];
+const TB_SLOTS_PER_LEVEL = 20;               // 10・20 は復習回（Review）
+const TB_TEST_PASS = 0.9;                    // 復習回のまとめテストの合格ライン
 function pickedItems() { return ITEMS.filter(isPicked); }
 
 const THEMES = [
@@ -173,7 +184,7 @@ function migrateSeedToDeck() {
 function rebuildItems() {
   const seen = new Set();
   ITEMS = [];
-  for (const it of SEED.concat(DECK)) {
+  for (const it of SEED.concat(DECK, tbItems())) {
     if (seen.has(it.id)) continue;
     seen.add(it.id);
     ITEMS.push(it);
@@ -271,6 +282,7 @@ function grade(item, g) {
 
 // 採点の入口。徹底モードとふつうの復習で採点の意味が違うので、ここで振り分ける。
 function gradeCurrent(g) {
+  if (drillMode === 'tbtest') return gradeTbTest(current, g === 'ok');
   if (drillMode) return gradeDrill(current, g === 'ok');
   grade(current, g);
 }
@@ -388,7 +400,7 @@ function gradeDrill(item, ok) {
   const st = drillState(item.id);
   const today = todayISO();
   const now = Date.now();
-  if (drillMode === 'review') {
+  if (drillMode === 'review' || drillMode === 'tbretry') {
     // 復習では卒業を取り消さない。取り消すとパックの完了判定が揺れてしまう。
     // 言えなければ、そのセッション中にもう一度出すだけ。
     if (ok) { st.reviewOk = (st.reviewOk || 0) + 1; }
@@ -504,8 +516,18 @@ function currentVoiceName() {
 function speak(text, rate) {
   if (muted) return;
   if (!('speechSynthesis' in window)) return;
-  if (!VOICES.length) refreshVoices();
   window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance(text, rate));
+}
+// 何文かを続けて読み上げる（会話を通しで聞く）。
+function speakList(texts, rate) {
+  if (muted) return;
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  for (const t of texts) window.speechSynthesis.speak(utterance(t, rate));
+}
+function utterance(text, rate) {
+  if (!VOICES.length) refreshVoices();
   const u = new SpeechSynthesisUtterance(text);
   const name = currentVoiceName();
   const v = VOICES.find(x => x.name === name);
@@ -513,7 +535,7 @@ function speak(text, rate) {
   u.rate = rate != null ? rate : speechRate;
   u.pitch = 1.0;
   u.volume = 1.0;
-  window.speechSynthesis.speak(u);
+  return u;
 }
 
 function renderMuteBtn() {
@@ -528,7 +550,7 @@ function renderMuteBtn() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.body.classList.toggle('in-modal', id === 'modalView' || id === 'modalMapView');
+  document.body.classList.toggle('in-modal', id === 'modalView' || id === 'modalMapView' || id === 'tbView');
 }
 function refreshTop() {
   // 徹底モード中は「このセッションの残り枚数」を出す（言えなければ増える）。
@@ -554,6 +576,8 @@ function nextCard() {
 function drillMeterHtml(id) {
   const st = drillState(id);
   if (drillMode === 'review') return `<div class="drill-meter done">復習 ─ 卒業した文</div>`;
+  if (drillMode === 'tbtest') return `<div class="drill-meter done">まとめテスト ─ ${tbTest.ok + tbTest.ng + 1} / ${tbTest.total}</div>`;
+  if (drillMode === 'tbretry') return `<div class="drill-meter done">テストで言えなかった文</div>`;
   const dots = Array.from({ length: DRILL_GOAL }, (_, i) =>
     `<span class="dot${i < st.streak ? ' on' : ''}"></span>`).join('');
   return `<div class="drill-meter">${dots}<span class="drill-meter-label">連続 ${st.streak}/${DRILL_GOAL} 日</span></div>`;
@@ -565,7 +589,8 @@ function renderCard() {
   const area = document.getElementById('cardArea');
   const diffStars = '★'.repeat(it.difficulty || 1) + '☆'.repeat(3 - (it.difficulty || 1));
   // 徹底モードのときは、テーマ名よりパック名のほうが今やっていることが分かる。
-  const tag = drillMode && isPicked(it) ? `${shortDay(pickedDay(it))} に選んだ`
+  const tag = it.tb ? tbLessonLabel(it.tb.lesson)
+    : drillMode && isPicked(it) ? `${shortDay(pickedDay(it))} に選んだ`
     : drillMode && it.theme === CORE_THEME ? (it.pack_title || it.theme) : it.theme;
   area.innerHTML = `
     <div class="card">
@@ -575,11 +600,13 @@ function renderCard() {
       </div>
       ${drillMode ? drillMeterHtml(it.id) : `<div class="difficulty">難易度 ${diffStars}</div>`}
       <div class="situation">${esc(it.situation_ja)}</div>
+      ${it.tb ? tbCueHtml(it) : ''}
       <div class="prompt-ja">${esc(it.ja)}</div>
       <div id="answerZone"></div>
     </div>`;
   const star = area.querySelector('.card-star');
   if (star) wireStarBtn(star);
+  if (it.tb) wireTbCue(area, it);
   renderAnswerZone();
 }
 
@@ -734,8 +761,8 @@ function gradeRowHtml() {
   if (drillMode) {
     return `
       <div class="grade-row drill">
-        <button class="again" data-g="ng">言えなかった<small>今すぐまた出る</small></button>
-        <button class="good" data-g="ok">言えた<small>${drillMode === 'review' ? '次へ' : '連続日数 +1'}</small></button>
+        <button class="again" data-g="ng">言えなかった<small>${drillMode === 'tbtest' ? 'あとで一覧に出る' : '今すぐまた出る'}</small></button>
+        <button class="good" data-g="ok">言えた<small>${['review', 'tbtest', 'tbretry'].includes(drillMode) ? '次へ' : '連続日数 +1'}</small></button>
       </div>`;
   }
   return `
@@ -784,6 +811,9 @@ function renderDone() {
 function renderDrillDone(area) {
   if (drillMode === 'review') { renderReviewDone(area); return; }
   if (drillMode === 'mine') { renderMineDone(area); return; }
+  if (drillMode === 'tb') { renderTbDone(area); return; }
+  if (drillMode === 'tbtest') { renderTbTestDone(area); return; }
+  if (drillMode === 'tbretry') { renderTbRetryDone(area); return; }
   const s = drillSummary();
   // このセッションでパックを終わらせたか（終わらせると currentPackNo が次へ動く）
   const cleared = drillPackNo && s.pack !== drillPackNo;
@@ -948,6 +978,7 @@ function renderDrillPick() {
 function renderHome() {
   refreshTop();
   renderVoiceUI();
+  renderTbHome();
   renderMineHome();
   renderReviewHome({ graduated: graduatedIds().length });
   renderModalHome();
@@ -1557,7 +1588,7 @@ function startReview() {
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; showView('homeView'); renderHome(); }
+function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; tbRole = null; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1588,6 +1619,8 @@ function buildBackup() {
     daily: daily,
     drill: drill,
     modal: mstat,
+    textbook: TB,
+    tbprog: tbprog,
     settings: {
       voice: localStorage.getItem(VOICE_KEY) || '',
       rate: localStorage.getItem(RATE_KEY) || '',
@@ -1624,6 +1657,8 @@ function applyBackup(obj) {
   if (Array.isArray(obj.stars)) { STARS = new Set(obj.stars); saveStars(); }
   if (obj.daily && typeof obj.daily === 'object') { daily = obj.daily; saveDaily(); }
   if (obj.drill && typeof obj.drill === 'object') { drill = obj.drill; saveDrill(); }
+  if (obj.textbook && Array.isArray(obj.textbook.lessons)) { TB = obj.textbook; saveTextbook(); }
+  if (obj.tbprog && typeof obj.tbprog === 'object') { tbprog = normTbProg(obj.tbprog); saveTbProg(); }
   if (obj.modal && typeof obj.modal === 'object') { mstat = obj.modal; if (!mstat.items) mstat.items = {}; if (!Array.isArray(mstat.sessions)) mstat.sessions = []; saveModalStat(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
@@ -2026,12 +2061,560 @@ function goModalMap() {
   window.scrollTo(0, 0);
 }
 
+/* ---------- 教科書モード（本体） ---------- */
+let TB = { lessons: [] };                 // 読み込んだ教科書
+let tbprog = { roles: {}, tests: {} };    // 段2 と復習回の記録
+let tbLessonId = null;                    // 段1 でやっているレッスン
+let tbTest = null;                        // 復習回のまとめテスト { key, total, ok, ng, missed[] }
+let tbRole = null;                        // 段2 { lessonId, who, idx, revealed }
+
+function normTbProg(o) {
+  const p = Object.assign({ roles: {}, tests: {} }, o || {});
+  if (!p.roles || typeof p.roles !== 'object') p.roles = {};
+  if (!p.tests || typeof p.tests !== 'object') p.tests = {};
+  return p;
+}
+function loadTextbook() {
+  try { TB = JSON.parse(localStorage.getItem(TB_KEY)) || { lessons: [] }; }
+  catch { TB = { lessons: [] }; }
+  if (!Array.isArray(TB.lessons)) TB.lessons = [];
+  try { tbprog = normTbProg(JSON.parse(localStorage.getItem(TB_PROG_KEY))); }
+  catch { tbprog = normTbProg(null); }
+}
+function saveTextbook() { localStorage.setItem(TB_KEY, JSON.stringify(TB)); }
+function saveTbProg() { localStorage.setItem(TB_PROG_KEY, JSON.stringify(tbprog)); }
+
+function tbSlotKey(level, no) { return `s${level}-${String(no).padStart(2, '0')}`; }
+function tbLesson(id) { return TB.lessons.find(l => l.id === id) || null; }
+function tbLessonLabel(id) {
+  const l = tbLesson(id);
+  return l ? `L${l.level}-${l.no} ${l.title}` : TB_THEME;
+}
+
+// 教科書の 1 行・Practice の 1 文を、ふつうのカードと同じ形にする。
+// id は「レッスン + 何行目」で決まるので、読み込み直しても進み具合は残る。
+function tbItems() {
+  const out = [];
+  for (const l of TB.lessons) {
+    (l.lines || []).forEach((ln, i) => out.push({
+      id: `tb-${l.id}-l${i + 1}`, type: 'phrase', en: [ln.en], ja: ln.ja,
+      situation_ja: l.scene_ja || '', theme: TB_THEME, difficulty: 2,
+      advice_ja: ln.advice_ja || '', related: [],
+      tb: { lesson: l.id, kind: 'line', who: ln.who, prev: i > 0 ? l.lines[i - 1] : null },
+    }));
+    (l.practice || []).forEach((pr, i) => out.push({
+      id: `tb-${l.id}-p${i + 1}`, type: 'phrase', en: [pr.en], ja: pr.ja,
+      situation_ja: pr.situation_ja || '', theme: TB_THEME, difficulty: 2,
+      advice_ja: pr.advice_ja || '', related: [],
+      tb: { lesson: l.id, kind: 'practice', who: 'You', prev: pr.prev || null },
+    }));
+  }
+  return out;
+}
+function tbLessonItemIds(id) {
+  return ITEMS.filter(it => it.tb && it.tb.lesson === id).map(it => it.id);
+}
+function tbRoles(l) { return [...new Set((l.lines || []).map(ln => ln.who))]; }
+
+// 1 レッスンの進み具合。
+function tbLessonState(id) {
+  const l = tbLesson(id);
+  if (!l) return null;
+  const ids = tbLessonItemIds(id);
+  const today = todayISO();
+  let done = 0, clearedToday = 0;
+  for (const x of ids) {
+    const st = drillState(x);
+    if (st.done) done++;
+    else if (st.lastDay === today) clearedToday++;
+  }
+  const roles = tbRoles(l);
+  const okRoles = roles.filter(w => tbprog.roles[id] && tbprog.roles[id][w]);
+  const step1 = ids.length > 0 && done === ids.length;
+  return {
+    total: ids.length, done, clearedToday,
+    remaining: buildTbQueue(id).length,
+    roles, okRoles, step1,
+    passed: step1 && okRoles.length === roles.length,
+  };
+}
+
+// Level 3・4 の 1〜20 を順に並べる。10・20 は復習回。
+function tbSlots() {
+  const out = [];
+  for (const level of TB_LEVELS) {
+    for (let no = 1; no <= TB_SLOTS_PER_LEVEL; no++) {
+      const key = tbSlotKey(level, no);
+      const review = no % 10 === 0;
+      const slot = { key, level, no, review, lesson: review ? null : tbLesson(key) };
+      if (review) {
+        // 復習回が見るのは、同じ冊の直前 9 レッスン
+        slot.covers = Array.from({ length: 9 }, (_, i) => tbSlotKey(level, no - 9 + i));
+        const t = tbprog.tests[key];
+        slot.passed = !!(t && t.passedAt);
+        slot.best = t ? t.best : null;
+      } else {
+        slot.state = slot.lesson ? tbLessonState(key) : null;
+        slot.passed = !!(slot.state && slot.state.passed);
+      }
+      out.push(slot);
+    }
+  }
+  // ひとつ前に合格したら次が開く
+  out.forEach((s, i) => { s.open = i === 0 || out[i - 1].passed; });
+  return out;
+}
+function tbCurrentSlot(slots) { return slots.find(s => !s.passed) || null; }
+
+/* ---- 段1: 1 文ずつ ---- */
+// 今日やる分＝まだ卒業しておらず、今日まだ言えていない文。会話の順番のまま出す。
+function buildTbQueue(id) {
+  const today = todayISO();
+  return tbLessonItemIds(id).filter(x => {
+    const st = drillState(x);
+    return !st.done && st.lastDay !== today;
+  });
+}
+function buildTbExtraQueue(id) {
+  return tbLessonItemIds(id).filter(x => !drillState(x).done);
+}
+function startTbStep1(id, extra) {
+  drillMode = 'tb';
+  drillPackNo = 0;
+  tbLessonId = id;
+  queue = extra ? buildTbExtraQueue(id) : buildTbQueue(id);
+  if (!queue.length) queue = buildTbExtraQueue(id);   // 今日の分が済んでいれば、おかわり
+  showView('studyView');
+  if (!queue.length) { renderDone(); return; }
+  nextCard();
+  refreshTop();
+}
+
+// カードの上: 相手のひとつ前のセリフ（読み上げ）と、自分が誰の役か。
+function tbCueHtml(it) {
+  const p = it.tb.prev;
+  return `<div class="tb-cue">
+    ${p ? `<div class="tb-prev"><button class="spk tb-prev-spk" data-en="${esc(p.en)}">🔊</button><span class="who">${esc(p.who)}</span>${esc(p.en)}</div>` : ''}
+    <div class="tb-you">あなた ＝ ${esc(it.tb.who)}</div>
+  </div>`;
+}
+function wireTbCue(area, it) {
+  const b = area.querySelector('.tb-prev-spk');
+  if (!b) return;
+  b.onclick = (e) => { e.stopPropagation(); speak(b.dataset.en); };
+  // 発話モードは手本をすぐ読むので、前のセリフは読まない
+  if (mode !== 'shadow') speak(it.tb.prev.en);
+}
+
+function renderTbDone(area) {
+  const s = tbLessonState(tbLessonId);
+  const id = tbLessonId;
+  if (s && s.step1) {
+    area.innerHTML = `
+      <div class="empty">
+        <div class="big">🏆</div>
+        <div>${esc(tbLessonLabel(id))}<br>${s.total} 文すべて卒業！</div>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+          段2「役になりきる」が開きました。両方の役で通して言えたら、このレッスンは合格です。</p>
+        <button class="big-btn" style="margin-top:24px" id="tbGoLessonBtn">段2 へ進む</button>
+        <button class="big-btn secondary" style="margin-top:10px" onclick="goHome()">ホームへ</button>
+      </div>`;
+  } else {
+    const pct = s && s.total ? Math.round(s.done / s.total * 100) : 0;
+    area.innerHTML = `
+      <div class="empty">
+        <div class="big">✅</div>
+        <div>今日の分は終わり</div>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px;">
+          卒業 ${s ? s.done : 0}/${s ? s.total : 0} 文。明日また開くと、連続日数の続きが積み上がります。</p>
+        <div class="bar" style="margin:16px auto;max-width:280px"><span style="width:${pct}%"></span></div>
+        <button class="big-btn" style="margin-top:16px" id="tbExtraBtn">もう一周する（おかわり）</button>
+        <button class="big-btn secondary" style="margin-top:10px" id="tbGoLessonBtn">レッスンに戻る</button>
+      </div>`;
+    document.getElementById('tbExtraBtn').onclick = () => startTbStep1(id, true);
+  }
+  document.getElementById('tbGoLessonBtn').onclick = () => openTbLesson(id);
+  refreshTop();
+}
+
+/* ---- 段3: 復習回（まとめテスト） ---- */
+function tbTestItemIds(slot) {
+  return ITEMS.filter(it => it.tb && slot.covers.includes(it.tb.lesson)).map(it => it.id);
+}
+function startTbTest(key) {
+  const slot = tbSlots().find(s => s.key === key);
+  if (!slot) return;
+  const ids = shuffled(tbTestItemIds(slot));
+  if (!ids.length) { toast('まだ文がありません'); return; }
+  tbTest = { key, total: ids.length, ok: 0, ng: 0, missed: [] };
+  drillMode = 'tbtest';
+  drillPackNo = 0;
+  queue = ids;
+  showView('studyView');
+  nextCard();
+}
+// 1 回きりの通し。言えなかった文は最後に一覧で出す（卒業は取り消さない）。
+function gradeTbTest(item, ok) {
+  if (ok) tbTest.ok++;
+  else { tbTest.ng++; tbTest.missed.push(item.id); }
+  const now = Date.now();
+  recordStudy(cardShownTs ? Math.min(now - cardShownTs, CARD_TIME_CAP) : 0);
+  cardShownTs = now;
+}
+function renderTbTestDone(area) {
+  const t = tbTest;
+  const rate = t.total ? t.ok / t.total : 0;
+  const pct = Math.round(rate * 100);
+  const passed = rate >= TB_TEST_PASS;
+  const prev = tbprog.tests[t.key] || {};
+  tbprog.tests[t.key] = {
+    best: Math.max(prev.best || 0, pct),
+    passedAt: prev.passedAt || (passed ? Date.now() : 0),
+  };
+  saveTbProg();
+  const [lv, no] = t.key.replace('s', '').split('-').map(Number);
+  area.innerHTML = `
+    <div class="empty" style="padding-bottom:10px">
+      <div class="big">${passed ? '🏆' : '📝'}</div>
+      <div>L${lv}-${no} 復習回 ${pct}%（${t.ok}/${t.total}）</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">${passed
+        ? '合格！次のレッスンが開きました。'
+        : `合格は ${Math.round(TB_TEST_PASS * 100)}% から。言えなかった文を練習してから、もう一度どうぞ。`}</p>
+    </div>
+    ${t.missed.length ? `<div class="tb-missed"><h3>言えなかった ${t.missed.length} 文</h3>${t.missed.map(id => {
+      const it = BY_ID[id];
+      return it ? `<div class="mrow"><div class="en">${esc(it.en[0])}</div><div class="meta">${esc(it.ja)} ─ ${esc(tbLessonLabel(it.tb.lesson))}</div></div>` : '';
+    }).join('')}</div>` : ''}
+    <div style="padding:0 4px">
+      ${t.missed.length ? `<button class="big-btn" style="margin-top:20px" id="tbRetryBtn">言えなかった文だけ練習する</button>` : ''}
+      <button class="big-btn${t.missed.length ? ' secondary' : ''}" style="margin-top:10px" id="tbListBtn">レッスン一覧へ</button>
+    </div>`;
+  const rb = document.getElementById('tbRetryBtn');
+  if (rb) rb.onclick = () => {
+    drillMode = 'tbretry';
+    queue = t.missed.slice();
+    showView('studyView');
+    nextCard();
+  };
+  document.getElementById('tbListBtn').onclick = () => openTbList();
+  refreshTop();
+}
+function renderTbRetryDone(area) {
+  const key = tbTest && tbTest.key;
+  area.innerHTML = `
+    <div class="empty">
+      <div class="big">✅</div>
+      <div>練習しました</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">準備ができたら、まとめテストをもう一度。</p>
+      ${key ? `<button class="big-btn" style="margin-top:24px" id="tbTestAgainBtn">まとめテストをもう一度</button>` : ''}
+      <button class="big-btn secondary" style="margin-top:10px" id="tbListBtn">レッスン一覧へ</button>
+    </div>`;
+  const ab = document.getElementById('tbTestAgainBtn');
+  if (ab) ab.onclick = () => startTbTest(key);
+  document.getElementById('tbListBtn').onclick = () => openTbList();
+  refreshTop();
+}
+
+/* ---- 段2: 役になりきる ---- */
+function startTbRole(id, who) {
+  tbRole = { lessonId: id, who, idx: 0, revealed: false, shownAt: Date.now() };
+  showView('tbView');
+  renderTbRole();
+}
+function renderTbRole() {
+  const r = tbRole;
+  const l = tbLesson(r.lessonId);
+  const lines = l.lines || [];
+  const area = document.getElementById('tbArea');
+  if (r.idx >= lines.length) { renderTbRoleEnd(); return; }
+  const cur = lines[r.idx];
+  const mine = cur.who === r.who;
+  const log = lines.slice(0, r.idx).map(ln => `
+    <div class="tb-line${ln.who === r.who ? ' me' : ''}"><span class="who">${esc(ln.who)}</span>${esc(ln.en)}</div>`).join('');
+  let curHtml;
+  if (!mine) {
+    curHtml = `<div class="tb-line now"><span class="who">${esc(cur.who)}</span>${esc(cur.en)}</div>
+      <div class="tap-hint">聞いたらタップで次へ</div>`;
+  } else if (!r.revealed) {
+    curHtml = `<div class="tb-line me now ask"><span class="who">${esc(cur.who)}（あなた）</span>${esc(cur.ja)}</div>
+      <div class="tap-hint">英語で言ってから → タップで確かめる</div>`;
+  } else {
+    curHtml = `<div class="tb-line me now"><span class="who">${esc(cur.who)}（あなた）</span>${esc(cur.en)}</div>
+      <div class="tap-hint">タップで次へ</div>`;
+  }
+  area.innerHTML = `
+    <div class="tb-role">
+      <div class="tb-role-head">${esc(tbLessonLabel(l.id))} ─ あなた ＝ ${esc(r.who)}
+        <span class="meta">${r.idx + 1} / ${lines.length}</span></div>
+      <div class="tb-scene">${esc(l.scene_ja || '')}</div>
+      <div class="tb-log">${log}${curHtml}</div>
+      <button class="link-btn" id="tbRoleQuit">やめる</button>
+    </div>`;
+  document.getElementById('dueCount').textContent = lines.length - r.idx;
+  const now = area.querySelector('.tb-line.now');
+  if (now) now.scrollIntoView({ block: 'center' });
+  document.getElementById('tbRoleQuit').onclick = (e) => { e.stopPropagation(); openTbLesson(r.lessonId); };
+  if (!mine || r.revealed) speak(cur.en);
+  // 押したタップがそのまま上がってこないよう、登録は次のティックで
+  const box = area.querySelector('.tb-role');
+  setTimeout(() => box.addEventListener('click', e => {
+    if (e.target.closest('#tbRoleQuit')) return;
+    if (mine && !r.revealed) { r.revealed = true; }
+    else {
+      if (mine) {
+        const t = Date.now();
+        recordStudy(Math.min(t - r.shownAt, CARD_TIME_CAP));
+        r.shownAt = t;
+      }
+      r.idx++; r.revealed = false;
+    }
+    renderTbRole();
+  }, { once: true }), 0);
+}
+function renderTbRoleEnd() {
+  const r = tbRole;
+  const l = tbLesson(r.lessonId);
+  const others = tbRoles(l).filter(w => w !== r.who);
+  document.getElementById('tbArea').innerHTML = `
+    <div class="empty">
+      <div class="big">🎭</div>
+      <div>${esc(r.who)} の役で最後まで来ました</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;">つかえずに、通しで言えましたか？</p>
+      <div class="grade-row drill" style="margin-top:20px">
+        <button class="again" id="tbRoleNg">つかえた<small>もう一回</small></button>
+        <button class="good" id="tbRoleOk">通しで言えた<small>この役は合格</small></button>
+      </div>
+    </div>`;
+  document.getElementById('tbRoleNg').onclick = () => startTbRole(r.lessonId, r.who);
+  document.getElementById('tbRoleOk').onclick = () => {
+    tbprog.roles[r.lessonId] = tbprog.roles[r.lessonId] || {};
+    tbprog.roles[r.lessonId][r.who] = Date.now();
+    saveTbProg();
+    const s = tbLessonState(r.lessonId);
+    const left = others.filter(w => !(tbprog.roles[r.lessonId] || {})[w]);
+    if (s.passed) toast(`${tbLessonLabel(r.lessonId)} 合格！`);
+    else if (left.length) toast(`次は ${left[0]} の役で`);
+    openTbLesson(r.lessonId);
+  };
+  document.getElementById('dueCount').textContent = '–';
+}
+
+/* ---- 画面: レッスン一覧・レッスン ---- */
+function openTbList() {
+  drillMode = false;
+  tbRole = null;
+  showView('tbView');
+  const slots = tbSlots();
+  const cur = tbCurrentSlot(slots);
+  const area = document.getElementById('tbArea');
+  area.innerHTML = `<h1>教科書</h1>
+    <p class="sub">Snapshots の会話を、1 文ずつ → 役になりきって通しで。ひとつ合格すると次が開きます。</p>` +
+    TB_LEVELS.map(level => {
+      const ls = slots.filter(s => s.level === level);
+      const passed = ls.filter(s => s.passed).length;
+      return `<h2>Level ${level} <span class="tb-h-meta">合格 ${passed}/${ls.length}</span></h2>` + ls.map(s => {
+        const isCur = cur && cur.key === s.key;
+        let title, meta;
+        if (s.review) {
+          title = `${s.no}　Review（まとめテスト）`;
+          meta = s.passed ? `✅ ${s.best}%` : (s.best != null ? `最高 ${s.best}%` : '');
+        } else if (!s.lesson) {
+          title = `${s.no}　（まだ読み込んでいません）`;
+          meta = '';
+        } else {
+          const st = s.state;
+          title = `${s.no}　${s.lesson.title}`;
+          meta = s.passed ? '✅ 合格'
+            : st.step1 ? `段2 ${st.okRoles.length}/${st.roles.length} 役`
+            : `段1 ${st.done}/${st.total}`;
+        }
+        const ready = s.open && (s.review || s.lesson);
+        return `<button class="tb-slot${s.passed ? ' passed' : ''}${isCur ? ' cur' : ''}" data-key="${s.key}" ${ready ? '' : 'disabled'}>
+          <span>${s.open ? '' : '🔒 '}${esc(title)}</span><span class="meta">${esc(meta)}</span></button>`;
+      }).join('');
+    }).join('') +
+    `<button class="big-btn secondary" style="margin-top:20px" onclick="goHome()">ホームへ</button>`;
+  area.querySelectorAll('.tb-slot').forEach(b => {
+    b.onclick = () => {
+      const s = slots.find(x => x.key === b.dataset.key);
+      if (s.review) openTbReview(s.key); else openTbLesson(s.key);
+    };
+  });
+  document.getElementById('dueCount').textContent = '–';
+  const c = area.querySelector('.tb-slot.cur');
+  if (c) c.scrollIntoView({ block: 'center' }); else window.scrollTo(0, 0);
+}
+
+function openTbLesson(id) {
+  drillMode = false;
+  tbRole = null;
+  showView('tbView');
+  const l = tbLesson(id);
+  const s = tbLessonState(id);
+  const area = document.getElementById('tbArea');
+  const prog = tbprog.roles[id] || {};
+  area.innerHTML = `
+    <div class="tb-lesson">
+      <div class="tb-topic">Level ${l.level} ─ Lesson ${l.no}　${esc(l.topic || '')}</div>
+      <h1>${esc(l.title)}</h1>
+      <p class="sub">${esc(l.func ? `“${l.func}”　` : '')}${esc(l.scene_ja || '')}</p>
+      ${s.passed ? `<div class="tb-pass">✅ このレッスンは合格しています</div>` : ''}
+
+      <div class="drill-box">
+        <div class="drill-head"><span class="drill-title">段1　1 文ずつ</span>
+          <span class="drill-count">卒業 ${s.done}/${s.total}</span></div>
+        <div class="bar"><span style="width:${s.total ? Math.round(s.done / s.total * 100) : 0}%"></span></div>
+        <p class="hint">相手のセリフを聞いて、自分のセリフを英語で言う。3日続けて言えたら卒業。Practice の文も混ざります。</p>
+        <button class="big-btn" id="tbStep1Btn">${s.step1 ? 'おさらいする'
+          : s.remaining ? `1 文ずつやる（今日 ${s.remaining} 文）` : `もう一周する（おかわり）`}</button>
+      </div>
+
+      <div class="drill-box">
+        <div class="drill-head"><span class="drill-title">段2　役になりきる</span>
+          <span class="drill-count">${s.okRoles.length}/${s.roles.length} 役</span></div>
+        <p class="hint">${s.step1 ? '相手のセリフはアプリが読みます。自分の番は日本語だけ出るので、英語で言ってからタップ。両方の役で通して言えたら合格。'
+          : '段1 の文がすべて卒業すると開きます。'}</p>
+        ${s.roles.map(w => `<button class="big-btn secondary tb-role-btn" data-who="${esc(w)}" ${s.step1 ? '' : 'disabled'}>
+          ${prog[w] ? '✅ ' : ''}${esc(w)} の役でやる</button>`).join('')}
+      </div>
+
+      ${l.application_ja ? `<div class="drill-box tb-app">
+        <div class="drill-title">先生とやる場面（Application）</div>
+        <p class="hint" style="margin-top:8px">${esc(l.application_ja)}</p></div>` : ''}
+
+      <h2>会話</h2>
+      <button class="big-btn secondary" id="tbListenBtn">🔊 会話を通しで聞く</button>
+      <div class="tb-script">${(l.lines || []).map(ln => `
+        <div class="tb-sline"><button class="spk" data-en="${esc(ln.en)}">🔊</button>
+          <div><span class="who">${esc(ln.who)}</span>${esc(ln.en)}<div class="ja">${esc(ln.ja)}</div></div></div>`).join('')}</div>
+      ${(l.practice || []).length ? `<h2>Practice</h2><div class="tb-script">${l.practice.map(p => `
+        <div class="tb-sline"><button class="spk" data-en="${esc(p.en)}">🔊</button>
+          <div>${esc(p.en)}<div class="ja">${esc(p.ja)}</div></div></div>`).join('')}</div>` : ''}
+
+      <button class="big-btn secondary" style="margin-top:20px" id="tbBackBtn">レッスン一覧へ</button>
+    </div>`;
+  document.getElementById('tbStep1Btn').onclick = () => startTbStep1(id, s.step1 || !s.remaining);
+  area.querySelectorAll('.tb-role-btn').forEach(b => { b.onclick = () => startTbRole(id, b.dataset.who); });
+  area.querySelectorAll('.tb-script .spk').forEach(b => { b.onclick = () => speak(b.dataset.en); });
+  document.getElementById('tbListenBtn').onclick = () => speakList((l.lines || []).map(ln => ln.en));
+  document.getElementById('tbBackBtn').onclick = () => openTbList();
+  document.getElementById('dueCount').textContent = '–';
+  window.scrollTo(0, 0);
+}
+
+function openTbReview(key) {
+  drillMode = false;
+  showView('tbView');
+  const slot = tbSlots().find(s => s.key === key);
+  const n = tbTestItemIds(slot).length;
+  const area = document.getElementById('tbArea');
+  area.innerHTML = `
+    <div class="tb-lesson">
+      <div class="tb-topic">Level ${slot.level} ─ Lesson ${slot.no}</div>
+      <h1>Review（まとめテスト）</h1>
+      <p class="sub">Lesson ${slot.no - 9}〜${slot.no - 1} の文 ${n} 文をまぜて、1 回ずつ出します。${Math.round(TB_TEST_PASS * 100)}% 言えたら合格。</p>
+      ${slot.passed ? `<div class="tb-pass">✅ 合格しています（最高 ${slot.best}%）</div>`
+        : slot.best != null ? `<p class="hint">これまでの最高 ${slot.best}%</p>` : ''}
+      <button class="big-btn" style="margin-top:16px" id="tbTestBtn">まとめテストをする（${n} 文）</button>
+      <button class="big-btn secondary" id="tbBackBtn">レッスン一覧へ</button>
+    </div>`;
+  document.getElementById('tbTestBtn').onclick = () => startTbTest(key);
+  document.getElementById('tbBackBtn').onclick = () => openTbList();
+  document.getElementById('dueCount').textContent = '–';
+  window.scrollTo(0, 0);
+}
+
+/* ---- ホームの枠 ---- */
+function renderTbHome() {
+  const count = document.getElementById('tbCount');
+  const hint = document.getElementById('tbHint');
+  const open = document.getElementById('tbOpenBtn');
+  const bars = document.getElementById('tbBars');
+  if (!TB.lessons.length) {
+    count.textContent = '';
+    bars.innerHTML = '';
+    hint.textContent = 'Snapshots の会話を、1 文ずつ → 役になりきって覚えます。Claude が作ったファイル（iCloud Drive の「フレーズデッキ」）を下のボタンで読み込んでください。';
+    open.hidden = true;
+    return;
+  }
+  const slots = tbSlots();
+  const passedAll = slots.filter(s => s.passed).length;
+  count.textContent = `合格 ${passedAll}/${slots.length}`;
+  bars.innerHTML = TB_LEVELS.map(level => {
+    const ls = slots.filter(s => s.level === level);
+    const p = ls.filter(s => s.passed).length;
+    return `<div class="tb-bar-row"><span>Level ${level}</span>
+      <div class="bar"><span style="width:${Math.round(p / ls.length * 100)}%"></span></div>
+      <span class="meta">${p}/${ls.length}</span></div>`;
+  }).join('');
+  const cur = tbCurrentSlot(slots);
+  open.hidden = false;
+  if (!cur) {
+    hint.textContent = '🎓 Level 3・4 すべて合格。Level 5 へ進んで OK！ 復習は「卒業した文の復習」で続けられます。';
+    open.textContent = 'レッスン一覧を見る';
+  } else if (cur.review) {
+    hint.textContent = `次は L${cur.level}-${cur.no} の復習回（まとめテスト）です。`;
+    open.textContent = `L${cur.level}-${cur.no} まとめテストへ`;
+  } else if (!cur.lesson) {
+    hint.textContent = `次は L${cur.level}-${cur.no}。まだ読み込まれていません。Mac の Claude に「教科書の続きを作って」と頼んでください。`;
+    open.textContent = 'レッスン一覧を見る';
+  } else {
+    const st = cur.state;
+    hint.textContent = st.step1
+      ? `L${cur.level}-${cur.no}「${cur.lesson.title}」は段2（役になりきる）。あと ${st.roles.length - st.okRoles.length} 役。`
+      : st.remaining
+        ? `L${cur.level}-${cur.no}「${cur.lesson.title}」今日やる分が ${st.remaining} 文あります。`
+        : `L${cur.level}-${cur.no}「${cur.lesson.title}」今日の分は終わり。明日また続きを。`;
+    open.textContent = `L${cur.level}-${cur.no} を開く`;
+  }
+  open.onclick = () => {
+    if (!cur) openTbList();
+    else if (cur.review) openTbReview(cur.key);
+    else if (cur.lesson) openTbLesson(cur.key);
+    else openTbList();
+  };
+}
+
+/* ---- 読み込み ---- */
+// 同じレッスンを読み直したら中身だけ差し替える。進み具合（id で紐づく）は残る。
+function applyTextbook(obj) {
+  if (!obj || obj.app !== 'phrasedeck-textbook' || !Array.isArray(obj.lessons)) {
+    throw new Error('教科書のファイルではありません');
+  }
+  const map = {};
+  for (const l of TB.lessons) map[l.id] = l;
+  let added = 0;
+  for (const l of obj.lessons) {
+    if (!l || !l.id || !Array.isArray(l.lines)) continue;
+    if (!map[l.id]) added++;
+    map[l.id] = l;
+  }
+  TB = { book: obj.book || TB.book || '', lessons: Object.values(map).sort((a, b) => (a.level - b.level) || (a.no - b.no)) };
+  saveTextbook();
+  rebuildItems();
+  return { total: TB.lessons.length, added };
+}
+function handleTbFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const r = applyTextbook(JSON.parse(String(reader.result)));
+      goHome();
+      toast(`教科書を読み込みました（${r.total} レッスン・新しく ${r.added}）`);
+    } catch (e) { alert('読み込みエラー: ' + e.message); }
+  };
+  reader.onerror = () => alert('ファイルを読めませんでした。');
+  reader.readAsText(file);
+}
+
 async function init() {
   loadSrs();
   loadStars();
   loadDaily();
   loadDrill();
   loadModalStat();
+  loadTextbook();
   await loadData();
   await loadModals();
 
@@ -2058,6 +2641,9 @@ async function init() {
   document.getElementById('goRegisterBtn').onclick = goRegister;
   document.getElementById('startModalBtn').onclick = startModal;
   document.getElementById('goModalMapBtn').onclick = goModalMap;
+  document.getElementById('tbOpenBtn').onclick = () => openTbList();
+  document.getElementById('tbImportBtn').onclick = () => { const f = document.getElementById('tbFile'); f.value = ''; f.click(); };
+  document.getElementById('tbFile').onchange = (e) => handleTbFile(e.target.files[0]);
 
   document.querySelectorAll('#listModeSwitch button').forEach(b => {
     b.onclick = () => { listMode = b.dataset.listmode; listPage = 0; renderList(); window.scrollTo(0, 0); };
