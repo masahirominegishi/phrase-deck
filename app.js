@@ -62,6 +62,8 @@ function isDrillItem(it) { return it.theme === CORE_THEME || isPicked(it); }
 const TB_KEY = 'phrasedeck.textbook.v1';      // 読み込んだ教科書 { lessons: [] }
 const TB_STAT_KEY = 'phrasedeck.tbdaily.v1';  // レッスンごとの記録と今日やった分
 const TB_DAILY = 2;                            // 1 日のレッスン数
+const TB_JA_KEY = 'phrasedeck.tb.showja';      // '1' ならダイアログの日本語を出す。初期は出さない
+function tbShowJa() { try { return localStorage.getItem(TB_JA_KEY) === '1'; } catch { return false; } }
 function pickedItems() { return ITEMS.filter(isPicked); }
 
 const THEMES = [
@@ -2203,8 +2205,11 @@ function renderTbDialog() {
       <h1>${esc(l.title)}</h1>
       ${l.essence_ja ? `<div class="tb-essence"><div class="tb-essence-h">このレッスンのエッセンス</div>${esc(l.essence_ja)}</div>` : ''}
       <p class="sub">${esc(l.scene_ja || '')}</p>
-      <button class="big-btn secondary" id="tbListenBtn">🔊 会話を通しで聞く</button>
-      <div class="tb-script">${lines.map(ln => ln.en ? `
+      <div class="tb-tools">
+        <button class="big-btn secondary" id="tbListenBtn">🔊 会話を通しで聞く</button>
+        <button class="big-btn secondary tb-ja-btn" id="tbJaBtn"></button>
+      </div>
+      <div class="tb-script${tbShowJa() ? '' : ' hide-ja'}" id="tbScript">${lines.map(ln => ln.en ? `
         <div class="tb-sline"><button class="spk" data-en="${esc(ln.en)}">🔊</button>
           <div><span class="who">${esc(ln.who)}</span>${tbMark(ln.en, l.point_words)}<div class="ja">${esc(ln.ja)}</div></div></div>` : `
         <div class="tb-sline"><div><span class="who">${esc(ln.who)}</span><i>${esc(ln.ja || ln.action || '')}</i></div></div>`).join('')}</div>
@@ -2213,6 +2218,18 @@ function renderTbDialog() {
     </div>`;
   area.querySelectorAll('.tb-script .spk').forEach(b => { b.onclick = () => speak(b.dataset.en); });
   document.getElementById('tbListenBtn').onclick = () => speakList(lines.filter(ln => ln.en).map(ln => ln.en));
+  const jaBtn = document.getElementById('tbJaBtn');
+  const paintJa = () => {
+    const on = tbShowJa();
+    jaBtn.textContent = on ? '日本語 オン' : '日本語 オフ';
+    jaBtn.classList.toggle('on', on);
+    document.getElementById('tbScript').classList.toggle('hide-ja', !on);
+  };
+  jaBtn.onclick = () => {
+    try { localStorage.setItem(TB_JA_KEY, tbShowJa() ? '0' : '1'); } catch {}
+    paintJa();
+  };
+  paintJa();
   document.getElementById('tbNextBtn').onclick = () => { tbRun.step = 2; renderTbStep(); };
   document.getElementById('tbQuitBtn').onclick = goHome;
   document.getElementById('dueCount').textContent = '1/3';
