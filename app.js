@@ -1685,14 +1685,14 @@ function handleRestoreFile(file) {
 
 /* ---------- 初期化 ---------- */
 /* ---------- 動詞の 3 つの形（原形 → 過去形 → 過去分詞） ----------
-   会話用。原形を見て 3 つを口に出し、めくって音で確かめる。書かない。
+   会話用。日本語の文を 3 問（現在・過去・過去分詞）口に出して解き、そのあと活用をおさらいする。書かない。
    データは data/verbs.json（6 ステップ × 15 個）。進捗は端末内 (VERB_KEY)。SRS や一覧には混ぜない。 */
 const VERB_URL = 'data/verbs.json';
 const VERB_KEY = 'phrasedeck.verb.v1';
-const VERB_ROUND = 10;           // 1 回の問題数
+const VERB_ROUND = 5;            // 1 回に出す動詞の数（1 つの動詞に 3 問）
 const VERB_DONE_STREAK = 2;      // 続けてこの回数「言えた」で、覚えた
 const VERB_OPEN_RATE = 0.8;      // ステップのこの割合を覚えたら、次のステップへ
-const VERB_REQUEUE_GAP = 3;      // 言えなかった動詞が再登場するまでの枚数
+const VERB_REQUEUE_GAP = 2;      // 言えなかった動詞が再登場するまでの枚数
 
 let VSTEPS = [];
 let VPATS = {};
@@ -1704,6 +1704,8 @@ let vcur = null;
 let vStepNo = 0;                 // いまやっているステップ（0 = まぜて復習）
 let vRound = { n: 0, ok: 0, log: [] };
 let vShownAt = 0;
+let vq = 0;                      // いま何問目か（0 現在・1 過去・2 過去分詞・3 活用のおさらい）
+let vMarks = [];                 // その動詞の 3 問が言えたか
 
 function loadVerbStat() {
   try { vstat = Object.assign({ items: {}, sessions: [] }, JSON.parse(localStorage.getItem(VERB_KEY)) || {}); }
@@ -1777,56 +1779,103 @@ function nextVerb() {
   if (!id) { finishVerbRound(false); return; }
   vcur = VBY_ID[id];
   if (!vcur) { nextVerb(); return; }
+  vq = 0; vMarks = [];
+  vShownAt = Date.now();
   renderVerbCard(false);
   window.scrollTo(0, 0);
 }
 
+// 問題の 3 文（現在 → 過去 → 過去分詞）。使う形だけ色をつける。
+const VERB_TENSES = [
+  { name: '現在', sub: 'いつものこと・今のこと' },
+  { name: '過去', sub: '〜した' },
+  { name: '過去分詞', sub: 'have ＋（もう〜した・〜したことがある）／ be ＋（〜される）' },
+];
+function verbExHtml(v, i) {
+  const e = v.ex[i];
+  const forms = e.hl ? [e.hl] : v.f[i].split('/').map(x => x.trim());
+  for (const f of forms) {
+    const m = new RegExp('\\b' + f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').exec(e.en);
+    if (m) return esc(e.en.slice(0, m.index)) + `<span class="hit">${esc(m[0])}</span>` + esc(e.en.slice(m.index + m[0].length));
+  }
+  return esc(e.en);
+}
+function verbTop() {
+  const v = vcur;
+  const total = vRound.n + 1 + vqueue.length;
+  const st = VSTEPS.find(x => x.no === v.step);
+  return `<div class="mtop"><span>動詞 ${vRound.n + 1} / ${total}</span><span>${st ? `ステップ ${st.no}・${esc(st.name)}` : ''}</span></div>`;
+}
+function verbDots() {
+  return `<div class="vdots">${VERB_TENSES.map((t, i) => {
+    const cls = i < vq ? (vMarks[i] ? 'ok' : 'ng') : (i === vq ? 'now' : '');
+    return `<span class="${cls}">${esc(t.name)}</span>`; }).join('')}<span class="${vq >= 3 ? 'now' : ''}">活用</span></div>`;
+}
+
+// 1 つの動詞 = 日本語の文を 3 問（現在・過去・過去分詞）→ 活用のおさらい
 function renderVerbCard(revealed) {
   const v = vcur;
   const area = document.getElementById('verbArea');
-  const total = vRound.n + 1 + vqueue.length;
-  const st = VSTEPS.find(x => x.no === v.step);
-  const top = `<div class="mtop"><span>${vRound.n + 1} / ${total}</span><span>${st ? `ステップ ${st.no}・${esc(st.name)}` : ''}</span></div>`;
-  if (!revealed) {
-    area.innerHTML = `
-      <div class="mcard vcard">
-        ${top}
-        <div class="vja">${esc(v.ja)}</div>
-        <div class="vbase">${esc(v.f[0])}</div>
-        <div class="vbase-kana">${esc(v.kana[0])}</div>
-        <div class="vask">${esc(v.f[0])} → ？ → ？<br>3 つ続けて、口に出す</div>
-        <button class="big-btn vshow" id="vShowBtn">答えを聞く</button>
-        <button class="link-btn mquit" id="vQuitBtn">やめる（ここまでを記録）</button>
-      </div>`;
-    document.getElementById('vShowBtn').onclick = () => { renderVerbCard(true); speakVerb(v); };
-    document.getElementById('vQuitBtn').onclick = () => { vcur = null; if (vRound.n) finishVerbRound(true); else goHome(); };
-    document.getElementById('dueCount').textContent = vqueue.length + 1;
-    vShownAt = Date.now();
-    return;
-  }
-  const pat = VPATS[v.pat];
-  const mates = VERBS.filter(x => x.pat === v.pat && x.id !== v.id && x.step <= Math.max(v.step, verbCurrentStep())).slice(0, 5);
+  document.getElementById('dueCount').textContent = vqueue.length + 1;
+  if (vq >= 3) { renderVerbRemind(); return; }
+  const e = v.ex[vq];
+  const t = VERB_TENSES[vq];
   area.innerHTML = `
     <div class="mcard vcard">
-      ${top}
-      <div class="vja small">${esc(v.ja)}</div>
-      ${verbFormsHtml(v)}
-      <button class="link-btn vagain" id="vHearBtn">🔊 もう一度聞く</button>
+      ${verbTop()}
+      ${verbDots()}
+      <div class="vtense"><b>${esc(t.name)}</b>　${esc(t.sub)}</div>
+      <div class="vq-ja">${esc(e.ja)}</div>
+      <div class="vq-verb">動詞: <b>${esc(v.f[0])}</b>（${esc(v.ja)}）</div>
+      ${revealed ? `
+        <div class="vq-en">${verbExHtml(v, vq)}</div>
+        <div class="vq-kana">${esc(v.f[vq])} ＝ ${esc(v.kana[vq])}</div>
+        <button class="link-btn vagain" id="vHearBtn">🔊 もう一度聞く</button>
+        <div class="vgrade">
+          <button class="vg-ng" id="vNgBtn">言えなかった</button>
+          <button class="vg-ok" id="vOkBtn">言えた</button>
+        </div>` : `
+        <div class="vask">英語で、口に出す</div>
+        <button class="big-btn vshow" id="vShowBtn">答えを聞く</button>
+        <button class="link-btn mquit" id="vQuitBtn">やめる（ここまでを記録）</button>`}
+    </div>`;
+  if (!revealed) {
+    document.getElementById('vShowBtn').onclick = () => { renderVerbCard(true); speak(e.say || e.en); };
+    document.getElementById('vQuitBtn').onclick = () => { vcur = null; if (vRound.n) finishVerbRound(true); else goHome(); };
+    return;
+  }
+  document.getElementById('vHearBtn').onclick = () => speak(e.say || e.en);
+  const mark = (ok) => { vMarks[vq] = ok; vq += 1; renderVerbCard(false); if (vq >= 3) speakVerb(v); window.scrollTo(0, 0); };
+  document.getElementById('vOkBtn').onclick = () => mark(true);
+  document.getElementById('vNgBtn').onclick = () => mark(false);
+}
+
+// 3 問のあとに出る、活用のおさらい
+function renderVerbRemind() {
+  const v = vcur;
+  const area = document.getElementById('verbArea');
+  const pat = VPATS[v.pat];
+  const mates = VERBS.filter(x => x.pat === v.pat && x.id !== v.id && x.step <= Math.max(v.step, verbCurrentStep())).slice(0, 5);
+  const allOk = vMarks.every(Boolean);
+  area.innerHTML = `
+    <div class="mcard vcard">
+      ${verbTop()}
+      ${verbDots()}
+      <div class="vja small">活用のおさらい　${esc(v.ja)}</div>
+      <div class="vforms">${v.f.map((f, i) =>
+        `<div class="vform${vMarks[i] ? '' : ' ng'}"><div class="vf-en">${esc(f)}</div><div class="vf-kana">${esc(v.kana[i])}${vMarks[i] ? '' : '　← 言えなかった'}</div></div>`).join('<div class="vf-arrow">→</div>')}</div>
+      <button class="link-btn vagain" id="vHearBtn">🔊 3 つ続けて聞く</button>
       ${v.note ? `<div class="vnote">${esc(v.note)}</div>` : ''}
       ${pat ? `<div class="vpat"><b>${esc(pat.name)}</b>　${esc(pat.tip)}${mates.length ? `<br>仲間: ${mates.map(x => esc(x.f.join(' · '))).join(' ／ ')}` : ''}</div>` : ''}
       <div class="vex">${v.ex.map((e, i) => `<div class="vex-row">
-          <button class="spk" data-en="${esc(e.en)}">🔊</button>
-          <div><div class="vex-en">${esc(e.en)}</div><div class="vex-ja">${i === 0 ? '過去形' : '過去分詞'}　${esc(e.ja)}</div></div>
+          <button class="spk" data-say="${esc(e.say || e.en)}">🔊</button>
+          <div><div class="vex-en">${verbExHtml(v, i)}</div><div class="vex-ja">${esc(VERB_TENSES[i].name)}　${esc(e.ja)}</div></div>
         </div>`).join('')}</div>
-      <div class="vgrade">
-        <button class="vg-ng" id="vNgBtn">言えなかった</button>
-        <button class="vg-ok" id="vOkBtn">3 つ言えた</button>
-      </div>
+      <button class="big-btn vshow" id="vNextBtn">${allOk ? '次の動詞へ' : '次の動詞へ（この動詞はあとでもう一度）'}</button>
     </div>`;
   document.getElementById('vHearBtn').onclick = () => speakVerb(v);
-  area.querySelectorAll('.spk').forEach(b => { b.onclick = () => speak(b.dataset.en); });
-  document.getElementById('vOkBtn').onclick = () => answerVerb(true);
-  document.getElementById('vNgBtn').onclick = () => answerVerb(false);
+  area.querySelectorAll('.spk').forEach(b => { b.onclick = () => speak(b.dataset.say); });
+  document.getElementById('vNextBtn').onclick = () => answerVerb(allOk);
 }
 
 function answerVerb(ok) {
@@ -1842,7 +1891,7 @@ function answerVerb(ok) {
   vRound.n += 1;
   if (ok) vRound.ok += 1;
   vRound.log.push({ id: v.id, ok });
-  // 言えなかったものは少しあとでもう一度
+  // 1 つでも言えなかった動詞は少しあとでもう一度
   if (!ok) vqueue.splice(Math.min(VERB_REQUEUE_GAP, vqueue.length), 0, v.id);
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   nextVerb();
@@ -1871,15 +1920,15 @@ function finishVerbRound(quit) {
         <div>${quit ? 'ここまでを記録しました' : 'おわり'}</div>
       </div>
       <div class="stats-summary">
-        <div class="ss-item"><div class="ss-num">${r.ok}</div><div class="ss-lab">言えた</div></div>
+        <div class="ss-item"><div class="ss-num">${r.ok}</div><div class="ss-lab">3 問とも言えた</div></div>
         <div class="ss-item"><div class="ss-num">${miss.length}</div><div class="ss-lab">言えなかった動詞</div></div>
         ${st ? `<div class="ss-item"><div class="ss-num">${done}/${all}</div><div class="ss-lab">このステップで覚えた</div></div>` : ''}
       </div>
       ${st ? `<p class="hint" style="text-align:center">${opened
           ? (next ? `ステップ ${st.no} は 8 割を超えました。次はステップ ${next.no}（${esc(next.name)}）へ。` : '最後のステップも 8 割を超えました。あとは「まぜて復習」で保つだけです。')
-          : `続けて ${VERB_DONE_STREAK} 回言えたら「覚えた」。${Math.ceil(all * VERB_OPEN_RATE)} 個覚えたら次のステップへ進みます。`}</p>` : ''}
+          : `3 問とも言えたのが続けて ${VERB_DONE_STREAK} 回で「覚えた」。${Math.ceil(all * VERB_OPEN_RATE)} 個覚えたら次のステップへ進みます。`}</p>` : ''}
       ${miss.length ? `<h3>言えなかった ${miss.length} 個（タップで聞く）</h3>` + miss.map(v => verbRowHtml(v)).join('') : ''}
-      <button class="big-btn" style="margin-top:24px" id="vAgainBtn">もう ${VERB_ROUND} 問</button>
+      <button class="big-btn" style="margin-top:24px" id="vAgainBtn">もう ${VERB_ROUND} 個</button>
       ${opened && next ? `<button class="big-btn secondary" id="vNextStepBtn">ステップ ${next.no}（${esc(next.name)}）を見る</button>` : ''}
       <button class="big-btn secondary" id="vHomeBtn">ホームへ</button>
     </div>`;
@@ -1915,7 +1964,7 @@ function openVerbStep(no) {
     <div class="mresult">
       <h1>ステップ ${st.no}　${esc(st.name)}</h1>
       <p class="sub">${esc(st.sub)}（覚えた ${verbStepDone(no)} / ${vs.length}）</p>
-      <button class="big-btn" id="vStartBtn">このステップをやる（${Math.min(VERB_ROUND, vs.length)} 問）</button>
+      <button class="big-btn" id="vStartBtn">このステップをやる（動詞 ${Math.min(VERB_ROUND, vs.length)} 個 × 3 問）</button>
       <h3>この ${vs.length} 個（タップで 3 つ続けて聞く）</h3>
       ${vs.map(v => verbRowHtml(v)).join('')}
       <button class="big-btn secondary" style="margin-top:20px" id="vHomeBtn">ホームへ</button>

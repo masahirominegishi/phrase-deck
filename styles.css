@@ -572,3 +572,21 @@ body.in-modal #modeSwitch { display: none; }
 .vrow .en { font-size: 16px; }
 .vrow .vrow-kana { font-size: 13px; color: var(--accent); margin-top: 2px; }
 .vrow .vcheck { color: var(--good); margin-right: 6px; }
+/* 3 問（現在・過去・過去分詞）→ 活用のおさらい */
+.vdots { display: flex; gap: 6px; margin-bottom: 18px; }
+.vdots span { flex: 1; text-align: center; font-size: 11px; padding: 5px 0; border-radius: 8px; background: var(--panel); color: var(--muted); }
+.vdots span.now { background: var(--panel2); color: var(--text); font-weight: 700; }
+.vdots span.ok { color: var(--good); }
+.vdots span.ng { color: var(--again); }
+.vtense { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.vtense b { color: var(--accent); font-size: 14px; }
+.vq-ja { font-size: 24px; font-weight: 700; line-height: 1.4; margin: 8px 0 10px; }
+.vq-verb { font-size: 14px; color: var(--muted); }
+.vq-verb b { color: var(--text); font-size: 16px; }
+.vq-en { font-size: 24px; font-weight: 700; line-height: 1.35; margin-top: 24px; }
+.vq-en .hit, .vex-en .hit { color: var(--good); }
+.vq-kana { font-size: 14px; color: var(--muted); margin-top: 6px; }
+.vcard .vagain { margin-left: 0; text-align: left; }
+.vform.ng .vf-en { color: var(--again) !important; }
+.vform.ng .vf-kana { color: var(--again); }
+.vcard #vNextBtn { margin-top: 18px; }

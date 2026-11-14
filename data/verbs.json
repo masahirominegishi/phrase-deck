@@ -1,6 +1,6 @@
 {
- "version": 1,
- "note": "動詞の3つの形（原形→過去形→過去分詞）。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
+ "version": 2,
+ "note": "動詞の3つの形（原形→過去形→過去分詞）。ex は 現在・過去・過去分詞 の順の 3 文。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
  "steps": [
   {
    "no": 1,
@@ -85,6 +85,11 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I'm busy every Monday.",
+     "ja": "毎週月曜は忙しい。",
+     "hl": "I'm"
+    },
+    {
      "en": "I was busy yesterday.",
      "ja": "昨日は忙しかった。"
     },
@@ -117,6 +122,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I have a meeting every morning.",
+     "ja": "毎朝、会議がある。"
+    },
+    {
      "en": "I had a cold last week.",
      "ja": "先週は風邪をひいていた。"
     },
@@ -142,6 +151,10 @@
    "ja": "する",
    "pat": "en",
    "ex": [
+    {
+     "en": "I do the laundry on Sundays.",
+     "ja": "日曜に洗濯をする。"
+    },
     {
      "en": "I did my best.",
      "ja": "ベストを尽くした。"
@@ -170,6 +183,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I go to the gym twice a week.",
+     "ja": "週に 2 回ジムに行く。"
+    },
+    {
      "en": "I went to Tokyo last month.",
      "ja": "先月、東京に行った。"
     },
@@ -196,6 +213,10 @@
    "ja": "手に入れる・〜になる",
    "pat": "en",
    "ex": [
+    {
+     "en": "I get up at six.",
+     "ja": "6 時に起きる。"
+    },
     {
      "en": "I got a new phone.",
      "ja": "新しいスマホを手に入れた。"
@@ -224,6 +245,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I make coffee every morning.",
+     "ja": "毎朝コーヒーをいれる。"
+    },
+    {
      "en": "I made dinner last night.",
      "ja": "昨日の夜は夕食を作った。"
     },
@@ -249,6 +274,10 @@
    "ja": "言う",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I always say thank you.",
+     "ja": "いつも「ありがとう」と言う。"
+    },
     {
      "en": "She said yes.",
      "ja": "彼女は「いいよ」と言った。"
@@ -277,6 +306,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I see him every day.",
+     "ja": "彼には毎日会う。"
+    },
+    {
      "en": "I saw him at the station.",
      "ja": "駅で彼を見かけた。"
     },
@@ -302,6 +335,10 @@
    "ja": "来る",
    "pat": "aba",
    "ex": [
+    {
+     "en": "I come here every week.",
+     "ja": "毎週ここに来る。"
+    },
     {
      "en": "He came late.",
      "ja": "彼は遅れて来た。"
@@ -329,6 +366,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I take the train to work.",
+     "ja": "電車で通勤している。"
+    },
+    {
      "en": "It took two hours.",
      "ja": "2 時間かかった。"
     },
@@ -354,6 +395,10 @@
    "ja": "知っている",
    "pat": "en",
    "ex": [
+    {
+     "en": "I know his name.",
+     "ja": "彼の名前を知っている。"
+    },
     {
      "en": "I knew it!",
      "ja": "やっぱり！（わかってた）"
@@ -382,6 +427,10 @@
    "pat": "ought",
    "ex": [
     {
+     "en": "I think it's a good idea.",
+     "ja": "いい考えだと思う。"
+    },
+    {
      "en": "I thought so.",
      "ja": "そう思った。"
     },
@@ -407,6 +456,10 @@
    "ja": "あげる・渡す",
    "pat": "en",
    "ex": [
+    {
+     "en": "I give him advice sometimes.",
+     "ja": "ときどき彼に助言する。"
+    },
     {
      "en": "She gave me a present.",
      "ja": "彼女がプレゼントをくれた。"
@@ -434,6 +487,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I tell her everything.",
+     "ja": "彼女には何でも話す。"
+    },
+    {
      "en": "I told you.",
      "ja": "言ったでしょ。"
     },
@@ -460,6 +517,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I always find good restaurants online.",
+     "ja": "いい店はいつもネットで見つける。"
+    },
+    {
      "en": "I found my keys.",
      "ja": "鍵が見つかった。"
     },
@@ -485,6 +546,10 @@
    "ja": "食べる",
    "pat": "en",
    "ex": [
+    {
+     "en": "I eat breakfast at seven.",
+     "ja": "7 時に朝食を食べる。"
+    },
     {
      "en": "I ate too much.",
      "ja": "食べすぎた。"
@@ -513,6 +578,10 @@
    "pat": "iau",
    "ex": [
     {
+     "en": "I drink coffee every morning.",
+     "ja": "毎朝コーヒーを飲む。"
+    },
+    {
      "en": "I drank too much last night.",
      "ja": "昨日の夜は飲みすぎた。"
     },
@@ -538,6 +607,10 @@
    "ja": "買う",
    "pat": "ought",
    "ex": [
+    {
+     "en": "I buy lunch at the convenience store.",
+     "ja": "昼はコンビニで買う。"
+    },
     {
      "en": "I bought a new bag.",
      "ja": "新しいかばんを買った。"
@@ -565,6 +638,10 @@
    "pat": "short",
    "ex": [
     {
+     "en": "I meet my friends on weekends.",
+     "ja": "週末は友だちと会う。"
+    },
+    {
      "en": "I met her in Takamatsu.",
      "ja": "彼女とは高松で会った。"
     },
@@ -590,6 +667,10 @@
    "ja": "話す",
    "pat": "en",
    "ex": [
+    {
+     "en": "I speak a little English.",
+     "ja": "英語を少し話す。"
+    },
     {
      "en": "I spoke to the manager.",
      "ja": "店長と話した。"
@@ -617,6 +698,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I write a lot of emails.",
+     "ja": "メールをたくさん書く。"
+    },
+    {
      "en": "I wrote an email.",
      "ja": "メールを書いた。"
     },
@@ -643,12 +728,18 @@
    "pat": "short",
    "ex": [
     {
+     "en": "I read the news every morning.",
+     "ja": "毎朝ニュースを読む。"
+    },
+    {
      "en": "I read it yesterday.",
-     "ja": "昨日それを読んだ。"
+     "ja": "昨日それを読んだ。",
+     "say": "I red it yesterday."
     },
     {
      "en": "Have you read this book?",
-     "ja": "この本は読んだ？"
+     "ja": "この本は読んだ？",
+     "say": "Have you red this book?"
     }
    ],
    "note": "綴りは 3 つとも同じ。音だけ「リード → レッド → レッド」（色の red と同じ音）。",
@@ -674,6 +765,10 @@
    "ja": "聞こえる・耳にする",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I hear that a lot.",
+     "ja": "それはよく聞く。"
+    },
     {
      "en": "I heard the news.",
      "ja": "そのニュースを聞いた。"
@@ -702,6 +797,10 @@
    "pat": "short",
    "ex": [
     {
+     "en": "I leave home at seven every day.",
+     "ja": "毎日 7 時に家を出る。"
+    },
+    {
      "en": "I left home at seven.",
      "ja": "7 時に家を出た。"
     },
@@ -727,6 +826,10 @@
    "ja": "感じる",
    "pat": "short",
    "ex": [
+    {
+     "en": "I feel tired today.",
+     "ja": "今日は疲れている。"
+    },
     {
      "en": "I felt sick.",
      "ja": "気分が悪かった。"
@@ -754,6 +857,10 @@
    "pat": "aaa",
    "ex": [
     {
+     "en": "I always put my keys here.",
+     "ja": "鍵はいつもここに置く。"
+    },
+    {
      "en": "I put it on the table.",
      "ja": "テーブルの上に置いたよ。"
     },
@@ -779,6 +886,10 @@
    "ja": "走る",
    "pat": "aba",
    "ex": [
+    {
+     "en": "I run every morning.",
+     "ja": "毎朝走る。"
+    },
     {
      "en": "I ran to the station.",
      "ja": "駅まで走った。"
@@ -807,6 +918,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I always sit here.",
+     "ja": "いつもここに座る。"
+    },
+    {
      "en": "We sat by the window.",
      "ja": "窓ぎわに座った。"
     },
@@ -832,6 +947,10 @@
    "ja": "眠る",
    "pat": "short",
    "ex": [
+    {
+     "en": "I sleep seven hours a night.",
+     "ja": "毎晩 7 時間寝る。"
+    },
     {
      "en": "I slept well.",
      "ja": "よく眠れた。"
@@ -859,6 +978,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I always forget his name.",
+     "ja": "いつも彼の名前を忘れる。"
+    },
+    {
      "en": "I forgot his name.",
      "ja": "彼の名前を忘れた。"
     },
@@ -885,6 +1008,10 @@
    "pat": "ought",
    "ex": [
     {
+     "en": "I always bring my own lunch.",
+     "ja": "いつも弁当を持ってくる。"
+    },
+    {
      "en": "I brought some snacks.",
      "ja": "お菓子を持ってきたよ。"
     },
@@ -910,6 +1037,10 @@
    "ja": "つかまえる・（電車に）間に合う",
    "pat": "ought",
    "ex": [
+    {
+     "en": "I catch the same train every day.",
+     "ja": "毎日同じ電車に乗る。"
+    },
     {
      "en": "I caught a cold.",
      "ja": "風邪をひいた。"
@@ -938,6 +1069,10 @@
    "pat": "ought",
    "ex": [
     {
+     "en": "I teach English.",
+     "ja": "英語を教えている。"
+    },
+    {
      "en": "She taught me English.",
      "ja": "彼女が英語を教えてくれた。"
     },
@@ -963,6 +1098,10 @@
    "ja": "売る",
    "pat": "abb",
    "ex": [
+    {
+     "en": "We sell fresh fish.",
+     "ja": "うちは鮮魚を売っている。"
+    },
     {
      "en": "I sold my car.",
      "ja": "車を売った。"
@@ -991,6 +1130,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I always pay by card.",
+     "ja": "いつもカードで払う。"
+    },
+    {
      "en": "I paid by card.",
      "ja": "カードで払った。"
     },
@@ -1016,6 +1159,10 @@
    "ja": "送る",
    "pat": "dt",
    "ex": [
+    {
+     "en": "I send him a report every week.",
+     "ja": "毎週、彼に報告を送る。"
+    },
     {
      "en": "I sent you an email.",
      "ja": "メールを送りました。"
@@ -1043,6 +1190,10 @@
    "pat": "dt",
    "ex": [
     {
+     "en": "I spend a lot on books.",
+     "ja": "本にたくさんお金を使う。"
+    },
+    {
      "en": "I spent the weekend at home.",
      "ja": "週末は家で過ごした。"
     },
@@ -1068,6 +1219,10 @@
    "ja": "なくす・負ける",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I often lose my umbrella.",
+     "ja": "よく傘をなくす。"
+    },
     {
      "en": "I lost my wallet.",
      "ja": "財布をなくした。"
@@ -1095,6 +1250,10 @@
    "pat": "short",
    "ex": [
     {
+     "en": "I keep my receipts.",
+     "ja": "レシートは取っておく。"
+    },
+    {
      "en": "I kept the receipt.",
      "ja": "レシートは取っておいた。"
     },
@@ -1121,6 +1280,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I stand all day at work.",
+     "ja": "仕事では一日中立っている。"
+    },
+    {
      "en": "We stood in line for an hour.",
      "ja": "1 時間並んだ。"
     },
@@ -1146,6 +1309,10 @@
    "ja": "理解する",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I understand.",
+     "ja": "わかります。"
+    },
     {
      "en": "I understood what he said.",
      "ja": "彼の言ったことはわかった。"
@@ -1174,6 +1341,10 @@
    "pat": "iau",
    "ex": [
     {
+     "en": "Classes begin at nine.",
+     "ja": "授業は 9 時に始まる。"
+    },
+    {
      "en": "It began to rain.",
      "ja": "雨が降りはじめた。"
     },
@@ -1199,6 +1370,10 @@
    "ja": "壊す・壊れる",
    "pat": "en",
    "ex": [
+    {
+     "en": "Cheap umbrellas break easily.",
+     "ja": "安い傘はすぐ壊れる。"
+    },
     {
      "en": "I broke my phone.",
      "ja": "スマホを壊した。"
@@ -1226,6 +1401,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I always choose the same thing.",
+     "ja": "いつも同じものを選ぶ。"
+    },
+    {
      "en": "I chose the fish.",
      "ja": "魚のほうを選んだ。"
     },
@@ -1252,6 +1431,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I drive to work.",
+     "ja": "車で通勤している。"
+    },
+    {
      "en": "I drove to Kochi.",
      "ja": "高知まで運転した。"
     },
@@ -1277,6 +1460,10 @@
    "ja": "〜になる",
    "pat": "aba",
    "ex": [
+    {
+     "en": "Leaves become red in fall.",
+     "ja": "秋には葉が赤くなる。"
+    },
     {
      "en": "He became a doctor.",
      "ja": "彼は医者になった。"
@@ -1305,6 +1492,10 @@
    "pat": "dt",
    "ex": [
     {
+     "en": "We build websites.",
+     "ja": "うちはウェブサイトを作っている。"
+    },
+    {
      "en": "We built a new system.",
      "ja": "新しいシステムを作った。"
     },
@@ -1330,6 +1521,10 @@
    "ja": "切る",
    "pat": "aaa",
    "ex": [
+    {
+     "en": "I cut my own hair.",
+     "ja": "髪は自分で切る。"
+    },
     {
      "en": "I cut my finger.",
      "ja": "指を切った。"
@@ -1357,6 +1552,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "Leaves fall in autumn.",
+     "ja": "秋には葉が落ちる。"
+    },
+    {
      "en": "I fell asleep on the train.",
      "ja": "電車で寝てしまった。"
     },
@@ -1383,6 +1582,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I fly to Tokyo once a month.",
+     "ja": "月に 1 回、飛行機で東京に行く。"
+    },
+    {
      "en": "I flew to Sapporo.",
      "ja": "札幌まで飛行機で行った。"
     },
@@ -1408,6 +1611,10 @@
    "ja": "育つ・育てる",
    "pat": "en",
    "ex": [
+    {
+     "en": "We grow tomatoes.",
+     "ja": "うちではトマトを育てている。"
+    },
     {
      "en": "I grew up in Kagawa.",
      "ja": "香川で育った。"
@@ -1436,6 +1643,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "We hold a meeting every Monday.",
+     "ja": "毎週月曜に会議を開く。"
+    },
+    {
      "en": "We held a meeting.",
      "ja": "会議を開いた。"
     },
@@ -1462,6 +1673,10 @@
    "pat": "aaa",
    "ex": [
     {
+     "en": "I let my kids play games on weekends.",
+     "ja": "週末は子どもにゲームをさせている。"
+    },
+    {
      "en": "She let me use her car.",
      "ja": "彼女が車を使わせてくれた。"
     },
@@ -1487,6 +1702,10 @@
    "ja": "意味する・〜のつもりで言う",
    "pat": "short",
    "ex": [
+    {
+     "en": "I mean it.",
+     "ja": "本気で言っている。"
+    },
     {
      "en": "I meant to call you.",
      "ja": "電話するつもりだった。"
@@ -1515,6 +1734,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I ride my bike to work.",
+     "ja": "自転車で通勤している。"
+    },
+    {
      "en": "I rode my bike to work.",
      "ja": "自転車で出勤した。"
     },
@@ -1542,6 +1765,10 @@
    "pat": "iau",
    "ex": [
     {
+     "en": "I sing in the car.",
+     "ja": "車の中で歌う。"
+    },
+    {
      "en": "We sang karaoke.",
      "ja": "カラオケで歌った。"
     },
@@ -1567,6 +1794,10 @@
    "ja": "泳ぐ",
    "pat": "iau",
    "ex": [
+    {
+     "en": "I swim twice a week.",
+     "ja": "週に 2 回泳ぐ。"
+    },
     {
      "en": "I swam in the sea.",
      "ja": "海で泳いだ。"
@@ -1594,6 +1825,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I wear glasses.",
+     "ja": "めがねをかけている。"
+    },
+    {
      "en": "I wore a suit.",
      "ja": "スーツを着た。"
     },
@@ -1619,6 +1854,10 @@
    "ja": "勝つ",
    "pat": "abb",
    "ex": [
+    {
+     "en": "They always win.",
+     "ja": "あのチームはいつも勝つ。"
+    },
     {
      "en": "We won the game.",
      "ja": "試合に勝った。"
@@ -1647,6 +1886,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I wake up at five every day.",
+     "ja": "毎日 5 時に目が覚める。"
+    },
+    {
      "en": "I woke up at five.",
      "ja": "5 時に目が覚めた。"
     },
@@ -1672,6 +1915,10 @@
    "ja": "打つ・ぶつかる",
    "pat": "aaa",
    "ex": [
+    {
+     "en": "I always hit my head here.",
+     "ja": "いつもここで頭をぶつける。"
+    },
     {
      "en": "I hit my head.",
      "ja": "頭をぶつけた。"
@@ -1699,6 +1946,10 @@
    "pat": "aaa",
    "ex": [
     {
+     "en": "My feet hurt.",
+     "ja": "足が痛い。"
+    },
+    {
      "en": "I hurt my back.",
      "ja": "腰を痛めた。"
     },
@@ -1724,6 +1975,10 @@
    "ja": "（お金が）かかる",
    "pat": "aaa",
    "ex": [
+    {
+     "en": "Tickets cost 5,000 yen.",
+     "ja": "チケットは 5,000 円する。"
+    },
     {
      "en": "It cost 5,000 yen.",
      "ja": "5,000 円かかった。"
@@ -1751,6 +2006,10 @@
    "pat": "aaa",
    "ex": [
     {
+     "en": "The shops shut at eight.",
+     "ja": "店は 8 時に閉まる。"
+    },
+    {
      "en": "I shut the door.",
      "ja": "ドアを閉めた。"
     },
@@ -1776,6 +2035,10 @@
    "ja": "セットする・決める",
    "pat": "aaa",
    "ex": [
+    {
+     "en": "I set the alarm every night.",
+     "ja": "毎晩、目覚ましをセットする。"
+    },
     {
      "en": "I set the alarm for six.",
      "ja": "目覚ましを 6 時にセットした。"
@@ -1803,6 +2066,10 @@
    "pat": "aaa",
    "ex": [
     {
+     "en": "Many people quit after a week.",
+     "ja": "1 週間でやめる人が多い。"
+    },
+    {
      "en": "I quit smoking.",
      "ja": "たばこをやめた。"
     },
@@ -1828,6 +2095,10 @@
    "ja": "貸す",
    "pat": "dt",
    "ex": [
+    {
+     "en": "I often lend him books.",
+     "ja": "よく彼に本を貸す。"
+    },
     {
      "en": "I lent him my umbrella.",
      "ja": "彼に傘を貸した。"
@@ -1855,6 +2126,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I draw pictures for work.",
+     "ja": "仕事で絵を描く。"
+    },
+    {
      "en": "I drew a map.",
      "ja": "地図を描いた。"
     },
@@ -1880,6 +2155,10 @@
    "ja": "投げる",
    "pat": "en",
    "ex": [
+    {
+     "en": "I throw away old papers every month.",
+     "ja": "毎月、古い書類を捨てる。"
+    },
     {
      "en": "I threw it away.",
      "ja": "それは捨てた。"
@@ -1908,6 +2187,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I show my ID at the gate.",
+     "ja": "入口で身分証を見せる。"
+    },
+    {
      "en": "He showed me the way.",
      "ja": "彼が道を教えてくれた。"
     },
@@ -1935,6 +2218,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "Crows steal food.",
+     "ja": "カラスは食べ物を盗む。"
+    },
+    {
      "en": "Someone stole my bike.",
      "ja": "誰かに自転車を盗まれた。"
     },
@@ -1960,6 +2247,10 @@
    "ja": "隠す・隠れる",
    "pat": "en",
    "ex": [
+    {
+     "en": "I hide snacks from my kids.",
+     "ja": "子どもからお菓子を隠している。"
+    },
     {
      "en": "I hid the present.",
      "ja": "プレゼントを隠した。"
@@ -1987,6 +2278,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "Mosquitoes bite me a lot.",
+     "ja": "蚊によく刺される。"
+    },
+    {
      "en": "The dog bit me.",
      "ja": "犬にかまれた。"
     },
@@ -2012,6 +2307,10 @@
    "ja": "えさをやる・食べさせる",
    "pat": "short",
    "ex": [
+    {
+     "en": "I feed the fish every morning.",
+     "ja": "毎朝、魚にえさをやる。"
+    },
     {
      "en": "I fed the fish.",
      "ja": "魚にえさをやった。"
@@ -2039,6 +2338,10 @@
    "pat": "ought",
    "ex": [
     {
+     "en": "My kids fight every day.",
+     "ja": "うちの子は毎日けんかする。"
+    },
+    {
      "en": "They fought about money.",
      "ja": "彼らはお金のことでけんかした。"
     },
@@ -2064,6 +2367,10 @@
    "ja": "（風が）吹く・吹き飛ばす",
    "pat": "en",
    "ex": [
+    {
+     "en": "Strong winds blow in winter.",
+     "ja": "冬は強い風が吹く。"
+    },
     {
      "en": "The wind blew hard.",
      "ja": "風が強く吹いた。"
@@ -2092,6 +2399,10 @@
    "pat": "short",
    "ex": [
     {
+     "en": "I lead a small team.",
+     "ja": "小さなチームを率いている。"
+    },
+    {
      "en": "She led the project.",
      "ja": "彼女がそのプロジェクトを率いた。"
     },
@@ -2117,6 +2428,10 @@
    "ja": "（物を）横たえる・置く",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I lay my clothes out the night before.",
+     "ja": "前の晩に服を出して並べておく。"
+    },
     {
      "en": "I laid the baby on the bed.",
      "ja": "赤ちゃんをベッドに寝かせた。"
@@ -2145,6 +2460,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "I lie down after lunch.",
+     "ja": "昼食のあとは横になる。"
+    },
+    {
      "en": "I lay on the sofa.",
      "ja": "ソファに横になった。"
     },
@@ -2172,6 +2491,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "Prices rise every year.",
+     "ja": "物価は毎年上がる。"
+    },
+    {
      "en": "The sun rose at six.",
      "ja": "6 時に日が昇った。"
     },
@@ -2197,6 +2520,10 @@
    "ja": "振る・揺れる",
    "pat": "en",
    "ex": [
+    {
+     "en": "We shake hands when we meet.",
+     "ja": "会ったら握手をする。"
+    },
     {
      "en": "We shook hands.",
      "ja": "握手をした。"
@@ -2225,6 +2552,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "We shoot videos for clients.",
+     "ja": "お客さんの動画を撮影している。"
+    },
+    {
      "en": "We shot the video in Takamatsu.",
      "ja": "動画は高松で撮った。"
     },
@@ -2250,6 +2581,10 @@
    "ja": "（ベル・電話が）鳴る",
    "pat": "iau",
    "ex": [
+    {
+     "en": "The bells ring at noon.",
+     "ja": "正午に鐘が鳴る。"
+    },
     {
      "en": "The phone rang.",
      "ja": "電話が鳴った。"
@@ -2277,6 +2612,10 @@
    "pat": "iau",
    "ex": [
     {
+     "en": "Stones sink in water.",
+     "ja": "石は水に沈む。"
+    },
+    {
      "en": "The boat sank.",
      "ja": "ボートが沈んだ。"
     },
@@ -2302,6 +2641,10 @@
    "ja": "貼る・くっつく",
    "pat": "abb",
    "ex": [
+    {
+     "en": "I stick notes on my desk.",
+     "ja": "机にメモを貼る。"
+    },
     {
      "en": "I stuck a note on the door.",
      "ja": "ドアにメモを貼った。"
@@ -2329,6 +2672,10 @@
    "pat": "abb",
    "ex": [
     {
+     "en": "I hang my coat here.",
+     "ja": "コートはここに掛ける。"
+    },
+    {
      "en": "I hung my coat up.",
      "ja": "コートを掛けた。"
     },
@@ -2354,6 +2701,10 @@
    "ja": "掘る",
    "pat": "abb",
    "ex": [
+    {
+     "en": "Dogs dig holes.",
+     "ja": "犬は穴を掘る。"
+    },
     {
      "en": "We dug a hole.",
      "ja": "穴を掘った。"
@@ -2381,6 +2732,10 @@
    "pat": "en",
    "ex": [
     {
+     "en": "The lakes freeze in winter.",
+     "ja": "冬は湖が凍る。"
+    },
+    {
      "en": "My computer froze.",
      "ja": "パソコンが固まった。"
     },
@@ -2407,6 +2762,10 @@
    "pat": "dt",
    "ex": [
     {
+     "en": "I bend my knees when I lift.",
+     "ja": "持ち上げるときはひざを曲げる。"
+    },
+    {
      "en": "I bent down to pick it up.",
      "ja": "それを拾おうとかがんだ。"
     },
@@ -2432,6 +2791,10 @@
    "ja": "対処する・扱う",
    "pat": "short",
    "ex": [
+    {
+     "en": "I deal with customers every day.",
+     "ja": "毎日、お客さんの対応をする。"
+    },
     {
      "en": "I dealt with the problem.",
      "ja": "その問題に対処した。"
