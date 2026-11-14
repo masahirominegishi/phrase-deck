@@ -1,0 +1,2447 @@
+{
+ "version": 1,
+ "note": "動詞の3つの形（原形→過去形→過去分詞）。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
+ "steps": [
+  {
+   "no": 1,
+   "name": "超基本 1",
+   "sub": "毎日の会話で必ず出る 15 個"
+  },
+  {
+   "no": 2,
+   "name": "超基本 2",
+   "sub": "食べる・買う・会う。暮らしの 15 個"
+  },
+  {
+   "no": 3,
+   "name": "基本 1",
+   "sub": "catch・bring・teach など、仕事でも使う 15 個"
+  },
+  {
+   "no": 4,
+   "name": "基本 2",
+   "sub": "話が広がる 15 個"
+  },
+  {
+   "no": 5,
+   "name": "応用 1",
+   "sub": "形が変わらない仲間と、3 つ目が「ン」の仲間"
+  },
+  {
+   "no": 6,
+   "name": "応用 2",
+   "sub": "ここまで言えたら会話で困らない 15 個"
+  }
+ ],
+ "patterns": {
+  "aaa": {
+   "name": "3 つとも同じ",
+   "tip": "形が変わらない。短くて t で終わるものが多い"
+  },
+  "ought": {
+   "name": "オート組",
+   "tip": "2 つ目と 3 つ目が「〜オート」。綴りは ought / aught でも音は同じ"
+  },
+  "aba": {
+   "name": "元に戻る組",
+   "tip": "3 つ目が原形に戻る"
+  },
+  "iau": {
+   "name": "イ→ェア→ア組",
+   "tip": "真ん中の音だけが i → a → u と変わる。2 つ目は口を横に開く「ェア」"
+  },
+  "en": {
+   "name": "3 つ目が「ン」組",
+   "tip": "3 つ目が n の音で終わる"
+  },
+  "short": {
+   "name": "イー→エ組",
+   "tip": "のばす「イー」が短い「エ」になる。2 つ目と 3 つ目は同じ"
+  },
+  "dt": {
+   "name": "d→t 組",
+   "tip": "最後の d が t になるだけ。2 つ目と 3 つ目は同じ"
+  },
+  "abb": {
+   "name": "2 つ目＝3 つ目",
+   "tip": "2 つ目と 3 つ目が同じ"
+  }
+ },
+ "verbs": [
+  {
+   "id": "v-be",
+   "step": 1,
+   "f": [
+    "be",
+    "was / were",
+    "been"
+   ],
+   "kana": [
+    "ビー",
+    "ワズ・ワー",
+    "ビン"
+   ],
+   "ja": "〜である・いる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I was busy yesterday.",
+     "ja": "昨日は忙しかった。"
+    },
+    {
+     "en": "I've been to Okinawa twice.",
+     "ja": "沖縄には 2 回行ったことがある。"
+    }
+   ],
+   "note": "I・he・she・it は was、you・we・they は were。been は「ビーン」より短く「ビン」。",
+   "say": [
+    "be",
+    "was, were",
+    "been"
+   ]
+  },
+  {
+   "id": "v-have",
+   "step": 1,
+   "f": [
+    "have",
+    "had",
+    "had"
+   ],
+   "kana": [
+    "ハヴ",
+    "ハッド",
+    "ハッド"
+   ],
+   "ja": "持っている・食べる",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I had a cold last week.",
+     "ja": "先週は風邪をひいていた。"
+    },
+    {
+     "en": "I've had enough, thank you.",
+     "ja": "もう十分いただきました。"
+    }
+   ]
+  },
+  {
+   "id": "v-do",
+   "step": 1,
+   "f": [
+    "do",
+    "did",
+    "done"
+   ],
+   "kana": [
+    "ドゥー",
+    "ディッド",
+    "ダン"
+   ],
+   "ja": "する",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I did my best.",
+     "ja": "ベストを尽くした。"
+    },
+    {
+     "en": "I've already done it.",
+     "ja": "それはもうやりました。"
+    }
+   ],
+   "note": "done は「ドーン」ではなく「ダン」。"
+  },
+  {
+   "id": "v-go",
+   "step": 1,
+   "f": [
+    "go",
+    "went",
+    "gone"
+   ],
+   "kana": [
+    "ゴウ",
+    "ウェント",
+    "ゴーン"
+   ],
+   "ja": "行く",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I went to Tokyo last month.",
+     "ja": "先月、東京に行った。"
+    },
+    {
+     "en": "He's gone home.",
+     "ja": "彼はもう帰りました。"
+    }
+   ],
+   "note": "「行ったことがある」は have been to。have gone は「行ってしまって、今いない」。"
+  },
+  {
+   "id": "v-get",
+   "step": 1,
+   "f": [
+    "get",
+    "got",
+    "gotten"
+   ],
+   "kana": [
+    "ゲット",
+    "ガット",
+    "ガットゥン"
+   ],
+   "ja": "手に入れる・〜になる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I got a new phone.",
+     "ja": "新しいスマホを手に入れた。"
+    },
+    {
+     "en": "It's gotten cold.",
+     "ja": "寒くなってきた。"
+    }
+   ],
+   "note": "アメリカは gotten、イギリスは got。どちらでも通じる。"
+  },
+  {
+   "id": "v-make",
+   "step": 1,
+   "f": [
+    "make",
+    "made",
+    "made"
+   ],
+   "kana": [
+    "メイク",
+    "メイド",
+    "メイド"
+   ],
+   "ja": "作る",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I made dinner last night.",
+     "ja": "昨日の夜は夕食を作った。"
+    },
+    {
+     "en": "I've made a mistake.",
+     "ja": "間違えてしまった。"
+    }
+   ]
+  },
+  {
+   "id": "v-say",
+   "step": 1,
+   "f": [
+    "say",
+    "said",
+    "said"
+   ],
+   "kana": [
+    "セイ",
+    "セッド",
+    "セッド"
+   ],
+   "ja": "言う",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "She said yes.",
+     "ja": "彼女は「いいよ」と言った。"
+    },
+    {
+     "en": "I've said that many times.",
+     "ja": "それは何度も言ってきた。"
+    }
+   ],
+   "note": "「セイド」ではなく「セッド」。"
+  },
+  {
+   "id": "v-see",
+   "step": 1,
+   "f": [
+    "see",
+    "saw",
+    "seen"
+   ],
+   "kana": [
+    "スィー",
+    "ソー",
+    "スィーン"
+   ],
+   "ja": "見る・会う",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I saw him at the station.",
+     "ja": "駅で彼を見かけた。"
+    },
+    {
+     "en": "I've seen that movie.",
+     "ja": "その映画は見たことがある。"
+    }
+   ]
+  },
+  {
+   "id": "v-come",
+   "step": 1,
+   "f": [
+    "come",
+    "came",
+    "come"
+   ],
+   "kana": [
+    "カム",
+    "ケイム",
+    "カム"
+   ],
+   "ja": "来る",
+   "pat": "aba",
+   "ex": [
+    {
+     "en": "He came late.",
+     "ja": "彼は遅れて来た。"
+    },
+    {
+     "en": "Spring has come.",
+     "ja": "春が来た。"
+    }
+   ]
+  },
+  {
+   "id": "v-take",
+   "step": 1,
+   "f": [
+    "take",
+    "took",
+    "taken"
+   ],
+   "kana": [
+    "テイク",
+    "トゥック",
+    "テイクン"
+   ],
+   "ja": "取る・（時間が）かかる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "It took two hours.",
+     "ja": "2 時間かかった。"
+    },
+    {
+     "en": "I've taken the medicine.",
+     "ja": "薬はもう飲んだ。"
+    }
+   ]
+  },
+  {
+   "id": "v-know",
+   "step": 1,
+   "f": [
+    "know",
+    "knew",
+    "known"
+   ],
+   "kana": [
+    "ノウ",
+    "ニュー",
+    "ノウン"
+   ],
+   "ja": "知っている",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I knew it!",
+     "ja": "やっぱり！（わかってた）"
+    },
+    {
+     "en": "I've known him for ten years.",
+     "ja": "彼とは 10 年来の知り合いだ。"
+    }
+   ],
+   "note": "knew は new と同じ音。"
+  },
+  {
+   "id": "v-think",
+   "step": 1,
+   "f": [
+    "think",
+    "thought",
+    "thought"
+   ],
+   "kana": [
+    "スィンク",
+    "ソート",
+    "ソート"
+   ],
+   "ja": "思う・考える",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "I thought so.",
+     "ja": "そう思った。"
+    },
+    {
+     "en": "I've thought about it a lot.",
+     "ja": "それについてはよく考えてきた。"
+    }
+   ]
+  },
+  {
+   "id": "v-give",
+   "step": 1,
+   "f": [
+    "give",
+    "gave",
+    "given"
+   ],
+   "kana": [
+    "ギヴ",
+    "ゲイヴ",
+    "ギヴン"
+   ],
+   "ja": "あげる・渡す",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "She gave me a present.",
+     "ja": "彼女がプレゼントをくれた。"
+    },
+    {
+     "en": "I've given up.",
+     "ja": "もうあきらめた。"
+    }
+   ]
+  },
+  {
+   "id": "v-tell",
+   "step": 1,
+   "f": [
+    "tell",
+    "told",
+    "told"
+   ],
+   "kana": [
+    "テル",
+    "トウルド",
+    "トウルド"
+   ],
+   "ja": "伝える・教える",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I told you.",
+     "ja": "言ったでしょ。"
+    },
+    {
+     "en": "I've told him already.",
+     "ja": "彼にはもう伝えた。"
+    }
+   ]
+  },
+  {
+   "id": "v-find",
+   "step": 1,
+   "f": [
+    "find",
+    "found",
+    "found"
+   ],
+   "kana": [
+    "ファインド",
+    "ファウンド",
+    "ファウンド"
+   ],
+   "ja": "見つける",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I found my keys.",
+     "ja": "鍵が見つかった。"
+    },
+    {
+     "en": "I've found a good restaurant.",
+     "ja": "いい店を見つけたよ。"
+    }
+   ]
+  },
+  {
+   "id": "v-eat",
+   "step": 2,
+   "f": [
+    "eat",
+    "ate",
+    "eaten"
+   ],
+   "kana": [
+    "イート",
+    "エイト",
+    "イートゥン"
+   ],
+   "ja": "食べる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I ate too much.",
+     "ja": "食べすぎた。"
+    },
+    {
+     "en": "Have you eaten lunch?",
+     "ja": "お昼は食べた？"
+    }
+   ],
+   "note": "ate は数字の eight と同じ音。"
+  },
+  {
+   "id": "v-drink",
+   "step": 2,
+   "f": [
+    "drink",
+    "drank",
+    "drunk"
+   ],
+   "kana": [
+    "ドリンク",
+    "ドレァンク",
+    "ドランク"
+   ],
+   "ja": "飲む",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "I drank too much last night.",
+     "ja": "昨日の夜は飲みすぎた。"
+    },
+    {
+     "en": "I've never drunk sake.",
+     "ja": "日本酒は飲んだことがない。"
+    }
+   ]
+  },
+  {
+   "id": "v-buy",
+   "step": 2,
+   "f": [
+    "buy",
+    "bought",
+    "bought"
+   ],
+   "kana": [
+    "バイ",
+    "ボート",
+    "ボート"
+   ],
+   "ja": "買う",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "I bought a new bag.",
+     "ja": "新しいかばんを買った。"
+    },
+    {
+     "en": "I've bought the tickets.",
+     "ja": "チケットはもう買ってある。"
+    }
+   ]
+  },
+  {
+   "id": "v-meet",
+   "step": 2,
+   "f": [
+    "meet",
+    "met",
+    "met"
+   ],
+   "kana": [
+    "ミート",
+    "メット",
+    "メット"
+   ],
+   "ja": "会う",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I met her in Takamatsu.",
+     "ja": "彼女とは高松で会った。"
+    },
+    {
+     "en": "Have we met before?",
+     "ja": "前にお会いしましたっけ？"
+    }
+   ]
+  },
+  {
+   "id": "v-speak",
+   "step": 2,
+   "f": [
+    "speak",
+    "spoke",
+    "spoken"
+   ],
+   "kana": [
+    "スピーク",
+    "スポウク",
+    "スポウクン"
+   ],
+   "ja": "話す",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I spoke to the manager.",
+     "ja": "店長と話した。"
+    },
+    {
+     "en": "English is spoken here.",
+     "ja": "ここでは英語が通じる。"
+    }
+   ]
+  },
+  {
+   "id": "v-write",
+   "step": 2,
+   "f": [
+    "write",
+    "wrote",
+    "written"
+   ],
+   "kana": [
+    "ライト",
+    "ロウト",
+    "リトゥン"
+   ],
+   "ja": "書く",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I wrote an email.",
+     "ja": "メールを書いた。"
+    },
+    {
+     "en": "It's written in English.",
+     "ja": "それは英語で書かれている。"
+    }
+   ]
+  },
+  {
+   "id": "v-read",
+   "step": 2,
+   "f": [
+    "read",
+    "read",
+    "read"
+   ],
+   "kana": [
+    "リード",
+    "レッド",
+    "レッド"
+   ],
+   "ja": "読む",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I read it yesterday.",
+     "ja": "昨日それを読んだ。"
+    },
+    {
+     "en": "Have you read this book?",
+     "ja": "この本は読んだ？"
+    }
+   ],
+   "note": "綴りは 3 つとも同じ。音だけ「リード → レッド → レッド」（色の red と同じ音）。",
+   "say": [
+    "read",
+    "red",
+    "red"
+   ]
+  },
+  {
+   "id": "v-hear",
+   "step": 2,
+   "f": [
+    "hear",
+    "heard",
+    "heard"
+   ],
+   "kana": [
+    "ヒア",
+    "ハード",
+    "ハード"
+   ],
+   "ja": "聞こえる・耳にする",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I heard the news.",
+     "ja": "そのニュースを聞いた。"
+    },
+    {
+     "en": "I've never heard of it.",
+     "ja": "それは聞いたことがない。"
+    }
+   ],
+   "note": "「ヒアード」ではなく「ハード」。"
+  },
+  {
+   "id": "v-leave",
+   "step": 2,
+   "f": [
+    "leave",
+    "left",
+    "left"
+   ],
+   "kana": [
+    "リーヴ",
+    "レフト",
+    "レフト"
+   ],
+   "ja": "出発する・置いていく",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I left home at seven.",
+     "ja": "7 時に家を出た。"
+    },
+    {
+     "en": "I've left my umbrella on the train.",
+     "ja": "電車に傘を忘れてきた。"
+    }
+   ]
+  },
+  {
+   "id": "v-feel",
+   "step": 2,
+   "f": [
+    "feel",
+    "felt",
+    "felt"
+   ],
+   "kana": [
+    "フィール",
+    "フェルト",
+    "フェルト"
+   ],
+   "ja": "感じる",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I felt sick.",
+     "ja": "気分が悪かった。"
+    },
+    {
+     "en": "I've never felt better.",
+     "ja": "最高の気分だ。"
+    }
+   ]
+  },
+  {
+   "id": "v-put",
+   "step": 2,
+   "f": [
+    "put",
+    "put",
+    "put"
+   ],
+   "kana": [
+    "プット",
+    "プット",
+    "プット"
+   ],
+   "ja": "置く",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I put it on the table.",
+     "ja": "テーブルの上に置いたよ。"
+    },
+    {
+     "en": "I've put on weight.",
+     "ja": "体重が増えた。"
+    }
+   ]
+  },
+  {
+   "id": "v-run",
+   "step": 2,
+   "f": [
+    "run",
+    "ran",
+    "run"
+   ],
+   "kana": [
+    "ラン",
+    "レァン",
+    "ラン"
+   ],
+   "ja": "走る",
+   "pat": "aba",
+   "ex": [
+    {
+     "en": "I ran to the station.",
+     "ja": "駅まで走った。"
+    },
+    {
+     "en": "I've run out of time.",
+     "ja": "時間がなくなった。"
+    }
+   ],
+   "note": "ran は口を横に開いた「レァン」。"
+  },
+  {
+   "id": "v-sit",
+   "step": 2,
+   "f": [
+    "sit",
+    "sat",
+    "sat"
+   ],
+   "kana": [
+    "スィット",
+    "サット",
+    "サット"
+   ],
+   "ja": "座る",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We sat by the window.",
+     "ja": "窓ぎわに座った。"
+    },
+    {
+     "en": "I've sat here all day.",
+     "ja": "一日中ここに座っている。"
+    }
+   ]
+  },
+  {
+   "id": "v-sleep",
+   "step": 2,
+   "f": [
+    "sleep",
+    "slept",
+    "slept"
+   ],
+   "kana": [
+    "スリープ",
+    "スレプト",
+    "スレプト"
+   ],
+   "ja": "眠る",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I slept well.",
+     "ja": "よく眠れた。"
+    },
+    {
+     "en": "I haven't slept much.",
+     "ja": "あまり寝ていない。"
+    }
+   ]
+  },
+  {
+   "id": "v-forget",
+   "step": 2,
+   "f": [
+    "forget",
+    "forgot",
+    "forgotten"
+   ],
+   "kana": [
+    "フォゲット",
+    "フォガット",
+    "フォガットゥン"
+   ],
+   "ja": "忘れる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I forgot his name.",
+     "ja": "彼の名前を忘れた。"
+    },
+    {
+     "en": "I've forgotten my password.",
+     "ja": "パスワードを忘れてしまった。"
+    }
+   ]
+  },
+  {
+   "id": "v-bring",
+   "step": 3,
+   "f": [
+    "bring",
+    "brought",
+    "brought"
+   ],
+   "kana": [
+    "ブリング",
+    "ブロート",
+    "ブロート"
+   ],
+   "ja": "持ってくる",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "I brought some snacks.",
+     "ja": "お菓子を持ってきたよ。"
+    },
+    {
+     "en": "I've brought my laptop.",
+     "ja": "ノートパソコンを持ってきてある。"
+    }
+   ]
+  },
+  {
+   "id": "v-catch",
+   "step": 3,
+   "f": [
+    "catch",
+    "caught",
+    "caught"
+   ],
+   "kana": [
+    "キャッチ",
+    "コート",
+    "コート"
+   ],
+   "ja": "つかまえる・（電車に）間に合う",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "I caught a cold.",
+     "ja": "風邪をひいた。"
+    },
+    {
+     "en": "He was caught by the police.",
+     "ja": "彼は警察につかまった。"
+    }
+   ],
+   "note": "綴りは caught。gh は読まない。"
+  },
+  {
+   "id": "v-teach",
+   "step": 3,
+   "f": [
+    "teach",
+    "taught",
+    "taught"
+   ],
+   "kana": [
+    "ティーチ",
+    "トート",
+    "トート"
+   ],
+   "ja": "教える",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "She taught me English.",
+     "ja": "彼女が英語を教えてくれた。"
+    },
+    {
+     "en": "I've taught for ten years.",
+     "ja": "10 年教えている。"
+    }
+   ]
+  },
+  {
+   "id": "v-sell",
+   "step": 3,
+   "f": [
+    "sell",
+    "sold",
+    "sold"
+   ],
+   "kana": [
+    "セル",
+    "ソウルド",
+    "ソウルド"
+   ],
+   "ja": "売る",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I sold my car.",
+     "ja": "車を売った。"
+    },
+    {
+     "en": "It's sold out.",
+     "ja": "売り切れです。"
+    }
+   ],
+   "note": "tell → told と同じ変わり方。"
+  },
+  {
+   "id": "v-pay",
+   "step": 3,
+   "f": [
+    "pay",
+    "paid",
+    "paid"
+   ],
+   "kana": [
+    "ペイ",
+    "ペイド",
+    "ペイド"
+   ],
+   "ja": "払う",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I paid by card.",
+     "ja": "カードで払った。"
+    },
+    {
+     "en": "I've already paid.",
+     "ja": "もう払いました。"
+    }
+   ]
+  },
+  {
+   "id": "v-send",
+   "step": 3,
+   "f": [
+    "send",
+    "sent",
+    "sent"
+   ],
+   "kana": [
+    "センド",
+    "セント",
+    "セント"
+   ],
+   "ja": "送る",
+   "pat": "dt",
+   "ex": [
+    {
+     "en": "I sent you an email.",
+     "ja": "メールを送りました。"
+    },
+    {
+     "en": "I've sent the file.",
+     "ja": "ファイルは送ってあります。"
+    }
+   ]
+  },
+  {
+   "id": "v-spend",
+   "step": 3,
+   "f": [
+    "spend",
+    "spent",
+    "spent"
+   ],
+   "kana": [
+    "スペンド",
+    "スペント",
+    "スペント"
+   ],
+   "ja": "（お金・時間を）使う",
+   "pat": "dt",
+   "ex": [
+    {
+     "en": "I spent the weekend at home.",
+     "ja": "週末は家で過ごした。"
+    },
+    {
+     "en": "I've spent too much money.",
+     "ja": "お金を使いすぎた。"
+    }
+   ]
+  },
+  {
+   "id": "v-lose",
+   "step": 3,
+   "f": [
+    "lose",
+    "lost",
+    "lost"
+   ],
+   "kana": [
+    "ルーズ",
+    "ロスト",
+    "ロスト"
+   ],
+   "ja": "なくす・負ける",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I lost my wallet.",
+     "ja": "財布をなくした。"
+    },
+    {
+     "en": "I've lost weight.",
+     "ja": "体重が減った。"
+    }
+   ]
+  },
+  {
+   "id": "v-keep",
+   "step": 3,
+   "f": [
+    "keep",
+    "kept",
+    "kept"
+   ],
+   "kana": [
+    "キープ",
+    "ケプト",
+    "ケプト"
+   ],
+   "ja": "保つ・取っておく",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I kept the receipt.",
+     "ja": "レシートは取っておいた。"
+    },
+    {
+     "en": "I've kept it a secret.",
+     "ja": "それは秘密にしてある。"
+    }
+   ]
+  },
+  {
+   "id": "v-stand",
+   "step": 3,
+   "f": [
+    "stand",
+    "stood",
+    "stood"
+   ],
+   "kana": [
+    "スタンド",
+    "ストゥッド",
+    "ストゥッド"
+   ],
+   "ja": "立つ",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We stood in line for an hour.",
+     "ja": "1 時間並んだ。"
+    },
+    {
+     "en": "I've stood all day.",
+     "ja": "一日中立ちっぱなしだ。"
+    }
+   ]
+  },
+  {
+   "id": "v-understand",
+   "step": 3,
+   "f": [
+    "understand",
+    "understood",
+    "understood"
+   ],
+   "kana": [
+    "アンダスタンド",
+    "アンダストゥッド",
+    "アンダストゥッド"
+   ],
+   "ja": "理解する",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I understood what he said.",
+     "ja": "彼の言ったことはわかった。"
+    },
+    {
+     "en": "Understood.",
+     "ja": "了解しました。"
+    }
+   ],
+   "note": "stand → stood と同じ。"
+  },
+  {
+   "id": "v-begin",
+   "step": 3,
+   "f": [
+    "begin",
+    "began",
+    "begun"
+   ],
+   "kana": [
+    "ビギン",
+    "ビギャン",
+    "ビガン"
+   ],
+   "ja": "始める・始まる",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "It began to rain.",
+     "ja": "雨が降りはじめた。"
+    },
+    {
+     "en": "The meeting has begun.",
+     "ja": "会議はもう始まっている。"
+    }
+   ]
+  },
+  {
+   "id": "v-break",
+   "step": 3,
+   "f": [
+    "break",
+    "broke",
+    "broken"
+   ],
+   "kana": [
+    "ブレイク",
+    "ブロウク",
+    "ブロウクン"
+   ],
+   "ja": "壊す・壊れる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I broke my phone.",
+     "ja": "スマホを壊した。"
+    },
+    {
+     "en": "It's broken.",
+     "ja": "壊れている。"
+    }
+   ]
+  },
+  {
+   "id": "v-choose",
+   "step": 3,
+   "f": [
+    "choose",
+    "chose",
+    "chosen"
+   ],
+   "kana": [
+    "チューズ",
+    "チョウズ",
+    "チョウズン"
+   ],
+   "ja": "選ぶ",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I chose the fish.",
+     "ja": "魚のほうを選んだ。"
+    },
+    {
+     "en": "I was chosen as a lay judge.",
+     "ja": "裁判員に選ばれた。"
+    }
+   ]
+  },
+  {
+   "id": "v-drive",
+   "step": 3,
+   "f": [
+    "drive",
+    "drove",
+    "driven"
+   ],
+   "kana": [
+    "ドライヴ",
+    "ドロウヴ",
+    "ドリヴン"
+   ],
+   "ja": "運転する",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I drove to Kochi.",
+     "ja": "高知まで運転した。"
+    },
+    {
+     "en": "I've never driven abroad.",
+     "ja": "海外で運転したことはない。"
+    }
+   ]
+  },
+  {
+   "id": "v-become",
+   "step": 4,
+   "f": [
+    "become",
+    "became",
+    "become"
+   ],
+   "kana": [
+    "ビカム",
+    "ビケイム",
+    "ビカム"
+   ],
+   "ja": "〜になる",
+   "pat": "aba",
+   "ex": [
+    {
+     "en": "He became a doctor.",
+     "ja": "彼は医者になった。"
+    },
+    {
+     "en": "It's become popular.",
+     "ja": "人気が出てきた。"
+    }
+   ],
+   "note": "come → came → come と同じ。"
+  },
+  {
+   "id": "v-build",
+   "step": 4,
+   "f": [
+    "build",
+    "built",
+    "built"
+   ],
+   "kana": [
+    "ビルド",
+    "ビルト",
+    "ビルト"
+   ],
+   "ja": "建てる・作る",
+   "pat": "dt",
+   "ex": [
+    {
+     "en": "We built a new system.",
+     "ja": "新しいシステムを作った。"
+    },
+    {
+     "en": "It was built in 1990.",
+     "ja": "1990 年に建てられた。"
+    }
+   ]
+  },
+  {
+   "id": "v-cut",
+   "step": 4,
+   "f": [
+    "cut",
+    "cut",
+    "cut"
+   ],
+   "kana": [
+    "カット",
+    "カット",
+    "カット"
+   ],
+   "ja": "切る",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I cut my finger.",
+     "ja": "指を切った。"
+    },
+    {
+     "en": "I've cut down on sugar.",
+     "ja": "砂糖を減らしている。"
+    }
+   ]
+  },
+  {
+   "id": "v-fall",
+   "step": 4,
+   "f": [
+    "fall",
+    "fell",
+    "fallen"
+   ],
+   "kana": [
+    "フォール",
+    "フェル",
+    "フォールン"
+   ],
+   "ja": "落ちる・転ぶ",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I fell asleep on the train.",
+     "ja": "電車で寝てしまった。"
+    },
+    {
+     "en": "Prices have fallen.",
+     "ja": "値段が下がった。"
+    }
+   ]
+  },
+  {
+   "id": "v-fly",
+   "step": 4,
+   "f": [
+    "fly",
+    "flew",
+    "flown"
+   ],
+   "kana": [
+    "フライ",
+    "フルー",
+    "フロウン"
+   ],
+   "ja": "飛ぶ・飛行機で行く",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I flew to Sapporo.",
+     "ja": "札幌まで飛行機で行った。"
+    },
+    {
+     "en": "I've never flown business class.",
+     "ja": "ビジネスクラスには乗ったことがない。"
+    }
+   ]
+  },
+  {
+   "id": "v-grow",
+   "step": 4,
+   "f": [
+    "grow",
+    "grew",
+    "grown"
+   ],
+   "kana": [
+    "グロウ",
+    "グルー",
+    "グロウン"
+   ],
+   "ja": "育つ・育てる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I grew up in Kagawa.",
+     "ja": "香川で育った。"
+    },
+    {
+     "en": "You've grown!",
+     "ja": "大きくなったね！"
+    }
+   ],
+   "note": "know → knew → known と同じ変わり方。"
+  },
+  {
+   "id": "v-hold",
+   "step": 4,
+   "f": [
+    "hold",
+    "held",
+    "held"
+   ],
+   "kana": [
+    "ホウルド",
+    "ヘルド",
+    "ヘルド"
+   ],
+   "ja": "持つ・開催する",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We held a meeting.",
+     "ja": "会議を開いた。"
+    },
+    {
+     "en": "The event was held in Tokyo.",
+     "ja": "そのイベントは東京で開かれた。"
+    }
+   ]
+  },
+  {
+   "id": "v-let",
+   "step": 4,
+   "f": [
+    "let",
+    "let",
+    "let"
+   ],
+   "kana": [
+    "レット",
+    "レット",
+    "レット"
+   ],
+   "ja": "〜させる・許す",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "She let me use her car.",
+     "ja": "彼女が車を使わせてくれた。"
+    },
+    {
+     "en": "I've let him know.",
+     "ja": "彼には知らせてある。"
+    }
+   ]
+  },
+  {
+   "id": "v-mean",
+   "step": 4,
+   "f": [
+    "mean",
+    "meant",
+    "meant"
+   ],
+   "kana": [
+    "ミーン",
+    "メント",
+    "メント"
+   ],
+   "ja": "意味する・〜のつもりで言う",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I meant to call you.",
+     "ja": "電話するつもりだった。"
+    },
+    {
+     "en": "It was meant to be.",
+     "ja": "そうなる運命だった。"
+    }
+   ],
+   "note": "「ミーント」ではなく「メント」。"
+  },
+  {
+   "id": "v-ride",
+   "step": 4,
+   "f": [
+    "ride",
+    "rode",
+    "ridden"
+   ],
+   "kana": [
+    "ライド",
+    "ロウド",
+    "リドゥン"
+   ],
+   "ja": "（自転車・馬に）乗る",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I rode my bike to work.",
+     "ja": "自転車で出勤した。"
+    },
+    {
+     "en": "I've never ridden a horse.",
+     "ja": "馬には乗ったことがない。"
+    }
+   ],
+   "note": "write → wrote → written と同じ変わり方。"
+  },
+  {
+   "id": "v-sing",
+   "step": 4,
+   "f": [
+    "sing",
+    "sang",
+    "sung"
+   ],
+   "kana": [
+    "スィング",
+    "セァング",
+    "サング"
+   ],
+   "ja": "歌う",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "We sang karaoke.",
+     "ja": "カラオケで歌った。"
+    },
+    {
+     "en": "I've never sung in public.",
+     "ja": "人前で歌ったことはない。"
+    }
+   ]
+  },
+  {
+   "id": "v-swim",
+   "step": 4,
+   "f": [
+    "swim",
+    "swam",
+    "swum"
+   ],
+   "kana": [
+    "スウィム",
+    "スウェァム",
+    "スワム"
+   ],
+   "ja": "泳ぐ",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "I swam in the sea.",
+     "ja": "海で泳いだ。"
+    },
+    {
+     "en": "I haven't swum for years.",
+     "ja": "何年も泳いでいない。"
+    }
+   ]
+  },
+  {
+   "id": "v-wear",
+   "step": 4,
+   "f": [
+    "wear",
+    "wore",
+    "worn"
+   ],
+   "kana": [
+    "ウェア",
+    "ウォー",
+    "ウォーン"
+   ],
+   "ja": "着ている・身につける",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I wore a suit.",
+     "ja": "スーツを着た。"
+    },
+    {
+     "en": "I've never worn a kimono.",
+     "ja": "着物は着たことがない。"
+    }
+   ]
+  },
+  {
+   "id": "v-win",
+   "step": 4,
+   "f": [
+    "win",
+    "won",
+    "won"
+   ],
+   "kana": [
+    "ウィン",
+    "ワン",
+    "ワン"
+   ],
+   "ja": "勝つ",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We won the game.",
+     "ja": "試合に勝った。"
+    },
+    {
+     "en": "I've never won anything.",
+     "ja": "何かに当たったことは一度もない。"
+    }
+   ],
+   "note": "won は数字の one と同じ音。"
+  },
+  {
+   "id": "v-wake",
+   "step": 4,
+   "f": [
+    "wake",
+    "woke",
+    "woken"
+   ],
+   "kana": [
+    "ウェイク",
+    "ウォウク",
+    "ウォウクン"
+   ],
+   "ja": "目が覚める",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I woke up at five.",
+     "ja": "5 時に目が覚めた。"
+    },
+    {
+     "en": "I was woken by the noise.",
+     "ja": "物音で起こされた。"
+    }
+   ]
+  },
+  {
+   "id": "v-hit",
+   "step": 5,
+   "f": [
+    "hit",
+    "hit",
+    "hit"
+   ],
+   "kana": [
+    "ヒット",
+    "ヒット",
+    "ヒット"
+   ],
+   "ja": "打つ・ぶつかる",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I hit my head.",
+     "ja": "頭をぶつけた。"
+    },
+    {
+     "en": "The town was hit by a typhoon.",
+     "ja": "町は台風に襲われた。"
+    }
+   ]
+  },
+  {
+   "id": "v-hurt",
+   "step": 5,
+   "f": [
+    "hurt",
+    "hurt",
+    "hurt"
+   ],
+   "kana": [
+    "ハート",
+    "ハート",
+    "ハート"
+   ],
+   "ja": "痛める・傷つける",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I hurt my back.",
+     "ja": "腰を痛めた。"
+    },
+    {
+     "en": "Nobody was hurt.",
+     "ja": "けが人はいなかった。"
+    }
+   ]
+  },
+  {
+   "id": "v-cost",
+   "step": 5,
+   "f": [
+    "cost",
+    "cost",
+    "cost"
+   ],
+   "kana": [
+    "コスト",
+    "コスト",
+    "コスト"
+   ],
+   "ja": "（お金が）かかる",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "It cost 5,000 yen.",
+     "ja": "5,000 円かかった。"
+    },
+    {
+     "en": "It's cost me a lot.",
+     "ja": "ずいぶん高くついた。"
+    }
+   ]
+  },
+  {
+   "id": "v-shut",
+   "step": 5,
+   "f": [
+    "shut",
+    "shut",
+    "shut"
+   ],
+   "kana": [
+    "シャット",
+    "シャット",
+    "シャット"
+   ],
+   "ja": "閉める",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I shut the door.",
+     "ja": "ドアを閉めた。"
+    },
+    {
+     "en": "The shop has shut down.",
+     "ja": "その店は閉店した。"
+    }
+   ]
+  },
+  {
+   "id": "v-set",
+   "step": 5,
+   "f": [
+    "set",
+    "set",
+    "set"
+   ],
+   "kana": [
+    "セット",
+    "セット",
+    "セット"
+   ],
+   "ja": "セットする・決める",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I set the alarm for six.",
+     "ja": "目覚ましを 6 時にセットした。"
+    },
+    {
+     "en": "The date has been set.",
+     "ja": "日にちは決まっている。"
+    }
+   ]
+  },
+  {
+   "id": "v-quit",
+   "step": 5,
+   "f": [
+    "quit",
+    "quit",
+    "quit"
+   ],
+   "kana": [
+    "クウィット",
+    "クウィット",
+    "クウィット"
+   ],
+   "ja": "やめる",
+   "pat": "aaa",
+   "ex": [
+    {
+     "en": "I quit smoking.",
+     "ja": "たばこをやめた。"
+    },
+    {
+     "en": "He's quit his job.",
+     "ja": "彼は仕事を辞めた。"
+    }
+   ]
+  },
+  {
+   "id": "v-lend",
+   "step": 5,
+   "f": [
+    "lend",
+    "lent",
+    "lent"
+   ],
+   "kana": [
+    "レンド",
+    "レント",
+    "レント"
+   ],
+   "ja": "貸す",
+   "pat": "dt",
+   "ex": [
+    {
+     "en": "I lent him my umbrella.",
+     "ja": "彼に傘を貸した。"
+    },
+    {
+     "en": "I've lent it to a friend.",
+     "ja": "それは友だちに貸してある。"
+    }
+   ]
+  },
+  {
+   "id": "v-draw",
+   "step": 5,
+   "f": [
+    "draw",
+    "drew",
+    "drawn"
+   ],
+   "kana": [
+    "ドロー",
+    "ドルー",
+    "ドローン"
+   ],
+   "ja": "（線で）描く",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I drew a map.",
+     "ja": "地図を描いた。"
+    },
+    {
+     "en": "It's drawn by hand.",
+     "ja": "手描きです。"
+    }
+   ]
+  },
+  {
+   "id": "v-throw",
+   "step": 5,
+   "f": [
+    "throw",
+    "threw",
+    "thrown"
+   ],
+   "kana": [
+    "スロウ",
+    "スルー",
+    "スロウン"
+   ],
+   "ja": "投げる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I threw it away.",
+     "ja": "それは捨てた。"
+    },
+    {
+     "en": "It's been thrown away.",
+     "ja": "もう捨てられてしまった。"
+    }
+   ],
+   "note": "threw は through と同じ音。"
+  },
+  {
+   "id": "v-show",
+   "step": 5,
+   "f": [
+    "show",
+    "showed",
+    "shown"
+   ],
+   "kana": [
+    "ショウ",
+    "ショウド",
+    "ショウン"
+   ],
+   "ja": "見せる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "He showed me the way.",
+     "ja": "彼が道を教えてくれた。"
+    },
+    {
+     "en": "I've shown it to my boss.",
+     "ja": "上司には見せてある。"
+    }
+   ],
+   "note": "2 つ目は ed、3 つ目だけ「ン」。"
+  },
+  {
+   "id": "v-steal",
+   "step": 5,
+   "f": [
+    "steal",
+    "stole",
+    "stolen"
+   ],
+   "kana": [
+    "スティール",
+    "ストウル",
+    "ストウルン"
+   ],
+   "ja": "盗む",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "Someone stole my bike.",
+     "ja": "誰かに自転車を盗まれた。"
+    },
+    {
+     "en": "My bag was stolen.",
+     "ja": "かばんを盗まれた。"
+    }
+   ]
+  },
+  {
+   "id": "v-hide",
+   "step": 5,
+   "f": [
+    "hide",
+    "hid",
+    "hidden"
+   ],
+   "kana": [
+    "ハイド",
+    "ヒッド",
+    "ヒドゥン"
+   ],
+   "ja": "隠す・隠れる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I hid the present.",
+     "ja": "プレゼントを隠した。"
+    },
+    {
+     "en": "It's hidden behind the door.",
+     "ja": "ドアの後ろに隠れている。"
+    }
+   ]
+  },
+  {
+   "id": "v-bite",
+   "step": 5,
+   "f": [
+    "bite",
+    "bit",
+    "bitten"
+   ],
+   "kana": [
+    "バイト",
+    "ビット",
+    "ビトゥン"
+   ],
+   "ja": "かむ",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "The dog bit me.",
+     "ja": "犬にかまれた。"
+    },
+    {
+     "en": "I was bitten by a mosquito.",
+     "ja": "蚊に刺された。"
+    }
+   ]
+  },
+  {
+   "id": "v-feed",
+   "step": 5,
+   "f": [
+    "feed",
+    "fed",
+    "fed"
+   ],
+   "kana": [
+    "フィード",
+    "フェッド",
+    "フェッド"
+   ],
+   "ja": "えさをやる・食べさせる",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I fed the fish.",
+     "ja": "魚にえさをやった。"
+    },
+    {
+     "en": "Have you fed the cat?",
+     "ja": "猫にごはんはあげた？"
+    }
+   ]
+  },
+  {
+   "id": "v-fight",
+   "step": 5,
+   "f": [
+    "fight",
+    "fought",
+    "fought"
+   ],
+   "kana": [
+    "ファイト",
+    "フォート",
+    "フォート"
+   ],
+   "ja": "戦う・けんかする",
+   "pat": "ought",
+   "ex": [
+    {
+     "en": "They fought about money.",
+     "ja": "彼らはお金のことでけんかした。"
+    },
+    {
+     "en": "We've fought for years.",
+     "ja": "私たちは何年も戦ってきた。"
+    }
+   ]
+  },
+  {
+   "id": "v-blow",
+   "step": 6,
+   "f": [
+    "blow",
+    "blew",
+    "blown"
+   ],
+   "kana": [
+    "ブロウ",
+    "ブルー",
+    "ブロウン"
+   ],
+   "ja": "（風が）吹く・吹き飛ばす",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "The wind blew hard.",
+     "ja": "風が強く吹いた。"
+    },
+    {
+     "en": "The roof was blown off.",
+     "ja": "屋根が吹き飛ばされた。"
+    }
+   ],
+   "note": "blew は色の blue と同じ音。"
+  },
+  {
+   "id": "v-lead",
+   "step": 6,
+   "f": [
+    "lead",
+    "led",
+    "led"
+   ],
+   "kana": [
+    "リード",
+    "レッド",
+    "レッド"
+   ],
+   "ja": "率いる・導く",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "She led the project.",
+     "ja": "彼女がそのプロジェクトを率いた。"
+    },
+    {
+     "en": "He's led the team for years.",
+     "ja": "彼は何年もチームを率いている。"
+    }
+   ]
+  },
+  {
+   "id": "v-lay",
+   "step": 6,
+   "f": [
+    "lay",
+    "laid",
+    "laid"
+   ],
+   "kana": [
+    "レイ",
+    "レイド",
+    "レイド"
+   ],
+   "ja": "（物を）横たえる・置く",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I laid the baby on the bed.",
+     "ja": "赤ちゃんをベッドに寝かせた。"
+    },
+    {
+     "en": "The table has been laid.",
+     "ja": "食卓の用意ができている。"
+    }
+   ],
+   "note": "「物を」置くほう。自分が横になるのは lie。"
+  },
+  {
+   "id": "v-lie",
+   "step": 6,
+   "f": [
+    "lie",
+    "lay",
+    "lain"
+   ],
+   "kana": [
+    "ライ",
+    "レイ",
+    "レイン"
+   ],
+   "ja": "（自分が）横になる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "I lay on the sofa.",
+     "ja": "ソファに横になった。"
+    },
+    {
+     "en": "I've lain awake all night.",
+     "ja": "一晩中、眠れずに横になっていた。"
+    }
+   ],
+   "note": "「うそをつく」の lie は lied / lied。会話では lie down の形で使うことが多い。"
+  },
+  {
+   "id": "v-rise",
+   "step": 6,
+   "f": [
+    "rise",
+    "rose",
+    "risen"
+   ],
+   "kana": [
+    "ライズ",
+    "ロウズ",
+    "リズン"
+   ],
+   "ja": "上がる・昇る",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "The sun rose at six.",
+     "ja": "6 時に日が昇った。"
+    },
+    {
+     "en": "Prices have risen.",
+     "ja": "物価が上がった。"
+    }
+   ]
+  },
+  {
+   "id": "v-shake",
+   "step": 6,
+   "f": [
+    "shake",
+    "shook",
+    "shaken"
+   ],
+   "kana": [
+    "シェイク",
+    "シュック",
+    "シェイクン"
+   ],
+   "ja": "振る・揺れる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "We shook hands.",
+     "ja": "握手をした。"
+    },
+    {
+     "en": "I was shaken by the news.",
+     "ja": "その知らせに動揺した。"
+    }
+   ],
+   "note": "take → took → taken と同じ変わり方。"
+  },
+  {
+   "id": "v-shoot",
+   "step": 6,
+   "f": [
+    "shoot",
+    "shot",
+    "shot"
+   ],
+   "kana": [
+    "シュート",
+    "ショット",
+    "ショット"
+   ],
+   "ja": "撃つ・撮影する",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We shot the video in Takamatsu.",
+     "ja": "動画は高松で撮った。"
+    },
+    {
+     "en": "It was shot on an iPhone.",
+     "ja": "iPhone で撮影された。"
+    }
+   ]
+  },
+  {
+   "id": "v-ring",
+   "step": 6,
+   "f": [
+    "ring",
+    "rang",
+    "rung"
+   ],
+   "kana": [
+    "リング",
+    "レァング",
+    "ラング"
+   ],
+   "ja": "（ベル・電話が）鳴る",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "The phone rang.",
+     "ja": "電話が鳴った。"
+    },
+    {
+     "en": "The bell has rung.",
+     "ja": "ベルが鳴った。"
+    }
+   ]
+  },
+  {
+   "id": "v-sink",
+   "step": 6,
+   "f": [
+    "sink",
+    "sank",
+    "sunk"
+   ],
+   "kana": [
+    "スィンク",
+    "セァンク",
+    "サンク"
+   ],
+   "ja": "沈む",
+   "pat": "iau",
+   "ex": [
+    {
+     "en": "The boat sank.",
+     "ja": "ボートが沈んだ。"
+    },
+    {
+     "en": "The ship has sunk.",
+     "ja": "船は沈んでしまった。"
+    }
+   ]
+  },
+  {
+   "id": "v-stick",
+   "step": 6,
+   "f": [
+    "stick",
+    "stuck",
+    "stuck"
+   ],
+   "kana": [
+    "スティック",
+    "スタック",
+    "スタック"
+   ],
+   "ja": "貼る・くっつく",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I stuck a note on the door.",
+     "ja": "ドアにメモを貼った。"
+    },
+    {
+     "en": "I'm stuck in traffic.",
+     "ja": "渋滞にはまっている。"
+    }
+   ]
+  },
+  {
+   "id": "v-hang",
+   "step": 6,
+   "f": [
+    "hang",
+    "hung",
+    "hung"
+   ],
+   "kana": [
+    "ヘァング",
+    "ハング",
+    "ハング"
+   ],
+   "ja": "掛ける・ぶら下げる",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "I hung my coat up.",
+     "ja": "コートを掛けた。"
+    },
+    {
+     "en": "We've hung out a few times.",
+     "ja": "何度か一緒に遊んだことがある。"
+    }
+   ]
+  },
+  {
+   "id": "v-dig",
+   "step": 6,
+   "f": [
+    "dig",
+    "dug",
+    "dug"
+   ],
+   "kana": [
+    "ディグ",
+    "ダグ",
+    "ダグ"
+   ],
+   "ja": "掘る",
+   "pat": "abb",
+   "ex": [
+    {
+     "en": "We dug a hole.",
+     "ja": "穴を掘った。"
+    },
+    {
+     "en": "I've dug up some old photos.",
+     "ja": "古い写真を掘り出してきた。"
+    }
+   ]
+  },
+  {
+   "id": "v-freeze",
+   "step": 6,
+   "f": [
+    "freeze",
+    "froze",
+    "frozen"
+   ],
+   "kana": [
+    "フリーズ",
+    "フロウズ",
+    "フロウズン"
+   ],
+   "ja": "凍る・固まる",
+   "pat": "en",
+   "ex": [
+    {
+     "en": "My computer froze.",
+     "ja": "パソコンが固まった。"
+    },
+    {
+     "en": "The lake is frozen.",
+     "ja": "湖が凍っている。"
+    }
+   ]
+  },
+  {
+   "id": "v-bend",
+   "step": 6,
+   "f": [
+    "bend",
+    "bent",
+    "bent"
+   ],
+   "kana": [
+    "ベンド",
+    "ベント",
+    "ベント"
+   ],
+   "ja": "曲げる",
+   "pat": "dt",
+   "ex": [
+    {
+     "en": "I bent down to pick it up.",
+     "ja": "それを拾おうとかがんだ。"
+    },
+    {
+     "en": "The spoon is bent.",
+     "ja": "スプーンが曲がっている。"
+    }
+   ]
+  },
+  {
+   "id": "v-deal",
+   "step": 6,
+   "f": [
+    "deal",
+    "dealt",
+    "dealt"
+   ],
+   "kana": [
+    "ディール",
+    "デルト",
+    "デルト"
+   ],
+   "ja": "対処する・扱う",
+   "pat": "short",
+   "ex": [
+    {
+     "en": "I dealt with the problem.",
+     "ja": "その問題に対処した。"
+    },
+    {
+     "en": "I've dealt with him before.",
+     "ja": "彼とは前にやりとりしたことがある。"
+    }
+   ],
+   "note": "「ディールト」ではなく「デルト」。"
+  }
+ ]
+}

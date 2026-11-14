@@ -529,3 +529,46 @@ body.in-modal #modeSwitch { display: none; }
 .tb-recap-ja { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .tb-h3 { font-size: 14px; color: var(--muted); margin: 22px 0 8px; font-weight: 600; }
 .tb-lesson .link-btn { display: block; margin: 16px auto 0; }
+
+/* ---------- 動詞の 3 つの形 ---------- */
+.verb-box .big-btn.secondary { margin-top: 12px; }
+.vstep {
+  display: block; width: 100%; text-align: left; background: var(--bg); color: var(--text);
+  border: 1px solid var(--panel2); border-radius: 12px; padding: 12px 14px; margin-top: 8px; font-size: 15px;
+}
+.vstep.cur { border-color: var(--accent); }
+.vstep.later { opacity: .6; }
+.vstep-head { display: flex; justify-content: space-between; align-items: baseline; }
+.vstep-name { font-weight: 700; }
+.vstep-now { margin-left: 8px; font-size: 11px; font-weight: 600; color: var(--accent); }
+.vstep-cnt { font-size: 13px; color: var(--muted); }
+.vstep .bar { margin: 8px 0 0; }
+
+.vcard .vja { font-size: 18px; color: var(--muted); margin-top: 18px; text-align: center; }
+.vcard .vja.small { font-size: 15px; margin-top: 4px; }
+.vcard .vbase { font-size: 48px; font-weight: 800; text-align: center; margin-top: 10px; line-height: 1.2; overflow-wrap: anywhere; }
+.vcard .vbase-kana { font-size: 16px; color: var(--muted); text-align: center; margin-top: 2px; }
+.vcard .vask { text-align: center; color: var(--accent); font-size: 15px; line-height: 1.8; margin-top: 26px; }
+.vcard .vshow { margin-top: auto; }
+.vforms { display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
+.vform { text-align: center; }
+.vf-en { font-size: 32px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
+.vform:nth-child(n+2) .vf-en { color: var(--good); }
+.vf-kana { font-size: 15px; color: var(--muted); }
+.vf-arrow { color: var(--muted); font-size: 14px; line-height: 1.3; transform: rotate(90deg); }
+.vcard .vagain { display: block; margin: 10px auto 0; text-decoration: none; color: var(--accent); font-size: 14px; }
+.vnote { margin-top: 14px; font-size: 14px; line-height: 1.6; background: var(--panel); border-left: 3px solid var(--hard); border-radius: 8px; padding: 10px 12px; }
+.vpat { margin-top: 10px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+.vpat b { color: var(--accent); }
+.vex { margin-top: 12px; }
+.vex-row { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--panel2); }
+.vex-row .spk { flex: none; background: none; border: none; color: var(--accent); font-size: 16px; padding: 2px 4px 0 0; }
+.vex-en { font-size: 16px; line-height: 1.4; }
+.vex-ja { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.vgrade { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; padding-top: 18px; }
+.vgrade button { border: none; border-radius: var(--radius); padding: 18px 6px; font-size: 17px; font-weight: 700; color: #0b1220; }
+.vgrade .vg-ng { background: var(--again); }
+.vgrade .vg-ok { background: var(--good); }
+.vrow .en { font-size: 16px; }
+.vrow .vrow-kana { font-size: 13px; color: var(--accent); margin-top: 2px; }
+.vrow .vcheck { color: var(--good); margin-right: 6px; }
