@@ -602,3 +602,10 @@ body.in-modal #modeSwitch { display: none; }
 .vqrow .en { font-size: 17px; }
 .vqrow-kana { font-size: 12px; font-weight: 400; color: var(--accent); margin-left: 10px; }
 .verb-box #verbTodayBtn.secondary { background: var(--bg); border: 1px solid var(--panel2); }
+.vex1 { margin-top: 20px; background: var(--panel); border-radius: 12px; padding: 12px 14px; }
+.vex1-en { font-size: 18px; font-weight: 600; line-height: 1.4; }
+.vex1-en .spk { font-size: 14px; margin-right: 6px; }
+.vex1-en .hit { color: var(--good); }
+.vex1-ja { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.vperf { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
+.vcard .vline { margin-top: 14px; }

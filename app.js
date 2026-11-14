@@ -1747,6 +1747,13 @@ function verbToday() { return vstat.days[todayISO()] || 0; }
 function speakVerb(v) { speakList(v.say || v.f, Math.min(speechRate, 0.85)); }
 function speakVerbQ(v, i) { const q = v.q[i]; speak(q.say || q.en); }
 
+// 例文の中の「答えの形」に色をつける（I always say のように間に 1 語はさまるものも）
+function verbExHtml(ans, en) {
+  const form = ans.slice(ans.lastIndexOf(' ') + 1);
+  const m = new RegExp('\\b' + form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b').exec(en);
+  if (!m) return esc(en);
+  return esc(en.slice(0, m.index)) + `<span class="hit">${esc(m[0])}</span>` + esc(en.slice(m.index + m[0].length));
+}
 function vcardWeight(id, i) {
   const s = vcardStat(id, i);
   if (!s || !s.n) return 3;                 // まだ出ていない
@@ -1818,6 +1825,7 @@ function renderVerbCard(revealed) {
     return;
   }
   const sp = q.en.indexOf(' ');
+  const ex = v.ex && v.ex[c.i];
   area.innerHTML = `
     <div class="mcard vcard">
       ${top}
@@ -1825,6 +1833,11 @@ function renderVerbCard(revealed) {
       <div class="vans" id="vAns">${esc(q.en.slice(0, sp))} <span class="hit">${esc(q.en.slice(sp + 1))}</span></div>
       <div class="vans-kana">${esc(q.kana)}</div>
       <div class="vline">${v.f.map((f, i) => `<span class="${i === c.i ? 'on' : ''}">${esc(f)}</span>`).join(' · ')}</div>
+      ${ex ? `<div class="vex1" id="vEx">
+          <div class="vex1-en"><span class="spk">🔊</span>${verbExHtml(q.en, ex.en)}</div>
+          <div class="vex1-ja">${esc(ex.ja)}</div>
+        </div>` : ''}
+      ${c.i === 2 ? `<div class="vperf">have ＋ 過去分詞 ＝ もう〜した ／ 〜したことがある（何回）／ ずっと〜している。どれになるかは文で決まる。</div>` : ''}
       ${v.note ? `<div class="vnote">${esc(v.note)}</div>` : ''}
       <div class="vgrade">
         <button class="vg-ng" id="vNgBtn">言えなかった</button>
@@ -1832,6 +1845,8 @@ function renderVerbCard(revealed) {
       </div>
     </div>`;
   document.getElementById('vAns').onclick = () => speakVerbQ(v, c.i);
+  const exEl = document.getElementById('vEx');
+  if (exEl) exEl.onclick = () => speak(ex.say || ex.en);
   document.getElementById('vOkBtn').onclick = () => answerVerb(true);
   document.getElementById('vNgBtn').onclick = () => answerVerb(false);
 }

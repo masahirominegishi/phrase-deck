@@ -1,6 +1,6 @@
 {
- "version": 3,
- "note": "動詞の3つの形（原形→過去形→過去分詞）。q は 現在・過去・完了 の 3 問（j=英語の語順の日本語・en=答え）。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
+ "version": 4,
+ "note": "動詞の3つの形（原形→過去形→過去分詞）。q は 現在・過去・完了 の 3 問（j=英語の語順の日本語・en=答え）。ex は答えの面に出す例文（q と同じ順・答えの形で始まる）。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
  "steps": [
   {
    "no": 1,
@@ -83,6 +83,20 @@
    ],
    "ja": "〜である・いる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I am busy every Monday.",
+     "ja": "毎週月曜は忙しい。"
+    },
+    {
+     "en": "I was busy yesterday.",
+     "ja": "昨日は忙しかった。"
+    },
+    {
+     "en": "I've been to Okinawa twice.",
+     "ja": "沖縄には 2 回行ったことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　〜です",
@@ -122,6 +136,20 @@
    ],
    "ja": "持っている・食べる",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I have a meeting every morning.",
+     "ja": "毎朝、会議がある。"
+    },
+    {
+     "en": "I had a cold last week.",
+     "ja": "先週は風邪をひいていた。"
+    },
+    {
+     "en": "I've had enough, thank you.",
+     "ja": "もう十分いただきました。"
+    }
+   ],
    "q": [
     {
      "j": "私　持っている",
@@ -155,6 +183,20 @@
    ],
    "ja": "する",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I do the laundry on Sundays.",
+     "ja": "日曜に洗濯をする。"
+    },
+    {
+     "en": "I did my best.",
+     "ja": "ベストを尽くした。"
+    },
+    {
+     "en": "I've already done it.",
+     "ja": "それはもうやりました。"
+    }
+   ],
    "q": [
     {
      "j": "私　する",
@@ -189,6 +231,20 @@
    ],
    "ja": "行く",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I go to the gym twice a week.",
+     "ja": "週に 2 回ジムに行く。"
+    },
+    {
+     "en": "I went to Tokyo last month.",
+     "ja": "先月、東京に行った。"
+    },
+    {
+     "en": "I've gone too far.",
+     "ja": "やりすぎてしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　行く",
@@ -223,6 +279,20 @@
    ],
    "ja": "手に入れる・〜になる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I get up at six.",
+     "ja": "6 時に起きる。"
+    },
+    {
+     "en": "I got a new phone.",
+     "ja": "新しいスマホを手に入れた。"
+    },
+    {
+     "en": "I've gotten used to it.",
+     "ja": "もう慣れた。"
+    }
+   ],
    "q": [
     {
      "j": "私　手に入れる",
@@ -257,6 +327,20 @@
    ],
    "ja": "作る",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I make coffee every morning.",
+     "ja": "毎朝コーヒーをいれる。"
+    },
+    {
+     "en": "I made dinner last night.",
+     "ja": "昨日の夜は夕食を作った。"
+    },
+    {
+     "en": "I've made a mistake.",
+     "ja": "間違えてしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　作る",
@@ -290,6 +374,20 @@
    ],
    "ja": "言う",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I always say thank you.",
+     "ja": "いつも「ありがとう」と言う。"
+    },
+    {
+     "en": "I said yes.",
+     "ja": "「いいよ」と言った。"
+    },
+    {
+     "en": "I've said that many times.",
+     "ja": "それは何度も言ってきた。"
+    }
+   ],
    "q": [
     {
      "j": "私　言う",
@@ -324,6 +422,20 @@
    ],
    "ja": "見る・会う",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I see him every day.",
+     "ja": "彼には毎日会う。"
+    },
+    {
+     "en": "I saw him at the station.",
+     "ja": "駅で彼を見かけた。"
+    },
+    {
+     "en": "I've seen that movie.",
+     "ja": "その映画は見たことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　見る",
@@ -357,6 +469,20 @@
    ],
    "ja": "来る",
    "pat": "aba",
+   "ex": [
+    {
+     "en": "I come here every week.",
+     "ja": "毎週ここに来る。"
+    },
+    {
+     "en": "I came by train.",
+     "ja": "電車で来た。"
+    },
+    {
+     "en": "I've come to help.",
+     "ja": "手伝いに来たよ。"
+    }
+   ],
    "q": [
     {
      "j": "私　来る",
@@ -390,6 +516,20 @@
    ],
    "ja": "取る・（時間が）かかる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I take the train to work.",
+     "ja": "電車で通勤している。"
+    },
+    {
+     "en": "I took a taxi.",
+     "ja": "タクシーに乗った。"
+    },
+    {
+     "en": "I've taken the medicine.",
+     "ja": "薬はもう飲んだ。"
+    }
+   ],
    "q": [
     {
      "j": "私　取る",
@@ -423,6 +563,20 @@
    ],
    "ja": "知っている",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I know his name.",
+     "ja": "彼の名前を知っている。"
+    },
+    {
+     "en": "I knew it!",
+     "ja": "やっぱり！（わかってた）"
+    },
+    {
+     "en": "I've known him for ten years.",
+     "ja": "彼とは 10 年来の知り合いだ。"
+    }
+   ],
    "q": [
     {
      "j": "私　知っている",
@@ -457,6 +611,20 @@
    ],
    "ja": "思う・考える",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I think it's a good idea.",
+     "ja": "いい考えだと思う。"
+    },
+    {
+     "en": "I thought so.",
+     "ja": "そう思った。"
+    },
+    {
+     "en": "I've thought about it a lot.",
+     "ja": "それについてはよく考えてきた。"
+    }
+   ],
    "q": [
     {
      "j": "私　思う",
@@ -490,6 +658,20 @@
    ],
    "ja": "あげる・渡す",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I give him advice sometimes.",
+     "ja": "ときどき彼に助言する。"
+    },
+    {
+     "en": "I gave her a present.",
+     "ja": "彼女にプレゼントをあげた。"
+    },
+    {
+     "en": "I've given up.",
+     "ja": "もうあきらめた。"
+    }
+   ],
    "q": [
     {
      "j": "私　あげる",
@@ -523,6 +705,20 @@
    ],
    "ja": "伝える・教える",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I tell her everything.",
+     "ja": "彼女には何でも話す。"
+    },
+    {
+     "en": "I told you.",
+     "ja": "言ったでしょ。"
+    },
+    {
+     "en": "I've told him already.",
+     "ja": "彼にはもう伝えた。"
+    }
+   ],
    "q": [
     {
      "j": "私　伝える",
@@ -556,6 +752,20 @@
    ],
    "ja": "見つける",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I always find good restaurants online.",
+     "ja": "いい店はいつもネットで見つける。"
+    },
+    {
+     "en": "I found my keys.",
+     "ja": "鍵が見つかった。"
+    },
+    {
+     "en": "I've found a good restaurant.",
+     "ja": "いい店を見つけたよ。"
+    }
+   ],
    "q": [
     {
      "j": "私　見つける",
@@ -589,6 +799,20 @@
    ],
    "ja": "食べる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I eat breakfast at seven.",
+     "ja": "7 時に朝食を食べる。"
+    },
+    {
+     "en": "I ate too much.",
+     "ja": "食べすぎた。"
+    },
+    {
+     "en": "I've already eaten.",
+     "ja": "もう食べました。"
+    }
+   ],
    "q": [
     {
      "j": "私　食べる",
@@ -623,6 +847,20 @@
    ],
    "ja": "飲む",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I drink coffee every morning.",
+     "ja": "毎朝コーヒーを飲む。"
+    },
+    {
+     "en": "I drank too much last night.",
+     "ja": "昨日の夜は飲みすぎた。"
+    },
+    {
+     "en": "I've never drunk sake.",
+     "ja": "日本酒は飲んだことがない。"
+    }
+   ],
    "q": [
     {
      "j": "私　飲む",
@@ -656,6 +894,20 @@
    ],
    "ja": "買う",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I buy lunch at the convenience store.",
+     "ja": "昼はコンビニで買う。"
+    },
+    {
+     "en": "I bought a new bag.",
+     "ja": "新しいかばんを買った。"
+    },
+    {
+     "en": "I've bought the tickets.",
+     "ja": "チケットはもう買ってある。"
+    }
+   ],
    "q": [
     {
      "j": "私　買う",
@@ -689,6 +941,20 @@
    ],
    "ja": "会う",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I meet my friends on weekends.",
+     "ja": "週末は友だちと会う。"
+    },
+    {
+     "en": "I met her in Takamatsu.",
+     "ja": "彼女とは高松で会った。"
+    },
+    {
+     "en": "I've met him before.",
+     "ja": "彼には前に会ったことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　会う",
@@ -722,6 +988,20 @@
    ],
    "ja": "話す",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I speak a little English.",
+     "ja": "英語を少し話す。"
+    },
+    {
+     "en": "I spoke to the manager.",
+     "ja": "店長と話した。"
+    },
+    {
+     "en": "I've spoken to her about it.",
+     "ja": "その件は彼女に話してある。"
+    }
+   ],
    "q": [
     {
      "j": "私　話す",
@@ -755,6 +1035,20 @@
    ],
    "ja": "書く",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I write a lot of emails.",
+     "ja": "メールをたくさん書く。"
+    },
+    {
+     "en": "I wrote an email.",
+     "ja": "メールを書いた。"
+    },
+    {
+     "en": "I've written three reports this week.",
+     "ja": "今週は報告書を 3 本書いた。"
+    }
+   ],
    "q": [
     {
      "j": "私　書く",
@@ -788,6 +1082,22 @@
    ],
    "ja": "読む",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I read the news every morning.",
+     "ja": "毎朝ニュースを読む。"
+    },
+    {
+     "en": "I read it yesterday.",
+     "ja": "昨日それを読んだ。",
+     "say": "I red it yesterday."
+    },
+    {
+     "en": "I've read this book twice.",
+     "ja": "この本は 2 回読んだことがある。",
+     "say": "I've red this book twice."
+    }
+   ],
    "q": [
     {
      "j": "私　読む",
@@ -829,6 +1139,20 @@
    ],
    "ja": "聞こえる・耳にする",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I hear that a lot.",
+     "ja": "それはよく聞く。"
+    },
+    {
+     "en": "I heard the news.",
+     "ja": "そのニュースを聞いた。"
+    },
+    {
+     "en": "I've never heard of it.",
+     "ja": "それは聞いたことがない。"
+    }
+   ],
    "q": [
     {
      "j": "私　聞く（耳に入る）",
@@ -863,6 +1187,20 @@
    ],
    "ja": "出発する・置いていく",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I leave home at seven every day.",
+     "ja": "毎日 7 時に家を出る。"
+    },
+    {
+     "en": "I left home at seven.",
+     "ja": "7 時に家を出た。"
+    },
+    {
+     "en": "I've left my umbrella on the train.",
+     "ja": "電車に傘を忘れてきた。"
+    }
+   ],
    "q": [
     {
      "j": "私　出発する",
@@ -896,6 +1234,20 @@
    ],
    "ja": "感じる",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I feel tired today.",
+     "ja": "今日は疲れている。"
+    },
+    {
+     "en": "I felt sick.",
+     "ja": "気分が悪かった。"
+    },
+    {
+     "en": "I've never felt better.",
+     "ja": "最高の気分だ。"
+    }
+   ],
    "q": [
     {
      "j": "私　感じる",
@@ -929,6 +1281,20 @@
    ],
    "ja": "置く",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I always put my keys here.",
+     "ja": "鍵はいつもここに置く。"
+    },
+    {
+     "en": "I put it on the table.",
+     "ja": "テーブルの上に置いたよ。"
+    },
+    {
+     "en": "I've put on weight.",
+     "ja": "体重が増えた。"
+    }
+   ],
    "q": [
     {
      "j": "私　置く",
@@ -962,6 +1328,20 @@
    ],
    "ja": "走る",
    "pat": "aba",
+   "ex": [
+    {
+     "en": "I run every morning.",
+     "ja": "毎朝走る。"
+    },
+    {
+     "en": "I ran to the station.",
+     "ja": "駅まで走った。"
+    },
+    {
+     "en": "I've run out of time.",
+     "ja": "時間がなくなった。"
+    }
+   ],
    "q": [
     {
      "j": "私　走る",
@@ -996,6 +1376,20 @@
    ],
    "ja": "座る",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I always sit here.",
+     "ja": "いつもここに座る。"
+    },
+    {
+     "en": "I sat by the window.",
+     "ja": "窓ぎわに座った。"
+    },
+    {
+     "en": "I've sat here all day.",
+     "ja": "一日中ここに座っている。"
+    }
+   ],
    "q": [
     {
      "j": "私　座る",
@@ -1029,6 +1423,20 @@
    ],
    "ja": "眠る",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I sleep seven hours a night.",
+     "ja": "毎晩 7 時間寝る。"
+    },
+    {
+     "en": "I slept well.",
+     "ja": "よく眠れた。"
+    },
+    {
+     "en": "I've slept enough.",
+     "ja": "もう十分寝た。"
+    }
+   ],
    "q": [
     {
      "j": "私　眠る",
@@ -1062,6 +1470,20 @@
    ],
    "ja": "忘れる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I always forget his name.",
+     "ja": "いつも彼の名前を忘れる。"
+    },
+    {
+     "en": "I forgot his name.",
+     "ja": "彼の名前を忘れた。"
+    },
+    {
+     "en": "I've forgotten my password.",
+     "ja": "パスワードを忘れてしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　忘れる",
@@ -1095,6 +1517,20 @@
    ],
    "ja": "持ってくる",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I always bring my own lunch.",
+     "ja": "いつも弁当を持ってくる。"
+    },
+    {
+     "en": "I brought some snacks.",
+     "ja": "お菓子を持ってきたよ。"
+    },
+    {
+     "en": "I've brought my laptop.",
+     "ja": "ノートパソコンを持ってきてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　持ってくる",
@@ -1128,6 +1564,20 @@
    ],
    "ja": "つかまえる・（電車に）間に合う",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I catch the same train every day.",
+     "ja": "毎日同じ電車に乗る。"
+    },
+    {
+     "en": "I caught the last train.",
+     "ja": "終電に間に合った。"
+    },
+    {
+     "en": "I've caught a cold.",
+     "ja": "風邪をひいてしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　つかまえる",
@@ -1162,6 +1612,20 @@
    ],
    "ja": "教える",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I teach English.",
+     "ja": "英語を教えている。"
+    },
+    {
+     "en": "I taught English for two years.",
+     "ja": "2 年間、英語を教えた。"
+    },
+    {
+     "en": "I've taught for ten years.",
+     "ja": "10 年教えている。"
+    }
+   ],
    "q": [
     {
      "j": "私　教える",
@@ -1195,6 +1659,20 @@
    ],
    "ja": "売る",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I sell fish at the market.",
+     "ja": "市場で魚を売っている。"
+    },
+    {
+     "en": "I sold it online.",
+     "ja": "ネットで売った。"
+    },
+    {
+     "en": "I've sold my old car.",
+     "ja": "古い車はもう売った。"
+    }
+   ],
    "q": [
     {
      "j": "私　売る",
@@ -1229,6 +1707,20 @@
    ],
    "ja": "払う",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I always pay by card.",
+     "ja": "いつもカードで払う。"
+    },
+    {
+     "en": "I paid by card.",
+     "ja": "カードで払った。"
+    },
+    {
+     "en": "I've already paid.",
+     "ja": "もう払いました。"
+    }
+   ],
    "q": [
     {
      "j": "私　払う",
@@ -1262,6 +1754,20 @@
    ],
    "ja": "送る",
    "pat": "dt",
+   "ex": [
+    {
+     "en": "I send him a report every week.",
+     "ja": "毎週、彼に報告を送る。"
+    },
+    {
+     "en": "I sent you an email.",
+     "ja": "メールを送りました。"
+    },
+    {
+     "en": "I've sent the file.",
+     "ja": "ファイルは送ってあります。"
+    }
+   ],
    "q": [
     {
      "j": "私　送る",
@@ -1295,6 +1801,20 @@
    ],
    "ja": "（お金・時間を）使う",
    "pat": "dt",
+   "ex": [
+    {
+     "en": "I spend a lot on books.",
+     "ja": "本にたくさんお金を使う。"
+    },
+    {
+     "en": "I spent the weekend at home.",
+     "ja": "週末は家で過ごした。"
+    },
+    {
+     "en": "I've spent too much money.",
+     "ja": "お金を使いすぎた。"
+    }
+   ],
    "q": [
     {
      "j": "私　（お金・時間を）使う",
@@ -1328,6 +1848,20 @@
    ],
    "ja": "なくす・負ける",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I often lose my umbrella.",
+     "ja": "よく傘をなくす。"
+    },
+    {
+     "en": "I lost my wallet.",
+     "ja": "財布をなくした。"
+    },
+    {
+     "en": "I've lost weight.",
+     "ja": "体重が減った。"
+    }
+   ],
    "q": [
     {
      "j": "私　なくす",
@@ -1361,6 +1895,20 @@
    ],
    "ja": "保つ・取っておく",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I keep my receipts.",
+     "ja": "レシートは取っておく。"
+    },
+    {
+     "en": "I kept the receipt.",
+     "ja": "レシートは取っておいた。"
+    },
+    {
+     "en": "I've kept it a secret.",
+     "ja": "それは秘密にしてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　取っておく",
@@ -1394,6 +1942,20 @@
    ],
    "ja": "立つ",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I stand all day at work.",
+     "ja": "仕事では一日中立っている。"
+    },
+    {
+     "en": "I stood in line for an hour.",
+     "ja": "1 時間並んだ。"
+    },
+    {
+     "en": "I've stood all day.",
+     "ja": "一日中立ちっぱなしだ。"
+    }
+   ],
    "q": [
     {
      "j": "私　立つ",
@@ -1427,6 +1989,20 @@
    ],
    "ja": "理解する",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I understand.",
+     "ja": "わかります。"
+    },
+    {
+     "en": "I understood what he said.",
+     "ja": "彼の言ったことはわかった。"
+    },
+    {
+     "en": "I've understood the problem.",
+     "ja": "問題は理解できた。"
+    }
+   ],
    "q": [
     {
      "j": "私　理解する",
@@ -1461,6 +2037,20 @@
    ],
    "ja": "始める・始まる",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I begin work at nine.",
+     "ja": "9 時に仕事を始める。"
+    },
+    {
+     "en": "I began studying English last year.",
+     "ja": "去年、英語の勉強を始めた。"
+    },
+    {
+     "en": "I've begun a new project.",
+     "ja": "新しいプロジェクトを始めたところだ。"
+    }
+   ],
    "q": [
     {
      "j": "私　始める",
@@ -1494,6 +2084,20 @@
    ],
    "ja": "壊す・壊れる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I break things all the time.",
+     "ja": "しょっちゅう物を壊す。"
+    },
+    {
+     "en": "I broke my phone.",
+     "ja": "スマホを壊した。"
+    },
+    {
+     "en": "I've broken my glasses.",
+     "ja": "めがねを壊してしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　壊す",
@@ -1527,6 +2131,20 @@
    ],
    "ja": "選ぶ",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I always choose the same thing.",
+     "ja": "いつも同じものを選ぶ。"
+    },
+    {
+     "en": "I chose the fish.",
+     "ja": "魚のほうを選んだ。"
+    },
+    {
+     "en": "I've chosen a new logo.",
+     "ja": "新しいロゴを選んだ。"
+    }
+   ],
    "q": [
     {
      "j": "私　選ぶ",
@@ -1560,6 +2178,20 @@
    ],
    "ja": "運転する",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I drive to work.",
+     "ja": "車で通勤している。"
+    },
+    {
+     "en": "I drove to Kochi.",
+     "ja": "高知まで運転した。"
+    },
+    {
+     "en": "I've never driven abroad.",
+     "ja": "海外で運転したことはない。"
+    }
+   ],
    "q": [
     {
      "j": "私　運転する",
@@ -1593,6 +2225,20 @@
    ],
    "ja": "〜になる",
    "pat": "aba",
+   "ex": [
+    {
+     "en": "I become sleepy after lunch.",
+     "ja": "昼食のあとは眠くなる。"
+    },
+    {
+     "en": "I became a designer.",
+     "ja": "デザイナーになった。"
+    },
+    {
+     "en": "I've become a fan.",
+     "ja": "すっかりファンになった。"
+    }
+   ],
    "q": [
     {
      "j": "私　〜になる",
@@ -1627,6 +2273,20 @@
    ],
    "ja": "建てる・作る",
    "pat": "dt",
+   "ex": [
+    {
+     "en": "I build websites.",
+     "ja": "ウェブサイトを作っている。"
+    },
+    {
+     "en": "I built a new system.",
+     "ja": "新しいシステムを作った。"
+    },
+    {
+     "en": "I've built three apps this year.",
+     "ja": "今年はアプリを 3 つ作った。"
+    }
+   ],
    "q": [
     {
      "j": "私　建てる",
@@ -1660,6 +2320,20 @@
    ],
    "ja": "切る",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I cut my own hair.",
+     "ja": "髪は自分で切る。"
+    },
+    {
+     "en": "I cut my finger.",
+     "ja": "指を切った。"
+    },
+    {
+     "en": "I've cut down on sugar.",
+     "ja": "砂糖を減らしている。"
+    }
+   ],
    "q": [
     {
      "j": "私　切る",
@@ -1693,6 +2367,20 @@
    ],
    "ja": "落ちる・転ぶ",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I fall asleep easily.",
+     "ja": "すぐ寝てしまう。"
+    },
+    {
+     "en": "I fell asleep on the train.",
+     "ja": "電車で寝てしまった。"
+    },
+    {
+     "en": "I've fallen in love with this town.",
+     "ja": "この町がすっかり好きになった。"
+    }
+   ],
    "q": [
     {
      "j": "私　落ちる",
@@ -1726,6 +2414,20 @@
    ],
    "ja": "飛ぶ・飛行機で行く",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I fly to Tokyo once a month.",
+     "ja": "月に 1 回、飛行機で東京に行く。"
+    },
+    {
+     "en": "I flew to Sapporo.",
+     "ja": "札幌まで飛行機で行った。"
+    },
+    {
+     "en": "I've never flown business class.",
+     "ja": "ビジネスクラスには乗ったことがない。"
+    }
+   ],
    "q": [
     {
      "j": "私　飛ぶ",
@@ -1759,6 +2461,20 @@
    ],
    "ja": "育つ・育てる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I grow tomatoes.",
+     "ja": "トマトを育てている。"
+    },
+    {
+     "en": "I grew up in Kagawa.",
+     "ja": "香川で育った。"
+    },
+    {
+     "en": "I've grown tomatoes for years.",
+     "ja": "何年もトマトを育てている。"
+    }
+   ],
    "q": [
     {
      "j": "私　育つ",
@@ -1793,6 +2509,20 @@
    ],
    "ja": "持つ・開催する",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I hold a meeting every Monday.",
+     "ja": "毎週月曜に会議を開く。"
+    },
+    {
+     "en": "I held a meeting yesterday.",
+     "ja": "昨日、会議を開いた。"
+    },
+    {
+     "en": "I've held this event three times.",
+     "ja": "このイベントは 3 回開いたことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　開催する",
@@ -1826,6 +2556,20 @@
    ],
    "ja": "〜させる・許す",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I let my kids play games on weekends.",
+     "ja": "週末は子どもにゲームをさせている。"
+    },
+    {
+     "en": "I let him use my car.",
+     "ja": "彼に車を使わせてあげた。"
+    },
+    {
+     "en": "I've let him know.",
+     "ja": "彼には知らせてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　〜させてあげる",
@@ -1859,6 +2603,20 @@
    ],
    "ja": "意味する・〜のつもりで言う",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I mean it.",
+     "ja": "本気で言っている。"
+    },
+    {
+     "en": "I meant to call you.",
+     "ja": "電話するつもりだった。"
+    },
+    {
+     "en": "I've meant to call you.",
+     "ja": "ずっと電話しようと思っていた。"
+    }
+   ],
    "q": [
     {
      "j": "私　〜のつもりだ",
@@ -1893,6 +2651,20 @@
    ],
    "ja": "（自転車・馬に）乗る",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I ride my bike to work.",
+     "ja": "自転車で通勤している。"
+    },
+    {
+     "en": "I rode my bike to work.",
+     "ja": "自転車で出勤した。"
+    },
+    {
+     "en": "I've never ridden a horse.",
+     "ja": "馬には乗ったことがない。"
+    }
+   ],
    "q": [
     {
      "j": "私　（自転車に）乗る",
@@ -1927,6 +2699,20 @@
    ],
    "ja": "歌う",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I sing in the car.",
+     "ja": "車の中で歌う。"
+    },
+    {
+     "en": "I sang karaoke last night.",
+     "ja": "昨日の夜、カラオケで歌った。"
+    },
+    {
+     "en": "I've never sung in public.",
+     "ja": "人前で歌ったことはない。"
+    }
+   ],
    "q": [
     {
      "j": "私　歌う",
@@ -1960,6 +2746,20 @@
    ],
    "ja": "泳ぐ",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I swim twice a week.",
+     "ja": "週に 2 回泳ぐ。"
+    },
+    {
+     "en": "I swam in the sea.",
+     "ja": "海で泳いだ。"
+    },
+    {
+     "en": "I've swum in this river.",
+     "ja": "この川で泳いだことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　泳ぐ",
@@ -1993,6 +2793,20 @@
    ],
    "ja": "着ている・身につける",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I wear glasses.",
+     "ja": "めがねをかけている。"
+    },
+    {
+     "en": "I wore a suit.",
+     "ja": "スーツを着た。"
+    },
+    {
+     "en": "I've never worn a kimono.",
+     "ja": "着物は着たことがない。"
+    }
+   ],
    "q": [
     {
      "j": "私　着る",
@@ -2026,6 +2840,20 @@
    ],
    "ja": "勝つ",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I win sometimes.",
+     "ja": "たまに勝つ。"
+    },
+    {
+     "en": "I won the game.",
+     "ja": "試合に勝った。"
+    },
+    {
+     "en": "I've never won anything.",
+     "ja": "何かに当たったことは一度もない。"
+    }
+   ],
    "q": [
     {
      "j": "私　勝つ",
@@ -2060,6 +2888,20 @@
    ],
    "ja": "目が覚める",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I wake up at five every day.",
+     "ja": "毎日 5 時に目が覚める。"
+    },
+    {
+     "en": "I woke up at five.",
+     "ja": "5 時に目が覚めた。"
+    },
+    {
+     "en": "I've woken up early every day this week.",
+     "ja": "今週は毎日早く目が覚めている。"
+    }
+   ],
    "q": [
     {
      "j": "私　目が覚める",
@@ -2093,6 +2935,20 @@
    ],
    "ja": "打つ・ぶつかる",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I always hit my head here.",
+     "ja": "いつもここで頭をぶつける。"
+    },
+    {
+     "en": "I hit my head.",
+     "ja": "頭をぶつけた。"
+    },
+    {
+     "en": "I've hit my head here many times.",
+     "ja": "ここで何度も頭をぶつけた。"
+    }
+   ],
    "q": [
     {
      "j": "私　たたく",
@@ -2126,6 +2982,20 @@
    ],
    "ja": "痛める・傷つける",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I hurt my back every winter.",
+     "ja": "毎年冬に腰を痛める。"
+    },
+    {
+     "en": "I hurt my back.",
+     "ja": "腰を痛めた。"
+    },
+    {
+     "en": "I've hurt my knee.",
+     "ja": "ひざを痛めてしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　痛める",
@@ -2159,6 +3029,20 @@
    ],
    "ja": "（お金が）かかる",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "It costs a lot.",
+     "ja": "それは高くつく。"
+    },
+    {
+     "en": "It cost 5,000 yen.",
+     "ja": "5,000 円かかった。"
+    },
+    {
+     "en": "It has cost me a lot.",
+     "ja": "ずいぶん高くついた。"
+    }
+   ],
    "q": [
     {
      "j": "それ　（お金が）かかる",
@@ -2192,6 +3076,20 @@
    ],
    "ja": "閉める",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I shut the windows at night.",
+     "ja": "夜は窓を閉める。"
+    },
+    {
+     "en": "I shut the window.",
+     "ja": "窓を閉めた。"
+    },
+    {
+     "en": "I've shut the door.",
+     "ja": "ドアは閉めてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　閉める",
@@ -2225,6 +3123,20 @@
    ],
    "ja": "セットする・決める",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I set the alarm every night.",
+     "ja": "毎晩、目覚ましをセットする。"
+    },
+    {
+     "en": "I set the alarm for six.",
+     "ja": "目覚ましを 6 時にセットした。"
+    },
+    {
+     "en": "I've set the alarm.",
+     "ja": "目覚ましはセットしてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　セットする",
@@ -2258,6 +3170,20 @@
    ],
    "ja": "やめる",
    "pat": "aaa",
+   "ex": [
+    {
+     "en": "I quit!",
+     "ja": "もうやめます！"
+    },
+    {
+     "en": "I quit smoking.",
+     "ja": "たばこをやめた。"
+    },
+    {
+     "en": "I've quit my job.",
+     "ja": "仕事を辞めた。"
+    }
+   ],
    "q": [
     {
      "j": "私　やめる",
@@ -2291,6 +3217,20 @@
    ],
    "ja": "貸す",
    "pat": "dt",
+   "ex": [
+    {
+     "en": "I often lend him books.",
+     "ja": "よく彼に本を貸す。"
+    },
+    {
+     "en": "I lent him my umbrella.",
+     "ja": "彼に傘を貸した。"
+    },
+    {
+     "en": "I've lent it to a friend.",
+     "ja": "それは友だちに貸してある。"
+    }
+   ],
    "q": [
     {
      "j": "私　貸す",
@@ -2324,6 +3264,20 @@
    ],
    "ja": "（線で）描く",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I draw pictures for work.",
+     "ja": "仕事で絵を描く。"
+    },
+    {
+     "en": "I drew this picture.",
+     "ja": "この絵は私が描いた。"
+    },
+    {
+     "en": "I've drawn a map for you.",
+     "ja": "地図を描いておいたよ。"
+    }
+   ],
    "q": [
     {
      "j": "私　（線で）描く",
@@ -2357,6 +3311,20 @@
    ],
    "ja": "投げる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I throw away old papers every month.",
+     "ja": "毎月、古い書類を捨てる。"
+    },
+    {
+     "en": "I threw the ball.",
+     "ja": "ボールを投げた。"
+    },
+    {
+     "en": "I've thrown it away.",
+     "ja": "もう捨ててしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　投げる",
@@ -2391,6 +3359,20 @@
    ],
    "ja": "見せる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I show my ID at the gate.",
+     "ja": "入口で身分証を見せる。"
+    },
+    {
+     "en": "I showed him the way.",
+     "ja": "彼に道を教えた。"
+    },
+    {
+     "en": "I've shown it to my boss.",
+     "ja": "上司には見せてある。"
+    }
+   ],
    "q": [
     {
      "j": "私　見せる",
@@ -2425,6 +3407,20 @@
    ],
    "ja": "盗む",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I never steal.",
+     "ja": "私は決して盗まない。"
+    },
+    {
+     "en": "I stole a cookie from the kitchen.",
+     "ja": "台所からクッキーを 1 枚くすねた。"
+    },
+    {
+     "en": "I've never stolen anything.",
+     "ja": "何も盗んだことはない。"
+    }
+   ],
    "q": [
     {
      "j": "私　盗む",
@@ -2458,6 +3454,20 @@
    ],
    "ja": "隠す・隠れる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I hide snacks from my kids.",
+     "ja": "子どもからお菓子を隠している。"
+    },
+    {
+     "en": "I hid behind the door.",
+     "ja": "ドアの後ろに隠れた。"
+    },
+    {
+     "en": "I've hidden the present.",
+     "ja": "プレゼントは隠してある。"
+    }
+   ],
    "q": [
     {
      "j": "私　隠す",
@@ -2491,6 +3501,20 @@
    ],
    "ja": "かむ",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I bite my nails.",
+     "ja": "つめをかむ癖がある。"
+    },
+    {
+     "en": "I bit my tongue.",
+     "ja": "舌をかんだ。"
+    },
+    {
+     "en": "I've bitten my tongue again.",
+     "ja": "また舌をかんでしまった。"
+    }
+   ],
    "q": [
     {
      "j": "私　かむ",
@@ -2524,6 +3548,20 @@
    ],
    "ja": "えさをやる・食べさせる",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I feed the fish every morning.",
+     "ja": "毎朝、魚にえさをやる。"
+    },
+    {
+     "en": "I fed the fish.",
+     "ja": "魚にえさをやった。"
+    },
+    {
+     "en": "I've fed the cat.",
+     "ja": "猫にはもうごはんをあげた。"
+    }
+   ],
    "q": [
     {
      "j": "私　えさをやる",
@@ -2557,6 +3595,20 @@
    ],
    "ja": "戦う・けんかする",
    "pat": "ought",
+   "ex": [
+    {
+     "en": "I fight with my brother a lot.",
+     "ja": "兄とよくけんかする。"
+    },
+    {
+     "en": "I fought with my boss.",
+     "ja": "上司とやりあった。"
+    },
+    {
+     "en": "I've fought for this for years.",
+     "ja": "このために何年も戦ってきた。"
+    }
+   ],
    "q": [
     {
      "j": "私　戦う",
@@ -2590,19 +3642,33 @@
    ],
    "ja": "（風が）吹く・吹き飛ばす",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I blow my nose a lot in spring.",
+     "ja": "春はよく鼻をかむ。"
+    },
+    {
+     "en": "I blew out the candles.",
+     "ja": "ろうそくを吹き消した。"
+    },
+    {
+     "en": "I've blown my chance.",
+     "ja": "チャンスをふいにしてしまった。"
+    }
+   ],
    "q": [
     {
-     "j": "私　吹く",
+     "j": "私　吹く（息を）",
      "en": "I blow",
      "kana": "アイ ブロウ"
     },
     {
-     "j": "私　吹いた",
+     "j": "私　吹いた（息を）",
      "en": "I blew",
      "kana": "アイ ブルー"
     },
     {
-     "j": "私　もう　吹いた",
+     "j": "私　もう　吹いた（息を）",
      "en": "I've blown",
      "kana": "アイヴ ブロウン"
     }
@@ -2624,6 +3690,20 @@
    ],
    "ja": "率いる・導く",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I lead a small team.",
+     "ja": "小さなチームを率いている。"
+    },
+    {
+     "en": "I led the project.",
+     "ja": "そのプロジェクトを率いた。"
+    },
+    {
+     "en": "I've led the team for years.",
+     "ja": "何年もチームを率いている。"
+    }
+   ],
    "q": [
     {
      "j": "私　率いる",
@@ -2657,6 +3737,20 @@
    ],
    "ja": "（物を）横たえる・置く",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I lay my clothes out the night before.",
+     "ja": "前の晩に服を出して並べておく。"
+    },
+    {
+     "en": "I laid the baby on the bed.",
+     "ja": "赤ちゃんをベッドに寝かせた。"
+    },
+    {
+     "en": "I've laid the table.",
+     "ja": "食卓の用意をした。"
+    }
+   ],
    "q": [
     {
      "j": "私　（物を）横たえる",
@@ -2691,6 +3785,20 @@
    ],
    "ja": "（自分が）横になる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I lie down after lunch.",
+     "ja": "昼食のあとは横になる。"
+    },
+    {
+     "en": "I lay on the sofa.",
+     "ja": "ソファに横になった。"
+    },
+    {
+     "en": "I've lain awake all night.",
+     "ja": "一晩中、眠れずに横になっていた。"
+    }
+   ],
    "q": [
     {
      "j": "私　横になる",
@@ -2725,19 +3833,33 @@
    ],
    "ja": "上がる・昇る",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I rise early.",
+     "ja": "私は早起きだ。"
+    },
+    {
+     "en": "I rose at five.",
+     "ja": "5 時に起きた。"
+    },
+    {
+     "en": "I've risen early all my life.",
+     "ja": "ずっと早起きを続けてきた。"
+    }
+   ],
    "q": [
     {
-     "j": "私　昇る",
+     "j": "私　起き上がる",
      "en": "I rise",
      "kana": "アイ ライズ"
     },
     {
-     "j": "私　昇った",
+     "j": "私　起き上がった",
      "en": "I rose",
      "kana": "アイ ロウズ"
     },
     {
-     "j": "私　もう　昇った",
+     "j": "私　もう　起き上がった",
      "en": "I've risen",
      "kana": "アイヴ リズン"
     }
@@ -2758,6 +3880,20 @@
    ],
    "ja": "振る・揺れる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I shake hands when I meet people.",
+     "ja": "人に会ったら握手をする。"
+    },
+    {
+     "en": "I shook hands with him.",
+     "ja": "彼と握手をした。"
+    },
+    {
+     "en": "I've shaken hands with a famous actor.",
+     "ja": "有名な俳優と握手したことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　振る",
@@ -2792,19 +3928,33 @@
    ],
    "ja": "撃つ・撮影する",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I shoot videos for clients.",
+     "ja": "お客さんの動画を撮影している。"
+    },
+    {
+     "en": "I shot the video in Takamatsu.",
+     "ja": "その動画は高松で撮った。"
+    },
+    {
+     "en": "I've shot a lot of videos.",
+     "ja": "動画はたくさん撮ってきた。"
+    }
+   ],
    "q": [
     {
-     "j": "私　撃つ",
+     "j": "私　撃つ（撮影する）",
      "en": "I shoot",
      "kana": "アイ シュート"
     },
     {
-     "j": "私　撃った",
+     "j": "私　撃った（撮影した）",
      "en": "I shot",
      "kana": "アイ ショット"
     },
     {
-     "j": "私　もう　撃った",
+     "j": "私　もう　撃った（撮影した）",
      "en": "I've shot",
      "kana": "アイヴ ショット"
     }
@@ -2825,6 +3975,20 @@
    ],
    "ja": "（ベル・電話が）鳴る",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I ring the bell every morning.",
+     "ja": "毎朝ベルを鳴らす。"
+    },
+    {
+     "en": "I rang the doorbell.",
+     "ja": "呼び鈴を鳴らした。"
+    },
+    {
+     "en": "I've rung the bell twice.",
+     "ja": "ベルを 2 回鳴らした。"
+    }
+   ],
    "q": [
     {
      "j": "私　（ベルを）鳴らす",
@@ -2858,19 +4022,33 @@
    ],
    "ja": "沈む",
    "pat": "iau",
+   "ex": [
+    {
+     "en": "I sink into the sofa after work.",
+     "ja": "仕事のあとはソファに沈みこむ。"
+    },
+    {
+     "en": "I sank into the chair.",
+     "ja": "いすに沈みこんだ。"
+    },
+    {
+     "en": "I've sunk a lot of money into it.",
+     "ja": "それに大金をつぎこんだ。"
+    }
+   ],
    "q": [
     {
-     "j": "私　沈む",
+     "j": "私　沈む（沈みこむ）",
      "en": "I sink",
      "kana": "アイ スィンク"
     },
     {
-     "j": "私　沈んだ",
+     "j": "私　沈んだ（沈みこんだ）",
      "en": "I sank",
      "kana": "アイ セァンク"
     },
     {
-     "j": "私　もう　沈んだ",
+     "j": "私　もう　沈んだ（沈みこんだ）",
      "en": "I've sunk",
      "kana": "アイヴ サンク"
     }
@@ -2891,6 +4069,20 @@
    ],
    "ja": "貼る・くっつく",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I stick notes on my desk.",
+     "ja": "机にメモを貼る。"
+    },
+    {
+     "en": "I stuck the poster on the wall.",
+     "ja": "ポスターを壁に貼った。"
+    },
+    {
+     "en": "I've stuck a note on the door.",
+     "ja": "ドアにメモを貼っておいた。"
+    }
+   ],
    "q": [
     {
      "j": "私　貼る",
@@ -2924,6 +4116,20 @@
    ],
    "ja": "掛ける・ぶら下げる",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I hang my coat here.",
+     "ja": "コートはここに掛ける。"
+    },
+    {
+     "en": "I hung my coat up.",
+     "ja": "コートを掛けた。"
+    },
+    {
+     "en": "I've hung the picture on the wall.",
+     "ja": "絵を壁に掛けた。"
+    }
+   ],
    "q": [
     {
      "j": "私　掛ける",
@@ -2957,6 +4163,20 @@
    ],
    "ja": "掘る",
    "pat": "abb",
+   "ex": [
+    {
+     "en": "I dig the garden every spring.",
+     "ja": "毎年春に庭を掘り返す。"
+    },
+    {
+     "en": "I dug a hole.",
+     "ja": "穴を掘った。"
+    },
+    {
+     "en": "I've dug up some old photos.",
+     "ja": "古い写真を掘り出してきた。"
+    }
+   ],
    "q": [
     {
      "j": "私　掘る",
@@ -2990,19 +4210,33 @@
    ],
    "ja": "凍る・固まる",
    "pat": "en",
+   "ex": [
+    {
+     "en": "I freeze when I speak in public.",
+     "ja": "人前で話すと固まってしまう。"
+    },
+    {
+     "en": "I froze when I saw him.",
+     "ja": "彼を見て固まった。"
+    },
+    {
+     "en": "I've frozen the leftovers.",
+     "ja": "残り物は冷凍してある。"
+    }
+   ],
    "q": [
     {
-     "j": "私　凍える",
+     "j": "私　固まる（凍る）",
      "en": "I freeze",
      "kana": "アイ フリーズ"
     },
     {
-     "j": "私　凍えた",
+     "j": "私　固まった（凍った）",
      "en": "I froze",
      "kana": "アイ フロウズ"
     },
     {
-     "j": "私　もう　凍えた",
+     "j": "私　もう　固まった（凍った）",
      "en": "I've frozen",
      "kana": "アイヴ フロウズン"
     }
@@ -3023,6 +4257,20 @@
    ],
    "ja": "曲げる",
    "pat": "dt",
+   "ex": [
+    {
+     "en": "I bend my knees when I lift.",
+     "ja": "持ち上げるときはひざを曲げる。"
+    },
+    {
+     "en": "I bent down to pick it up.",
+     "ja": "それを拾おうとかがんだ。"
+    },
+    {
+     "en": "I've bent the wire.",
+     "ja": "針金を曲げた。"
+    }
+   ],
    "q": [
     {
      "j": "私　曲げる",
@@ -3056,6 +4304,20 @@
    ],
    "ja": "対処する・扱う",
    "pat": "short",
+   "ex": [
+    {
+     "en": "I deal with customers every day.",
+     "ja": "毎日、お客さんの対応をする。"
+    },
+    {
+     "en": "I dealt with the problem.",
+     "ja": "その問題に対処した。"
+    },
+    {
+     "en": "I've dealt with him before.",
+     "ja": "彼とは前にやりとりしたことがある。"
+    }
+   ],
    "q": [
     {
      "j": "私　対処する",
