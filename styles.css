@@ -590,3 +590,15 @@ body.in-modal #modeSwitch { display: none; }
 .vform.ng .vf-en { color: var(--again) !important; }
 .vform.ng .vf-kana { color: var(--again); }
 .vcard #vNextBtn { margin-top: 18px; }
+/* 反射のカード（私　見た → I saw） */
+.vprompt { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: 34px; font-weight: 800; line-height: 1.3; margin-top: 12vh; text-align: center; }
+.vprompt span:first-child { color: var(--muted); }
+.vans { font-size: 44px; font-weight: 800; text-align: center; margin-top: 28px; line-height: 1.2; overflow-wrap: anywhere; }
+.vans .hit { color: var(--good); }
+.vans-kana { text-align: center; color: var(--muted); font-size: 16px; margin-top: 4px; }
+.vline { text-align: center; color: var(--muted); font-size: 15px; margin-top: 22px; }
+.vline .on { color: var(--text); font-weight: 700; }
+.vcard .vnote { margin-top: 16px; font-size: 13px; }
+.vqrow .en { font-size: 17px; }
+.vqrow-kana { font-size: 12px; font-weight: 400; color: var(--accent); margin-left: 10px; }
+.verb-box #verbTodayBtn.secondary { background: var(--bg); border: 1px solid var(--panel2); }

@@ -1651,7 +1651,7 @@ function applyBackup(obj) {
   if (obj.textbook && Array.isArray(obj.textbook.lessons)) { TB = obj.textbook; saveTextbook(); }
   if (obj.tbstat && typeof obj.tbstat === 'object') { tbstat = normTbStat(obj.tbstat); saveTbStat(); }
   if (obj.modal && typeof obj.modal === 'object') { mstat = obj.modal; if (!mstat.items) mstat.items = {}; if (!Array.isArray(mstat.sessions)) mstat.sessions = []; saveModalStat(); }
-  if (obj.verb && typeof obj.verb === 'object') { vstat = obj.verb; if (!vstat.items) vstat.items = {}; if (!Array.isArray(vstat.sessions)) vstat.sessions = []; saveVerbStat(); }
+  if (obj.verb && typeof obj.verb === 'object') { vstat = obj.verb; if (!vstat.items) vstat.items = {}; if (!Array.isArray(vstat.sessions)) vstat.sessions = []; if (!vstat.days) vstat.days = {}; saveVerbStat(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1684,34 +1684,34 @@ function handleRestoreFile(file) {
 }
 
 /* ---------- 初期化 ---------- */
-/* ---------- 動詞の 3 つの形（原形 → 過去形 → 過去分詞） ----------
-   会話用。日本語の文を 3 問（現在・過去・過去分詞）口に出して解き、そのあと活用をおさらいする。書かない。
-   データは data/verbs.json（6 ステップ × 15 個）。進捗は端末内 (VERB_KEY)。SRS や一覧には混ぜない。 */
+/* ---------- 動詞の 3 つの形（I ＋ 動詞を反射で言う） ----------
+   「私　見た」→ I saw、「私　もう　見た」→ I've seen。主語と動詞だけ・英語の語順・例文なし。
+   毎日ランダムに VERB_DAILY 問。出るのは「いまここ」のステップまでの動詞（1 つの動詞に 現在・過去・完了 の 3 枚）。
+   データは data/verbs.json。進捗は端末内 (VERB_KEY)。SRS や一覧には混ぜない。 */
 const VERB_URL = 'data/verbs.json';
 const VERB_KEY = 'phrasedeck.verb.v1';
-const VERB_ROUND = 5;            // 1 回に出す動詞の数（1 つの動詞に 3 問）
-const VERB_DONE_STREAK = 2;      // 続けてこの回数「言えた」で、覚えた
-const VERB_OPEN_RATE = 0.8;      // ステップのこの割合を覚えたら、次のステップへ
-const VERB_REQUEUE_GAP = 2;      // 言えなかった動詞が再登場するまでの枚数
+const VERB_DAILY = 50;           // 1 日にこなす枚数
+const VERB_DONE_STREAK = 2;      // 続けてこの回数「言えた」で、その 1 枚は覚えた
+const VERB_OPEN_RATE = 0.8;      // ステップの動詞のこの割合を覚えたら、次のステップも出はじめる
+const VERB_REQUEUE_GAP = 3;      // 言えなかった 1 枚が再登場するまでの枚数
 
 let VSTEPS = [];
 let VPATS = {};
 let VERBS = [];
 let VBY_ID = {};
-let vstat = { items: {}, sessions: [] };   // items[id] = {n, ok, streak, last}
-let vqueue = [];
+let vstat = { items: {}, sessions: [], days: {} };   // items['v-see#1'] = {n, ok, streak, last}・days['2026-11-14'] = こなした枚数
+let vqueue = [];                 // [{id, i, re}]  re = 言えなかった分のやり直し
 let vcur = null;
-let vStepNo = 0;                 // いまやっているステップ（0 = まぜて復習）
+let vStepNo = 0;                 // 0 = 今日の 50 問（いまここまで全部）／番号 = そのステップだけ
 let vRound = { n: 0, ok: 0, log: [] };
 let vShownAt = 0;
-let vq = 0;                      // いま何問目か（0 現在・1 過去・2 過去分詞・3 活用のおさらい）
-let vMarks = [];                 // その動詞の 3 問が言えたか
 
 function loadVerbStat() {
-  try { vstat = Object.assign({ items: {}, sessions: [] }, JSON.parse(localStorage.getItem(VERB_KEY)) || {}); }
-  catch { vstat = { items: {}, sessions: [] }; }
+  try { vstat = Object.assign({ items: {}, sessions: [], days: {} }, JSON.parse(localStorage.getItem(VERB_KEY)) || {}); }
+  catch { vstat = { items: {}, sessions: [], days: {} }; }
   if (!vstat.items) vstat.items = {};
   if (!Array.isArray(vstat.sessions)) vstat.sessions = [];
+  if (!vstat.days || typeof vstat.days !== 'object') vstat.days = {};
 }
 function saveVerbStat() { localStorage.setItem(VERB_KEY, JSON.stringify(vstat)); }
 
@@ -1723,16 +1723,18 @@ async function loadVerbs() {
   } catch { /* オフラインで取れなければ箱を出さない */ }
   VSTEPS = j.steps || [];
   VPATS = j.patterns || {};
-  VERBS = j.verbs || [];
+  VERBS = (j.verbs || []).filter(v => Array.isArray(v.q) && v.q.length === 3);
   VBY_ID = {};
   for (const v of VERBS) VBY_ID[v.id] = v;
 }
 
 function verbsOfStep(no) { return VERBS.filter(v => v.step === no); }
-function verbDone(v) { const s = vstat.items[v.id]; return !!s && s.streak >= VERB_DONE_STREAK; }
-function verbSeen(v) { const s = vstat.items[v.id]; return !!s && s.n > 0; }
+function vkey(id, i) { return id + '#' + i; }
+function vcardStat(id, i) { return vstat.items[vkey(id, i)]; }
+// 動詞を覚えた = 3 枚（現在・過去・完了）とも覚えた
+function verbDone(v) { return [0, 1, 2].every(i => { const s = vcardStat(v.id, i); return !!s && s.streak >= VERB_DONE_STREAK; }); }
 function verbStepDone(no) { return verbsOfStep(no).filter(verbDone).length; }
-// いまやるステップ = まだ 8 割覚えていない最初のステップ
+// いまここ = まだ 8 割覚えていない最初のステップ
 function verbCurrentStep() {
   for (const st of VSTEPS) {
     const all = verbsOfStep(st.no).length;
@@ -1740,160 +1742,117 @@ function verbCurrentStep() {
   }
   return VSTEPS.length ? VSTEPS[VSTEPS.length - 1].no : 0;
 }
+function verbToday() { return vstat.days[todayISO()] || 0; }
 // 3 つの形を続けて読む（read のように綴りが同じで音が変わるものは say を読む）
 function speakVerb(v) { speakList(v.say || v.f, Math.min(speechRate, 0.85)); }
-function verbFormsHtml(v) {
-  return `<div class="vforms">${v.f.map((f, i) =>
-    `<div class="vform"><div class="vf-en">${esc(f)}</div><div class="vf-kana">${esc(v.kana[i])}</div></div>`).join('<div class="vf-arrow">→</div>')}</div>`;
-}
+function speakVerbQ(v, i) { const q = v.q[i]; speak(q.say || q.en); }
 
-function verbWeight(v) {
-  const s = vstat.items[v.id];
+function vcardWeight(id, i) {
+  const s = vcardStat(id, i);
   if (!s || !s.n) return 3;                 // まだ出ていない
-  if (s.streak === 0) return 5;             // 前回言えなかった
+  if (s.streak === 0) return 6;             // 前回言えなかった
   if (s.streak < VERB_DONE_STREAK) return 3;
   return 1;                                 // 覚えた（たまに出る）
 }
-function buildVerbQueue(no) {
-  const pool = no ? verbsOfStep(no) : VERBS.filter(verbSeen);
-  const rest = pool.map(v => ({ id: v.id, w: verbWeight(v) }));
-  const picked = [];
-  while (picked.length < VERB_ROUND && rest.length) {
-    let r = Math.random() * rest.reduce((a, x) => a + x.w, 0);
-    let i = 0;
-    for (; i < rest.length - 1; i++) { r -= rest[i].w; if (r <= 0) break; }
-    picked.push(rest.splice(i, 1)[0].id);
+// n 枚をランダムに（苦手ほど出やすい）。枚数が足りなければ山を作り直して続ける。同じ 1 枚は続けない。
+function buildVerbQueue(no, n) {
+  const cur = verbCurrentStep();
+  const vs = no ? verbsOfStep(no) : VERBS.filter(v => v.step <= cur);
+  const all = [];
+  for (const v of vs) for (let i = 0; i < 3; i++) all.push({ id: v.id, i });
+  const out = [];
+  let bag = [];
+  let guard = 0;
+  while (out.length < n && all.length && guard++ < n * 20) {
+    if (!bag.length) bag = all.map(c => ({ id: c.id, i: c.i, w: vcardWeight(c.id, c.i) }));
+    let r = Math.random() * bag.reduce((a, x) => a + x.w, 0);
+    let k = 0;
+    for (; k < bag.length - 1; k++) { r -= bag[k].w; if (r <= 0) break; }
+    const c = bag[k];
+    const last = out[out.length - 1];
+    if (last && last.id === c.id && all.length > 3) { if (bag.length === 1) bag = []; continue; }   // 同じ動詞は続けない
+    bag.splice(k, 1);
+    out.push({ id: c.id, i: c.i, re: false });
   }
-  return picked;
+  return out;
 }
 
 function startVerb(no) {
   vStepNo = no;
   vRound = { n: 0, ok: 0, log: [] };
-  vqueue = buildVerbQueue(no);
+  const done = verbToday();
+  // 今日の 50 問は、途中でやめていたら残りから。済んでいたら、もう 50 問。
+  const n = (!no && done < VERB_DAILY) ? VERB_DAILY - done : VERB_DAILY;
+  vqueue = buildVerbQueue(no, n);
   showView('verbView');
   nextVerb();
 }
 function nextVerb() {
-  const id = vqueue.shift();
-  if (!id) { finishVerbRound(false); return; }
-  vcur = VBY_ID[id];
-  if (!vcur) { nextVerb(); return; }
-  vq = 0; vMarks = [];
+  const c = vqueue.shift();
+  if (!c) { finishVerbRound(false); return; }
+  if (!VBY_ID[c.id]) { nextVerb(); return; }
+  vcur = c;
   vShownAt = Date.now();
   renderVerbCard(false);
   window.scrollTo(0, 0);
 }
 
-// 問題の 3 文（現在 → 過去 → 過去分詞）。使う形だけ色をつける。
-const VERB_TENSES = [
-  { name: '現在', sub: 'いつものこと・今のこと' },
-  { name: '過去', sub: '〜した' },
-  { name: '過去分詞', sub: 'have ＋（もう〜した・〜したことがある）／ be ＋（〜される）' },
-];
-function verbExHtml(v, i) {
-  const e = v.ex[i];
-  const forms = e.hl ? [e.hl] : v.f[i].split('/').map(x => x.trim());
-  for (const f of forms) {
-    const m = new RegExp('\\b' + f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').exec(e.en);
-    if (m) return esc(e.en.slice(0, m.index)) + `<span class="hit">${esc(m[0])}</span>` + esc(e.en.slice(m.index + m[0].length));
-  }
-  return esc(e.en);
-}
-function verbTop() {
-  const v = vcur;
-  const total = vRound.n + 1 + vqueue.length;
-  const st = VSTEPS.find(x => x.no === v.step);
-  return `<div class="mtop"><span>動詞 ${vRound.n + 1} / ${total}</span><span>${st ? `ステップ ${st.no}・${esc(st.name)}` : ''}</span></div>`;
-}
-function verbDots() {
-  return `<div class="vdots">${VERB_TENSES.map((t, i) => {
-    const cls = i < vq ? (vMarks[i] ? 'ok' : 'ng') : (i === vq ? 'now' : '');
-    return `<span class="${cls}">${esc(t.name)}</span>`; }).join('')}<span class="${vq >= 3 ? 'now' : ''}">活用</span></div>`;
-}
-
-// 1 つの動詞 = 日本語の文を 3 問（現在・過去・過去分詞）→ 活用のおさらい
 function renderVerbCard(revealed) {
-  const v = vcur;
+  const c = vcur;
+  const v = VBY_ID[c.id];
+  const q = v.q[c.i];
   const area = document.getElementById('verbArea');
   document.getElementById('dueCount').textContent = vqueue.length + 1;
-  if (vq >= 3) { renderVerbRemind(); return; }
-  const e = v.ex[vq];
-  const t = VERB_TENSES[vq];
-  area.innerHTML = `
-    <div class="mcard vcard">
-      ${verbTop()}
-      ${verbDots()}
-      <div class="vtense"><b>${esc(t.name)}</b>　${esc(t.sub)}</div>
-      <div class="vq-ja">${esc(e.ja)}</div>
-      <div class="vq-verb">動詞: <b>${esc(v.f[0])}</b>（${esc(v.ja)}）</div>
-      ${revealed ? `
-        <div class="vq-en">${verbExHtml(v, vq)}</div>
-        <div class="vq-kana">${esc(v.f[vq])} ＝ ${esc(v.kana[vq])}</div>
-        <button class="link-btn vagain" id="vHearBtn">🔊 もう一度聞く</button>
-        <div class="vgrade">
-          <button class="vg-ng" id="vNgBtn">言えなかった</button>
-          <button class="vg-ok" id="vOkBtn">言えた</button>
-        </div>` : `
-        <div class="vask">英語で、口に出す</div>
-        <button class="big-btn vshow" id="vShowBtn">答えを聞く</button>
-        <button class="link-btn mquit" id="vQuitBtn">やめる（ここまでを記録）</button>`}
-    </div>`;
+  const top = `<div class="mtop"><span>${vRound.n + 1} / ${vRound.n + 1 + vqueue.length}</span><span>${c.re ? 'もう一度' : ''}</span></div>`;
+  const prompt = `<div class="vprompt">${q.j.split('　').map(w => `<span>${esc(w)}</span>`).join('')}</div>`;
   if (!revealed) {
-    document.getElementById('vShowBtn').onclick = () => { renderVerbCard(true); speak(e.say || e.en); };
+    area.innerHTML = `
+      <div class="mcard vcard" id="vCard">
+        ${top}
+        ${prompt}
+        <button class="big-btn vshow" id="vShowBtn">答えを見る</button>
+        <button class="link-btn mquit" id="vQuitBtn">やめる（ここまでを記録）</button>
+      </div>`;
+    document.getElementById('vShowBtn').onclick = () => { renderVerbCard(true); speakVerbQ(v, c.i); };
     document.getElementById('vQuitBtn').onclick = () => { vcur = null; if (vRound.n) finishVerbRound(true); else goHome(); };
     return;
   }
-  document.getElementById('vHearBtn').onclick = () => speak(e.say || e.en);
-  const mark = (ok) => { vMarks[vq] = ok; vq += 1; renderVerbCard(false); if (vq >= 3) speakVerb(v); window.scrollTo(0, 0); };
-  document.getElementById('vOkBtn').onclick = () => mark(true);
-  document.getElementById('vNgBtn').onclick = () => mark(false);
-}
-
-// 3 問のあとに出る、活用のおさらい
-function renderVerbRemind() {
-  const v = vcur;
-  const area = document.getElementById('verbArea');
-  const pat = VPATS[v.pat];
-  const mates = VERBS.filter(x => x.pat === v.pat && x.id !== v.id && x.step <= Math.max(v.step, verbCurrentStep())).slice(0, 5);
-  const allOk = vMarks.every(Boolean);
+  const sp = q.en.indexOf(' ');
   area.innerHTML = `
     <div class="mcard vcard">
-      ${verbTop()}
-      ${verbDots()}
-      <div class="vja small">活用のおさらい　${esc(v.ja)}</div>
-      <div class="vforms">${v.f.map((f, i) =>
-        `<div class="vform${vMarks[i] ? '' : ' ng'}"><div class="vf-en">${esc(f)}</div><div class="vf-kana">${esc(v.kana[i])}${vMarks[i] ? '' : '　← 言えなかった'}</div></div>`).join('<div class="vf-arrow">→</div>')}</div>
-      <button class="link-btn vagain" id="vHearBtn">🔊 3 つ続けて聞く</button>
+      ${top}
+      ${prompt}
+      <div class="vans" id="vAns">${esc(q.en.slice(0, sp))} <span class="hit">${esc(q.en.slice(sp + 1))}</span></div>
+      <div class="vans-kana">${esc(q.kana)}</div>
+      <div class="vline">${v.f.map((f, i) => `<span class="${i === c.i ? 'on' : ''}">${esc(f)}</span>`).join(' · ')}</div>
       ${v.note ? `<div class="vnote">${esc(v.note)}</div>` : ''}
-      ${pat ? `<div class="vpat"><b>${esc(pat.name)}</b>　${esc(pat.tip)}${mates.length ? `<br>仲間: ${mates.map(x => esc(x.f.join(' · '))).join(' ／ ')}` : ''}</div>` : ''}
-      <div class="vex">${v.ex.map((e, i) => `<div class="vex-row">
-          <button class="spk" data-say="${esc(e.say || e.en)}">🔊</button>
-          <div><div class="vex-en">${verbExHtml(v, i)}</div><div class="vex-ja">${esc(VERB_TENSES[i].name)}　${esc(e.ja)}</div></div>
-        </div>`).join('')}</div>
-      <button class="big-btn vshow" id="vNextBtn">${allOk ? '次の動詞へ' : '次の動詞へ（この動詞はあとでもう一度）'}</button>
+      <div class="vgrade">
+        <button class="vg-ng" id="vNgBtn">言えなかった</button>
+        <button class="vg-ok" id="vOkBtn">言えた</button>
+      </div>
     </div>`;
-  document.getElementById('vHearBtn').onclick = () => speakVerb(v);
-  area.querySelectorAll('.spk').forEach(b => { b.onclick = () => speak(b.dataset.say); });
-  document.getElementById('vNextBtn').onclick = () => answerVerb(allOk);
+  document.getElementById('vAns').onclick = () => speakVerbQ(v, c.i);
+  document.getElementById('vOkBtn').onclick = () => answerVerb(true);
+  document.getElementById('vNgBtn').onclick = () => answerVerb(false);
 }
 
 function answerVerb(ok) {
-  const v = vcur;
-  if (!v) return;
-  const s = vstat.items[v.id] || { n: 0, ok: 0, streak: 0, last: '' };
+  const c = vcur;
+  if (!c) return;
+  const k = vkey(c.id, c.i);
+  const s = vstat.items[k] || { n: 0, ok: 0, streak: 0, last: '' };
   s.n += 1;
   if (ok) { s.ok += 1; s.streak += 1; } else s.streak = 0;
   s.last = todayISO();
-  vstat.items[v.id] = s;
+  vstat.items[k] = s;
+  if (!c.re) vstat.days[todayISO()] = verbToday() + 1;   // やり直しの分は 50 問に数えない
   saveVerbStat();
   recordStudy(Math.min(Date.now() - vShownAt, CARD_TIME_CAP));
   vRound.n += 1;
   if (ok) vRound.ok += 1;
-  vRound.log.push({ id: v.id, ok });
-  // 1 つでも言えなかった動詞は少しあとでもう一度
-  if (!ok) vqueue.splice(Math.min(VERB_REQUEUE_GAP, vqueue.length), 0, v.id);
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  vRound.log.push({ id: c.id, i: c.i, ok });
+  // 言えなかった 1 枚は少しあとでもう一度
+  if (!ok) vqueue.splice(Math.min(VERB_REQUEUE_GAP, vqueue.length), 0, { id: c.id, i: c.i, re: true });
   nextVerb();
 }
 
@@ -1903,39 +1862,36 @@ function finishVerbRound(quit) {
   if (r.n) {
     vstat.sessions.push({ day: todayISO(), step: vStepNo, n: r.n, ok: r.ok });
     if (vstat.sessions.length > 60) vstat.sessions = vstat.sessions.slice(-60);
+    const keep = Object.keys(vstat.days).sort().slice(-60);
+    vstat.days = Object.fromEntries(keep.map(d => [d, vstat.days[d]]));
     saveVerbStat();
   }
   const seen = new Set();
-  const miss = r.log.filter(l => !l.ok && !seen.has(l.id) && seen.add(l.id)).map(l => VBY_ID[l.id]);
-  const st = VSTEPS.find(x => x.no === vStepNo);
-  const all = st ? verbsOfStep(st.no).length : 0;
-  const done = st ? verbStepDone(st.no) : 0;
-  const next = st ? VSTEPS.find(x => x.no === st.no + 1) : null;
-  const opened = st && all && done / all >= VERB_OPEN_RATE;
+  const miss = r.log.filter(l => !l.ok && !seen.has(vkey(l.id, l.i)) && seen.add(vkey(l.id, l.i)));
+  const today = verbToday();
   const area = document.getElementById('verbArea');
   area.innerHTML = `
     <div class="mresult">
       <div class="empty" style="padding:30px 20px 10px">
         <div class="big">${quit ? '🏁' : (miss.length ? '🎉' : '⚡')}</div>
-        <div>${quit ? 'ここまでを記録しました' : 'おわり'}</div>
+        <div>${quit ? 'ここまでを記録しました' : (today >= VERB_DAILY ? `今日の ${VERB_DAILY} 問、おわり` : 'おわり')}</div>
       </div>
       <div class="stats-summary">
-        <div class="ss-item"><div class="ss-num">${r.ok}</div><div class="ss-lab">3 問とも言えた</div></div>
-        <div class="ss-item"><div class="ss-num">${miss.length}</div><div class="ss-lab">言えなかった動詞</div></div>
-        ${st ? `<div class="ss-item"><div class="ss-num">${done}/${all}</div><div class="ss-lab">このステップで覚えた</div></div>` : ''}
+        <div class="ss-item"><div class="ss-num">${r.ok}</div><div class="ss-lab">言えた</div></div>
+        <div class="ss-item"><div class="ss-num">${miss.length}</div><div class="ss-lab">言えなかった</div></div>
+        <div class="ss-item"><div class="ss-num">${today}</div><div class="ss-lab">今日こなした枚数</div></div>
       </div>
-      ${st ? `<p class="hint" style="text-align:center">${opened
-          ? (next ? `ステップ ${st.no} は 8 割を超えました。次はステップ ${next.no}（${esc(next.name)}）へ。` : '最後のステップも 8 割を超えました。あとは「まぜて復習」で保つだけです。')
-          : `3 問とも言えたのが続けて ${VERB_DONE_STREAK} 回で「覚えた」。${Math.ceil(all * VERB_OPEN_RATE)} 個覚えたら次のステップへ進みます。`}</p>` : ''}
-      ${miss.length ? `<h3>言えなかった ${miss.length} 個（タップで聞く）</h3>` + miss.map(v => verbRowHtml(v)).join('') : ''}
-      <button class="big-btn" style="margin-top:24px" id="vAgainBtn">もう ${VERB_ROUND} 個</button>
-      ${opened && next ? `<button class="big-btn secondary" id="vNextStepBtn">ステップ ${next.no}（${esc(next.name)}）を見る</button>` : ''}
+      ${miss.length ? `<h3>言えなかった ${miss.length} 枚（タップで聞く）</h3>` + miss.map(l => {
+        const v = VBY_ID[l.id]; const q = v.q[l.i];
+        return `<div class="mrow vqrow" data-id="${esc(l.id)}" data-i="${l.i}">
+          <div class="en">${esc(q.en)}<span class="vqrow-kana">${esc(q.kana)}</span></div>
+          <div class="meta">${esc(q.j.replace(/　/g, ' '))}　─　${esc(v.f.join(' · '))}</div>
+        </div>`; }).join('') : ''}
+      <button class="big-btn" style="margin-top:24px" id="vAgainBtn">${today < VERB_DAILY && !vStepNo ? `続きをやる（残り ${VERB_DAILY - today} 問）` : `もう ${VERB_DAILY} 問`}</button>
       <button class="big-btn secondary" id="vHomeBtn">ホームへ</button>
     </div>`;
-  bindVerbRows(area);
+  area.querySelectorAll('.vqrow').forEach(el => { el.onclick = () => speakVerbQ(VBY_ID[el.dataset.id], Number(el.dataset.i)); });
   document.getElementById('vAgainBtn').onclick = () => startVerb(vStepNo);
-  const nb = document.getElementById('vNextStepBtn');
-  if (nb) nb.onclick = () => openVerbStep(next.no);
   document.getElementById('vHomeBtn').onclick = goHome;
   document.getElementById('dueCount').textContent = '–';
   window.scrollTo(0, 0);
@@ -1948,11 +1904,8 @@ function verbRowHtml(v) {
     <div class="meta">${esc(v.ja)}</div>
   </div>`;
 }
-function bindVerbRows(root) {
-  root.querySelectorAll('.vrow').forEach(el => { el.onclick = () => { const v = VBY_ID[el.dataset.id]; if (v) speakVerb(v); }; });
-}
 
-// ステップの中身（15 個の一覧）。まず眺めて聞いてから、はじめる。
+// ステップの中身（15 個の一覧）。眺めて聞くための場所。
 function openVerbStep(no) {
   const st = VSTEPS.find(x => x.no === no);
   if (!st) return;
@@ -1964,25 +1917,29 @@ function openVerbStep(no) {
     <div class="mresult">
       <h1>ステップ ${st.no}　${esc(st.name)}</h1>
       <p class="sub">${esc(st.sub)}（覚えた ${verbStepDone(no)} / ${vs.length}）</p>
-      <button class="big-btn" id="vStartBtn">このステップをやる（動詞 ${Math.min(VERB_ROUND, vs.length)} 個 × 3 問）</button>
       <h3>この ${vs.length} 個（タップで 3 つ続けて聞く）</h3>
       ${vs.map(v => verbRowHtml(v)).join('')}
-      <button class="big-btn secondary" style="margin-top:20px" id="vHomeBtn">ホームへ</button>
+      <button class="big-btn secondary" style="margin-top:20px" id="vStartBtn">このステップだけで ${VERB_DAILY} 問</button>
+      <button class="big-btn secondary" id="vHomeBtn">ホームへ</button>
     </div>`;
-  bindVerbRows(area);
+  area.querySelectorAll('.vrow').forEach(el => { el.onclick = () => { const v = VBY_ID[el.dataset.id]; if (v) speakVerb(v); }; });
   document.getElementById('vStartBtn').onclick = () => startVerb(no);
   document.getElementById('vHomeBtn').onclick = goHome;
   document.getElementById('dueCount').textContent = '–';
   window.scrollTo(0, 0);
 }
 
-// ホームの箱: ステップの段と進み具合
+// ホームの箱: 今日の 50 問・ステップの段と進み具合
 function renderVerbHome() {
   const box = document.getElementById('verbBox');
   if (!box) return;
   box.hidden = !VERBS.length;
   if (!VERBS.length) return;
-  document.getElementById('verbCount').textContent = `覚えた ${VERBS.filter(verbDone).length} / ${VERBS.length}`;
+  const today = verbToday();
+  document.getElementById('verbCount').textContent = today >= VERB_DAILY ? `今日 ${today} 問 ✓` : `今日 ${today} / ${VERB_DAILY}`;
+  const btn = document.getElementById('verbTodayBtn');
+  btn.textContent = today >= VERB_DAILY ? `もう ${VERB_DAILY} 問やる` : (today ? `続きをやる（残り ${VERB_DAILY - today} 問）` : `今日の ${VERB_DAILY} 問をやる`);
+  btn.classList.toggle('secondary', today >= VERB_DAILY);
   const cur = verbCurrentStep();
   document.getElementById('verbSteps').innerHTML = VSTEPS.map(st => {
     const all = verbsOfStep(st.no).length;
@@ -1993,7 +1950,6 @@ function renderVerbHome() {
       <div class="bar"><span style="width:${all ? Math.round(done / all * 100) : 0}%"></span></div>
     </button>`; }).join('');
   document.querySelectorAll('#verbSteps .vstep').forEach(b => { b.onclick = () => openVerbStep(Number(b.dataset.no)); });
-  document.getElementById('verbMixBtn').hidden = VERBS.filter(verbSeen).length < VERB_ROUND;
 }
 
 /* ---------- 助動詞の反射（場面 → 助動詞をタップ・反応時間を計る） ----------
@@ -2761,7 +2717,7 @@ async function init() {
   document.getElementById('goRegisterBtn').onclick = goRegister;
   document.getElementById('startModalBtn').onclick = startModal;
   document.getElementById('goModalMapBtn').onclick = goModalMap;
-  document.getElementById('verbMixBtn').onclick = () => startVerb(0);
+  document.getElementById('verbTodayBtn').onclick = () => startVerb(0);
   document.getElementById('tbListBtn').onclick = () => openTbList();
   document.getElementById('tbImportBtn').onclick = () => { const f = document.getElementById('tbFile'); f.value = ''; f.click(); };
   document.getElementById('tbFile').onchange = (e) => handleTbFile(e.target.files[0]);

@@ -1,6 +1,6 @@
 {
- "version": 2,
- "note": "動詞の3つの形（原形→過去形→過去分詞）。ex は 現在・過去・過去分詞 の順の 3 文。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
+ "version": 3,
+ "note": "動詞の3つの形（原形→過去形→過去分詞）。q は 現在・過去・完了 の 3 問（j=英語の語順の日本語・en=答え）。会話用＝音で覚える。kana はおおよその読み。say は読み上げ用（綴りが同じで音が変わるもの）。",
  "steps": [
   {
    "no": 1,
@@ -83,19 +83,21 @@
    ],
    "ja": "〜である・いる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I'm busy every Monday.",
-     "ja": "毎週月曜は忙しい。",
-     "hl": "I'm"
+     "j": "私　〜です",
+     "en": "I am",
+     "kana": "アイ アム"
     },
     {
-     "en": "I was busy yesterday.",
-     "ja": "昨日は忙しかった。"
+     "j": "私　〜でした",
+     "en": "I was",
+     "kana": "アイ ワズ"
     },
     {
-     "en": "I've been to Okinawa twice.",
-     "ja": "沖縄には 2 回行ったことがある。"
+     "j": "私　ずっと　〜です",
+     "en": "I've been",
+     "kana": "アイヴ ビン"
     }
    ],
    "note": "I・he・she・it は was、you・we・they は were。been は「ビーン」より短く「ビン」。",
@@ -120,18 +122,21 @@
    ],
    "ja": "持っている・食べる",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I have a meeting every morning.",
-     "ja": "毎朝、会議がある。"
+     "j": "私　持っている",
+     "en": "I have",
+     "kana": "アイ ハヴ"
     },
     {
-     "en": "I had a cold last week.",
-     "ja": "先週は風邪をひいていた。"
+     "j": "私　持っていた",
+     "en": "I had",
+     "kana": "アイ ハッド"
     },
     {
-     "en": "I've had enough, thank you.",
-     "ja": "もう十分いただきました。"
+     "j": "私　ずっと　持っている",
+     "en": "I've had",
+     "kana": "アイヴ ハッド"
     }
    ]
   },
@@ -150,18 +155,21 @@
    ],
    "ja": "する",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I do the laundry on Sundays.",
-     "ja": "日曜に洗濯をする。"
+     "j": "私　する",
+     "en": "I do",
+     "kana": "アイ ドゥー"
     },
     {
-     "en": "I did my best.",
-     "ja": "ベストを尽くした。"
+     "j": "私　した",
+     "en": "I did",
+     "kana": "アイ ディッド"
     },
     {
-     "en": "I've already done it.",
-     "ja": "それはもうやりました。"
+     "j": "私　もう　した",
+     "en": "I've done",
+     "kana": "アイヴ ダン"
     }
    ],
    "note": "done は「ドーン」ではなく「ダン」。"
@@ -181,18 +189,21 @@
    ],
    "ja": "行く",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I go to the gym twice a week.",
-     "ja": "週に 2 回ジムに行く。"
+     "j": "私　行く",
+     "en": "I go",
+     "kana": "アイ ゴウ"
     },
     {
-     "en": "I went to Tokyo last month.",
-     "ja": "先月、東京に行った。"
+     "j": "私　行った",
+     "en": "I went",
+     "kana": "アイ ウェント"
     },
     {
-     "en": "He's gone home.",
-     "ja": "彼はもう帰りました。"
+     "j": "私　もう　行った",
+     "en": "I've gone",
+     "kana": "アイヴ ゴーン"
     }
    ],
    "note": "「行ったことがある」は have been to。have gone は「行ってしまって、今いない」。"
@@ -212,18 +223,21 @@
    ],
    "ja": "手に入れる・〜になる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I get up at six.",
-     "ja": "6 時に起きる。"
+     "j": "私　手に入れる",
+     "en": "I get",
+     "kana": "アイ ゲット"
     },
     {
-     "en": "I got a new phone.",
-     "ja": "新しいスマホを手に入れた。"
+     "j": "私　手に入れた",
+     "en": "I got",
+     "kana": "アイ ガット"
     },
     {
-     "en": "It's gotten cold.",
-     "ja": "寒くなってきた。"
+     "j": "私　もう　手に入れた",
+     "en": "I've gotten",
+     "kana": "アイヴ ガットゥン"
     }
    ],
    "note": "アメリカは gotten、イギリスは got。どちらでも通じる。"
@@ -243,18 +257,21 @@
    ],
    "ja": "作る",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I make coffee every morning.",
-     "ja": "毎朝コーヒーをいれる。"
+     "j": "私　作る",
+     "en": "I make",
+     "kana": "アイ メイク"
     },
     {
-     "en": "I made dinner last night.",
-     "ja": "昨日の夜は夕食を作った。"
+     "j": "私　作った",
+     "en": "I made",
+     "kana": "アイ メイド"
     },
     {
-     "en": "I've made a mistake.",
-     "ja": "間違えてしまった。"
+     "j": "私　もう　作った",
+     "en": "I've made",
+     "kana": "アイヴ メイド"
     }
    ]
   },
@@ -273,18 +290,21 @@
    ],
    "ja": "言う",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I always say thank you.",
-     "ja": "いつも「ありがとう」と言う。"
+     "j": "私　言う",
+     "en": "I say",
+     "kana": "アイ セイ"
     },
     {
-     "en": "She said yes.",
-     "ja": "彼女は「いいよ」と言った。"
+     "j": "私　言った",
+     "en": "I said",
+     "kana": "アイ セッド"
     },
     {
-     "en": "I've said that many times.",
-     "ja": "それは何度も言ってきた。"
+     "j": "私　もう　言った",
+     "en": "I've said",
+     "kana": "アイヴ セッド"
     }
    ],
    "note": "「セイド」ではなく「セッド」。"
@@ -304,18 +324,21 @@
    ],
    "ja": "見る・会う",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I see him every day.",
-     "ja": "彼には毎日会う。"
+     "j": "私　見る",
+     "en": "I see",
+     "kana": "アイ スィー"
     },
     {
-     "en": "I saw him at the station.",
-     "ja": "駅で彼を見かけた。"
+     "j": "私　見た",
+     "en": "I saw",
+     "kana": "アイ ソー"
     },
     {
-     "en": "I've seen that movie.",
-     "ja": "その映画は見たことがある。"
+     "j": "私　もう　見た",
+     "en": "I've seen",
+     "kana": "アイヴ スィーン"
     }
    ]
   },
@@ -334,18 +357,21 @@
    ],
    "ja": "来る",
    "pat": "aba",
-   "ex": [
+   "q": [
     {
-     "en": "I come here every week.",
-     "ja": "毎週ここに来る。"
+     "j": "私　来る",
+     "en": "I come",
+     "kana": "アイ カム"
     },
     {
-     "en": "He came late.",
-     "ja": "彼は遅れて来た。"
+     "j": "私　来た",
+     "en": "I came",
+     "kana": "アイ ケイム"
     },
     {
-     "en": "Spring has come.",
-     "ja": "春が来た。"
+     "j": "私　もう　来た",
+     "en": "I've come",
+     "kana": "アイヴ カム"
     }
    ]
   },
@@ -364,18 +390,21 @@
    ],
    "ja": "取る・（時間が）かかる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I take the train to work.",
-     "ja": "電車で通勤している。"
+     "j": "私　取る",
+     "en": "I take",
+     "kana": "アイ テイク"
     },
     {
-     "en": "It took two hours.",
-     "ja": "2 時間かかった。"
+     "j": "私　取った",
+     "en": "I took",
+     "kana": "アイ トゥック"
     },
     {
-     "en": "I've taken the medicine.",
-     "ja": "薬はもう飲んだ。"
+     "j": "私　もう　取った",
+     "en": "I've taken",
+     "kana": "アイヴ テイクン"
     }
    ]
   },
@@ -394,18 +423,21 @@
    ],
    "ja": "知っている",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I know his name.",
-     "ja": "彼の名前を知っている。"
+     "j": "私　知っている",
+     "en": "I know",
+     "kana": "アイ ノウ"
     },
     {
-     "en": "I knew it!",
-     "ja": "やっぱり！（わかってた）"
+     "j": "私　知っていた",
+     "en": "I knew",
+     "kana": "アイ ニュー"
     },
     {
-     "en": "I've known him for ten years.",
-     "ja": "彼とは 10 年来の知り合いだ。"
+     "j": "私　ずっと　知っている",
+     "en": "I've known",
+     "kana": "アイヴ ノウン"
     }
    ],
    "note": "knew は new と同じ音。"
@@ -425,18 +457,21 @@
    ],
    "ja": "思う・考える",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "I think it's a good idea.",
-     "ja": "いい考えだと思う。"
+     "j": "私　思う",
+     "en": "I think",
+     "kana": "アイ スィンク"
     },
     {
-     "en": "I thought so.",
-     "ja": "そう思った。"
+     "j": "私　思った",
+     "en": "I thought",
+     "kana": "アイ ソート"
     },
     {
-     "en": "I've thought about it a lot.",
-     "ja": "それについてはよく考えてきた。"
+     "j": "私　もう　思った",
+     "en": "I've thought",
+     "kana": "アイヴ ソート"
     }
    ]
   },
@@ -455,18 +490,21 @@
    ],
    "ja": "あげる・渡す",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I give him advice sometimes.",
-     "ja": "ときどき彼に助言する。"
+     "j": "私　あげる",
+     "en": "I give",
+     "kana": "アイ ギヴ"
     },
     {
-     "en": "She gave me a present.",
-     "ja": "彼女がプレゼントをくれた。"
+     "j": "私　あげた",
+     "en": "I gave",
+     "kana": "アイ ゲイヴ"
     },
     {
-     "en": "I've given up.",
-     "ja": "もうあきらめた。"
+     "j": "私　もう　あげた",
+     "en": "I've given",
+     "kana": "アイヴ ギヴン"
     }
    ]
   },
@@ -485,18 +523,21 @@
    ],
    "ja": "伝える・教える",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I tell her everything.",
-     "ja": "彼女には何でも話す。"
+     "j": "私　伝える",
+     "en": "I tell",
+     "kana": "アイ テル"
     },
     {
-     "en": "I told you.",
-     "ja": "言ったでしょ。"
+     "j": "私　伝えた",
+     "en": "I told",
+     "kana": "アイ トウルド"
     },
     {
-     "en": "I've told him already.",
-     "ja": "彼にはもう伝えた。"
+     "j": "私　もう　伝えた",
+     "en": "I've told",
+     "kana": "アイヴ トウルド"
     }
    ]
   },
@@ -515,18 +556,21 @@
    ],
    "ja": "見つける",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I always find good restaurants online.",
-     "ja": "いい店はいつもネットで見つける。"
+     "j": "私　見つける",
+     "en": "I find",
+     "kana": "アイ ファインド"
     },
     {
-     "en": "I found my keys.",
-     "ja": "鍵が見つかった。"
+     "j": "私　見つけた",
+     "en": "I found",
+     "kana": "アイ ファウンド"
     },
     {
-     "en": "I've found a good restaurant.",
-     "ja": "いい店を見つけたよ。"
+     "j": "私　もう　見つけた",
+     "en": "I've found",
+     "kana": "アイヴ ファウンド"
     }
    ]
   },
@@ -545,18 +589,21 @@
    ],
    "ja": "食べる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I eat breakfast at seven.",
-     "ja": "7 時に朝食を食べる。"
+     "j": "私　食べる",
+     "en": "I eat",
+     "kana": "アイ イート"
     },
     {
-     "en": "I ate too much.",
-     "ja": "食べすぎた。"
+     "j": "私　食べた",
+     "en": "I ate",
+     "kana": "アイ エイト"
     },
     {
-     "en": "Have you eaten lunch?",
-     "ja": "お昼は食べた？"
+     "j": "私　もう　食べた",
+     "en": "I've eaten",
+     "kana": "アイヴ イートゥン"
     }
    ],
    "note": "ate は数字の eight と同じ音。"
@@ -576,18 +623,21 @@
    ],
    "ja": "飲む",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "I drink coffee every morning.",
-     "ja": "毎朝コーヒーを飲む。"
+     "j": "私　飲む",
+     "en": "I drink",
+     "kana": "アイ ドリンク"
     },
     {
-     "en": "I drank too much last night.",
-     "ja": "昨日の夜は飲みすぎた。"
+     "j": "私　飲んだ",
+     "en": "I drank",
+     "kana": "アイ ドレァンク"
     },
     {
-     "en": "I've never drunk sake.",
-     "ja": "日本酒は飲んだことがない。"
+     "j": "私　もう　飲んだ",
+     "en": "I've drunk",
+     "kana": "アイヴ ドランク"
     }
    ]
   },
@@ -606,18 +656,21 @@
    ],
    "ja": "買う",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "I buy lunch at the convenience store.",
-     "ja": "昼はコンビニで買う。"
+     "j": "私　買う",
+     "en": "I buy",
+     "kana": "アイ バイ"
     },
     {
-     "en": "I bought a new bag.",
-     "ja": "新しいかばんを買った。"
+     "j": "私　買った",
+     "en": "I bought",
+     "kana": "アイ ボート"
     },
     {
-     "en": "I've bought the tickets.",
-     "ja": "チケットはもう買ってある。"
+     "j": "私　もう　買った",
+     "en": "I've bought",
+     "kana": "アイヴ ボート"
     }
    ]
   },
@@ -636,18 +689,21 @@
    ],
    "ja": "会う",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I meet my friends on weekends.",
-     "ja": "週末は友だちと会う。"
+     "j": "私　会う",
+     "en": "I meet",
+     "kana": "アイ ミート"
     },
     {
-     "en": "I met her in Takamatsu.",
-     "ja": "彼女とは高松で会った。"
+     "j": "私　会った",
+     "en": "I met",
+     "kana": "アイ メット"
     },
     {
-     "en": "Have we met before?",
-     "ja": "前にお会いしましたっけ？"
+     "j": "私　もう　会った",
+     "en": "I've met",
+     "kana": "アイヴ メット"
     }
    ]
   },
@@ -666,18 +722,21 @@
    ],
    "ja": "話す",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I speak a little English.",
-     "ja": "英語を少し話す。"
+     "j": "私　話す",
+     "en": "I speak",
+     "kana": "アイ スピーク"
     },
     {
-     "en": "I spoke to the manager.",
-     "ja": "店長と話した。"
+     "j": "私　話した",
+     "en": "I spoke",
+     "kana": "アイ スポウク"
     },
     {
-     "en": "English is spoken here.",
-     "ja": "ここでは英語が通じる。"
+     "j": "私　もう　話した",
+     "en": "I've spoken",
+     "kana": "アイヴ スポウクン"
     }
    ]
   },
@@ -696,18 +755,21 @@
    ],
    "ja": "書く",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I write a lot of emails.",
-     "ja": "メールをたくさん書く。"
+     "j": "私　書く",
+     "en": "I write",
+     "kana": "アイ ライト"
     },
     {
-     "en": "I wrote an email.",
-     "ja": "メールを書いた。"
+     "j": "私　書いた",
+     "en": "I wrote",
+     "kana": "アイ ロウト"
     },
     {
-     "en": "It's written in English.",
-     "ja": "それは英語で書かれている。"
+     "j": "私　もう　書いた",
+     "en": "I've written",
+     "kana": "アイヴ リトゥン"
     }
    ]
   },
@@ -726,20 +788,23 @@
    ],
    "ja": "読む",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I read the news every morning.",
-     "ja": "毎朝ニュースを読む。"
+     "j": "私　読む",
+     "en": "I read",
+     "kana": "アイ リード"
     },
     {
-     "en": "I read it yesterday.",
-     "ja": "昨日それを読んだ。",
-     "say": "I red it yesterday."
+     "j": "私　読んだ",
+     "en": "I read",
+     "kana": "アイ レッド",
+     "say": "I red"
     },
     {
-     "en": "Have you read this book?",
-     "ja": "この本は読んだ？",
-     "say": "Have you red this book?"
+     "j": "私　もう　読んだ",
+     "en": "I've read",
+     "kana": "アイヴ レッド",
+     "say": "I've red"
     }
    ],
    "note": "綴りは 3 つとも同じ。音だけ「リード → レッド → レッド」（色の red と同じ音）。",
@@ -764,18 +829,21 @@
    ],
    "ja": "聞こえる・耳にする",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I hear that a lot.",
-     "ja": "それはよく聞く。"
+     "j": "私　聞く（耳に入る）",
+     "en": "I hear",
+     "kana": "アイ ヒア"
     },
     {
-     "en": "I heard the news.",
-     "ja": "そのニュースを聞いた。"
+     "j": "私　聞いた（耳に入った）",
+     "en": "I heard",
+     "kana": "アイ ハード"
     },
     {
-     "en": "I've never heard of it.",
-     "ja": "それは聞いたことがない。"
+     "j": "私　もう　聞いた（耳に入った）",
+     "en": "I've heard",
+     "kana": "アイヴ ハード"
     }
    ],
    "note": "「ヒアード」ではなく「ハード」。"
@@ -795,18 +863,21 @@
    ],
    "ja": "出発する・置いていく",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I leave home at seven every day.",
-     "ja": "毎日 7 時に家を出る。"
+     "j": "私　出発する",
+     "en": "I leave",
+     "kana": "アイ リーヴ"
     },
     {
-     "en": "I left home at seven.",
-     "ja": "7 時に家を出た。"
+     "j": "私　出発した",
+     "en": "I left",
+     "kana": "アイ レフト"
     },
     {
-     "en": "I've left my umbrella on the train.",
-     "ja": "電車に傘を忘れてきた。"
+     "j": "私　もう　出発した",
+     "en": "I've left",
+     "kana": "アイヴ レフト"
     }
    ]
   },
@@ -825,18 +896,21 @@
    ],
    "ja": "感じる",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I feel tired today.",
-     "ja": "今日は疲れている。"
+     "j": "私　感じる",
+     "en": "I feel",
+     "kana": "アイ フィール"
     },
     {
-     "en": "I felt sick.",
-     "ja": "気分が悪かった。"
+     "j": "私　感じた",
+     "en": "I felt",
+     "kana": "アイ フェルト"
     },
     {
-     "en": "I've never felt better.",
-     "ja": "最高の気分だ。"
+     "j": "私　もう　感じた",
+     "en": "I've felt",
+     "kana": "アイヴ フェルト"
     }
    ]
   },
@@ -855,18 +929,21 @@
    ],
    "ja": "置く",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "I always put my keys here.",
-     "ja": "鍵はいつもここに置く。"
+     "j": "私　置く",
+     "en": "I put",
+     "kana": "アイ プット"
     },
     {
-     "en": "I put it on the table.",
-     "ja": "テーブルの上に置いたよ。"
+     "j": "私　置いた",
+     "en": "I put",
+     "kana": "アイ プット"
     },
     {
-     "en": "I've put on weight.",
-     "ja": "体重が増えた。"
+     "j": "私　もう　置いた",
+     "en": "I've put",
+     "kana": "アイヴ プット"
     }
    ]
   },
@@ -885,18 +962,21 @@
    ],
    "ja": "走る",
    "pat": "aba",
-   "ex": [
+   "q": [
     {
-     "en": "I run every morning.",
-     "ja": "毎朝走る。"
+     "j": "私　走る",
+     "en": "I run",
+     "kana": "アイ ラン"
     },
     {
-     "en": "I ran to the station.",
-     "ja": "駅まで走った。"
+     "j": "私　走った",
+     "en": "I ran",
+     "kana": "アイ レァン"
     },
     {
-     "en": "I've run out of time.",
-     "ja": "時間がなくなった。"
+     "j": "私　もう　走った",
+     "en": "I've run",
+     "kana": "アイヴ ラン"
     }
    ],
    "note": "ran は口を横に開いた「レァン」。"
@@ -916,18 +996,21 @@
    ],
    "ja": "座る",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I always sit here.",
-     "ja": "いつもここに座る。"
+     "j": "私　座る",
+     "en": "I sit",
+     "kana": "アイ スィット"
     },
     {
-     "en": "We sat by the window.",
-     "ja": "窓ぎわに座った。"
+     "j": "私　座った",
+     "en": "I sat",
+     "kana": "アイ サット"
     },
     {
-     "en": "I've sat here all day.",
-     "ja": "一日中ここに座っている。"
+     "j": "私　もう　座った",
+     "en": "I've sat",
+     "kana": "アイヴ サット"
     }
    ]
   },
@@ -946,18 +1029,21 @@
    ],
    "ja": "眠る",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I sleep seven hours a night.",
-     "ja": "毎晩 7 時間寝る。"
+     "j": "私　眠る",
+     "en": "I sleep",
+     "kana": "アイ スリープ"
     },
     {
-     "en": "I slept well.",
-     "ja": "よく眠れた。"
+     "j": "私　眠った",
+     "en": "I slept",
+     "kana": "アイ スレプト"
     },
     {
-     "en": "I haven't slept much.",
-     "ja": "あまり寝ていない。"
+     "j": "私　もう　眠った",
+     "en": "I've slept",
+     "kana": "アイヴ スレプト"
     }
    ]
   },
@@ -976,18 +1062,21 @@
    ],
    "ja": "忘れる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I always forget his name.",
-     "ja": "いつも彼の名前を忘れる。"
+     "j": "私　忘れる",
+     "en": "I forget",
+     "kana": "アイ フォゲット"
     },
     {
-     "en": "I forgot his name.",
-     "ja": "彼の名前を忘れた。"
+     "j": "私　忘れた",
+     "en": "I forgot",
+     "kana": "アイ フォガット"
     },
     {
-     "en": "I've forgotten my password.",
-     "ja": "パスワードを忘れてしまった。"
+     "j": "私　もう　忘れた",
+     "en": "I've forgotten",
+     "kana": "アイヴ フォガットゥン"
     }
    ]
   },
@@ -1006,18 +1095,21 @@
    ],
    "ja": "持ってくる",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "I always bring my own lunch.",
-     "ja": "いつも弁当を持ってくる。"
+     "j": "私　持ってくる",
+     "en": "I bring",
+     "kana": "アイ ブリング"
     },
     {
-     "en": "I brought some snacks.",
-     "ja": "お菓子を持ってきたよ。"
+     "j": "私　持ってきた",
+     "en": "I brought",
+     "kana": "アイ ブロート"
     },
     {
-     "en": "I've brought my laptop.",
-     "ja": "ノートパソコンを持ってきてある。"
+     "j": "私　もう　持ってきた",
+     "en": "I've brought",
+     "kana": "アイヴ ブロート"
     }
    ]
   },
@@ -1036,18 +1128,21 @@
    ],
    "ja": "つかまえる・（電車に）間に合う",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "I catch the same train every day.",
-     "ja": "毎日同じ電車に乗る。"
+     "j": "私　つかまえる",
+     "en": "I catch",
+     "kana": "アイ キャッチ"
     },
     {
-     "en": "I caught a cold.",
-     "ja": "風邪をひいた。"
+     "j": "私　つかまえた",
+     "en": "I caught",
+     "kana": "アイ コート"
     },
     {
-     "en": "He was caught by the police.",
-     "ja": "彼は警察につかまった。"
+     "j": "私　もう　つかまえた",
+     "en": "I've caught",
+     "kana": "アイヴ コート"
     }
    ],
    "note": "綴りは caught。gh は読まない。"
@@ -1067,18 +1162,21 @@
    ],
    "ja": "教える",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "I teach English.",
-     "ja": "英語を教えている。"
+     "j": "私　教える",
+     "en": "I teach",
+     "kana": "アイ ティーチ"
     },
     {
-     "en": "She taught me English.",
-     "ja": "彼女が英語を教えてくれた。"
+     "j": "私　教えた",
+     "en": "I taught",
+     "kana": "アイ トート"
     },
     {
-     "en": "I've taught for ten years.",
-     "ja": "10 年教えている。"
+     "j": "私　もう　教えた",
+     "en": "I've taught",
+     "kana": "アイヴ トート"
     }
    ]
   },
@@ -1097,18 +1195,21 @@
    ],
    "ja": "売る",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "We sell fresh fish.",
-     "ja": "うちは鮮魚を売っている。"
+     "j": "私　売る",
+     "en": "I sell",
+     "kana": "アイ セル"
     },
     {
-     "en": "I sold my car.",
-     "ja": "車を売った。"
+     "j": "私　売った",
+     "en": "I sold",
+     "kana": "アイ ソウルド"
     },
     {
-     "en": "It's sold out.",
-     "ja": "売り切れです。"
+     "j": "私　もう　売った",
+     "en": "I've sold",
+     "kana": "アイヴ ソウルド"
     }
    ],
    "note": "tell → told と同じ変わり方。"
@@ -1128,18 +1229,21 @@
    ],
    "ja": "払う",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I always pay by card.",
-     "ja": "いつもカードで払う。"
+     "j": "私　払う",
+     "en": "I pay",
+     "kana": "アイ ペイ"
     },
     {
-     "en": "I paid by card.",
-     "ja": "カードで払った。"
+     "j": "私　払った",
+     "en": "I paid",
+     "kana": "アイ ペイド"
     },
     {
-     "en": "I've already paid.",
-     "ja": "もう払いました。"
+     "j": "私　もう　払った",
+     "en": "I've paid",
+     "kana": "アイヴ ペイド"
     }
    ]
   },
@@ -1158,18 +1262,21 @@
    ],
    "ja": "送る",
    "pat": "dt",
-   "ex": [
+   "q": [
     {
-     "en": "I send him a report every week.",
-     "ja": "毎週、彼に報告を送る。"
+     "j": "私　送る",
+     "en": "I send",
+     "kana": "アイ センド"
     },
     {
-     "en": "I sent you an email.",
-     "ja": "メールを送りました。"
+     "j": "私　送った",
+     "en": "I sent",
+     "kana": "アイ セント"
     },
     {
-     "en": "I've sent the file.",
-     "ja": "ファイルは送ってあります。"
+     "j": "私　もう　送った",
+     "en": "I've sent",
+     "kana": "アイヴ セント"
     }
    ]
   },
@@ -1188,18 +1295,21 @@
    ],
    "ja": "（お金・時間を）使う",
    "pat": "dt",
-   "ex": [
+   "q": [
     {
-     "en": "I spend a lot on books.",
-     "ja": "本にたくさんお金を使う。"
+     "j": "私　（お金・時間を）使う",
+     "en": "I spend",
+     "kana": "アイ スペンド"
     },
     {
-     "en": "I spent the weekend at home.",
-     "ja": "週末は家で過ごした。"
+     "j": "私　（お金・時間を）使った",
+     "en": "I spent",
+     "kana": "アイ スペント"
     },
     {
-     "en": "I've spent too much money.",
-     "ja": "お金を使いすぎた。"
+     "j": "私　もう　（お金・時間を）使った",
+     "en": "I've spent",
+     "kana": "アイヴ スペント"
     }
    ]
   },
@@ -1218,18 +1328,21 @@
    ],
    "ja": "なくす・負ける",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I often lose my umbrella.",
-     "ja": "よく傘をなくす。"
+     "j": "私　なくす",
+     "en": "I lose",
+     "kana": "アイ ルーズ"
     },
     {
-     "en": "I lost my wallet.",
-     "ja": "財布をなくした。"
+     "j": "私　なくした",
+     "en": "I lost",
+     "kana": "アイ ロスト"
     },
     {
-     "en": "I've lost weight.",
-     "ja": "体重が減った。"
+     "j": "私　もう　なくした",
+     "en": "I've lost",
+     "kana": "アイヴ ロスト"
     }
    ]
   },
@@ -1248,18 +1361,21 @@
    ],
    "ja": "保つ・取っておく",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I keep my receipts.",
-     "ja": "レシートは取っておく。"
+     "j": "私　取っておく",
+     "en": "I keep",
+     "kana": "アイ キープ"
     },
     {
-     "en": "I kept the receipt.",
-     "ja": "レシートは取っておいた。"
+     "j": "私　取っておいた",
+     "en": "I kept",
+     "kana": "アイ ケプト"
     },
     {
-     "en": "I've kept it a secret.",
-     "ja": "それは秘密にしてある。"
+     "j": "私　もう　取っておいた",
+     "en": "I've kept",
+     "kana": "アイヴ ケプト"
     }
    ]
   },
@@ -1278,18 +1394,21 @@
    ],
    "ja": "立つ",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I stand all day at work.",
-     "ja": "仕事では一日中立っている。"
+     "j": "私　立つ",
+     "en": "I stand",
+     "kana": "アイ スタンド"
     },
     {
-     "en": "We stood in line for an hour.",
-     "ja": "1 時間並んだ。"
+     "j": "私　立った",
+     "en": "I stood",
+     "kana": "アイ ストゥッド"
     },
     {
-     "en": "I've stood all day.",
-     "ja": "一日中立ちっぱなしだ。"
+     "j": "私　もう　立った",
+     "en": "I've stood",
+     "kana": "アイヴ ストゥッド"
     }
    ]
   },
@@ -1308,18 +1427,21 @@
    ],
    "ja": "理解する",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I understand.",
-     "ja": "わかります。"
+     "j": "私　理解する",
+     "en": "I understand",
+     "kana": "アイ アンダスタンド"
     },
     {
-     "en": "I understood what he said.",
-     "ja": "彼の言ったことはわかった。"
+     "j": "私　理解した",
+     "en": "I understood",
+     "kana": "アイ アンダストゥッド"
     },
     {
-     "en": "Understood.",
-     "ja": "了解しました。"
+     "j": "私　もう　理解した",
+     "en": "I've understood",
+     "kana": "アイヴ アンダストゥッド"
     }
    ],
    "note": "stand → stood と同じ。"
@@ -1339,18 +1461,21 @@
    ],
    "ja": "始める・始まる",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "Classes begin at nine.",
-     "ja": "授業は 9 時に始まる。"
+     "j": "私　始める",
+     "en": "I begin",
+     "kana": "アイ ビギン"
     },
     {
-     "en": "It began to rain.",
-     "ja": "雨が降りはじめた。"
+     "j": "私　始めた",
+     "en": "I began",
+     "kana": "アイ ビギャン"
     },
     {
-     "en": "The meeting has begun.",
-     "ja": "会議はもう始まっている。"
+     "j": "私　もう　始めた",
+     "en": "I've begun",
+     "kana": "アイヴ ビガン"
     }
    ]
   },
@@ -1369,18 +1494,21 @@
    ],
    "ja": "壊す・壊れる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Cheap umbrellas break easily.",
-     "ja": "安い傘はすぐ壊れる。"
+     "j": "私　壊す",
+     "en": "I break",
+     "kana": "アイ ブレイク"
     },
     {
-     "en": "I broke my phone.",
-     "ja": "スマホを壊した。"
+     "j": "私　壊した",
+     "en": "I broke",
+     "kana": "アイ ブロウク"
     },
     {
-     "en": "It's broken.",
-     "ja": "壊れている。"
+     "j": "私　もう　壊した",
+     "en": "I've broken",
+     "kana": "アイヴ ブロウクン"
     }
    ]
   },
@@ -1399,18 +1527,21 @@
    ],
    "ja": "選ぶ",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I always choose the same thing.",
-     "ja": "いつも同じものを選ぶ。"
+     "j": "私　選ぶ",
+     "en": "I choose",
+     "kana": "アイ チューズ"
     },
     {
-     "en": "I chose the fish.",
-     "ja": "魚のほうを選んだ。"
+     "j": "私　選んだ",
+     "en": "I chose",
+     "kana": "アイ チョウズ"
     },
     {
-     "en": "I was chosen as a lay judge.",
-     "ja": "裁判員に選ばれた。"
+     "j": "私　もう　選んだ",
+     "en": "I've chosen",
+     "kana": "アイヴ チョウズン"
     }
    ]
   },
@@ -1429,18 +1560,21 @@
    ],
    "ja": "運転する",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I drive to work.",
-     "ja": "車で通勤している。"
+     "j": "私　運転する",
+     "en": "I drive",
+     "kana": "アイ ドライヴ"
     },
     {
-     "en": "I drove to Kochi.",
-     "ja": "高知まで運転した。"
+     "j": "私　運転した",
+     "en": "I drove",
+     "kana": "アイ ドロウヴ"
     },
     {
-     "en": "I've never driven abroad.",
-     "ja": "海外で運転したことはない。"
+     "j": "私　もう　運転した",
+     "en": "I've driven",
+     "kana": "アイヴ ドリヴン"
     }
    ]
   },
@@ -1459,18 +1593,21 @@
    ],
    "ja": "〜になる",
    "pat": "aba",
-   "ex": [
+   "q": [
     {
-     "en": "Leaves become red in fall.",
-     "ja": "秋には葉が赤くなる。"
+     "j": "私　〜になる",
+     "en": "I become",
+     "kana": "アイ ビカム"
     },
     {
-     "en": "He became a doctor.",
-     "ja": "彼は医者になった。"
+     "j": "私　〜になった",
+     "en": "I became",
+     "kana": "アイ ビケイム"
     },
     {
-     "en": "It's become popular.",
-     "ja": "人気が出てきた。"
+     "j": "私　もう　〜になった",
+     "en": "I've become",
+     "kana": "アイヴ ビカム"
     }
    ],
    "note": "come → came → come と同じ。"
@@ -1490,18 +1627,21 @@
    ],
    "ja": "建てる・作る",
    "pat": "dt",
-   "ex": [
+   "q": [
     {
-     "en": "We build websites.",
-     "ja": "うちはウェブサイトを作っている。"
+     "j": "私　建てる",
+     "en": "I build",
+     "kana": "アイ ビルド"
     },
     {
-     "en": "We built a new system.",
-     "ja": "新しいシステムを作った。"
+     "j": "私　建てた",
+     "en": "I built",
+     "kana": "アイ ビルト"
     },
     {
-     "en": "It was built in 1990.",
-     "ja": "1990 年に建てられた。"
+     "j": "私　もう　建てた",
+     "en": "I've built",
+     "kana": "アイヴ ビルト"
     }
    ]
   },
@@ -1520,18 +1660,21 @@
    ],
    "ja": "切る",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "I cut my own hair.",
-     "ja": "髪は自分で切る。"
+     "j": "私　切る",
+     "en": "I cut",
+     "kana": "アイ カット"
     },
     {
-     "en": "I cut my finger.",
-     "ja": "指を切った。"
+     "j": "私　切った",
+     "en": "I cut",
+     "kana": "アイ カット"
     },
     {
-     "en": "I've cut down on sugar.",
-     "ja": "砂糖を減らしている。"
+     "j": "私　もう　切った",
+     "en": "I've cut",
+     "kana": "アイヴ カット"
     }
    ]
   },
@@ -1550,18 +1693,21 @@
    ],
    "ja": "落ちる・転ぶ",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Leaves fall in autumn.",
-     "ja": "秋には葉が落ちる。"
+     "j": "私　落ちる",
+     "en": "I fall",
+     "kana": "アイ フォール"
     },
     {
-     "en": "I fell asleep on the train.",
-     "ja": "電車で寝てしまった。"
+     "j": "私　落ちた",
+     "en": "I fell",
+     "kana": "アイ フェル"
     },
     {
-     "en": "Prices have fallen.",
-     "ja": "値段が下がった。"
+     "j": "私　もう　落ちた",
+     "en": "I've fallen",
+     "kana": "アイヴ フォールン"
     }
    ]
   },
@@ -1580,18 +1726,21 @@
    ],
    "ja": "飛ぶ・飛行機で行く",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I fly to Tokyo once a month.",
-     "ja": "月に 1 回、飛行機で東京に行く。"
+     "j": "私　飛ぶ",
+     "en": "I fly",
+     "kana": "アイ フライ"
     },
     {
-     "en": "I flew to Sapporo.",
-     "ja": "札幌まで飛行機で行った。"
+     "j": "私　飛んだ",
+     "en": "I flew",
+     "kana": "アイ フルー"
     },
     {
-     "en": "I've never flown business class.",
-     "ja": "ビジネスクラスには乗ったことがない。"
+     "j": "私　もう　飛んだ",
+     "en": "I've flown",
+     "kana": "アイヴ フロウン"
     }
    ]
   },
@@ -1610,18 +1759,21 @@
    ],
    "ja": "育つ・育てる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "We grow tomatoes.",
-     "ja": "うちではトマトを育てている。"
+     "j": "私　育つ",
+     "en": "I grow",
+     "kana": "アイ グロウ"
     },
     {
-     "en": "I grew up in Kagawa.",
-     "ja": "香川で育った。"
+     "j": "私　育った",
+     "en": "I grew",
+     "kana": "アイ グルー"
     },
     {
-     "en": "You've grown!",
-     "ja": "大きくなったね！"
+     "j": "私　もう　育った",
+     "en": "I've grown",
+     "kana": "アイヴ グロウン"
     }
    ],
    "note": "know → knew → known と同じ変わり方。"
@@ -1641,18 +1793,21 @@
    ],
    "ja": "持つ・開催する",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "We hold a meeting every Monday.",
-     "ja": "毎週月曜に会議を開く。"
+     "j": "私　開催する",
+     "en": "I hold",
+     "kana": "アイ ホウルド"
     },
     {
-     "en": "We held a meeting.",
-     "ja": "会議を開いた。"
+     "j": "私　開催した",
+     "en": "I held",
+     "kana": "アイ ヘルド"
     },
     {
-     "en": "The event was held in Tokyo.",
-     "ja": "そのイベントは東京で開かれた。"
+     "j": "私　もう　開催した",
+     "en": "I've held",
+     "kana": "アイヴ ヘルド"
     }
    ]
   },
@@ -1671,18 +1826,21 @@
    ],
    "ja": "〜させる・許す",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "I let my kids play games on weekends.",
-     "ja": "週末は子どもにゲームをさせている。"
+     "j": "私　〜させてあげる",
+     "en": "I let",
+     "kana": "アイ レット"
     },
     {
-     "en": "She let me use her car.",
-     "ja": "彼女が車を使わせてくれた。"
+     "j": "私　〜させてあげた",
+     "en": "I let",
+     "kana": "アイ レット"
     },
     {
-     "en": "I've let him know.",
-     "ja": "彼には知らせてある。"
+     "j": "私　もう　〜させてあげた",
+     "en": "I've let",
+     "kana": "アイヴ レット"
     }
    ]
   },
@@ -1701,18 +1859,21 @@
    ],
    "ja": "意味する・〜のつもりで言う",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I mean it.",
-     "ja": "本気で言っている。"
+     "j": "私　〜のつもりだ",
+     "en": "I mean",
+     "kana": "アイ ミーン"
     },
     {
-     "en": "I meant to call you.",
-     "ja": "電話するつもりだった。"
+     "j": "私　〜のつもりだった",
+     "en": "I meant",
+     "kana": "アイ メント"
     },
     {
-     "en": "It was meant to be.",
-     "ja": "そうなる運命だった。"
+     "j": "私　ずっと　〜のつもりだ",
+     "en": "I've meant",
+     "kana": "アイヴ メント"
     }
    ],
    "note": "「ミーント」ではなく「メント」。"
@@ -1732,18 +1893,21 @@
    ],
    "ja": "（自転車・馬に）乗る",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I ride my bike to work.",
-     "ja": "自転車で通勤している。"
+     "j": "私　（自転車に）乗る",
+     "en": "I ride",
+     "kana": "アイ ライド"
     },
     {
-     "en": "I rode my bike to work.",
-     "ja": "自転車で出勤した。"
+     "j": "私　（自転車に）乗った",
+     "en": "I rode",
+     "kana": "アイ ロウド"
     },
     {
-     "en": "I've never ridden a horse.",
-     "ja": "馬には乗ったことがない。"
+     "j": "私　もう　（自転車に）乗った",
+     "en": "I've ridden",
+     "kana": "アイヴ リドゥン"
     }
    ],
    "note": "write → wrote → written と同じ変わり方。"
@@ -1763,18 +1927,21 @@
    ],
    "ja": "歌う",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "I sing in the car.",
-     "ja": "車の中で歌う。"
+     "j": "私　歌う",
+     "en": "I sing",
+     "kana": "アイ スィング"
     },
     {
-     "en": "We sang karaoke.",
-     "ja": "カラオケで歌った。"
+     "j": "私　歌った",
+     "en": "I sang",
+     "kana": "アイ セァング"
     },
     {
-     "en": "I've never sung in public.",
-     "ja": "人前で歌ったことはない。"
+     "j": "私　もう　歌った",
+     "en": "I've sung",
+     "kana": "アイヴ サング"
     }
    ]
   },
@@ -1793,18 +1960,21 @@
    ],
    "ja": "泳ぐ",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "I swim twice a week.",
-     "ja": "週に 2 回泳ぐ。"
+     "j": "私　泳ぐ",
+     "en": "I swim",
+     "kana": "アイ スウィム"
     },
     {
-     "en": "I swam in the sea.",
-     "ja": "海で泳いだ。"
+     "j": "私　泳いだ",
+     "en": "I swam",
+     "kana": "アイ スウェァム"
     },
     {
-     "en": "I haven't swum for years.",
-     "ja": "何年も泳いでいない。"
+     "j": "私　もう　泳いだ",
+     "en": "I've swum",
+     "kana": "アイヴ スワム"
     }
    ]
   },
@@ -1823,18 +1993,21 @@
    ],
    "ja": "着ている・身につける",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I wear glasses.",
-     "ja": "めがねをかけている。"
+     "j": "私　着る",
+     "en": "I wear",
+     "kana": "アイ ウェア"
     },
     {
-     "en": "I wore a suit.",
-     "ja": "スーツを着た。"
+     "j": "私　着た",
+     "en": "I wore",
+     "kana": "アイ ウォー"
     },
     {
-     "en": "I've never worn a kimono.",
-     "ja": "着物は着たことがない。"
+     "j": "私　もう　着た",
+     "en": "I've worn",
+     "kana": "アイヴ ウォーン"
     }
    ]
   },
@@ -1853,18 +2026,21 @@
    ],
    "ja": "勝つ",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "They always win.",
-     "ja": "あのチームはいつも勝つ。"
+     "j": "私　勝つ",
+     "en": "I win",
+     "kana": "アイ ウィン"
     },
     {
-     "en": "We won the game.",
-     "ja": "試合に勝った。"
+     "j": "私　勝った",
+     "en": "I won",
+     "kana": "アイ ワン"
     },
     {
-     "en": "I've never won anything.",
-     "ja": "何かに当たったことは一度もない。"
+     "j": "私　もう　勝った",
+     "en": "I've won",
+     "kana": "アイヴ ワン"
     }
    ],
    "note": "won は数字の one と同じ音。"
@@ -1884,18 +2060,21 @@
    ],
    "ja": "目が覚める",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I wake up at five every day.",
-     "ja": "毎日 5 時に目が覚める。"
+     "j": "私　目が覚める",
+     "en": "I wake",
+     "kana": "アイ ウェイク"
     },
     {
-     "en": "I woke up at five.",
-     "ja": "5 時に目が覚めた。"
+     "j": "私　目が覚めた",
+     "en": "I woke",
+     "kana": "アイ ウォウク"
     },
     {
-     "en": "I was woken by the noise.",
-     "ja": "物音で起こされた。"
+     "j": "私　もう　目が覚めた",
+     "en": "I've woken",
+     "kana": "アイヴ ウォウクン"
     }
    ]
   },
@@ -1914,18 +2093,21 @@
    ],
    "ja": "打つ・ぶつかる",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "I always hit my head here.",
-     "ja": "いつもここで頭をぶつける。"
+     "j": "私　たたく",
+     "en": "I hit",
+     "kana": "アイ ヒット"
     },
     {
-     "en": "I hit my head.",
-     "ja": "頭をぶつけた。"
+     "j": "私　たたいた",
+     "en": "I hit",
+     "kana": "アイ ヒット"
     },
     {
-     "en": "The town was hit by a typhoon.",
-     "ja": "町は台風に襲われた。"
+     "j": "私　もう　たたいた",
+     "en": "I've hit",
+     "kana": "アイヴ ヒット"
     }
    ]
   },
@@ -1944,18 +2126,21 @@
    ],
    "ja": "痛める・傷つける",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "My feet hurt.",
-     "ja": "足が痛い。"
+     "j": "私　痛める",
+     "en": "I hurt",
+     "kana": "アイ ハート"
     },
     {
-     "en": "I hurt my back.",
-     "ja": "腰を痛めた。"
+     "j": "私　痛めた",
+     "en": "I hurt",
+     "kana": "アイ ハート"
     },
     {
-     "en": "Nobody was hurt.",
-     "ja": "けが人はいなかった。"
+     "j": "私　もう　痛めた",
+     "en": "I've hurt",
+     "kana": "アイヴ ハート"
     }
    ]
   },
@@ -1974,18 +2159,21 @@
    ],
    "ja": "（お金が）かかる",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "Tickets cost 5,000 yen.",
-     "ja": "チケットは 5,000 円する。"
+     "j": "それ　（お金が）かかる",
+     "en": "It costs",
+     "kana": "イット コスツ"
     },
     {
-     "en": "It cost 5,000 yen.",
-     "ja": "5,000 円かかった。"
+     "j": "それ　（お金が）かかった",
+     "en": "It cost",
+     "kana": "イット コスト"
     },
     {
-     "en": "It's cost me a lot.",
-     "ja": "ずいぶん高くついた。"
+     "j": "それ　もう　（お金が）かかった",
+     "en": "It has cost",
+     "kana": "イット ハズ コスト"
     }
    ]
   },
@@ -2004,18 +2192,21 @@
    ],
    "ja": "閉める",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "The shops shut at eight.",
-     "ja": "店は 8 時に閉まる。"
+     "j": "私　閉める",
+     "en": "I shut",
+     "kana": "アイ シャット"
     },
     {
-     "en": "I shut the door.",
-     "ja": "ドアを閉めた。"
+     "j": "私　閉めた",
+     "en": "I shut",
+     "kana": "アイ シャット"
     },
     {
-     "en": "The shop has shut down.",
-     "ja": "その店は閉店した。"
+     "j": "私　もう　閉めた",
+     "en": "I've shut",
+     "kana": "アイヴ シャット"
     }
    ]
   },
@@ -2034,18 +2225,21 @@
    ],
    "ja": "セットする・決める",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "I set the alarm every night.",
-     "ja": "毎晩、目覚ましをセットする。"
+     "j": "私　セットする",
+     "en": "I set",
+     "kana": "アイ セット"
     },
     {
-     "en": "I set the alarm for six.",
-     "ja": "目覚ましを 6 時にセットした。"
+     "j": "私　セットした",
+     "en": "I set",
+     "kana": "アイ セット"
     },
     {
-     "en": "The date has been set.",
-     "ja": "日にちは決まっている。"
+     "j": "私　もう　セットした",
+     "en": "I've set",
+     "kana": "アイヴ セット"
     }
    ]
   },
@@ -2064,18 +2258,21 @@
    ],
    "ja": "やめる",
    "pat": "aaa",
-   "ex": [
+   "q": [
     {
-     "en": "Many people quit after a week.",
-     "ja": "1 週間でやめる人が多い。"
+     "j": "私　やめる",
+     "en": "I quit",
+     "kana": "アイ クウィット"
     },
     {
-     "en": "I quit smoking.",
-     "ja": "たばこをやめた。"
+     "j": "私　やめた",
+     "en": "I quit",
+     "kana": "アイ クウィット"
     },
     {
-     "en": "He's quit his job.",
-     "ja": "彼は仕事を辞めた。"
+     "j": "私　もう　やめた",
+     "en": "I've quit",
+     "kana": "アイヴ クウィット"
     }
    ]
   },
@@ -2094,18 +2291,21 @@
    ],
    "ja": "貸す",
    "pat": "dt",
-   "ex": [
+   "q": [
     {
-     "en": "I often lend him books.",
-     "ja": "よく彼に本を貸す。"
+     "j": "私　貸す",
+     "en": "I lend",
+     "kana": "アイ レンド"
     },
     {
-     "en": "I lent him my umbrella.",
-     "ja": "彼に傘を貸した。"
+     "j": "私　貸した",
+     "en": "I lent",
+     "kana": "アイ レント"
     },
     {
-     "en": "I've lent it to a friend.",
-     "ja": "それは友だちに貸してある。"
+     "j": "私　もう　貸した",
+     "en": "I've lent",
+     "kana": "アイヴ レント"
     }
    ]
   },
@@ -2124,18 +2324,21 @@
    ],
    "ja": "（線で）描く",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I draw pictures for work.",
-     "ja": "仕事で絵を描く。"
+     "j": "私　（線で）描く",
+     "en": "I draw",
+     "kana": "アイ ドロー"
     },
     {
-     "en": "I drew a map.",
-     "ja": "地図を描いた。"
+     "j": "私　（線で）描いた",
+     "en": "I drew",
+     "kana": "アイ ドルー"
     },
     {
-     "en": "It's drawn by hand.",
-     "ja": "手描きです。"
+     "j": "私　もう　（線で）描いた",
+     "en": "I've drawn",
+     "kana": "アイヴ ドローン"
     }
    ]
   },
@@ -2154,18 +2357,21 @@
    ],
    "ja": "投げる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I throw away old papers every month.",
-     "ja": "毎月、古い書類を捨てる。"
+     "j": "私　投げる",
+     "en": "I throw",
+     "kana": "アイ スロウ"
     },
     {
-     "en": "I threw it away.",
-     "ja": "それは捨てた。"
+     "j": "私　投げた",
+     "en": "I threw",
+     "kana": "アイ スルー"
     },
     {
-     "en": "It's been thrown away.",
-     "ja": "もう捨てられてしまった。"
+     "j": "私　もう　投げた",
+     "en": "I've thrown",
+     "kana": "アイヴ スロウン"
     }
    ],
    "note": "threw は through と同じ音。"
@@ -2185,18 +2391,21 @@
    ],
    "ja": "見せる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I show my ID at the gate.",
-     "ja": "入口で身分証を見せる。"
+     "j": "私　見せる",
+     "en": "I show",
+     "kana": "アイ ショウ"
     },
     {
-     "en": "He showed me the way.",
-     "ja": "彼が道を教えてくれた。"
+     "j": "私　見せた",
+     "en": "I showed",
+     "kana": "アイ ショウド"
     },
     {
-     "en": "I've shown it to my boss.",
-     "ja": "上司には見せてある。"
+     "j": "私　もう　見せた",
+     "en": "I've shown",
+     "kana": "アイヴ ショウン"
     }
    ],
    "note": "2 つ目は ed、3 つ目だけ「ン」。"
@@ -2216,18 +2425,21 @@
    ],
    "ja": "盗む",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Crows steal food.",
-     "ja": "カラスは食べ物を盗む。"
+     "j": "私　盗む",
+     "en": "I steal",
+     "kana": "アイ スティール"
     },
     {
-     "en": "Someone stole my bike.",
-     "ja": "誰かに自転車を盗まれた。"
+     "j": "私　盗んだ",
+     "en": "I stole",
+     "kana": "アイ ストウル"
     },
     {
-     "en": "My bag was stolen.",
-     "ja": "かばんを盗まれた。"
+     "j": "私　もう　盗んだ",
+     "en": "I've stolen",
+     "kana": "アイヴ ストウルン"
     }
    ]
   },
@@ -2246,18 +2458,21 @@
    ],
    "ja": "隠す・隠れる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I hide snacks from my kids.",
-     "ja": "子どもからお菓子を隠している。"
+     "j": "私　隠す",
+     "en": "I hide",
+     "kana": "アイ ハイド"
     },
     {
-     "en": "I hid the present.",
-     "ja": "プレゼントを隠した。"
+     "j": "私　隠した",
+     "en": "I hid",
+     "kana": "アイ ヒッド"
     },
     {
-     "en": "It's hidden behind the door.",
-     "ja": "ドアの後ろに隠れている。"
+     "j": "私　もう　隠した",
+     "en": "I've hidden",
+     "kana": "アイヴ ヒドゥン"
     }
    ]
   },
@@ -2276,18 +2491,21 @@
    ],
    "ja": "かむ",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Mosquitoes bite me a lot.",
-     "ja": "蚊によく刺される。"
+     "j": "私　かむ",
+     "en": "I bite",
+     "kana": "アイ バイト"
     },
     {
-     "en": "The dog bit me.",
-     "ja": "犬にかまれた。"
+     "j": "私　かんだ",
+     "en": "I bit",
+     "kana": "アイ ビット"
     },
     {
-     "en": "I was bitten by a mosquito.",
-     "ja": "蚊に刺された。"
+     "j": "私　もう　かんだ",
+     "en": "I've bitten",
+     "kana": "アイヴ ビトゥン"
     }
    ]
   },
@@ -2306,18 +2524,21 @@
    ],
    "ja": "えさをやる・食べさせる",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I feed the fish every morning.",
-     "ja": "毎朝、魚にえさをやる。"
+     "j": "私　えさをやる",
+     "en": "I feed",
+     "kana": "アイ フィード"
     },
     {
-     "en": "I fed the fish.",
-     "ja": "魚にえさをやった。"
+     "j": "私　えさをやった",
+     "en": "I fed",
+     "kana": "アイ フェッド"
     },
     {
-     "en": "Have you fed the cat?",
-     "ja": "猫にごはんはあげた？"
+     "j": "私　もう　えさをやった",
+     "en": "I've fed",
+     "kana": "アイヴ フェッド"
     }
    ]
   },
@@ -2336,18 +2557,21 @@
    ],
    "ja": "戦う・けんかする",
    "pat": "ought",
-   "ex": [
+   "q": [
     {
-     "en": "My kids fight every day.",
-     "ja": "うちの子は毎日けんかする。"
+     "j": "私　戦う",
+     "en": "I fight",
+     "kana": "アイ ファイト"
     },
     {
-     "en": "They fought about money.",
-     "ja": "彼らはお金のことでけんかした。"
+     "j": "私　戦った",
+     "en": "I fought",
+     "kana": "アイ フォート"
     },
     {
-     "en": "We've fought for years.",
-     "ja": "私たちは何年も戦ってきた。"
+     "j": "私　もう　戦った",
+     "en": "I've fought",
+     "kana": "アイヴ フォート"
     }
    ]
   },
@@ -2366,18 +2590,21 @@
    ],
    "ja": "（風が）吹く・吹き飛ばす",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Strong winds blow in winter.",
-     "ja": "冬は強い風が吹く。"
+     "j": "私　吹く",
+     "en": "I blow",
+     "kana": "アイ ブロウ"
     },
     {
-     "en": "The wind blew hard.",
-     "ja": "風が強く吹いた。"
+     "j": "私　吹いた",
+     "en": "I blew",
+     "kana": "アイ ブルー"
     },
     {
-     "en": "The roof was blown off.",
-     "ja": "屋根が吹き飛ばされた。"
+     "j": "私　もう　吹いた",
+     "en": "I've blown",
+     "kana": "アイヴ ブロウン"
     }
    ],
    "note": "blew は色の blue と同じ音。"
@@ -2397,18 +2624,21 @@
    ],
    "ja": "率いる・導く",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I lead a small team.",
-     "ja": "小さなチームを率いている。"
+     "j": "私　率いる",
+     "en": "I lead",
+     "kana": "アイ リード"
     },
     {
-     "en": "She led the project.",
-     "ja": "彼女がそのプロジェクトを率いた。"
+     "j": "私　率いた",
+     "en": "I led",
+     "kana": "アイ レッド"
     },
     {
-     "en": "He's led the team for years.",
-     "ja": "彼は何年もチームを率いている。"
+     "j": "私　もう　率いた",
+     "en": "I've led",
+     "kana": "アイヴ レッド"
     }
    ]
   },
@@ -2427,18 +2657,21 @@
    ],
    "ja": "（物を）横たえる・置く",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I lay my clothes out the night before.",
-     "ja": "前の晩に服を出して並べておく。"
+     "j": "私　（物を）横たえる",
+     "en": "I lay",
+     "kana": "アイ レイ"
     },
     {
-     "en": "I laid the baby on the bed.",
-     "ja": "赤ちゃんをベッドに寝かせた。"
+     "j": "私　（物を）横たえた",
+     "en": "I laid",
+     "kana": "アイ レイド"
     },
     {
-     "en": "The table has been laid.",
-     "ja": "食卓の用意ができている。"
+     "j": "私　もう　（物を）横たえた",
+     "en": "I've laid",
+     "kana": "アイヴ レイド"
     }
    ],
    "note": "「物を」置くほう。自分が横になるのは lie。"
@@ -2458,18 +2691,21 @@
    ],
    "ja": "（自分が）横になる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "I lie down after lunch.",
-     "ja": "昼食のあとは横になる。"
+     "j": "私　横になる",
+     "en": "I lie",
+     "kana": "アイ ライ"
     },
     {
-     "en": "I lay on the sofa.",
-     "ja": "ソファに横になった。"
+     "j": "私　横になった",
+     "en": "I lay",
+     "kana": "アイ レイ"
     },
     {
-     "en": "I've lain awake all night.",
-     "ja": "一晩中、眠れずに横になっていた。"
+     "j": "私　もう　横になった",
+     "en": "I've lain",
+     "kana": "アイヴ レイン"
     }
    ],
    "note": "「うそをつく」の lie は lied / lied。会話では lie down の形で使うことが多い。"
@@ -2489,18 +2725,21 @@
    ],
    "ja": "上がる・昇る",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "Prices rise every year.",
-     "ja": "物価は毎年上がる。"
+     "j": "私　昇る",
+     "en": "I rise",
+     "kana": "アイ ライズ"
     },
     {
-     "en": "The sun rose at six.",
-     "ja": "6 時に日が昇った。"
+     "j": "私　昇った",
+     "en": "I rose",
+     "kana": "アイ ロウズ"
     },
     {
-     "en": "Prices have risen.",
-     "ja": "物価が上がった。"
+     "j": "私　もう　昇った",
+     "en": "I've risen",
+     "kana": "アイヴ リズン"
     }
    ]
   },
@@ -2519,18 +2758,21 @@
    ],
    "ja": "振る・揺れる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "We shake hands when we meet.",
-     "ja": "会ったら握手をする。"
+     "j": "私　振る",
+     "en": "I shake",
+     "kana": "アイ シェイク"
     },
     {
-     "en": "We shook hands.",
-     "ja": "握手をした。"
+     "j": "私　振った",
+     "en": "I shook",
+     "kana": "アイ シュック"
     },
     {
-     "en": "I was shaken by the news.",
-     "ja": "その知らせに動揺した。"
+     "j": "私　もう　振った",
+     "en": "I've shaken",
+     "kana": "アイヴ シェイクン"
     }
    ],
    "note": "take → took → taken と同じ変わり方。"
@@ -2550,18 +2792,21 @@
    ],
    "ja": "撃つ・撮影する",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "We shoot videos for clients.",
-     "ja": "お客さんの動画を撮影している。"
+     "j": "私　撃つ",
+     "en": "I shoot",
+     "kana": "アイ シュート"
     },
     {
-     "en": "We shot the video in Takamatsu.",
-     "ja": "動画は高松で撮った。"
+     "j": "私　撃った",
+     "en": "I shot",
+     "kana": "アイ ショット"
     },
     {
-     "en": "It was shot on an iPhone.",
-     "ja": "iPhone で撮影された。"
+     "j": "私　もう　撃った",
+     "en": "I've shot",
+     "kana": "アイヴ ショット"
     }
    ]
   },
@@ -2580,18 +2825,21 @@
    ],
    "ja": "（ベル・電話が）鳴る",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "The bells ring at noon.",
-     "ja": "正午に鐘が鳴る。"
+     "j": "私　（ベルを）鳴らす",
+     "en": "I ring",
+     "kana": "アイ リング"
     },
     {
-     "en": "The phone rang.",
-     "ja": "電話が鳴った。"
+     "j": "私　（ベルを）鳴らした",
+     "en": "I rang",
+     "kana": "アイ レァング"
     },
     {
-     "en": "The bell has rung.",
-     "ja": "ベルが鳴った。"
+     "j": "私　もう　（ベルを）鳴らした",
+     "en": "I've rung",
+     "kana": "アイヴ ラング"
     }
    ]
   },
@@ -2610,18 +2858,21 @@
    ],
    "ja": "沈む",
    "pat": "iau",
-   "ex": [
+   "q": [
     {
-     "en": "Stones sink in water.",
-     "ja": "石は水に沈む。"
+     "j": "私　沈む",
+     "en": "I sink",
+     "kana": "アイ スィンク"
     },
     {
-     "en": "The boat sank.",
-     "ja": "ボートが沈んだ。"
+     "j": "私　沈んだ",
+     "en": "I sank",
+     "kana": "アイ セァンク"
     },
     {
-     "en": "The ship has sunk.",
-     "ja": "船は沈んでしまった。"
+     "j": "私　もう　沈んだ",
+     "en": "I've sunk",
+     "kana": "アイヴ サンク"
     }
    ]
   },
@@ -2640,18 +2891,21 @@
    ],
    "ja": "貼る・くっつく",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I stick notes on my desk.",
-     "ja": "机にメモを貼る。"
+     "j": "私　貼る",
+     "en": "I stick",
+     "kana": "アイ スティック"
     },
     {
-     "en": "I stuck a note on the door.",
-     "ja": "ドアにメモを貼った。"
+     "j": "私　貼った",
+     "en": "I stuck",
+     "kana": "アイ スタック"
     },
     {
-     "en": "I'm stuck in traffic.",
-     "ja": "渋滞にはまっている。"
+     "j": "私　もう　貼った",
+     "en": "I've stuck",
+     "kana": "アイヴ スタック"
     }
    ]
   },
@@ -2670,18 +2924,21 @@
    ],
    "ja": "掛ける・ぶら下げる",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "I hang my coat here.",
-     "ja": "コートはここに掛ける。"
+     "j": "私　掛ける",
+     "en": "I hang",
+     "kana": "アイ ヘァング"
     },
     {
-     "en": "I hung my coat up.",
-     "ja": "コートを掛けた。"
+     "j": "私　掛けた",
+     "en": "I hung",
+     "kana": "アイ ハング"
     },
     {
-     "en": "We've hung out a few times.",
-     "ja": "何度か一緒に遊んだことがある。"
+     "j": "私　もう　掛けた",
+     "en": "I've hung",
+     "kana": "アイヴ ハング"
     }
    ]
   },
@@ -2700,18 +2957,21 @@
    ],
    "ja": "掘る",
    "pat": "abb",
-   "ex": [
+   "q": [
     {
-     "en": "Dogs dig holes.",
-     "ja": "犬は穴を掘る。"
+     "j": "私　掘る",
+     "en": "I dig",
+     "kana": "アイ ディグ"
     },
     {
-     "en": "We dug a hole.",
-     "ja": "穴を掘った。"
+     "j": "私　掘った",
+     "en": "I dug",
+     "kana": "アイ ダグ"
     },
     {
-     "en": "I've dug up some old photos.",
-     "ja": "古い写真を掘り出してきた。"
+     "j": "私　もう　掘った",
+     "en": "I've dug",
+     "kana": "アイヴ ダグ"
     }
    ]
   },
@@ -2730,18 +2990,21 @@
    ],
    "ja": "凍る・固まる",
    "pat": "en",
-   "ex": [
+   "q": [
     {
-     "en": "The lakes freeze in winter.",
-     "ja": "冬は湖が凍る。"
+     "j": "私　凍える",
+     "en": "I freeze",
+     "kana": "アイ フリーズ"
     },
     {
-     "en": "My computer froze.",
-     "ja": "パソコンが固まった。"
+     "j": "私　凍えた",
+     "en": "I froze",
+     "kana": "アイ フロウズ"
     },
     {
-     "en": "The lake is frozen.",
-     "ja": "湖が凍っている。"
+     "j": "私　もう　凍えた",
+     "en": "I've frozen",
+     "kana": "アイヴ フロウズン"
     }
    ]
   },
@@ -2760,18 +3023,21 @@
    ],
    "ja": "曲げる",
    "pat": "dt",
-   "ex": [
+   "q": [
     {
-     "en": "I bend my knees when I lift.",
-     "ja": "持ち上げるときはひざを曲げる。"
+     "j": "私　曲げる",
+     "en": "I bend",
+     "kana": "アイ ベンド"
     },
     {
-     "en": "I bent down to pick it up.",
-     "ja": "それを拾おうとかがんだ。"
+     "j": "私　曲げた",
+     "en": "I bent",
+     "kana": "アイ ベント"
     },
     {
-     "en": "The spoon is bent.",
-     "ja": "スプーンが曲がっている。"
+     "j": "私　もう　曲げた",
+     "en": "I've bent",
+     "kana": "アイヴ ベント"
     }
    ]
   },
@@ -2790,18 +3056,21 @@
    ],
    "ja": "対処する・扱う",
    "pat": "short",
-   "ex": [
+   "q": [
     {
-     "en": "I deal with customers every day.",
-     "ja": "毎日、お客さんの対応をする。"
+     "j": "私　対処する",
+     "en": "I deal",
+     "kana": "アイ ディール"
     },
     {
-     "en": "I dealt with the problem.",
-     "ja": "その問題に対処した。"
+     "j": "私　対処した",
+     "en": "I dealt",
+     "kana": "アイ デルト"
     },
     {
-     "en": "I've dealt with him before.",
-     "ja": "彼とは前にやりとりしたことがある。"
+     "j": "私　もう　対処した",
+     "en": "I've dealt",
+     "kana": "アイヴ デルト"
     }
    ],
    "note": "「ディールト」ではなく「デルト」。"
