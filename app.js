@@ -2003,6 +2003,7 @@ async function loadReplies() {
   RTALKS = (j.talks || []).filter(t => Array.isArray(t.turns) && t.turns.length);
   RRULES = j.rules || [];
   RCARDS = (j.cards || []).filter(c => c.id && c.p && c.a);
+  RGLOSS = (j.gloss || []).filter(g => g.k && g.m).sort((a, b) => b.k.length - a.k.length);   // 長いものを先に当てる（Oh really? を Really? より先に）
 }
 function rTalk(id) { return RTALKS.find(t => t.id === id) || null; }
 function rTalkStat(id) { return rstat.talks[id] || { runs: 0, miss: 0, last: '', picked: {} }; }
@@ -2239,6 +2240,7 @@ const YAKU_DONE_STREAK = 2;       // 続けてこの回数「言えた」で覚�
 const YAKU_REQUEUE_GAP = 3;       // 言えなかった 1 枚が再登場するまでの枚数
 let RRULES = [];
 let RCARDS = [];
+let RGLOSS = [];                  // ことばの意味 [{k, m, d}]
 let yqueue = [];                  // [{id, re}]
 let ycur = null;
 let yRound = { n: 0, ok: 0, log: [] };
@@ -2249,6 +2251,30 @@ function yCard(id) { return RCARDS.find(c => c.id === id) || null; }
 function yStat(id) { return rstat.cards[id]; }
 function yDone(id) { const s = yStat(id); return !!s && s.streak >= YAKU_DONE_STREAK; }
 function yakuToday() { return rstat.cdays[todayISO()] || 0; }
+// 文の中に入っている決まり文句を、出てくる順に返す（同じ場所を 2 つに当てない）
+function yGlossOf(text) {
+  const low = String(text || '').toLowerCase();
+  const used = new Array(low.length).fill(false);
+  const hits = [];
+  for (const g of RGLOSS) {
+    const k = g.k.toLowerCase();
+    let i = low.indexOf(k);
+    while (i >= 0) {
+      let free = true;
+      for (let j = i; j < i + k.length; j++) if (used[j]) { free = false; break; }
+      if (free) { for (let j = i; j < i + k.length; j++) used[j] = true; hits.push({ at: i, g }); }
+      i = low.indexOf(k, i + 1);
+    }
+  }
+  return hits.sort((a, b) => a.at - b.at).map(h => h.g);
+}
+function yGlossHtml(text) {
+  return yGlossOf(text).map(g => `<div class="y-g" data-say="${esc(g.k)}">
+      <div class="y-g-k">${esc(g.k)}</div>
+      <div class="y-g-m">${esc(g.m)}</div>
+      ${g.d ? `<div class="y-g-d">${esc(g.d)}</div>` : ''}
+    </div>`).join('');
+}
 function yWeight(id) {
   const s = yStat(id);
   if (!s || !s.n) return 3;
@@ -2324,16 +2350,22 @@ function renderYaku(revealed) {
           <div class="y-a">${esc(c.a)}</div>
           <div class="rb-ja">${esc(c.aj)}</div>
         </div>
-        ${c.n ? `<div class="y-note">${esc(c.n)}</div>` : ''}
+        <div class="y-gloss">${yGlossHtml(c.a)}</div>
+        ${c.n ? `<div class="y-note"><b>この場面では</b>　${esc(c.n)}</div>` : ''}
         <div class="y-rule"><b>${esc(rule.name)}</b>　${esc(rule.how)}</div>
-        ${alts.length ? `<div class="y-alts">${alts.map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div>` : ''}
+        ${alts.length ? `<div class="y-alts-h">ほかの言い方（押すと意味）</div><div class="y-alts">${alts.map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div><div class="y-gloss" id="yAltGloss"></div>` : ''}
         <div class="vgrade">
           <button class="vg-ng" id="yNgBtn">言えなかった</button>
           <button class="vg-ok" id="yOkBtn">言えた</button>
         </div>
       </div>`;
     document.getElementById('yAns').onclick = () => speak(c.a);
-    area.querySelectorAll('.y-alts span').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+    area.querySelectorAll('.y-gloss .y-g').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+    area.querySelectorAll('.y-alts span').forEach(el => { el.onclick = () => {
+      speak(el.dataset.say);
+      area.querySelectorAll('.y-alts span').forEach(x => x.classList.toggle('on', x === el));
+      document.getElementById('yAltGloss').innerHTML = yGlossHtml(el.dataset.say);
+    }; });
     document.getElementById('yOkBtn').onclick = () => answerYaku(true);
     document.getElementById('yNgBtn').onclick = () => answerYaku(false);
   }
@@ -2412,11 +2444,15 @@ function openYakuMap() {
           <div class="en" data-say="${esc(r.say)}">→ ${esc(r.say)}</div>
           <div class="y-alts">${(r.alts || []).map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div>
           <div class="meta">${esc(r.how)}</div>
+          <div class="y-gloss"></div>
         </div>`; }).join('')}
       <button class="big-btn" style="margin-top:20px" id="yStartBtn">お約束の反射 ${YAKU_DAILY} 問をやる</button>
       <button class="big-btn secondary" id="yHomeBtn">ホームへ</button>
     </div>`;
-  area.querySelectorAll('[data-say]').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+  area.querySelectorAll('.ymap [data-say]').forEach(el => { el.onclick = () => {
+    speak(el.dataset.say);
+    el.closest('.ymap').querySelector('.y-gloss').innerHTML = yGlossHtml(el.dataset.say);
+  }; });
   document.getElementById('yStartBtn').onclick = startYaku;
   document.getElementById('yHomeBtn').onclick = goHome;
   document.getElementById('dueCount').textContent = '–';

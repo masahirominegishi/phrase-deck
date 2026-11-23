@@ -670,3 +670,14 @@ body.in-modal #modeSwitch { display: none; }
 .yrow .en { font-size: 17px; }
 .y-note { margin-top: 16px; font-size: 15px; line-height: 1.7; background: var(--panel); border-left: 3px solid var(--hard); border-radius: 8px; padding: 10px 12px; }
 .y-note + .y-rule { margin-top: 12px; }
+.y-gloss { margin-top: 14px; }
+.y-gloss:empty { display: none; }
+.y-g { background: var(--panel); border-radius: 12px; padding: 10px 12px; margin-top: 8px; }
+.y-g-k { font-size: 16px; font-weight: 700; color: var(--good); }
+.y-g-m { font-size: 16px; font-weight: 700; margin-top: 2px; }
+.y-g-d { font-size: 13px; line-height: 1.7; color: var(--muted); margin-top: 4px; }
+.y-note b { color: var(--hard); font-size: 12px; }
+.y-alts-h { font-size: 12px; color: var(--muted); margin-top: 16px; }
+.y-alts span.on { outline: 2px solid var(--accent); outline-offset: -2px; }
+.ymap .y-g { background: var(--bg); }
+.ycard .vgrade { position: sticky; bottom: 0; background: var(--bg); padding-bottom: max(env(safe-area-inset-bottom), 10px); }
