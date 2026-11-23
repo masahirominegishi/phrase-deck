@@ -645,3 +645,5 @@ body.in-modal #modeSwitch { display: none; }
 .r-done-sub { font-size: 12px; color: var(--muted); margin: 4px 0 6px; }
 .r-done .big-btn { margin-top: 10px; }
 .r-list-tag { color: var(--muted); font-size: 12px; }
+.r-opts button { padding: 16px 14px; font-size: 19px; }
+.r-opt-ja { font-size: 13px; }

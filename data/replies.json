@@ -1,6 +1,6 @@
 {
- "version": 1,
- "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。",
+ "version": 2,
+ "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。 s・sj=ボタンに出す短い形（無ければ e・j）。f=1 は形の間違いの誤答（いまは出さない）。",
  "talks": [
   {
    "id": "r-hawaii",
@@ -61,7 +61,9 @@
        "e": "Oh, really? What are you looking forward to the most?",
        "j": "そうなの？いちばん楽しみなのは何？",
        "r": "The food! I really want to eat garlic shrimp.",
-       "rj": "食べ物！ガーリックシュリンプを食べたいんだ。"
+       "rj": "食べ物！ガーリックシュリンプを食べたいんだ。",
+       "s": "What are you looking forward to the most?",
+       "sj": "いちばん楽しみなのは何？"
       },
       {
        "e": "How come you chose Hawaii?",
@@ -95,7 +97,8 @@
       {
        "e": "How far does it take?",
        "j": "（×）",
-       "x": "かかる時間は How long does it take?。How far は距離で、How far is it? と聞く。"
+       "x": "かかる時間は How long does it take?。How far は距離で、How far is it? と聞く。",
+       "f": 1
       }
      ]
     }
@@ -116,7 +119,9 @@
        "e": "Oh, what did you see?",
        "j": "へえ、何を観たの？",
        "r": "The new Godzilla movie.",
-       "rj": "新しいゴジラの映画。"
+       "rj": "新しいゴジラの映画。",
+       "s": "What did you see?",
+       "sj": "何を観たの？"
       },
       {
        "e": "Nice. Where did you see it?",
@@ -150,7 +155,8 @@
       {
        "e": "How was it like?",
        "j": "（×）",
-       "x": "like を付けるなら What was it like?。How なら like なしで How was it?"
+       "x": "like を付けるなら What was it like?。How なら like なしで How was it?",
+       "f": 1
       }
      ]
     },
@@ -162,7 +168,9 @@
        "e": "Don't tell me the ending! How long is the movie?",
        "j": "結末は言わないで！映画の長さはどのくらい？",
        "r": "About two hours, but it felt short.",
-       "rj": "2 時間くらい。でも短く感じた。"
+       "rj": "2 時間くらい。でも短く感じた。",
+       "s": "How long is the movie?",
+       "sj": "映画の長さはどのくらい？"
       },
       {
        "e": "What did you like the most?",
@@ -173,7 +181,8 @@
       {
        "e": "How was the story about?",
        "j": "（×）",
-       "x": "「何についての話」は What。What was the story about?"
+       "x": "「何についての話」は What。What was the story about?",
+       "f": 1
       }
      ]
     },
@@ -185,7 +194,9 @@
        "e": "Wow, you really liked it. When are you going?",
        "j": "相当気に入ったんだね。いつ行くの？",
        "r": "Maybe next weekend. Do you want to come?",
-       "rj": "たぶん来週末。一緒に来る？"
+       "rj": "たぶん来週末。一緒に来る？",
+       "s": "When are you going?",
+       "sj": "いつ行くの？"
       },
       {
        "e": "How come? Was it that good?",
@@ -196,7 +207,8 @@
       {
        "e": "How long are you going with?",
        "j": "（×）",
-       "x": "「誰と」は Who。Who are you going with?"
+       "x": "「誰と」は Who。Who are you going with?",
+       "f": 1
       }
      ]
     }
@@ -240,18 +252,23 @@
        "e": "That's too bad. What was in it?",
        "j": "それは残念。何が入っていたの？",
        "r": "Some cash, my credit cards and my driver's license.",
-       "rj": "現金とクレジットカードと免許証。"
+       "rj": "現金とクレジットカードと免許証。",
+       "s": "What was in it?",
+       "sj": "何が入っていたの？"
       },
       {
        "e": "Sorry to hear that. Where were you going?",
        "j": "それは気の毒に。どこへ行くところだったの？",
        "r": "To Ginza, for my English lesson.",
-       "rj": "銀座へ。英会話のレッスンで。"
+       "rj": "銀座へ。英会話のレッスンで。",
+       "s": "Where were you going?",
+       "sj": "どこへ行くところだったの？"
       },
       {
        "e": "Where are you dropping it?",
        "j": "（×）",
-       "x": "済んだことは did。Where did you drop it?"
+       "x": "済んだことは did。Where did you drop it?",
+       "f": 1
       }
      ]
     },
@@ -269,12 +286,15 @@
        "e": "Good idea. Who did you talk to?",
        "j": "それがいいね。誰と話したの？",
        "r": "Someone at the lost and found office.",
-       "rj": "忘れ物の窓口の人。"
+       "rj": "忘れ物の窓口の人。",
+       "s": "Who did you talk to?",
+       "sj": "誰と話したの？"
       },
       {
        "e": "What did they said?",
        "j": "（×）",
-       "x": "did のあとは原形。What did they say?"
+       "x": "did のあとは原形。What did they say?",
+       "f": 1
       }
      ]
     },
@@ -318,7 +338,9 @@
        "e": "Oh, really? What is he like?",
        "j": "そうなの？どんな人？",
        "r": "He's friendly, but he's very strict about deadlines.",
-       "rj": "気さくだけど、締め切りにはすごく厳しい。"
+       "rj": "気さくだけど、締め切りにはすごく厳しい。",
+       "s": "Really? What is he like?",
+       "sj": "どんな人？"
       },
       {
        "e": "Where did he come from?",
@@ -329,7 +351,8 @@
       {
        "e": "How is he like?",
        "j": "（×）",
-       "x": "人柄を聞くのは What is he like?。How と like は一緒に使わない。"
+       "x": "人柄を聞くのは What is he like?。How と like は一緒に使わない。",
+       "f": 1
       }
      ]
     },
@@ -352,7 +375,8 @@
       {
        "e": "What does he changing?",
        "j": "（×）",
-       "x": "changing（〜している）には is。What is he changing?"
+       "x": "changing（〜している）には is。What is he changing?",
+       "f": 1
       }
      ]
     },
@@ -364,18 +388,23 @@
        "e": "Oh no. How often does he do that?",
        "j": "うわ。どのくらいの頻度で？",
        "r": "Two or three times a week.",
-       "rj": "週に 2、3 回。"
+       "rj": "週に 2、3 回。",
+       "s": "How often does he do that?",
+       "sj": "どのくらいの頻度で？"
       },
       {
        "e": "I know how you feel. What time does he send them?",
        "j": "気持ちは分かるよ。何時に送ってくるの？",
        "r": "Around eleven. Sometimes after midnight.",
-       "rj": "11 時ごろ。日付が変わってからのこともある。"
+       "rj": "11 時ごろ。日付が変わってからのこともある。",
+       "s": "What time does he send them?",
+       "sj": "何時に送ってくるの？"
       },
       {
        "e": "How long does he do that?",
        "j": "（×）",
-       "x": "回数・頻度は How often。How long は長さ（期間・時間）。"
+       "x": "回数・頻度は How often。How long は長さ（期間・時間）。",
+       "f": 1
       }
      ]
     },
@@ -387,13 +416,17 @@
        "e": "Good for you. What does he say about that?",
        "j": "それでいいと思う。上司は何て言っている？",
        "r": "Nothing so far. I think he understands.",
-       "rj": "今のところ何も。分かってくれていると思う。"
+       "rj": "今のところ何も。分かってくれていると思う。",
+       "s": "What does he say about that?",
+       "sj": "上司は何て言っている？"
       },
       {
        "e": "That's smart. How do your coworkers handle it?",
        "j": "賢いね。同僚はどうしているの？",
        "r": "Some of them answer right away. I feel sorry for them.",
-       "rj": "すぐ返す人もいる。気の毒だよ。"
+       "rj": "すぐ返す人もいる。気の毒だよ。",
+       "s": "How do your coworkers handle it?",
+       "sj": "同僚はどうしているの？"
       },
       {
        "e": "How come you answer them at night?",
@@ -419,7 +452,9 @@
        "e": "Oh, how long are you going for?",
        "j": "へえ、どのくらい行くの？",
        "r": "For four days, from Monday to Thursday.",
-       "rj": "4 日間。月曜から木曜まで。"
+       "rj": "4 日間。月曜から木曜まで。",
+       "s": "How long are you going for?",
+       "sj": "どのくらい行くの？"
       },
       {
        "e": "What are you going to do there?",
@@ -476,7 +511,8 @@
       {
        "e": "Who are you going?",
        "j": "（×）",
-       "x": "with が落ちている。「誰と」は Who are you going with?"
+       "x": "with が落ちている。「誰と」は Who are you going with?",
+       "f": 1
       }
      ]
     },
@@ -494,7 +530,9 @@
        "e": "Oh no. What time is your flight?",
        "j": "うわ。飛行機は何時？",
        "r": "At 6:30. It's the first flight of the day.",
-       "rj": "6 時半。朝いちばんの便。"
+       "rj": "6 時半。朝いちばんの便。",
+       "s": "What time is your flight?",
+       "sj": "飛行機は何時？"
       },
       {
        "e": "What time did you wake up?",
@@ -531,7 +569,8 @@
       {
        "e": "Where do you going?",
        "j": "（×）",
-       "x": "済んだことは did。Where did you go?"
+       "x": "済んだことは did。Where did you go?",
+       "f": 1
       }
      ]
     },
@@ -549,7 +588,9 @@
        "e": "No way! How did you catch them?",
        "j": "うそ！どうやって釣ったの？",
        "r": "With a special lure. You move it slowly along the bottom.",
-       "rj": "専用のルアーで。底をゆっくり動かすんだ。"
+       "rj": "専用のルアーで。底をゆっくり動かすんだ。",
+       "s": "How did you catch them?",
+       "sj": "どうやって釣ったの？"
       },
       {
        "e": "How many did you catch?",
@@ -572,12 +613,15 @@
        "e": "That's so early. How long did it take to get there?",
        "j": "早いね。着くまでどのくらいかかった？",
        "r": "About two hours by car.",
-       "rj": "車で 2 時間くらい。"
+       "rj": "車で 2 時間くらい。",
+       "s": "How long did it take to get there?",
+       "sj": "着くまでどのくらいかかった？"
       },
       {
        "e": "How long did it took?",
        "j": "（×）",
-       "x": "did のあとは原形。How long did it take?"
+       "x": "did のあとは原形。How long did it take?",
+       "f": 1
       }
      ]
     },
@@ -589,18 +633,23 @@
        "e": "I know how you feel. What did you do with the octopuses?",
        "j": "分かるよ。タコはどうしたの？",
        "r": "I boiled them and gave some to my neighbors.",
-       "rj": "ゆでて、近所にも配った。"
+       "rj": "ゆでて、近所にも配った。",
+       "s": "What did you do with the octopuses?",
+       "sj": "タコはどうしたの？"
       },
       {
        "e": "I bet. How often do you go fishing?",
        "j": "だろうね。釣りにはどのくらい行くの？",
        "r": "Only two or three times a year.",
-       "rj": "年に 2、3 回だけ。"
+       "rj": "年に 2、3 回だけ。",
+       "s": "How often do you go fishing?",
+       "sj": "釣りにはどのくらい行くの？"
       },
       {
        "e": "How much do you go fishing?",
        "j": "（×）",
-       "x": "回数・頻度は How often。How much は量や値段。"
+       "x": "回数・頻度は How often。How much は量や値段。",
+       "f": 1
       }
      ]
     }
@@ -621,13 +670,17 @@
        "e": "Oh no, I'm sorry to hear that. What happened?",
        "j": "それは大変だね。何があったの？",
        "r": "She fell at home and broke her leg.",
-       "rj": "家で転んで脚を折ったんだ。"
+       "rj": "家で転んで脚を折ったんだ。",
+       "s": "What happened?",
+       "sj": "何があったの？"
       },
       {
        "e": "I'm sorry to hear that. How is she?",
        "j": "それは大変だね。具合はどう？",
        "r": "She's OK now. She fell at home and broke her leg.",
-       "rj": "今は落ち着いている。家で転んで脚を折ったんだ。"
+       "rj": "今は落ち着いている。家で転んで脚を折ったんだ。",
+       "s": "How is she?",
+       "sj": "具合はどう？"
       },
       {
        "e": "That's nice. How is she?",
@@ -667,7 +720,9 @@
        "e": "That's kind of you. How often do you go?",
        "j": "やさしいね。どのくらい行っているの？",
        "r": "Every other day. My sister goes on the other days.",
-       "rj": "1 日おき。ほかの日は姉が行っている。"
+       "rj": "1 日おき。ほかの日は姉が行っている。",
+       "s": "How often do you go?",
+       "sj": "どのくらい行っているの？"
       },
       {
        "e": "How long does it take to get there?",
@@ -690,18 +745,23 @@
        "e": "Ha ha. What kind of books does she like?",
        "j": "はは。どんな本が好きなの？",
        "r": "Mysteries. She reads one every two days.",
-       "rj": "ミステリー。2 日に 1 冊読んでいる。"
+       "rj": "ミステリー。2 日に 1 冊読んでいる。",
+       "s": "What kind of books does she like?",
+       "sj": "どんな本が好きなの？"
       },
       {
        "e": "That's a good sign. What else does she need?",
        "j": "それは良い兆しだね。ほかに何が要るの？",
        "r": "Just snacks. She says the hospital food is too healthy.",
-       "rj": "お菓子だけ。病院の食事は健康的すぎるって。"
+       "rj": "お菓子だけ。病院の食事は健康的すぎるって。",
+       "s": "What else does she need?",
+       "sj": "ほかに何が要るの？"
       },
       {
        "e": "What kind of books does she likes?",
        "j": "（×）",
-       "x": "does のあとは原形。does she like?"
+       "x": "does のあとは原形。does she like?",
+       "f": 1
       }
      ]
     }
@@ -722,7 +782,9 @@
        "e": "Good for you! When did you start?",
        "j": "いいね！いつ始めたの？",
        "r": "About a month ago.",
-       "rj": "1 か月くらい前。"
+       "rj": "1 か月くらい前。",
+       "s": "When did you start?",
+       "sj": "いつ始めたの？"
       },
       {
        "e": "Oh, really? How come?",
@@ -745,7 +807,9 @@
        "e": "Wow. What time do you get up?",
        "j": "すごい。何時に起きるの？",
        "r": "At 5:30. It was hard at first.",
-       "rj": "5 時半。最初はきつかった。"
+       "rj": "5 時半。最初はきつかった。",
+       "s": "What time do you get up?",
+       "sj": "何時に起きるの？"
       },
       {
        "e": "How often do you go?",
@@ -756,7 +820,8 @@
       {
        "e": "How many do you go?",
        "j": "（×）",
-       "x": "回数・頻度は How often do you go?。How many は数えるものが後ろに要る（How many times ~）。"
+       "x": "回数・頻度は How often do you go?。How many は数えるものが後ろに要る（How many times ~）。",
+       "f": 1
       }
      ]
     },
@@ -802,7 +867,8 @@
       {
        "e": "How many kilos did you lost?",
        "j": "（×）",
-       "x": "did のあとは原形 lose。それに「2 キロ」と言ったばかり。"
+       "x": "did のあとは原形 lose。それに「2 キロ」と言ったばかり。",
+       "f": 1
       }
      ]
     }
@@ -823,7 +889,9 @@
        "e": "Oh, where did you move to?",
        "j": "へえ、どこに引っ越したの？",
        "r": "To Odaiba. I can see the bay from my living room.",
-       "rj": "お台場。リビングから海が見える。"
+       "rj": "お台場。リビングから海が見える。",
+       "s": "Where did you move to?",
+       "sj": "どこに引っ越したの？"
       },
       {
        "e": "Really? What is it like?",
@@ -852,7 +920,9 @@
        "e": "That's high. How come you chose that place?",
        "j": "高いね。どうしてそこにしたの？",
        "r": "I don't like cramped places, and the rent was reasonable.",
-       "rj": "狭い所が苦手で、家賃も手ごろだったから。"
+       "rj": "狭い所が苦手で、家賃も手ごろだったから。",
+       "s": "How come you chose that place?",
+       "sj": "どうしてそこにしたの？"
       },
       {
        "e": "Which floor do you live on?",
@@ -880,7 +950,8 @@
       {
        "e": "How long does it takes?",
        "j": "（×）",
-       "x": "does のあとは原形。How long does it take?"
+       "x": "does のあとは原形。How long does it take?",
+       "f": 1
       }
      ]
     },
@@ -903,7 +974,8 @@
       {
        "e": "How are your neighbors like?",
        "j": "（×）",
-       "x": "どんな人たちかは What are your neighbors like?。How と like は一緒に使わない。"
+       "x": "どんな人たちかは What are your neighbors like?。How と like は一緒に使わない。",
+       "f": 1
       }
      ]
     }
@@ -924,13 +996,17 @@
        "e": "That's nice. How long is he staying?",
        "j": "いいね。どのくらいいるの？",
        "r": "For ten days.",
-       "rj": "10 日間。"
+       "rj": "10 日間。",
+       "s": "How long is he staying?",
+       "sj": "どのくらいいるの？"
       },
       {
        "e": "Oh, how do you know him?",
        "j": "へえ、どういう知り合い？",
        "r": "We met at a pub in London two years ago.",
-       "rj": "2 年前にロンドンのパブで会ったんだ。"
+       "rj": "2 年前にロンドンのパブで会ったんだ。",
+       "s": "How do you know him?",
+       "sj": "どういう知り合い？"
       },
       {
        "e": "How long did he stay?",
@@ -947,7 +1023,9 @@
        "e": "Exciting! Where are you going to take him?",
        "j": "楽しみだね！どこに連れて行くの？",
        "r": "Asakusa and Tsukiji first. Then maybe Kamakura.",
-       "rj": "まず浅草と築地。それからたぶん鎌倉。"
+       "rj": "まず浅草と築地。それからたぶん鎌倉。",
+       "s": "Where are you going to take him?",
+       "sj": "どこに連れて行くの？"
       },
       {
        "e": "What does he want to do?",
@@ -970,7 +1048,9 @@
        "e": "And after that? Where is he staying?",
        "j": "そのあとは？どこに泊まるの？",
        "r": "At a hotel in Shinjuku.",
-       "rj": "新宿のホテル。"
+       "rj": "新宿のホテル。",
+       "s": "Where is he staying?",
+       "sj": "どこに泊まるの？"
       },
       {
        "e": "What is he like?",
@@ -981,7 +1061,8 @@
       {
        "e": "Where does he staying?",
        "j": "（×）",
-       "x": "staying（〜する予定・している）には is。Where is he staying?"
+       "x": "staying（〜する予定・している）には is。Where is he staying?",
+       "f": 1
       }
      ]
     },
@@ -993,7 +1074,9 @@
        "e": "Sounds fun. Where are you going to have it?",
        "j": "楽しそう。どこでやるの？",
        "r": "At a tempura restaurant in Ginza. Do you want to come?",
-       "rj": "銀座の天ぷら屋。一緒に来る？"
+       "rj": "銀座の天ぷら屋。一緒に来る？",
+       "s": "Where are you going to have it?",
+       "sj": "どこでやるの？"
       },
       {
        "e": "Nice. Who is coming?",
@@ -1071,18 +1154,23 @@
        "e": "Three hundred? Wow! How much was one plate?",
        "j": "300？すごい！1 皿いくら？",
        "r": "Five hundred yen. Cheap, right?",
-       "rj": "500 円。安いでしょ？"
+       "rj": "500 円。安いでしょ？",
+       "s": "How much was one plate?",
+       "sj": "1 皿いくら？"
       },
       {
        "e": "That's a lot! How long did it take?",
        "j": "多いね！どのくらいかかったの？",
        "r": "About five hours. He was exhausted.",
-       "rj": "5 時間くらい。くたくたになっていた。"
+       "rj": "5 時間くらい。くたくたになっていた。",
+       "s": "How long did it take?",
+       "sj": "どのくらいかかったの？"
       },
       {
        "e": "How many was one plate?",
        "j": "（×）",
-       "x": "値段は How much。How much was one plate?"
+       "x": "値段は How much。How much was one plate?",
+       "f": 1
       }
      ]
     },
@@ -1100,12 +1188,15 @@
        "e": "Oh, what did you win?",
        "j": "へえ、何が当たったの？",
        "r": "Nothing! But my neighbor won a rice cooker.",
-       "rj": "何も！でも近所の人が炊飯器を当てた。"
+       "rj": "何も！でも近所の人が炊飯器を当てた。",
+       "s": "What did you win?",
+       "sj": "何が当たったの？"
       },
       {
        "e": "What was the prizes?",
        "j": "（×）",
-       "x": "prizes は複数なので were。What were the prizes?"
+       "x": "prizes は複数なので were。What were the prizes?",
+       "f": 1
       }
      ]
     }
@@ -1149,7 +1240,9 @@
        "e": "Wow. How come you like French cars?",
        "j": "へえ。どうしてフランス車が好きなの？",
        "r": "They're fun to drive, and I like the design.",
-       "rj": "運転が楽しいし、デザインが好きなんだ。"
+       "rj": "運転が楽しいし、デザインが好きなんだ。",
+       "s": "How come you like French cars?",
+       "sj": "どうしてフランス車が好きなの？"
       },
       {
        "e": "What was your last car?",
@@ -1183,7 +1276,8 @@
       {
        "e": "How was the drive like?",
        "j": "（×）",
-       "x": "like を付けるなら What was the drive like?。How なら like なしで How was the drive?"
+       "x": "like を付けるなら What was the drive like?。How なら like なしで How was the drive?",
+       "f": 1
       }
      ]
     },
@@ -1238,7 +1332,8 @@
       {
        "e": "How come did you start?",
        "j": "（×）",
-       "x": "How come のあとは普通の文の順。How come you started?（did を入れない）"
+       "x": "How come のあとは普通の文の順。How come you started?（did を入れない）",
+       "f": 1
       }
      ]
     },
@@ -1250,7 +1345,9 @@
        "e": "I see. What are you worried about?",
        "j": "なるほど。何が心配なの？",
        "r": "My liver. The numbers were bad last year.",
-       "rj": "肝臓。去年は数値が悪かった。"
+       "rj": "肝臓。去年は数値が悪かった。",
+       "s": "What are you worried about?",
+       "sj": "何が心配なの？"
       },
       {
        "e": "When is it?",
@@ -1273,7 +1370,9 @@
        "e": "That's a good rule. What do you drink on weekdays?",
        "j": "いい決まりだね。平日は何を飲むの？",
        "r": "Sparkling water with lemon. It's not bad.",
-       "rj": "レモン入りの炭酸水。悪くないよ。"
+       "rj": "レモン入りの炭酸水。悪くないよ。",
+       "s": "What do you drink on weekdays?",
+       "sj": "平日は何を飲むの？"
       },
       {
        "e": "How much do you drink on weekends?",
@@ -1296,18 +1395,23 @@
        "e": "I know how you feel. What do you do then?",
        "j": "分かるよ。そういうときはどうするの？",
        "r": "I order oolong tea and say I'm driving.",
-       "rj": "ウーロン茶を頼んで、車だからと言う。"
+       "rj": "ウーロン茶を頼んで、車だからと言う。",
+       "s": "What do you do then?",
+       "sj": "そういうときはどうするの？"
       },
       {
        "e": "I bet. How often do you go out with them?",
        "j": "だろうね。どのくらい一緒に出かけるの？",
        "r": "Once or twice a week.",
-       "rj": "週に 1、2 回。"
+       "rj": "週に 1、2 回。",
+       "s": "How often do you go out with them?",
+       "sj": "どのくらい一緒に出かけるの？"
       },
       {
        "e": "I know how do you feel.",
        "j": "（×）",
-       "x": "文の中に入る how は普通の順。I know how you feel.（do を入れない）"
+       "x": "文の中に入る how は普通の順。I know how you feel.（do を入れない）",
+       "f": 1
       }
      ]
     }
@@ -1339,7 +1443,8 @@
       {
        "e": "What did you happen?",
        "j": "（×）",
-       "x": "「何があった」は What happened?。did も you も入れない。"
+       "x": "「何があった」は What happened?。did も you も入れない。",
+       "f": 1
       }
      ]
     },
@@ -1385,7 +1490,8 @@
       {
        "e": "How much slides do you have to make?",
        "j": "（×）",
-       "x": "数えられるものは How many。How many slides ~?"
+       "x": "数えられるものは How many。How many slides ~?",
+       "f": 1
       }
      ]
     },
@@ -1397,13 +1503,17 @@
        "e": "Wow. How do you feel about it?",
        "j": "すごい。どんな気持ち？",
        "r": "Nervous, but excited.",
-       "rj": "緊張しているけど、わくわくしている。"
+       "rj": "緊張しているけど、わくわくしている。",
+       "s": "How do you feel about it?",
+       "sj": "どんな気持ち？"
       },
       {
        "e": "That's big. What time does it start tomorrow?",
        "j": "大きいね。明日は何時に始まるの？",
        "r": "At ten. I'm going to bed early tonight.",
-       "rj": "10 時。今夜は早く寝るよ。"
+       "rj": "10 時。今夜は早く寝るよ。",
+       "s": "What time does it start tomorrow?",
+       "sj": "明日は何時に始まるの？"
       },
       {
        "e": "How was the presentation?",
@@ -1429,7 +1539,9 @@
        "e": "Oh, what kind of restaurant is it?",
        "j": "へえ、どんな店？",
        "r": "It's a small Italian place.",
-       "rj": "小さいイタリアンの店。"
+       "rj": "小さいイタリアンの店。",
+       "s": "What kind of restaurant is it?",
+       "sj": "どんな店？"
       },
       {
        "e": "Nice. Where is it?",
@@ -1440,7 +1552,8 @@
       {
        "e": "What kind of restaurant it is?",
        "j": "（×）",
-       "x": "質問は is it の順。What kind of restaurant is it?"
+       "x": "質問は is it の順。What kind of restaurant is it?",
+       "f": 1
       }
      ]
     },
@@ -1458,12 +1571,15 @@
        "e": "Sounds good. How did you find it?",
        "j": "おいしそう。どうやって見つけたの？",
        "r": "My coworker took me there.",
-       "rj": "同僚が連れて行ってくれた。"
+       "rj": "同僚が連れて行ってくれた。",
+       "s": "How did you find it?",
+       "sj": "どうやって見つけたの？"
       },
       {
        "e": "What do you had?",
        "j": "（×）",
-       "x": "済んだことは did ＋ 原形。What did you have?"
+       "x": "済んだことは did ＋ 原形。What did you have?",
+       "f": 1
       }
      ]
     },
@@ -1481,12 +1597,15 @@
        "e": "That's good. What is it like inside?",
        "j": "いいね。中はどんな感じ？",
        "r": "It's cozy. There are only ten seats.",
-       "rj": "こぢんまりしている。10 席しかない。"
+       "rj": "こぢんまりしている。10 席しかない。",
+       "s": "What is it like inside?",
+       "sj": "中はどんな感じ？"
       },
       {
        "e": "How much it was?",
        "j": "（×）",
-       "x": "質問は was it の順。How much was it?"
+       "x": "質問は was it の順。How much was it?",
+       "f": 1
       }
      ]
     },
@@ -1498,7 +1617,9 @@
        "e": "I see. How long do you have to wait?",
        "j": "なるほど。どのくらい待つの？",
        "r": "About an hour on weekends. You should book.",
-       "rj": "週末は 1 時間くらい。予約した方がいい。"
+       "rj": "週末は 1 時間くらい。予約した方がいい。",
+       "s": "How long do you have to wait?",
+       "sj": "どのくらい待つの？"
       },
       {
        "e": "Oh. When is it less crowded?",
@@ -1530,18 +1651,23 @@
        "e": "Really? What kind of test is it?",
        "j": "ほんと？どんな試験？",
        "r": "It's the JLPT. Reading and listening.",
-       "rj": "日本語能力試験。読解と聞き取り。"
+       "rj": "日本語能力試験。読解と聞き取り。",
+       "s": "What kind of test is it?",
+       "sj": "どんな試験？"
       },
       {
        "e": "Oh, how long have you been studying Japanese?",
        "j": "へえ、日本語はどのくらい勉強しているの？",
        "r": "For about five years.",
-       "rj": "5 年くらい。"
+       "rj": "5 年くらい。",
+       "s": "How long have you been studying Japanese?",
+       "sj": "日本語はどのくらい勉強しているの？"
       },
       {
        "e": "How long are you studying Japanese?",
        "j": "（×）",
-       "x": "今までずっと続いていることは have been。How long have you been studying Japanese?"
+       "x": "今までずっと続いていることは have been。How long have you been studying Japanese?",
+       "f": 1
       }
      ]
     },
@@ -1553,7 +1679,9 @@
        "e": "I know how you feel. What is the hardest part?",
        "j": "分かるよ。いちばん難しいのはどこ？",
        "r": "The particles. 'Wa' and 'ga' still confuse me.",
-       "rj": "助詞。「は」と「が」がいまだに分からない。"
+       "rj": "助詞。「は」と「が」がいまだに分からない。",
+       "s": "What is the hardest part?",
+       "sj": "いちばん難しいのはどこ？"
       },
       {
        "e": "How do you study?",
@@ -1564,7 +1692,8 @@
       {
        "e": "What is the most hard part?",
        "j": "（×）",
-       "x": "hard の「いちばん」は hardest。What is the hardest part?"
+       "x": "hard の「いちばん」は hardest。What is the hardest part?",
+       "f": 1
       }
      ]
     },
@@ -1582,7 +1711,9 @@
        "e": "Wow. Who do you practice speaking with?",
        "j": "すごい。話す練習は誰とするの？",
        "r": "With my wife. She's Japanese, but she's a strict teacher.",
-       "rj": "妻と。日本人なんだけど、厳しい先生だよ。"
+       "rj": "妻と。日本人なんだけど、厳しい先生だよ。",
+       "s": "Who do you practice speaking with?",
+       "sj": "話す練習は誰とするの？"
       },
       {
        "e": "How long do you study every day?",
@@ -1599,7 +1730,9 @@
        "e": "Nice. How are you going to celebrate?",
        "j": "いいね。どうやってお祝いするの？",
        "r": "With all-you-can-eat sushi!",
-       "rj": "寿司の食べ放題で！"
+       "rj": "寿司の食べ放題で！",
+       "s": "How are you going to celebrate?",
+       "sj": "どうやってお祝いするの？"
       },
       {
        "e": "What happens if you don't pass?",
@@ -1631,13 +1764,17 @@
        "e": "That's great! Where is he going to work?",
        "j": "それは良かった！どこで働くの？",
        "r": "At a music company in Shibuya.",
-       "rj": "渋谷の音楽の会社。"
+       "rj": "渋谷の音楽の会社。",
+       "s": "Where is he going to work?",
+       "sj": "どこで働くの？"
       },
       {
        "e": "Congratulations! What kind of job is it?",
        "j": "おめでとう！どんな仕事？",
        "r": "He'll plan events for a music company.",
-       "rj": "音楽の会社でイベントを企画する仕事。"
+       "rj": "音楽の会社でイベントを企画する仕事。",
+       "s": "What kind of job is it?",
+       "sj": "どんな仕事？"
       },
       {
        "e": "I'm sorry to hear that.",
@@ -1677,13 +1814,17 @@
        "e": "Oh, where is he moving to?",
        "j": "へえ、どこに引っ越すの？",
        "r": "Somewhere near Shibuya. He's still looking.",
-       "rj": "渋谷の近くのどこか。まだ探している。"
+       "rj": "渋谷の近くのどこか。まだ探している。",
+       "s": "Where is he moving to?",
+       "sj": "どこに引っ越すの？"
       },
       {
        "e": "Really? How do you feel about that?",
        "j": "ほんと？それについてどう思う？",
        "r": "A little sad, honestly. But it's time.",
-       "rj": "正直、少しさみしい。でもそういう時期だ。"
+       "rj": "正直、少しさみしい。でもそういう時期だ。",
+       "s": "How do you feel about that?",
+       "sj": "それについてどう思う？"
       },
       {
        "e": "Where did he move?",
@@ -1706,12 +1847,15 @@
        "e": "Nice. What are you going to cook?",
        "j": "いいね。何を作るの？",
        "r": "His favorite. Gapao rice.",
-       "rj": "息子の好物。ガパオライス。"
+       "rj": "息子の好物。ガパオライス。",
+       "s": "What are you going to cook?",
+       "sj": "何を作るの？"
       },
       {
        "e": "Who did come?",
        "j": "（×）",
-       "x": "日曜はこれから。Who is coming?（済んだことでも Who came? で、did は入れない）"
+       "x": "日曜はこれから。Who is coming?（済んだことでも Who came? で、did は入れない）",
+       "f": 1
       }
      ]
     }
@@ -1738,7 +1882,9 @@
        "e": "Nice. Which island did you go to?",
        "j": "いいね。どの島に行ったの？",
        "r": "Ishigaki. I stayed for four nights.",
-       "rj": "石垣島。4 泊した。"
+       "rj": "石垣島。4 泊した。",
+       "s": "Which island did you go to?",
+       "sj": "どの島に行ったの？"
       },
       {
        "e": "Have you ever been diving?",
@@ -1755,7 +1901,9 @@
        "e": "No way! How many did you see?",
        "j": "うそ！何匹見たの？",
        "r": "Three. They swam right over my head.",
-       "rj": "3 匹。頭のすぐ上を泳いでいった。"
+       "rj": "3 匹。頭のすぐ上を泳いでいった。",
+       "s": "How many did you see?",
+       "sj": "何匹見たの？"
       },
       {
        "e": "Lucky you! How big were they?",
@@ -1766,7 +1914,8 @@
       {
        "e": "How much did you see?",
        "j": "（×）",
-       "x": "数は How many。How many did you see?"
+       "x": "数は How many。How many did you see?",
+       "f": 1
       }
      ]
     },
@@ -1778,13 +1927,17 @@
        "e": "Twenty years! Where did you get your license?",
        "j": "20 年！どこで免許を取ったの？",
        "r": "In Saipan, in my thirties. I went there on a solo trip.",
-       "rj": "サイパンで、30 代のとき。一人旅で行ったんだ。"
+       "rj": "サイパンで、30 代のとき。一人旅で行ったんだ。",
+       "s": "Where did you get your license?",
+       "sj": "どこで免許を取ったの？"
       },
       {
        "e": "Wow. Where is the best place you've been?",
        "j": "すごい。今まで行った中でいちばんの場所は？",
        "r": "The Maldives. I've been there many times.",
-       "rj": "モルディブ。何度も行っている。"
+       "rj": "モルディブ。何度も行っている。",
+       "s": "Where is the best place you've been?",
+       "sj": "今まで行った中でいちばんの場所は？"
       },
       {
        "e": "How long have you been diving?",
@@ -1801,18 +1954,23 @@
        "e": "Maybe. How long does it take to get a license?",
        "j": "そうだね。免許を取るのにどのくらいかかるの？",
        "r": "Only three or four days.",
-       "rj": "3、4 日だけ。"
+       "rj": "3、4 日だけ。",
+       "s": "How long does it take to get a license?",
+       "sj": "免許を取るのにどのくらいかかるの？"
       },
       {
        "e": "I'm a bit scared. What is it like under the water?",
        "j": "ちょっと怖いな。水の中ってどんな感じ？",
        "r": "It's quiet and peaceful. You forget everything.",
-       "rj": "静かで穏やか。全部忘れられる。"
+       "rj": "静かで穏やか。全部忘れられる。",
+       "s": "What is it like under the water?",
+       "sj": "水の中ってどんな感じ？"
       },
       {
        "e": "How is it like under the water?",
        "j": "（×）",
-       "x": "どんな感じかは What is it like?。How と like は一緒に使わない。"
+       "x": "どんな感じかは What is it like?。How と like は一緒に使わない。",
+       "f": 1
       }
      ]
     }
@@ -1839,7 +1997,9 @@
        "e": "Lucky you! How did you get them?",
        "j": "いいなあ！どうやって取ったの？",
        "r": "I won a lottery on the official website.",
-       "rj": "公式サイトの抽選に当たったんだ。"
+       "rj": "公式サイトの抽選に当たったんだ。",
+       "s": "How did you get them?",
+       "sj": "どうやって取ったの？"
       },
       {
        "e": "How was the race?",
@@ -1890,7 +2050,8 @@
       {
        "e": "How much was they?",
        "j": "（×）",
-       "x": "tickets は複数なので were。How much were they?"
+       "x": "tickets は複数なので were。How much were they?",
+       "f": 1
       }
      ]
     },
@@ -1902,7 +2063,9 @@
        "e": "Exciting! Who are you going to cheer for?",
        "j": "楽しみだね！誰を応援するの？",
        "r": "Lewis Hamilton. I've been a fan for years.",
-       "rj": "ルイス・ハミルトン。何年もファンなんだ。"
+       "rj": "ルイス・ハミルトン。何年もファンなんだ。",
+       "s": "Who are you going to cheer for?",
+       "sj": "誰を応援するの？"
       },
       {
        "e": "How did you get into F1?",
@@ -1940,7 +2103,9 @@
        "e": "Oh, how long are you staying?",
        "j": "へえ、どのくらいいるの？",
        "r": "For five days, until January 3rd.",
-       "rj": "5 日間。1 月 3 日まで。"
+       "rj": "5 日間。1 月 3 日まで。",
+       "s": "How long are you staying?",
+       "sj": "どのくらいいるの？"
       },
       {
        "e": "How was your New Year?",
@@ -1957,7 +2122,9 @@
        "e": "That sounds nice. How many people come?",
        "j": "いいね。何人来るの？",
        "r": "About fifteen. It's really noisy.",
-       "rj": "15 人くらい。すごくにぎやかだよ。"
+       "rj": "15 人くらい。すごくにぎやかだよ。",
+       "s": "How many people come?",
+       "sj": "何人来るの？"
       },
       {
        "e": "What do you usually do?",
@@ -1968,7 +2135,8 @@
       {
        "e": "How much people come?",
        "j": "（×）",
-       "x": "人は数えられるので How many。How many people come?"
+       "x": "人は数えられるので How many。How many people come?",
+       "f": 1
       }
      ]
     },
@@ -1991,7 +2159,8 @@
       {
        "e": "What does she makes?",
        "j": "（×）",
-       "x": "does のあとは原形。What does she make?"
+       "x": "does のあとは原形。What does she make?",
+       "f": 1
       }
      ]
     },
@@ -2003,18 +2172,23 @@
        "e": "Oh. How long does it usually take?",
        "j": "そうか。ふだんはどのくらいかかるの？",
        "r": "Two hours usually, but five hours at New Year.",
-       "rj": "ふだんは 2 時間、でも正月は 5 時間。"
+       "rj": "ふだんは 2 時間、でも正月は 5 時間。",
+       "s": "How long does it usually take?",
+       "sj": "ふだんはどのくらいかかるの？"
       },
       {
        "e": "I know how you feel. How come you don't take the train?",
        "j": "分かるよ。どうして電車にしないの？",
        "r": "We have too much luggage. And the dog.",
-       "rj": "荷物が多すぎるんだ。それに犬もいる。"
+       "rj": "荷物が多すぎるんだ。それに犬もいる。",
+       "s": "How come you don't take the train?",
+       "sj": "どうして電車にしないの？"
       },
       {
        "e": "How come don't you take the train?",
        "j": "（×）",
-       "x": "How come のあとは普通の文の順。How come you don't take the train?"
+       "x": "How come のあとは普通の文の順。How come you don't take the train?",
+       "f": 1
       }
      ]
     }

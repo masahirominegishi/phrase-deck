@@ -1973,18 +1973,18 @@ function renderVerbHome() {
 /* ---------- 聞き返しで会話を続ける（相手の一言 → 返しを選ぶ → 相手が答える → …） ----------
    Who / Where / What / How long / How come / What is ~ like と、Really? / Sorry to hear that の受け。
    1 話 = 4 往復。3 つのうち 2 つは会話が続く（選んだ方で相手の答えが変わる）・1 つは噛み合わない（理由を出して選び直し）。
-   選択肢は伏せて出す（先に口に出す）。データは data/replies.json。進捗は端末内 (REPLY_KEY)。SRS や一覧には混ぜない。 */
+   選択肢はすぐ出す・短い形（質問だけ）・日本語つき。形の間違いの誤答は出さない（2 択の番と 3 択の番がある）。データは data/replies.json。進捗は端末内 (REPLY_KEY)。SRS や一覧には混ぜない。 */
 const REPLY_URL = 'data/replies.json';
 const REPLY_KEY = 'phrasedeck.reply.v1';
 const REPLY_DAILY = 3;                         // 1 日の話の数
-const REPLY_JA_KEY = 'phrasedeck.reply.showja'; // '1' なら日本語を出す。初期は出さない
+const REPLY_JA_KEY = 'phrasedeck.reply.showja'; // '0' なら日本語を隠す。初期は出す
 
 let RTALKS = [];
 let rstat = { talks: {}, day: {} };   // talks[id] = {runs, miss, last, picked: {turn: [e…]}}・day = {date, done: []}
 let rRun = null;                      // { id, t, log: [{k}], miss, open, order, tried: [], shownAt, turnMiss }
 let rChain = [];                      // 「今日の 3 話」の残り
 
-function replyShowJa() { try { return localStorage.getItem(REPLY_JA_KEY) === '1'; } catch { return false; } }
+function replyShowJa() { try { return localStorage.getItem(REPLY_JA_KEY) !== '0'; } catch { return true; } }
 function loadReplyStat() {
   try { rstat = Object.assign({ talks: {}, day: {} }, JSON.parse(localStorage.getItem(REPLY_KEY)) || {}); }
   catch { rstat = { talks: {}, day: {} }; }
@@ -2032,9 +2032,9 @@ function startReplyTalk(id) {
 }
 function replyOpenTurn() {
   const t = rTalk(rRun.id);
-  rRun.open = false;
   rRun.tried = [];
-  rRun.order = shuffled(t.turns[rRun.t].o.map((_, k) => k));
+  // f = 形の間違いの誤答（How is he like? など）。見分けるのに時間がかかるので出さない
+  rRun.order = shuffled(t.turns[rRun.t].o.map((o, k) => (o.f ? -1 : k)).filter(k => k >= 0));
   rRun.shownAt = Date.now();
   renderReply();
 }
@@ -2062,21 +2062,17 @@ function renderReply() {
   const before = (st.picked && st.picked[rRun.t]) || [];
   const area = document.getElementById('replyArea');
   document.getElementById('dueCount').textContent = `${rRun.t + 1}/${t.turns.length}`;
-  let opts;
-  if (!rRun.open) {
-    opts = `<p class="r-ask">声に出して返してみる。それから開く。</p>
-      <button class="big-btn" id="rOpenBtn">返しの選択肢を開く</button>`;
-  } else {
-    opts = `<div class="r-opts" id="rOpts">` + rRun.order.map(k => {
-      const o = tn.o[k];
-      const ng = rRun.tried.includes(k);
-      return `<button data-k="${k}" class="${ng ? 'ng' : ''}" ${ng ? 'disabled' : ''}>
-          <span class="r-opt-en">${esc(o.e)}</span>
-          ${o.j && o.j !== '（×）' ? `<span class="r-opt-ja">${esc(o.j)}</span>` : ''}
-          ${!ng && before.includes(o.e) ? '<span class="r-opt-prev">前に選んだ</span>' : ''}
-          ${ng ? `<span class="r-opt-why">${esc(o.x)}</span>` : ''}
-        </button>`; }).join('') + `</div>`;
-  }
+  // ボタンには短い形（質問だけ）を出す。吹き出しと読み上げは受けの一言つきの全文
+  const opts = `<div class="r-opts" id="rOpts">` + rRun.order.map(k => {
+    const o = tn.o[k];
+    const ng = rRun.tried.includes(k);
+    const ja = o.sj || o.j;
+    return `<button data-k="${k}" class="${ng ? 'ng' : ''}" ${ng ? 'disabled' : ''}>
+        <span class="r-opt-en">${esc(o.s || o.e)}</span>
+        ${ja && ja !== '（×）' ? `<span class="r-opt-ja">${esc(ja)}</span>` : ''}
+        ${!ng && before.includes(o.e) ? '<span class="r-opt-prev">前に選んだ</span>' : ''}
+        ${ng ? `<span class="r-opt-why">${esc(o.x)}</span>` : ''}
+      </button>`; }).join('') + `</div>`;
   area.innerHTML = `
     <div class="mcard rcard${replyShowJa() ? '' : ' hide-ja'}">
       <div class="mtop"><span>${esc(t.tag || '')}</span>
@@ -2089,8 +2085,6 @@ function renderReply() {
       <button class="link-btn mquit" id="rQuitBtn">やめる</button>
     </div>`;
   wireReplyCommon(area);
-  const ob = document.getElementById('rOpenBtn');
-  if (ob) ob.onclick = () => { rRun.open = true; renderReply(); };
   area.querySelectorAll('#rOpts button').forEach(b => { b.onclick = () => answerReply(Number(b.dataset.k)); });
   document.getElementById('rQuitBtn').onclick = goHome;
   const last = area.querySelector('.rb.cur');
