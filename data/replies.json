@@ -1,0 +1,2026 @@
+{
+ "version": 1,
+ "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。",
+ "talks": [
+  {
+   "id": "r-hawaii",
+   "tag": "これからの旅行",
+   "title": "来月ハワイに行く",
+   "turns": [
+    {
+     "p": "I'm going to Hawaii next month.",
+     "pj": "来月ハワイに行くんだ。",
+     "o": [
+      {
+       "e": "Really? Who are you going with?",
+       "j": "ほんと？誰と行くの？",
+       "r": "With my wife. It's our anniversary.",
+       "rj": "妻と。結婚記念日なんだ。"
+      },
+      {
+       "e": "Nice! How long are you staying?",
+       "j": "いいね！どのくらいいるの？",
+       "r": "For six nights. I took a whole week off.",
+       "rj": "6 泊。まる 1 週間休みを取ったよ。"
+      },
+      {
+       "e": "Where did you go?",
+       "j": "どこに行ったの？",
+       "x": "行くのはこれから。did you go は済んだことを聞く形。それに行き先はもう言っている。"
+      }
+     ]
+    },
+    {
+     "p": "We're staying in Waikiki.",
+     "pj": "ワイキキに泊まるんだ。",
+     "o": [
+      {
+       "e": "What's the hotel like?",
+       "j": "ホテルはどんな感じ？",
+       "r": "It's right on the beach, and it has a big pool.",
+       "rj": "ビーチの目の前で、大きなプールがあるよ。"
+      },
+      {
+       "e": "What are you going to do there?",
+       "j": "向こうで何をするの？",
+       "r": "Mostly relax on the beach. And I want to try surfing.",
+       "rj": "だいたいビーチでのんびり。あとサーフィンをやってみたい。"
+      },
+      {
+       "e": "How long did you stay?",
+       "j": "どのくらいいたの？",
+       "x": "まだ行っていない。did you stay は済んだことを聞く形。これからなら How long are you staying?"
+      }
+     ]
+    },
+    {
+     "p": "It's my first time in Hawaii, actually.",
+     "pj": "実はハワイは初めてなんだ。",
+     "o": [
+      {
+       "e": "Oh, really? What are you looking forward to the most?",
+       "j": "そうなの？いちばん楽しみなのは何？",
+       "r": "The food! I really want to eat garlic shrimp.",
+       "rj": "食べ物！ガーリックシュリンプを食べたいんだ。"
+      },
+      {
+       "e": "How come you chose Hawaii?",
+       "j": "どうしてハワイにしたの？",
+       "r": "My wife has always wanted to go.",
+       "rj": "妻がずっと行きたがっていたから。"
+      },
+      {
+       "e": "How many times have you been there?",
+       "j": "何回行ったことがあるの？",
+       "x": "「初めて」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "The flight is long, though.",
+     "pj": "でもフライトが長いんだよね。",
+     "o": [
+      {
+       "e": "How long does it take?",
+       "j": "どのくらいかかるの？",
+       "r": "About seven hours from Tokyo.",
+       "rj": "東京から 7 時間くらい。"
+      },
+      {
+       "e": "Which airline are you flying with?",
+       "j": "どの航空会社で行くの？",
+       "r": "JAL. I got the tickets with my miles.",
+       "rj": "JAL。マイルで取ったんだ。"
+      },
+      {
+       "e": "How far does it take?",
+       "j": "（×）",
+       "x": "かかる時間は How long does it take?。How far は距離で、How far is it? と聞く。"
+      }
+     ]
+    }
+   ],
+   "c": "Sounds great. Have a nice trip!",
+   "cj": "いいね。良い旅を！"
+  },
+  {
+   "id": "r-movie",
+   "tag": "済んだこと",
+   "title": "昨日いい映画を観た",
+   "turns": [
+    {
+     "p": "I saw a great movie last night.",
+     "pj": "昨日の夜、すごくいい映画を観たんだ。",
+     "o": [
+      {
+       "e": "Oh, what did you see?",
+       "j": "へえ、何を観たの？",
+       "r": "The new Godzilla movie.",
+       "rj": "新しいゴジラの映画。"
+      },
+      {
+       "e": "Nice. Where did you see it?",
+       "j": "いいね。どこで観たの？",
+       "r": "At the big theater in Hibiya. It was the new Godzilla movie.",
+       "rj": "日比谷の大きな映画館で。新しいゴジラの映画だよ。"
+      },
+      {
+       "e": "What are you going to see?",
+       "j": "何を観るつもり？",
+       "x": "もう観た話。are you going to はこれからのこと。済んだことは What did you see?"
+      }
+     ]
+    },
+    {
+     "p": "It was better than I expected.",
+     "pj": "思っていたより良かった。",
+     "o": [
+      {
+       "e": "Really? What was it about?",
+       "j": "ほんと？どんな話だったの？",
+       "r": "Godzilla attacks Tokyo again, but the story is really about one family.",
+       "rj": "ゴジラがまた東京を襲うんだけど、実はある家族の話なんだ。"
+      },
+      {
+       "e": "Who did you go with?",
+       "j": "誰と行ったの？",
+       "r": "With my son. He loves monster movies.",
+       "rj": "息子と。怪獣映画が大好きなんだ。"
+      },
+      {
+       "e": "How was it like?",
+       "j": "（×）",
+       "x": "like を付けるなら What was it like?。How なら like なしで How was it?"
+      }
+     ]
+    },
+    {
+     "p": "The last scene was really tense.",
+     "pj": "最後の場面はすごく緊張したよ。",
+     "o": [
+      {
+       "e": "Don't tell me the ending! How long is the movie?",
+       "j": "結末は言わないで！映画の長さはどのくらい？",
+       "r": "About two hours, but it felt short.",
+       "rj": "2 時間くらい。でも短く感じた。"
+      },
+      {
+       "e": "What did you like the most?",
+       "j": "いちばん気に入ったのは何？",
+       "r": "The music. It built up the tension really well.",
+       "rj": "音楽。緊張をうまく盛り上げていた。"
+      },
+      {
+       "e": "How was the story about?",
+       "j": "（×）",
+       "x": "「何についての話」は What。What was the story about?"
+      }
+     ]
+    },
+    {
+     "p": "I want to see it again, actually.",
+     "pj": "実はもう一回観たいんだ。",
+     "o": [
+      {
+       "e": "Wow, you really liked it. When are you going?",
+       "j": "相当気に入ったんだね。いつ行くの？",
+       "r": "Maybe next weekend. Do you want to come?",
+       "rj": "たぶん来週末。一緒に来る？"
+      },
+      {
+       "e": "How come? Was it that good?",
+       "j": "どうして？そんなに良かった？",
+       "r": "Yes. And I think I missed a lot of small details.",
+       "rj": "うん。それに細かい所をたくさん見逃した気がして。"
+      },
+      {
+       "e": "How long are you going with?",
+       "j": "（×）",
+       "x": "「誰と」は Who。Who are you going with?"
+      }
+     ]
+    }
+   ],
+   "c": "Sounds good. I'll check it out.",
+   "cj": "いいね。観てみるよ。"
+  },
+  {
+   "id": "r-wallet",
+   "tag": "悪い知らせ",
+   "title": "ひどい週末だった",
+   "turns": [
+    {
+     "p": "I had a terrible weekend.",
+     "pj": "ひどい週末だったよ。",
+     "o": [
+      {
+       "e": "Oh no. What happened?",
+       "j": "ええっ。何があったの？",
+       "r": "I lost my wallet on Saturday.",
+       "rj": "土曜に財布をなくしたんだ。"
+      },
+      {
+       "e": "Really? How come?",
+       "j": "ほんと？どうして？",
+       "r": "I lost my wallet on Saturday.",
+       "rj": "土曜に財布をなくしたんだ。"
+      },
+      {
+       "e": "That's great! What did you do?",
+       "j": "それはいいね！何をしたの？",
+       "x": "悪い知らせに That's great は合わない。Oh no. / Really? と受けてから聞く。"
+      }
+     ]
+    },
+    {
+     "p": "I think I dropped it on the train.",
+     "pj": "たぶん電車で落としたんだと思う。",
+     "o": [
+      {
+       "e": "That's too bad. What was in it?",
+       "j": "それは残念。何が入っていたの？",
+       "r": "Some cash, my credit cards and my driver's license.",
+       "rj": "現金とクレジットカードと免許証。"
+      },
+      {
+       "e": "Sorry to hear that. Where were you going?",
+       "j": "それは気の毒に。どこへ行くところだったの？",
+       "r": "To Ginza, for my English lesson.",
+       "rj": "銀座へ。英会話のレッスンで。"
+      },
+      {
+       "e": "Where are you dropping it?",
+       "j": "（×）",
+       "x": "済んだことは did。Where did you drop it?"
+      }
+     ]
+    },
+    {
+     "p": "I called the station right away.",
+     "pj": "すぐ駅に電話したんだ。",
+     "o": [
+      {
+       "e": "What did they say?",
+       "j": "何て言われた？",
+       "r": "They said nobody had turned it in yet.",
+       "rj": "まだ誰も届けていないって。"
+      },
+      {
+       "e": "Good idea. Who did you talk to?",
+       "j": "それがいいね。誰と話したの？",
+       "r": "Someone at the lost and found office.",
+       "rj": "忘れ物の窓口の人。"
+      },
+      {
+       "e": "What did they said?",
+       "j": "（×）",
+       "x": "did のあとは原形。What did they say?"
+      }
+     ]
+    },
+    {
+     "p": "But this morning, the police called me!",
+     "pj": "でも今朝、警察から電話が来たんだ！",
+     "o": [
+      {
+       "e": "No way! Where was it?",
+       "j": "うそ！どこにあったの？",
+       "r": "At a police box near Shimbashi station. Someone took it there.",
+       "rj": "新橋駅の近くの交番。誰かが届けてくれたんだ。"
+      },
+      {
+       "e": "That's great news! Who found it?",
+       "j": "それは良かった！誰が見つけたの？",
+       "r": "A high school student. Everything was still inside.",
+       "rj": "高校生。中身は全部そのままだった。"
+      },
+      {
+       "e": "I'm sorry to hear that.",
+       "j": "それは気の毒に。",
+       "x": "今度は良い知らせ。That's great! / No way! と受ける。"
+      }
+     ]
+    }
+   ],
+   "c": "I'm glad you got it back.",
+   "cj": "戻ってきて良かったね。"
+  },
+  {
+   "id": "r-boss",
+   "tag": "人のこと",
+   "title": "新しい上司が来た",
+   "turns": [
+    {
+     "p": "We got a new boss last month. He's younger than me.",
+     "pj": "先月、新しい上司が来たんだ。僕より年下でね。",
+     "o": [
+      {
+       "e": "Oh, really? What is he like?",
+       "j": "そうなの？どんな人？",
+       "r": "He's friendly, but he's very strict about deadlines.",
+       "rj": "気さくだけど、締め切りにはすごく厳しい。"
+      },
+      {
+       "e": "Where did he come from?",
+       "j": "どこから来た人？",
+       "r": "From the Osaka office. He was the manager there.",
+       "rj": "大阪の支社から。そこの部長だった。"
+      },
+      {
+       "e": "How is he like?",
+       "j": "（×）",
+       "x": "人柄を聞くのは What is he like?。How と like は一緒に使わない。"
+      }
+     ]
+    },
+    {
+     "p": "He's changing a lot of things.",
+     "pj": "いろいろ変えているんだ。",
+     "o": [
+      {
+       "e": "What is he changing?",
+       "j": "何を変えているの？",
+       "r": "Our weekly meeting. Now it's only fifteen minutes.",
+       "rj": "週の会議。今は 15 分だけになった。"
+      },
+      {
+       "e": "How do you feel about that?",
+       "j": "それについてどう思う？",
+       "r": "Honestly, I like it. We were wasting a lot of time before.",
+       "rj": "正直、気に入っている。前は時間をずいぶん無駄にしていたから。"
+      },
+      {
+       "e": "What does he changing?",
+       "j": "（×）",
+       "x": "changing（〜している）には is。What is he changing?"
+      }
+     ]
+    },
+    {
+     "p": "But he sends emails late at night.",
+     "pj": "でも夜遅くにメールを送ってくるんだ。",
+     "o": [
+      {
+       "e": "Oh no. How often does he do that?",
+       "j": "うわ。どのくらいの頻度で？",
+       "r": "Two or three times a week.",
+       "rj": "週に 2、3 回。"
+      },
+      {
+       "e": "I know how you feel. What time does he send them?",
+       "j": "気持ちは分かるよ。何時に送ってくるの？",
+       "r": "Around eleven. Sometimes after midnight.",
+       "rj": "11 時ごろ。日付が変わってからのこともある。"
+      },
+      {
+       "e": "How long does he do that?",
+       "j": "（×）",
+       "x": "回数・頻度は How often。How long は長さ（期間・時間）。"
+      }
+     ]
+    },
+    {
+     "p": "I don't answer them until the morning.",
+     "pj": "朝までは返事をしないことにしている。",
+     "o": [
+      {
+       "e": "Good for you. What does he say about that?",
+       "j": "それでいいと思う。上司は何て言っている？",
+       "r": "Nothing so far. I think he understands.",
+       "rj": "今のところ何も。分かってくれていると思う。"
+      },
+      {
+       "e": "That's smart. How do your coworkers handle it?",
+       "j": "賢いね。同僚はどうしているの？",
+       "r": "Some of them answer right away. I feel sorry for them.",
+       "rj": "すぐ返す人もいる。気の毒だよ。"
+      },
+      {
+       "e": "How come you answer them at night?",
+       "j": "どうして夜に返事をするの？",
+       "x": "「朝まで返事をしない」と言ったばかり。話が逆になっている。"
+      }
+     ]
+    }
+   ],
+   "c": "I hope it works out.",
+   "cj": "うまくいくといいね。"
+  },
+  {
+   "id": "r-takamatsu",
+   "tag": "これからの出張",
+   "title": "来週、高松へ出張",
+   "turns": [
+    {
+     "p": "I'm going to Takamatsu on business next week.",
+     "pj": "来週、仕事で高松に行くんだ。",
+     "o": [
+      {
+       "e": "Oh, how long are you going for?",
+       "j": "へえ、どのくらい行くの？",
+       "r": "For four days, from Monday to Thursday.",
+       "rj": "4 日間。月曜から木曜まで。"
+      },
+      {
+       "e": "What are you going to do there?",
+       "j": "向こうで何をするの？",
+       "r": "I have meetings with the city office about a new project.",
+       "rj": "新しいプロジェクトのことで市役所と打ち合わせ。"
+      },
+      {
+       "e": "How was the trip?",
+       "j": "出張はどうだった？",
+       "x": "まだ行っていない。How was ~? は済んだことの感想を聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "I go there almost every month these days.",
+     "pj": "最近はほぼ毎月行っているんだ。",
+     "o": [
+      {
+       "e": "Wow. What is Takamatsu like?",
+       "j": "へえ。高松ってどんな所？",
+       "r": "It's a quiet city by the sea. The udon is amazing.",
+       "rj": "海沿いの静かな街。うどんが最高だよ。"
+      },
+      {
+       "e": "How do you get there?",
+       "j": "どうやって行くの？",
+       "r": "I usually fly from Haneda. It takes about an hour and twenty minutes.",
+       "rj": "たいてい羽田から飛行機。1 時間 20 分くらい。"
+      },
+      {
+       "e": "How often do you go there?",
+       "j": "どのくらいの頻度で行くの？",
+       "x": "「ほぼ毎月」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "This time I'm staying near the port.",
+     "pj": "今回は港の近くに泊まるんだ。",
+     "o": [
+      {
+       "e": "Nice. What's the hotel like?",
+       "j": "いいね。ホテルはどんな感じ？",
+       "r": "It's small, but I can see the sea from my room.",
+       "rj": "小さいけど、部屋から海が見える。"
+      },
+      {
+       "e": "Who are you going with?",
+       "j": "誰と行くの？",
+       "r": "With two coworkers. We always eat udon together.",
+       "rj": "同僚 2 人と。いつも一緒にうどんを食べるんだ。"
+      },
+      {
+       "e": "Who are you going?",
+       "j": "（×）",
+       "x": "with が落ちている。「誰と」は Who are you going with?"
+      }
+     ]
+    },
+    {
+     "p": "I'm a little worried, though. I have to wake up at 4 a.m. on Monday.",
+     "pj": "でもちょっと心配。月曜は朝 4 時に起きないといけないんだ。",
+     "o": [
+      {
+       "e": "That's early! How come?",
+       "j": "早いね！どうして？",
+       "r": "My flight leaves at 6:30.",
+       "rj": "飛行機が 6 時半に出るから。"
+      },
+      {
+       "e": "Oh no. What time is your flight?",
+       "j": "うわ。飛行機は何時？",
+       "r": "At 6:30. It's the first flight of the day.",
+       "rj": "6 時半。朝いちばんの便。"
+      },
+      {
+       "e": "What time did you wake up?",
+       "j": "何時に起きたの？",
+       "x": "月曜はこれから。did は済んだこと。"
+      }
+     ]
+    }
+   ],
+   "c": "Good luck. Don't oversleep!",
+   "cj": "がんばって。寝坊しないでね！"
+  },
+  {
+   "id": "r-fishing",
+   "tag": "済んだこと",
+   "title": "先週末、釣りに行った",
+   "turns": [
+    {
+     "p": "I went fishing last weekend.",
+     "pj": "先週末、釣りに行ったんだ。",
+     "o": [
+      {
+       "e": "Really? Where did you go?",
+       "j": "ほんと？どこに行ったの？",
+       "r": "To Tokyo Bay. We went out on a small boat.",
+       "rj": "東京湾。小さい船で出たんだ。"
+      },
+      {
+       "e": "Nice. Who did you go with?",
+       "j": "いいね。誰と行ったの？",
+       "r": "With an old friend. He always invites me.",
+       "rj": "古い友だちと。いつも誘ってくれるんだ。"
+      },
+      {
+       "e": "Where do you going?",
+       "j": "（×）",
+       "x": "済んだことは did。Where did you go?"
+      }
+     ]
+    },
+    {
+     "p": "I caught seven octopuses!",
+     "pj": "タコを 7 匹釣ったよ！",
+     "o": [
+      {
+       "e": "Seven? Wow! How big were they?",
+       "j": "7 匹？すごい！どのくらいの大きさ？",
+       "r": "Pretty big. Around one kilo each.",
+       "rj": "けっこう大きい。1 匹 1 キロくらい。"
+      },
+      {
+       "e": "No way! How did you catch them?",
+       "j": "うそ！どうやって釣ったの？",
+       "r": "With a special lure. You move it slowly along the bottom.",
+       "rj": "専用のルアーで。底をゆっくり動かすんだ。"
+      },
+      {
+       "e": "How many did you catch?",
+       "j": "何匹釣ったの？",
+       "x": "「7 匹」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "But I had to leave home at 1 a.m.",
+     "pj": "でも夜中の 1 時に家を出ないといけなかった。",
+     "o": [
+      {
+       "e": "1 a.m.? How come?",
+       "j": "1 時？どうして？",
+       "r": "The boat leaves at 4, and the port is far from my place.",
+       "rj": "船が 4 時に出るし、港が家から遠いんだ。"
+      },
+      {
+       "e": "That's so early. How long did it take to get there?",
+       "j": "早いね。着くまでどのくらいかかった？",
+       "r": "About two hours by car.",
+       "rj": "車で 2 時間くらい。"
+      },
+      {
+       "e": "How long did it took?",
+       "j": "（×）",
+       "x": "did のあとは原形。How long did it take?"
+      }
+     ]
+    },
+    {
+     "p": "My muscles are still sore.",
+     "pj": "まだ筋肉痛だよ。",
+     "o": [
+      {
+       "e": "I know how you feel. What did you do with the octopuses?",
+       "j": "分かるよ。タコはどうしたの？",
+       "r": "I boiled them and gave some to my neighbors.",
+       "rj": "ゆでて、近所にも配った。"
+      },
+      {
+       "e": "I bet. How often do you go fishing?",
+       "j": "だろうね。釣りにはどのくらい行くの？",
+       "r": "Only two or three times a year.",
+       "rj": "年に 2、3 回だけ。"
+      },
+      {
+       "e": "How much do you go fishing?",
+       "j": "（×）",
+       "x": "回数・頻度は How often。How much は量や値段。"
+      }
+     ]
+    }
+   ],
+   "c": "Sounds like a great day.",
+   "cj": "いい一日だったみたいだね。"
+  },
+  {
+   "id": "r-hospital",
+   "tag": "悪い知らせ",
+   "title": "母が入院している",
+   "turns": [
+    {
+     "p": "I can't go drinking tonight. My mother is in the hospital.",
+     "pj": "今夜は飲みに行けないんだ。母が入院していて。",
+     "o": [
+      {
+       "e": "Oh no, I'm sorry to hear that. What happened?",
+       "j": "それは大変だね。何があったの？",
+       "r": "She fell at home and broke her leg.",
+       "rj": "家で転んで脚を折ったんだ。"
+      },
+      {
+       "e": "I'm sorry to hear that. How is she?",
+       "j": "それは大変だね。具合はどう？",
+       "r": "She's OK now. She fell at home and broke her leg.",
+       "rj": "今は落ち着いている。家で転んで脚を折ったんだ。"
+      },
+      {
+       "e": "That's nice. How is she?",
+       "j": "それはいいね。具合はどう？",
+       "x": "悪い知らせに That's nice は合わない。I'm sorry to hear that. と受ける。"
+      }
+     ]
+    },
+    {
+     "p": "She has to stay there for a while.",
+     "pj": "しばらく入院しないといけないんだ。",
+     "o": [
+      {
+       "e": "How long does she have to stay?",
+       "j": "どのくらい入院するの？",
+       "r": "About three weeks, the doctor said.",
+       "rj": "3 週間くらいだって、先生が。"
+      },
+      {
+       "e": "That's tough. Where is the hospital?",
+       "j": "大変だね。病院はどこ？",
+       "r": "In Kichijoji, near her house.",
+       "rj": "吉祥寺。母の家の近く。"
+      },
+      {
+       "e": "How long did she stay?",
+       "j": "どのくらい入院していたの？",
+       "x": "まだ入院中。did she stay は済んだことを聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "I visit her after work.",
+     "pj": "仕事のあとにお見舞いに行っている。",
+     "o": [
+      {
+       "e": "That's kind of you. How often do you go?",
+       "j": "やさしいね。どのくらい行っているの？",
+       "r": "Every other day. My sister goes on the other days.",
+       "rj": "1 日おき。ほかの日は姉が行っている。"
+      },
+      {
+       "e": "How long does it take to get there?",
+       "j": "行くのにどのくらいかかるの？",
+       "r": "About forty minutes by train from my office.",
+       "rj": "会社から電車で 40 分くらい。"
+      },
+      {
+       "e": "Who do you visit?",
+       "j": "誰のお見舞いに行くの？",
+       "x": "お母さんだと言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "She's bored, so she's always asking for books.",
+     "pj": "退屈していて、いつも本を持ってきてと言うんだ。",
+     "o": [
+      {
+       "e": "Ha ha. What kind of books does she like?",
+       "j": "はは。どんな本が好きなの？",
+       "r": "Mysteries. She reads one every two days.",
+       "rj": "ミステリー。2 日に 1 冊読んでいる。"
+      },
+      {
+       "e": "That's a good sign. What else does she need?",
+       "j": "それは良い兆しだね。ほかに何が要るの？",
+       "r": "Just snacks. She says the hospital food is too healthy.",
+       "rj": "お菓子だけ。病院の食事は健康的すぎるって。"
+      },
+      {
+       "e": "What kind of books does she likes?",
+       "j": "（×）",
+       "x": "does のあとは原形。does she like?"
+      }
+     ]
+    }
+   ],
+   "c": "I hope she gets better soon.",
+   "cj": "早く良くなるといいね。"
+  },
+  {
+   "id": "r-gym",
+   "tag": "いまの習慣",
+   "title": "ジムに通い始めた",
+   "turns": [
+    {
+     "p": "I started going to the gym.",
+     "pj": "ジムに通い始めたんだ。",
+     "o": [
+      {
+       "e": "Good for you! When did you start?",
+       "j": "いいね！いつ始めたの？",
+       "r": "About a month ago.",
+       "rj": "1 か月くらい前。"
+      },
+      {
+       "e": "Oh, really? How come?",
+       "j": "そうなの？どうして？",
+       "r": "My doctor told me to lose some weight.",
+       "rj": "医者に少しやせるように言われて。"
+      },
+      {
+       "e": "When are you going to start?",
+       "j": "いつ始めるの？",
+       "x": "もう始めている。are you going to はこれからのこと。"
+      }
+     ]
+    },
+    {
+     "p": "I go before work.",
+     "pj": "仕事の前に行っている。",
+     "o": [
+      {
+       "e": "Wow. What time do you get up?",
+       "j": "すごい。何時に起きるの？",
+       "r": "At 5:30. It was hard at first.",
+       "rj": "5 時半。最初はきつかった。"
+      },
+      {
+       "e": "How often do you go?",
+       "j": "どのくらい行っているの？",
+       "r": "Three times a week. Monday, Wednesday and Friday.",
+       "rj": "週 3 回。月・水・金。"
+      },
+      {
+       "e": "How many do you go?",
+       "j": "（×）",
+       "x": "回数・頻度は How often do you go?。How many は数えるものが後ろに要る（How many times ~）。"
+      }
+     ]
+    },
+    {
+     "p": "I mostly do weight training.",
+     "pj": "だいたい筋トレをしている。",
+     "o": [
+      {
+       "e": "How long do you work out each time?",
+       "j": "1 回どのくらいやるの？",
+       "r": "About an hour. Forty minutes of weights and twenty minutes of running.",
+       "rj": "1 時間くらい。筋トレ 40 分とランニング 20 分。"
+      },
+      {
+       "e": "Who teaches you?",
+       "j": "誰に教わっているの？",
+       "r": "A personal trainer. She's strict, but she's good.",
+       "rj": "パーソナルトレーナー。厳しいけど上手だよ。"
+      },
+      {
+       "e": "What do you mostly do?",
+       "j": "だいたい何をしているの？",
+       "x": "「だいたい筋トレ」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "I've already lost two kilos.",
+     "pj": "もう 2 キロやせたよ。",
+     "o": [
+      {
+       "e": "That's great! How do you feel?",
+       "j": "すごい！体調はどう？",
+       "r": "Much better. I sleep really well now.",
+       "rj": "ずっと良い。今はよく眠れる。"
+      },
+      {
+       "e": "Nice! What's your goal?",
+       "j": "いいね！目標は？",
+       "r": "Five more kilos by the end of the year.",
+       "rj": "年末までにあと 5 キロ。"
+      },
+      {
+       "e": "How many kilos did you lost?",
+       "j": "（×）",
+       "x": "did のあとは原形 lose。それに「2 キロ」と言ったばかり。"
+      }
+     ]
+    }
+   ],
+   "c": "Keep it up!",
+   "cj": "その調子で！"
+  },
+  {
+   "id": "r-apartment",
+   "tag": "場所のこと",
+   "title": "先月引っ越した",
+   "turns": [
+    {
+     "p": "I moved to a new apartment last month.",
+     "pj": "先月、新しいマンションに引っ越したんだ。",
+     "o": [
+      {
+       "e": "Oh, where did you move to?",
+       "j": "へえ、どこに引っ越したの？",
+       "r": "To Odaiba. I can see the bay from my living room.",
+       "rj": "お台場。リビングから海が見える。"
+      },
+      {
+       "e": "Really? What is it like?",
+       "j": "ほんと？どんな所？",
+       "r": "It's spacious and very quiet. It's in Odaiba.",
+       "rj": "広くてとても静か。お台場なんだ。"
+      },
+      {
+       "e": "Where are you moving to?",
+       "j": "どこに引っ越すの？",
+       "x": "もう引っ越した話。are you moving はこれからのこと。"
+      }
+     ]
+    },
+    {
+     "p": "It's on the 29th floor.",
+     "pj": "29 階なんだ。",
+     "o": [
+      {
+       "e": "Wow! What's the view like?",
+       "j": "すごい！眺めはどう？",
+       "r": "Amazing. I can see Rainbow Bridge and Tokyo Tower.",
+       "rj": "最高。レインボーブリッジと東京タワーが見える。"
+      },
+      {
+       "e": "That's high. How come you chose that place?",
+       "j": "高いね。どうしてそこにしたの？",
+       "r": "I don't like cramped places, and the rent was reasonable.",
+       "rj": "狭い所が苦手で、家賃も手ごろだったから。"
+      },
+      {
+       "e": "Which floor do you live on?",
+       "j": "何階に住んでいるの？",
+       "x": "「29 階」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "The only problem is my commute.",
+     "pj": "ただ一つの問題は通勤なんだ。",
+     "o": [
+      {
+       "e": "Oh. How long does it take?",
+       "j": "そうか。どのくらいかかるの？",
+       "r": "About fifty minutes, door to door.",
+       "rj": "家から会社まで 50 分くらい。"
+      },
+      {
+       "e": "How do you get to work?",
+       "j": "どうやって通っているの？",
+       "r": "I take the Yurikamome line and then the subway.",
+       "rj": "ゆりかもめに乗って、それから地下鉄。"
+      },
+      {
+       "e": "How long does it takes?",
+       "j": "（×）",
+       "x": "does のあとは原形。How long does it take?"
+      }
+     ]
+    },
+    {
+     "p": "But the neighborhood is great.",
+     "pj": "でも近所はすごくいいよ。",
+     "o": [
+      {
+       "e": "What do you like about it?",
+       "j": "どこが気に入っているの？",
+       "r": "There are a lot of parks, and it's good for running.",
+       "rj": "公園が多くて、走るのにいいんだ。"
+      },
+      {
+       "e": "What are your neighbors like?",
+       "j": "近所の人たちはどんな感じ？",
+       "r": "I don't know yet. I've only said hello in the elevator.",
+       "rj": "まだ分からない。エレベーターで挨拶しただけ。"
+      },
+      {
+       "e": "How are your neighbors like?",
+       "j": "（×）",
+       "x": "どんな人たちかは What are your neighbors like?。How と like は一緒に使わない。"
+      }
+     ]
+    }
+   ],
+   "c": "Sounds like a nice place. I'd love to see it.",
+   "cj": "いい所みたいだね。見てみたいな。"
+  },
+  {
+   "id": "r-tom",
+   "tag": "これからの予定",
+   "title": "ロンドンの友だちが来る",
+   "turns": [
+    {
+     "p": "My friend Tom is coming to Tokyo from London next week.",
+     "pj": "来週、友だちのトムがロンドンから東京に来るんだ。",
+     "o": [
+      {
+       "e": "That's nice. How long is he staying?",
+       "j": "いいね。どのくらいいるの？",
+       "r": "For ten days.",
+       "rj": "10 日間。"
+      },
+      {
+       "e": "Oh, how do you know him?",
+       "j": "へえ、どういう知り合い？",
+       "r": "We met at a pub in London two years ago.",
+       "rj": "2 年前にロンドンのパブで会ったんだ。"
+      },
+      {
+       "e": "How long did he stay?",
+       "j": "どのくらいいたの？",
+       "x": "来るのはこれから。did he stay は済んだことを聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "It's his first time in Japan.",
+     "pj": "日本は初めてなんだ。",
+     "o": [
+      {
+       "e": "Exciting! Where are you going to take him?",
+       "j": "楽しみだね！どこに連れて行くの？",
+       "r": "Asakusa and Tsukiji first. Then maybe Kamakura.",
+       "rj": "まず浅草と築地。それからたぶん鎌倉。"
+      },
+      {
+       "e": "What does he want to do?",
+       "j": "彼は何をしたいの？",
+       "r": "He wants to eat real sushi and see a sumo match.",
+       "rj": "本物の寿司を食べて、相撲を見たいって。"
+      },
+      {
+       "e": "Has he been to Japan before?",
+       "j": "前に日本に来たことはあるの？",
+       "x": "「初めて」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "He's staying at my place for the first three nights.",
+     "pj": "最初の 3 泊はうちに泊まるんだ。",
+     "o": [
+      {
+       "e": "And after that? Where is he staying?",
+       "j": "そのあとは？どこに泊まるの？",
+       "r": "At a hotel in Shinjuku.",
+       "rj": "新宿のホテル。"
+      },
+      {
+       "e": "What is he like?",
+       "j": "どんな人？",
+       "r": "He's funny and very easygoing. You'd like him.",
+       "rj": "面白くて、すごく気楽な人。きっと気に入るよ。"
+      },
+      {
+       "e": "Where does he staying?",
+       "j": "（×）",
+       "x": "staying（〜する予定・している）には is。Where is he staying?"
+      }
+     ]
+    },
+    {
+     "p": "I'm planning a welcome dinner on Saturday.",
+     "pj": "土曜に歓迎の夕食を考えているんだ。",
+     "o": [
+      {
+       "e": "Sounds fun. Where are you going to have it?",
+       "j": "楽しそう。どこでやるの？",
+       "r": "At a tempura restaurant in Ginza. Do you want to come?",
+       "rj": "銀座の天ぷら屋。一緒に来る？"
+      },
+      {
+       "e": "Nice. Who is coming?",
+       "j": "いいね。誰が来るの？",
+       "r": "A few friends from my English school. Do you want to come?",
+       "rj": "英会話スクールの友だちが何人か。一緒に来る？"
+      },
+      {
+       "e": "Where did you have it?",
+       "j": "どこでやったの？",
+       "x": "土曜はこれから。did は済んだこと。"
+      }
+     ]
+    }
+   ],
+   "c": "I'd love to. Thanks for inviting me!",
+   "cj": "ぜひ。誘ってくれてありがとう！"
+  },
+  {
+   "id": "r-festival",
+   "tag": "済んだこと",
+   "title": "近所の祭りに行った",
+   "turns": [
+    {
+     "p": "I went to my local festival on Saturday.",
+     "pj": "土曜に近所の祭りに行ったんだ。",
+     "o": [
+      {
+       "e": "Sounds fun. How was it?",
+       "j": "楽しそう。どうだった？",
+       "r": "It was great. There were a lot of food stalls.",
+       "rj": "良かったよ。屋台がたくさん出ていた。"
+      },
+      {
+       "e": "Oh, where was it?",
+       "j": "へえ、どこであったの？",
+       "r": "In the park near my apartment. There were a lot of food stalls.",
+       "rj": "うちの近くの公園。屋台がたくさん出ていた。"
+      },
+      {
+       "e": "Where is it going to be?",
+       "j": "どこでやるの？",
+       "x": "もう行ってきた話。is it going to be はこれからのこと。"
+      }
+     ]
+    },
+    {
+     "p": "My son helped at the yakisoba stall.",
+     "pj": "息子が焼きそばの屋台を手伝ったんだ。",
+     "o": [
+      {
+       "e": "Really? How come?",
+       "j": "ほんと？どうして？",
+       "r": "The neighborhood council asked him. They needed young people.",
+       "rj": "町内会に頼まれて。若い人が必要だったんだ。"
+      },
+      {
+       "e": "That's nice. How old is he?",
+       "j": "いいね。何歳なの？",
+       "r": "He's twenty-two. He's good at making connections.",
+       "rj": "22 歳。人とつながるのが上手なんだ。"
+      },
+      {
+       "e": "What stall did he help at?",
+       "j": "どの屋台を手伝ったの？",
+       "x": "「焼きそばの屋台」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "They sold three hundred plates!",
+     "pj": "300 皿も売れたんだよ！",
+     "o": [
+      {
+       "e": "Three hundred? Wow! How much was one plate?",
+       "j": "300？すごい！1 皿いくら？",
+       "r": "Five hundred yen. Cheap, right?",
+       "rj": "500 円。安いでしょ？"
+      },
+      {
+       "e": "That's a lot! How long did it take?",
+       "j": "多いね！どのくらいかかったの？",
+       "r": "About five hours. He was exhausted.",
+       "rj": "5 時間くらい。くたくたになっていた。"
+      },
+      {
+       "e": "How many was one plate?",
+       "j": "（×）",
+       "x": "値段は How much。How much was one plate?"
+      }
+     ]
+    },
+    {
+     "p": "There was a lottery too.",
+     "pj": "くじ引きもあったんだ。",
+     "o": [
+      {
+       "e": "Nice. What were the prizes?",
+       "j": "いいね。景品は何だったの？",
+       "r": "A rice cooker and some travel tickets. I didn't win anything.",
+       "rj": "炊飯器と旅行券。僕は何も当たらなかった。"
+      },
+      {
+       "e": "Oh, what did you win?",
+       "j": "へえ、何が当たったの？",
+       "r": "Nothing! But my neighbor won a rice cooker.",
+       "rj": "何も！でも近所の人が炊飯器を当てた。"
+      },
+      {
+       "e": "What was the prizes?",
+       "j": "（×）",
+       "x": "prizes は複数なので were。What were the prizes?"
+      }
+     ]
+    }
+   ],
+   "c": "Too bad. Maybe next year!",
+   "cj": "残念。来年こそ！"
+  },
+  {
+   "id": "r-car",
+   "tag": "済んだこと",
+   "title": "新しい車を買った",
+   "turns": [
+    {
+     "p": "I finally bought a new car.",
+     "pj": "ついに新しい車を買ったんだ。",
+     "o": [
+      {
+       "e": "Congratulations! What did you buy?",
+       "j": "おめでとう！何を買ったの？",
+       "r": "A Renault Megane. A red one.",
+       "rj": "ルノーのメガーヌ。赤いやつ。"
+      },
+      {
+       "e": "Really? When did you get it?",
+       "j": "ほんと？いつ手に入れたの？",
+       "r": "Last Sunday. It's a red Renault Megane.",
+       "rj": "この前の日曜。赤いルノーのメガーヌだよ。"
+      },
+      {
+       "e": "What are you going to buy?",
+       "j": "何を買うつもり？",
+       "x": "もう買った話。are you going to はこれからのこと。"
+      }
+     ]
+    },
+    {
+     "p": "It's my third French car.",
+     "pj": "フランス車はこれで 3 台目なんだ。",
+     "o": [
+      {
+       "e": "Wow. How come you like French cars?",
+       "j": "へえ。どうしてフランス車が好きなの？",
+       "r": "They're fun to drive, and I like the design.",
+       "rj": "運転が楽しいし、デザインが好きなんだ。"
+      },
+      {
+       "e": "What was your last car?",
+       "j": "前の車は何だったの？",
+       "r": "A Peugeot. I had it for nine years.",
+       "rj": "プジョー。9 年乗った。"
+      },
+      {
+       "e": "How many French cars have you had?",
+       "j": "フランス車は何台乗ったの？",
+       "x": "「3 台目」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "I drove it to Yamanashi yesterday.",
+     "pj": "昨日、山梨まで乗って行ったよ。",
+     "o": [
+      {
+       "e": "Nice. How was the drive?",
+       "j": "いいね。ドライブはどうだった？",
+       "r": "Perfect. The weather was great and there was no traffic.",
+       "rj": "完璧。天気が良くて渋滞もなかった。"
+      },
+      {
+       "e": "How long did it take?",
+       "j": "どのくらいかかった？",
+       "r": "About two hours from my place.",
+       "rj": "うちから 2 時間くらい。"
+      },
+      {
+       "e": "How was the drive like?",
+       "j": "（×）",
+       "x": "like を付けるなら What was the drive like?。How なら like なしで How was the drive?"
+      }
+     ]
+    },
+    {
+     "p": "My wife isn't so happy about it, though.",
+     "pj": "でも妻はあまり喜んでいないんだ。",
+     "o": [
+      {
+       "e": "Uh-oh. How come?",
+       "j": "あらら。どうして？",
+       "r": "She says it was too expensive.",
+       "rj": "高すぎるって。"
+      },
+      {
+       "e": "Oh. What did she say?",
+       "j": "そうか。何て言われたの？",
+       "r": "She said, 'We didn't need a new car.'",
+       "rj": "「新しい車なんて要らなかったのに」って。"
+      },
+      {
+       "e": "That's great. What did she say?",
+       "j": "それはいいね。何て言われたの？",
+       "x": "良くない話に That's great は合わない。Uh-oh. / Oh. と受ける。"
+      }
+     ]
+    }
+   ],
+   "c": "Well, I hope she likes it soon.",
+   "cj": "まあ、そのうち気に入ってくれるといいね。"
+  },
+  {
+   "id": "r-drinking",
+   "tag": "いまの習慣",
+   "title": "お酒を減らしている",
+   "turns": [
+    {
+     "p": "I'm trying to cut down on drinking.",
+     "pj": "お酒を減らそうとしているんだ。",
+     "o": [
+      {
+       "e": "Good for you. How come?",
+       "j": "いいことだね。どうして？",
+       "r": "I drank too much three days in a row last week.",
+       "rj": "先週 3 日続けて飲みすぎたから。"
+      },
+      {
+       "e": "Really? Since when?",
+       "j": "ほんと？いつから？",
+       "r": "Since Monday. So only five days so far.",
+       "rj": "月曜から。だからまだ 5 日だけ。"
+      },
+      {
+       "e": "How come did you start?",
+       "j": "（×）",
+       "x": "How come のあとは普通の文の順。How come you started?（did を入れない）"
+      }
+     ]
+    },
+    {
+     "p": "My health check is next month.",
+     "pj": "来月、健康診断があるんだ。",
+     "o": [
+      {
+       "e": "I see. What are you worried about?",
+       "j": "なるほど。何が心配なの？",
+       "r": "My liver. The numbers were bad last year.",
+       "rj": "肝臓。去年は数値が悪かった。"
+      },
+      {
+       "e": "When is it?",
+       "j": "いつなの？",
+       "r": "On the 15th. I have three weeks.",
+       "rj": "15 日。あと 3 週間ある。"
+      },
+      {
+       "e": "How was the health check?",
+       "j": "健康診断はどうだった？",
+       "x": "健康診断は来月。How was ~? は済んだことの感想を聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "Now I only drink on weekends.",
+     "pj": "今は週末しか飲まない。",
+     "o": [
+      {
+       "e": "That's a good rule. What do you drink on weekdays?",
+       "j": "いい決まりだね。平日は何を飲むの？",
+       "r": "Sparkling water with lemon. It's not bad.",
+       "rj": "レモン入りの炭酸水。悪くないよ。"
+      },
+      {
+       "e": "How much do you drink on weekends?",
+       "j": "週末はどのくらい飲むの？",
+       "r": "Two beers, maximum. Well, I try.",
+       "rj": "ビール 2 杯まで。まあ、努力はしている。"
+      },
+      {
+       "e": "When do you drink?",
+       "j": "いつ飲むの？",
+       "x": "「週末だけ」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "It's hard when I go out with clients.",
+     "pj": "お客さんと出かけるときが大変なんだ。",
+     "o": [
+      {
+       "e": "I know how you feel. What do you do then?",
+       "j": "分かるよ。そういうときはどうするの？",
+       "r": "I order oolong tea and say I'm driving.",
+       "rj": "ウーロン茶を頼んで、車だからと言う。"
+      },
+      {
+       "e": "I bet. How often do you go out with them?",
+       "j": "だろうね。どのくらい一緒に出かけるの？",
+       "r": "Once or twice a week.",
+       "rj": "週に 1、2 回。"
+      },
+      {
+       "e": "I know how do you feel.",
+       "j": "（×）",
+       "x": "文の中に入る how は普通の順。I know how you feel.（do を入れない）"
+      }
+     ]
+    }
+   ],
+   "c": "Good luck. I should do the same.",
+   "cj": "がんばって。僕も見習わないと。"
+  },
+  {
+   "id": "r-tired",
+   "tag": "いまのこと",
+   "title": "今日はすごく疲れている",
+   "turns": [
+    {
+     "p": "I'm so tired today.",
+     "pj": "今日はすごく疲れているんだ。",
+     "o": [
+      {
+       "e": "You look tired. What happened?",
+       "j": "疲れて見えるよ。何があったの？",
+       "r": "I worked until midnight last night.",
+       "rj": "昨日は夜中の 12 時まで働いたんだ。"
+      },
+      {
+       "e": "Oh, how come?",
+       "j": "へえ、どうして？",
+       "r": "I worked until midnight last night.",
+       "rj": "昨日は夜中の 12 時まで働いたんだ。"
+      },
+      {
+       "e": "What did you happen?",
+       "j": "（×）",
+       "x": "「何があった」は What happened?。did も you も入れない。"
+      }
+     ]
+    },
+    {
+     "p": "We have a big presentation tomorrow.",
+     "pj": "明日、大きなプレゼンがあるんだ。",
+     "o": [
+      {
+       "e": "I see. Who is it for?",
+       "j": "なるほど。誰に向けて？",
+       "r": "For a new client. A big food company.",
+       "rj": "新しいお客さん。大きな食品会社。"
+      },
+      {
+       "e": "What is it about?",
+       "j": "何についてのプレゼン？",
+       "r": "A new website for a food company's online shop.",
+       "rj": "食品会社の通販サイトの新しいウェブサイト。"
+      },
+      {
+       "e": "When is the presentation?",
+       "j": "プレゼンはいつ？",
+       "x": "「明日」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "I still need to finish the slides.",
+     "pj": "まだスライドを仕上げないといけない。",
+     "o": [
+      {
+       "e": "How many slides do you have to make?",
+       "j": "スライドは何枚作るの？",
+       "r": "About thirty. I've finished twenty.",
+       "rj": "30 枚くらい。20 枚は終わった。"
+      },
+      {
+       "e": "That's tough. Who is helping you?",
+       "j": "大変だね。誰が手伝っているの？",
+       "r": "Nobody. My coworker has the flu.",
+       "rj": "誰も。同僚がインフルエンザなんだ。"
+      },
+      {
+       "e": "How much slides do you have to make?",
+       "j": "（×）",
+       "x": "数えられるものは How many。How many slides ~?"
+      }
+     ]
+    },
+    {
+     "p": "If we get this job, it'll be our biggest project this year.",
+     "pj": "この仕事が取れたら、今年いちばん大きい案件になるんだ。",
+     "o": [
+      {
+       "e": "Wow. How do you feel about it?",
+       "j": "すごい。どんな気持ち？",
+       "r": "Nervous, but excited.",
+       "rj": "緊張しているけど、わくわくしている。"
+      },
+      {
+       "e": "That's big. What time does it start tomorrow?",
+       "j": "大きいね。明日は何時に始まるの？",
+       "r": "At ten. I'm going to bed early tonight.",
+       "rj": "10 時。今夜は早く寝るよ。"
+      },
+      {
+       "e": "How was the presentation?",
+       "j": "プレゼンはどうだった？",
+       "x": "プレゼンは明日。How was ~? は済んだことの感想を聞く形。"
+      }
+     ]
+    }
+   ],
+   "c": "Good luck tomorrow. You'll do great.",
+   "cj": "明日がんばって。きっとうまくいくよ。"
+  },
+  {
+   "id": "r-restaurant",
+   "tag": "おすすめ",
+   "title": "いい店を見つけた",
+   "turns": [
+    {
+     "p": "I found a great restaurant last week.",
+     "pj": "先週、すごくいい店を見つけたんだ。",
+     "o": [
+      {
+       "e": "Oh, what kind of restaurant is it?",
+       "j": "へえ、どんな店？",
+       "r": "It's a small Italian place.",
+       "rj": "小さいイタリアンの店。"
+      },
+      {
+       "e": "Nice. Where is it?",
+       "j": "いいね。どこにあるの？",
+       "r": "In Shimbashi, near the station. It's a small Italian place.",
+       "rj": "新橋の駅の近く。小さいイタリアンの店だよ。"
+      },
+      {
+       "e": "What kind of restaurant it is?",
+       "j": "（×）",
+       "x": "質問は is it の順。What kind of restaurant is it?"
+      }
+     ]
+    },
+    {
+     "p": "The pasta was amazing.",
+     "pj": "パスタが最高だった。",
+     "o": [
+      {
+       "e": "What did you have?",
+       "j": "何を食べたの？",
+       "r": "Pasta with sea urchin. I highly recommend it.",
+       "rj": "ウニのパスタ。すごくおすすめ。"
+      },
+      {
+       "e": "Sounds good. How did you find it?",
+       "j": "おいしそう。どうやって見つけたの？",
+       "r": "My coworker took me there.",
+       "rj": "同僚が連れて行ってくれた。"
+      },
+      {
+       "e": "What do you had?",
+       "j": "（×）",
+       "x": "済んだことは did ＋ 原形。What did you have?"
+      }
+     ]
+    },
+    {
+     "p": "It's not so expensive, either.",
+     "pj": "それにそんなに高くないんだ。",
+     "o": [
+      {
+       "e": "Really? How much was it?",
+       "j": "ほんと？いくらだった？",
+       "r": "About four thousand yen each, with wine.",
+       "rj": "ワイン込みで 1 人 4000 円くらい。"
+      },
+      {
+       "e": "That's good. What is it like inside?",
+       "j": "いいね。中はどんな感じ？",
+       "r": "It's cozy. There are only ten seats.",
+       "rj": "こぢんまりしている。10 席しかない。"
+      },
+      {
+       "e": "How much it was?",
+       "j": "（×）",
+       "x": "質問は was it の順。How much was it?"
+      }
+     ]
+    },
+    {
+     "p": "But it's hard to get a table.",
+     "pj": "でも席を取るのが大変なんだ。",
+     "o": [
+      {
+       "e": "I see. How long do you have to wait?",
+       "j": "なるほど。どのくらい待つの？",
+       "r": "About an hour on weekends. You should book.",
+       "rj": "週末は 1 時間くらい。予約した方がいい。"
+      },
+      {
+       "e": "Oh. When is it less crowded?",
+       "j": "そうか。空いているのはいつ？",
+       "r": "On weekdays, before seven.",
+       "rj": "平日の 7 時前。"
+      },
+      {
+       "e": "How come is it easy to get a table?",
+       "j": "どうして席が取りやすいの？",
+       "x": "「取るのが大変」と言ったばかり。話が逆になっている。"
+      }
+     ]
+    }
+   ],
+   "c": "I'll try it. Thanks for the tip!",
+   "cj": "行ってみる。教えてくれてありがとう！"
+  },
+  {
+   "id": "r-jtest",
+   "tag": "先生のこと",
+   "title": "先生が日本語の試験を受ける",
+   "turns": [
+    {
+     "p": "I have a big Japanese test next month.",
+     "pj": "来月、大きな日本語の試験があるんだ。",
+     "o": [
+      {
+       "e": "Really? What kind of test is it?",
+       "j": "ほんと？どんな試験？",
+       "r": "It's the JLPT. Reading and listening.",
+       "rj": "日本語能力試験。読解と聞き取り。"
+      },
+      {
+       "e": "Oh, how long have you been studying Japanese?",
+       "j": "へえ、日本語はどのくらい勉強しているの？",
+       "r": "For about five years.",
+       "rj": "5 年くらい。"
+      },
+      {
+       "e": "How long are you studying Japanese?",
+       "j": "（×）",
+       "x": "今までずっと続いていることは have been。How long have you been studying Japanese?"
+      }
+     ]
+    },
+    {
+     "p": "The grammar is really difficult.",
+     "pj": "文法が本当に難しい。",
+     "o": [
+      {
+       "e": "I know how you feel. What is the hardest part?",
+       "j": "分かるよ。いちばん難しいのはどこ？",
+       "r": "The particles. 'Wa' and 'ga' still confuse me.",
+       "rj": "助詞。「は」と「が」がいまだに分からない。"
+      },
+      {
+       "e": "How do you study?",
+       "j": "どうやって勉強しているの？",
+       "r": "I use an app on the train every morning.",
+       "rj": "毎朝、電車でアプリを使っている。"
+      },
+      {
+       "e": "What is the most hard part?",
+       "j": "（×）",
+       "x": "hard の「いちばん」は hardest。What is the hardest part?"
+      }
+     ]
+    },
+    {
+     "p": "I study for an hour every day.",
+     "pj": "毎日 1 時間勉強している。",
+     "o": [
+      {
+       "e": "That's impressive. When do you study?",
+       "j": "えらいね。いつ勉強するの？",
+       "r": "Early in the morning, before work.",
+       "rj": "朝早く、仕事の前に。"
+      },
+      {
+       "e": "Wow. Who do you practice speaking with?",
+       "j": "すごい。話す練習は誰とするの？",
+       "r": "With my wife. She's Japanese, but she's a strict teacher.",
+       "rj": "妻と。日本人なんだけど、厳しい先生だよ。"
+      },
+      {
+       "e": "How long do you study every day?",
+       "j": "毎日どのくらい勉強するの？",
+       "x": "「1 時間」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "If I pass, I'm going to celebrate.",
+     "pj": "受かったらお祝いするつもり。",
+     "o": [
+      {
+       "e": "Nice. How are you going to celebrate?",
+       "j": "いいね。どうやってお祝いするの？",
+       "r": "With all-you-can-eat sushi!",
+       "rj": "寿司の食べ放題で！"
+      },
+      {
+       "e": "What happens if you don't pass?",
+       "j": "受からなかったらどうなるの？",
+       "r": "I'll take it again in July. No problem.",
+       "rj": "7 月にまた受ける。問題なし。"
+      },
+      {
+       "e": "How did you celebrate?",
+       "j": "どうやってお祝いしたの？",
+       "x": "お祝いはこれから。did は済んだこと。"
+      }
+     ]
+    }
+   ],
+   "c": "Good luck on the test!",
+   "cj": "試験がんばって！"
+  },
+  {
+   "id": "r-sonjob",
+   "tag": "良い知らせ",
+   "title": "息子の就職が決まった",
+   "turns": [
+    {
+     "p": "I have good news. My son got a job!",
+     "pj": "良い知らせがあるんだ。息子の就職が決まった！",
+     "o": [
+      {
+       "e": "That's great! Where is he going to work?",
+       "j": "それは良かった！どこで働くの？",
+       "r": "At a music company in Shibuya.",
+       "rj": "渋谷の音楽の会社。"
+      },
+      {
+       "e": "Congratulations! What kind of job is it?",
+       "j": "おめでとう！どんな仕事？",
+       "r": "He'll plan events for a music company.",
+       "rj": "音楽の会社でイベントを企画する仕事。"
+      },
+      {
+       "e": "I'm sorry to hear that.",
+       "j": "それは気の毒に。",
+       "x": "良い知らせ。That's great! / Congratulations! と受ける。"
+      }
+     ]
+    },
+    {
+     "p": "He starts in April.",
+     "pj": "4 月から働くんだ。",
+     "o": [
+      {
+       "e": "How does he feel about it?",
+       "j": "本人はどんな気持ち？",
+       "r": "He's excited, but a little nervous.",
+       "rj": "わくわくしているけど、少し緊張している。"
+      },
+      {
+       "e": "How did he find the job?",
+       "j": "どうやってその仕事を見つけたの？",
+       "r": "A friend introduced him. He's good at networking.",
+       "rj": "友だちの紹介。人脈づくりが上手なんだ。"
+      },
+      {
+       "e": "When does he start?",
+       "j": "いつから働くの？",
+       "x": "「4 月から」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "He's going to move out, too.",
+     "pj": "家も出るんだ。",
+     "o": [
+      {
+       "e": "Oh, where is he moving to?",
+       "j": "へえ、どこに引っ越すの？",
+       "r": "Somewhere near Shibuya. He's still looking.",
+       "rj": "渋谷の近くのどこか。まだ探している。"
+      },
+      {
+       "e": "Really? How do you feel about that?",
+       "j": "ほんと？それについてどう思う？",
+       "r": "A little sad, honestly. But it's time.",
+       "rj": "正直、少しさみしい。でもそういう時期だ。"
+      },
+      {
+       "e": "Where did he move?",
+       "j": "どこに引っ越したの？",
+       "x": "引っ越すのはこれから。did は済んだこと。"
+      }
+     ]
+    },
+    {
+     "p": "We're having a party for him on Sunday.",
+     "pj": "日曜にお祝いの会をするんだ。",
+     "o": [
+      {
+       "e": "Sounds fun. Who is coming?",
+       "j": "楽しそう。誰が来るの？",
+       "r": "Just family. My mother-in-law is coming too.",
+       "rj": "家族だけ。義理の母も来る。"
+      },
+      {
+       "e": "Nice. What are you going to cook?",
+       "j": "いいね。何を作るの？",
+       "r": "His favorite. Gapao rice.",
+       "rj": "息子の好物。ガパオライス。"
+      },
+      {
+       "e": "Who did come?",
+       "j": "（×）",
+       "x": "日曜はこれから。Who is coming?（済んだことでも Who came? で、did は入れない）"
+      }
+     ]
+    }
+   ],
+   "c": "Please tell him congratulations from me.",
+   "cj": "おめでとうと伝えておいてね。"
+  },
+  {
+   "id": "r-diving",
+   "tag": "経験",
+   "title": "沖縄でダイビングをした",
+   "turns": [
+    {
+     "p": "I went diving in Okinawa last month.",
+     "pj": "先月、沖縄でダイビングをしたんだ。",
+     "o": [
+      {
+       "e": "Wow! How was it?",
+       "j": "すごい！どうだった？",
+       "r": "Amazing. The water was so clear.",
+       "rj": "最高。水がすごく澄んでいた。"
+      },
+      {
+       "e": "Nice. Which island did you go to?",
+       "j": "いいね。どの島に行ったの？",
+       "r": "Ishigaki. I stayed for four nights.",
+       "rj": "石垣島。4 泊した。"
+      },
+      {
+       "e": "Have you ever been diving?",
+       "j": "ダイビングをしたことはある？",
+       "x": "「ダイビングをした」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "I saw manta rays!",
+     "pj": "マンタを見たよ！",
+     "o": [
+      {
+       "e": "No way! How many did you see?",
+       "j": "うそ！何匹見たの？",
+       "r": "Three. They swam right over my head.",
+       "rj": "3 匹。頭のすぐ上を泳いでいった。"
+      },
+      {
+       "e": "Lucky you! How big were they?",
+       "j": "いいなあ！どのくらいの大きさ？",
+       "r": "About four meters wide. Huge.",
+       "rj": "幅 4 メートルくらい。巨大だよ。"
+      },
+      {
+       "e": "How much did you see?",
+       "j": "（×）",
+       "x": "数は How many。How many did you see?"
+      }
+     ]
+    },
+    {
+     "p": "I've been diving for twenty years.",
+     "pj": "ダイビングは 20 年やっているんだ。",
+     "o": [
+      {
+       "e": "Twenty years! Where did you get your license?",
+       "j": "20 年！どこで免許を取ったの？",
+       "r": "In Saipan, in my thirties. I went there on a solo trip.",
+       "rj": "サイパンで、30 代のとき。一人旅で行ったんだ。"
+      },
+      {
+       "e": "Wow. Where is the best place you've been?",
+       "j": "すごい。今まで行った中でいちばんの場所は？",
+       "r": "The Maldives. I've been there many times.",
+       "rj": "モルディブ。何度も行っている。"
+      },
+      {
+       "e": "How long have you been diving?",
+       "j": "ダイビングはどのくらいやっているの？",
+       "x": "「20 年」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "You should try it sometime.",
+     "pj": "いつかやってみるといいよ。",
+     "o": [
+      {
+       "e": "Maybe. How long does it take to get a license?",
+       "j": "そうだね。免許を取るのにどのくらいかかるの？",
+       "r": "Only three or four days.",
+       "rj": "3、4 日だけ。"
+      },
+      {
+       "e": "I'm a bit scared. What is it like under the water?",
+       "j": "ちょっと怖いな。水の中ってどんな感じ？",
+       "r": "It's quiet and peaceful. You forget everything.",
+       "rj": "静かで穏やか。全部忘れられる。"
+      },
+      {
+       "e": "How is it like under the water?",
+       "j": "（×）",
+       "x": "どんな感じかは What is it like?。How と like は一緒に使わない。"
+      }
+     ]
+    }
+   ],
+   "c": "OK, I'll think about it.",
+   "cj": "分かった、考えてみる。"
+  },
+  {
+   "id": "r-f1",
+   "tag": "これからの予定",
+   "title": "F1 のチケットが取れた",
+   "turns": [
+    {
+     "p": "Guess what? I got tickets for the F1 race at Suzuka!",
+     "pj": "聞いて。鈴鹿の F1 のチケットが取れたんだ！",
+     "o": [
+      {
+       "e": "No way! When is it?",
+       "j": "うそ！いつなの？",
+       "r": "In April. I can't wait.",
+       "rj": "4 月。待ちきれないよ。"
+      },
+      {
+       "e": "Lucky you! How did you get them?",
+       "j": "いいなあ！どうやって取ったの？",
+       "r": "I won a lottery on the official website.",
+       "rj": "公式サイトの抽選に当たったんだ。"
+      },
+      {
+       "e": "How was the race?",
+       "j": "レースはどうだった？",
+       "x": "レースはこれから。How was ~? は済んだことの感想を聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "I'm going with my son.",
+     "pj": "息子と行くんだ。",
+     "o": [
+      {
+       "e": "Nice. How are you getting there?",
+       "j": "いいね。どうやって行くの？",
+       "r": "By Shinkansen to Nagoya, and then a local train.",
+       "rj": "名古屋まで新幹線、それから在来線。"
+      },
+      {
+       "e": "How long are you staying?",
+       "j": "どのくらいいるの？",
+       "r": "Three days. We'll watch the practice and the race.",
+       "rj": "3 日間。練習走行と決勝を見る。"
+      },
+      {
+       "e": "Who are you going with?",
+       "j": "誰と行くの？",
+       "x": "「息子と」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    },
+    {
+     "p": "The tickets were expensive, though.",
+     "pj": "でもチケットは高かったよ。",
+     "o": [
+      {
+       "e": "I bet. How much were they?",
+       "j": "だろうね。いくらだったの？",
+       "r": "About fifty thousand yen each.",
+       "rj": "1 枚 5 万円くらい。"
+      },
+      {
+       "e": "Really? Where are your seats?",
+       "j": "ほんと？席はどこ？",
+       "r": "Near the first corner. It's a great spot.",
+       "rj": "1 コーナーの近く。最高の場所だよ。"
+      },
+      {
+       "e": "How much was they?",
+       "j": "（×）",
+       "x": "tickets は複数なので were。How much were they?"
+      }
+     ]
+    },
+    {
+     "p": "It's my first time watching a race live.",
+     "pj": "レースを生で見るのは初めてなんだ。",
+     "o": [
+      {
+       "e": "Exciting! Who are you going to cheer for?",
+       "j": "楽しみだね！誰を応援するの？",
+       "r": "Lewis Hamilton. I've been a fan for years.",
+       "rj": "ルイス・ハミルトン。何年もファンなんだ。"
+      },
+      {
+       "e": "How did you get into F1?",
+       "j": "どうして F1 にはまったの？",
+       "r": "My son got me into it. We watch every race on TV.",
+       "rj": "息子の影響。毎戦テレビで見ている。"
+      },
+      {
+       "e": "How many times have you been to a race?",
+       "j": "レースには何回行ったことがあるの？",
+       "x": "「初めて」と言ったばかり。相手が言ったことをもう一度聞いている。"
+      }
+     ]
+    }
+   ],
+   "c": "Have fun! Tell me about it later.",
+   "cj": "楽しんで！あとで話を聞かせてね。"
+  },
+  {
+   "id": "r-newyear",
+   "tag": "これからの予定",
+   "title": "正月は実家に帰る",
+   "turns": [
+    {
+     "p": "I'm going back to my hometown for New Year.",
+     "pj": "正月は実家に帰るんだ。",
+     "o": [
+      {
+       "e": "Nice. Where is your hometown?",
+       "j": "いいね。実家はどこ？",
+       "r": "In Yamanashi, near Mt. Fuji.",
+       "rj": "山梨。富士山の近く。"
+      },
+      {
+       "e": "Oh, how long are you staying?",
+       "j": "へえ、どのくらいいるの？",
+       "r": "For five days, until January 3rd.",
+       "rj": "5 日間。1 月 3 日まで。"
+      },
+      {
+       "e": "How was your New Year?",
+       "j": "正月はどうだった？",
+       "x": "正月はこれから。How was ~? は済んだことの感想を聞く形。"
+      }
+     ]
+    },
+    {
+     "p": "My whole family gets together every year.",
+     "pj": "毎年、家族全員が集まるんだ。",
+     "o": [
+      {
+       "e": "That sounds nice. How many people come?",
+       "j": "いいね。何人来るの？",
+       "r": "About fifteen. It's really noisy.",
+       "rj": "15 人くらい。すごくにぎやかだよ。"
+      },
+      {
+       "e": "What do you usually do?",
+       "j": "いつも何をするの？",
+       "r": "We eat, drink and watch TV. Nothing special.",
+       "rj": "食べて、飲んで、テレビを見る。特別なことは何も。"
+      },
+      {
+       "e": "How much people come?",
+       "j": "（×）",
+       "x": "人は数えられるので How many。How many people come?"
+      }
+     ]
+    },
+    {
+     "p": "My mother cooks a lot of food.",
+     "pj": "母が料理をたくさん作るんだ。",
+     "o": [
+      {
+       "e": "Lucky you. What does she make?",
+       "j": "いいなあ。何を作るの？",
+       "r": "Traditional New Year dishes, and her special hoto noodles.",
+       "rj": "おせちと、母の特製ほうとう。"
+      },
+      {
+       "e": "What's her cooking like?",
+       "j": "お母さんの料理はどんな感じ？",
+       "r": "Simple, but delicious. I always eat too much.",
+       "rj": "素朴だけどおいしい。いつも食べすぎる。"
+      },
+      {
+       "e": "What does she makes?",
+       "j": "（×）",
+       "x": "does のあとは原形。What does she make?"
+      }
+     ]
+    },
+    {
+     "p": "The only problem is the traffic.",
+     "pj": "ただ一つの問題は渋滞なんだ。",
+     "o": [
+      {
+       "e": "Oh. How long does it usually take?",
+       "j": "そうか。ふだんはどのくらいかかるの？",
+       "r": "Two hours usually, but five hours at New Year.",
+       "rj": "ふだんは 2 時間、でも正月は 5 時間。"
+      },
+      {
+       "e": "I know how you feel. How come you don't take the train?",
+       "j": "分かるよ。どうして電車にしないの？",
+       "r": "We have too much luggage. And the dog.",
+       "rj": "荷物が多すぎるんだ。それに犬もいる。"
+      },
+      {
+       "e": "How come don't you take the train?",
+       "j": "（×）",
+       "x": "How come のあとは普通の文の順。How come you don't take the train?"
+      }
+     ]
+    }
+   ],
+   "c": "Well, have a great New Year!",
+   "cj": "じゃあ、良いお年を！"
+  }
+ ]
+}

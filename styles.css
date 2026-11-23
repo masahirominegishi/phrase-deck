@@ -609,3 +609,39 @@ body.in-modal #modeSwitch { display: none; }
 .vex1-ja { font-size: 13px; color: var(--muted); margin-top: 4px; }
 .vperf { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
 .vcard .vline { margin-top: 14px; }
+
+/* ---------- 聞き返しで会話を続ける ---------- */
+.reply-box .big-btn.secondary { margin-top: 10px; }
+.reply-box #replyHint2 { display: block; margin-top: 6px; color: var(--good); }
+.reply-box #replyTodayBtn.secondary { background: var(--bg); border: 1px solid var(--panel2); }
+.rcard .mtop { align-items: center; }
+.r-ja-btn { background: var(--panel); color: var(--muted); border: none; border-radius: 999px; padding: 6px 14px; font-size: 12px; }
+.r-ja-btn.on { color: var(--text); outline: 2px solid var(--accent); outline-offset: -2px; }
+.r-log { display: flex; flex-direction: column; gap: 8px; }
+.rb { max-width: 86%; border-radius: 16px; padding: 10px 14px; font-size: 16px; line-height: 1.45; scroll-margin-top: 70px; }
+.rb.them { align-self: flex-start; background: var(--panel); border-bottom-left-radius: 4px; }
+.rb.me { align-self: flex-end; background: #0c4a6e; border-bottom-right-radius: 4px; }
+.rb.cur { font-size: 20px; font-weight: 700; }
+.rb.them.cur { outline: 2px solid var(--accent); outline-offset: -2px; }
+.rb-ja { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 400; }
+.rcard.hide-ja .rb-ja, .rcard.hide-ja .r-opt-ja { display: none; }
+.r-turn { margin-top: 18px; }
+.r-ask { text-align: center; color: var(--accent); font-size: 14px; margin: 0 0 12px; }
+.r-opts { display: flex; flex-direction: column; gap: 10px; }
+.r-opts button {
+  display: block; width: 100%; text-align: left; background: var(--panel); color: var(--text);
+  border: 1px solid var(--panel2); border-radius: 14px; padding: 14px; font-size: 17px; line-height: 1.4;
+}
+.r-opts button span { display: block; }
+.r-opt-en { font-weight: 600; }
+.r-opt-ja { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.r-opt-prev { font-size: 11px; color: var(--hard); margin-top: 4px; }
+.r-opts button.ng { border-color: var(--again); opacity: 1; }
+.r-opts button.ng .r-opt-en { color: var(--again); text-decoration: line-through; }
+.r-opt-why { font-size: 13px; line-height: 1.6; color: var(--text); margin-top: 6px; }
+.r-close-h { align-self: flex-end; font-size: 11px; color: var(--muted); margin-top: 8px; }
+.r-done { margin-top: 20px; }
+.r-done-line { font-size: 15px; font-weight: 700; color: var(--good); }
+.r-done-sub { font-size: 12px; color: var(--muted); margin: 4px 0 6px; }
+.r-done .big-btn { margin-top: 10px; }
+.r-list-tag { color: var(--muted); font-size: 12px; }

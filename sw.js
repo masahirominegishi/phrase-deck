@@ -2,7 +2,7 @@
    反映が遅れないよう、ネットワーク優先 + HTTPキャッシュ無視:
    - オンライン時は毎回サーバの最新を取得 (GitHub Pages の 10分キャッシュも回避)
    - オフライン時のみ手元のキャッシュから返す (アプリは動き続ける) */
-const CACHE = 'phrasedeck-v29';
+const CACHE = 'phrasedeck-v30';
 const SHELL = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const SHELL = [
   './data/phrases.json',
   './data/modals.json',
   './data/verbs.json',
+  './data/replies.json',
 ];
 
 self.addEventListener('install', e => {

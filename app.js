@@ -547,7 +547,7 @@ function renderMuteBtn() {
 function showView(id) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.body.classList.toggle('in-modal', id === 'modalView' || id === 'modalMapView' || id === 'tbView' || id === 'verbView');
+  document.body.classList.toggle('in-modal', id === 'modalView' || id === 'modalMapView' || id === 'tbView' || id === 'verbView' || id === 'replyView');
 }
 function refreshTop() {
   // 徹底モード中は「このセッションの残り枚数」を出す（言えなければ増える）。
@@ -972,6 +972,7 @@ function renderHome() {
   renderReviewHome({ graduated: graduatedIds().length });
   renderModalHome();
   renderVerbHome();
+  renderReplyHome();
 
   const themes = {};
   for (const it of ITEMS) {
@@ -1578,7 +1579,7 @@ function startReview() {
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; vcur = null; tbRun = null; tbChain = []; showView('homeView'); renderHome(); }
+function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; vcur = null; tbRun = null; tbChain = []; rRun = null; rChain = []; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1610,6 +1611,7 @@ function buildBackup() {
     drill: drill,
     modal: mstat,
     verb: vstat,
+    reply: rstat,
     textbook: TB,
     tbstat: tbstat,
     settings: {
@@ -1652,6 +1654,7 @@ function applyBackup(obj) {
   if (obj.tbstat && typeof obj.tbstat === 'object') { tbstat = normTbStat(obj.tbstat); saveTbStat(); }
   if (obj.modal && typeof obj.modal === 'object') { mstat = obj.modal; if (!mstat.items) mstat.items = {}; if (!Array.isArray(mstat.sessions)) mstat.sessions = []; saveModalStat(); }
   if (obj.verb && typeof obj.verb === 'object') { vstat = obj.verb; if (!vstat.items) vstat.items = {}; if (!Array.isArray(vstat.sessions)) vstat.sessions = []; if (!vstat.days) vstat.days = {}; saveVerbStat(); }
+  if (obj.reply && typeof obj.reply === 'object') { rstat = obj.reply; if (!rstat.talks) rstat.talks = {}; if (!rstat.day) rstat.day = {}; saveReplyStat(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1965,6 +1968,263 @@ function renderVerbHome() {
       <div class="bar"><span style="width:${all ? Math.round(done / all * 100) : 0}%"></span></div>
     </button>`; }).join('');
   document.querySelectorAll('#verbSteps .vstep').forEach(b => { b.onclick = () => openVerbStep(Number(b.dataset.no)); });
+}
+
+/* ---------- 聞き返しで会話を続ける（相手の一言 → 返しを選ぶ → 相手が答える → …） ----------
+   Who / Where / What / How long / How come / What is ~ like と、Really? / Sorry to hear that の受け。
+   1 話 = 4 往復。3 つのうち 2 つは会話が続く（選んだ方で相手の答えが変わる）・1 つは噛み合わない（理由を出して選び直し）。
+   選択肢は伏せて出す（先に口に出す）。データは data/replies.json。進捗は端末内 (REPLY_KEY)。SRS や一覧には混ぜない。 */
+const REPLY_URL = 'data/replies.json';
+const REPLY_KEY = 'phrasedeck.reply.v1';
+const REPLY_DAILY = 3;                         // 1 日の話の数
+const REPLY_JA_KEY = 'phrasedeck.reply.showja'; // '1' なら日本語を出す。初期は出さない
+
+let RTALKS = [];
+let rstat = { talks: {}, day: {} };   // talks[id] = {runs, miss, last, picked: {turn: [e…]}}・day = {date, done: []}
+let rRun = null;                      // { id, t, log: [{k}], miss, open, order, tried: [], shownAt, turnMiss }
+let rChain = [];                      // 「今日の 3 話」の残り
+
+function replyShowJa() { try { return localStorage.getItem(REPLY_JA_KEY) === '1'; } catch { return false; } }
+function loadReplyStat() {
+  try { rstat = Object.assign({ talks: {}, day: {} }, JSON.parse(localStorage.getItem(REPLY_KEY)) || {}); }
+  catch { rstat = { talks: {}, day: {} }; }
+  if (!rstat.talks || typeof rstat.talks !== 'object') rstat.talks = {};
+  if (!rstat.day || typeof rstat.day !== 'object') rstat.day = {};
+}
+function saveReplyStat() { localStorage.setItem(REPLY_KEY, JSON.stringify(rstat)); }
+async function loadReplies() {
+  let j = { talks: [] };
+  try {
+    const res = await fetch(REPLY_URL + '?_=' + Date.now());
+    j = await res.json();
+  } catch { /* オフラインで取れなければ箱を出さない */ }
+  RTALKS = (j.talks || []).filter(t => Array.isArray(t.turns) && t.turns.length);
+}
+function rTalk(id) { return RTALKS.find(t => t.id === id) || null; }
+function rTalkStat(id) { return rstat.talks[id] || { runs: 0, miss: 0, last: '', picked: {} }; }
+function replyDoneToday() { return rstat.day.date === todayISO() && Array.isArray(rstat.day.done) ? rstat.day.done : []; }
+// 出す順: まだやっていない話を上から → 一巡したら、前回つまずいた話・古い話から
+function replyOrder() {
+  const fresh = RTALKS.filter(t => !rTalkStat(t.id).runs);
+  const seen = RTALKS.filter(t => rTalkStat(t.id).runs).sort((a, b) => {
+    const x = rTalkStat(a.id), y = rTalkStat(b.id);
+    return (x.last || '').localeCompare(y.last || '') || (y.miss - x.miss);
+  });
+  return fresh.concat(seen);
+}
+
+function startReplyToday() {
+  const done = replyDoneToday();
+  const left = Math.max(0, REPLY_DAILY - done.length) || REPLY_DAILY;   // 済んでいたら、もう 3 話
+  let pool = replyOrder().filter(t => !done.includes(t.id));
+  if (!pool.length) pool = replyOrder();
+  rChain = pool.slice(0, left).map(t => t.id);
+  const id = rChain.shift();
+  if (id) startReplyTalk(id);
+}
+function startReplyTalk(id) {
+  const t = rTalk(id);
+  if (!t) { goHome(); return; }
+  rRun = { id, t: 0, log: [], miss: 0, done: false };
+  showView('replyView');
+  replyOpenTurn();
+  speak(t.turns[0].p);
+}
+function replyOpenTurn() {
+  const t = rTalk(rRun.id);
+  rRun.open = false;
+  rRun.tried = [];
+  rRun.order = shuffled(t.turns[rRun.t].o.map((_, k) => k));
+  rRun.shownAt = Date.now();
+  renderReply();
+}
+
+function rBubble(who, en, ja, extra) {
+  return `<div class="rb ${who}${extra || ''}" data-say="${esc(en)}">
+    <div class="rb-en">${esc(en)}</div>
+    ${ja && ja !== '（×）' ? `<div class="rb-ja">${esc(ja)}</div>` : ''}
+  </div>`;
+}
+// ここまでの会話（相手の一言 → 自分の返し → 相手の答え）
+function replyLogHtml(t, upto) {
+  let h = '';
+  for (let i = 0; i < upto; i++) {
+    const tn = t.turns[i];
+    const o = tn.o[rRun.log[i].k];
+    h += rBubble('them', tn.p, tn.pj) + rBubble('me', o.e, o.j) + rBubble('them', o.r, o.rj);
+  }
+  return h;
+}
+function renderReply() {
+  const t = rTalk(rRun.id);
+  const tn = t.turns[rRun.t];
+  const st = rTalkStat(t.id);
+  const before = (st.picked && st.picked[rRun.t]) || [];
+  const area = document.getElementById('replyArea');
+  document.getElementById('dueCount').textContent = `${rRun.t + 1}/${t.turns.length}`;
+  let opts;
+  if (!rRun.open) {
+    opts = `<p class="r-ask">声に出して返してみる。それから開く。</p>
+      <button class="big-btn" id="rOpenBtn">返しの選択肢を開く</button>`;
+  } else {
+    opts = `<div class="r-opts" id="rOpts">` + rRun.order.map(k => {
+      const o = tn.o[k];
+      const ng = rRun.tried.includes(k);
+      return `<button data-k="${k}" class="${ng ? 'ng' : ''}" ${ng ? 'disabled' : ''}>
+          <span class="r-opt-en">${esc(o.e)}</span>
+          ${o.j && o.j !== '（×）' ? `<span class="r-opt-ja">${esc(o.j)}</span>` : ''}
+          ${!ng && before.includes(o.e) ? '<span class="r-opt-prev">前に選んだ</span>' : ''}
+          ${ng ? `<span class="r-opt-why">${esc(o.x)}</span>` : ''}
+        </button>`; }).join('') + `</div>`;
+  }
+  area.innerHTML = `
+    <div class="mcard rcard${replyShowJa() ? '' : ' hide-ja'}">
+      <div class="mtop"><span>${esc(t.tag || '')}</span>
+        <button class="r-ja-btn${replyShowJa() ? ' on' : ''}" id="rJaBtn">日本語</button></div>
+      <div class="r-log" id="rLog">
+        ${replyLogHtml(t, rRun.t)}
+        ${rBubble('them', tn.p, tn.pj, ' cur')}
+      </div>
+      <div class="r-turn">${opts}</div>
+      <button class="link-btn mquit" id="rQuitBtn">やめる</button>
+    </div>`;
+  wireReplyCommon(area);
+  const ob = document.getElementById('rOpenBtn');
+  if (ob) ob.onclick = () => { rRun.open = true; renderReply(); };
+  area.querySelectorAll('#rOpts button').forEach(b => { b.onclick = () => answerReply(Number(b.dataset.k)); });
+  document.getElementById('rQuitBtn').onclick = goHome;
+  const last = area.querySelector('.rb.cur');
+  if (last && rRun.t > 0) last.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  else window.scrollTo(0, 0);
+}
+function wireReplyCommon(area) {
+  area.querySelectorAll('.rb').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+  const jb = document.getElementById('rJaBtn');
+  if (jb) jb.onclick = () => {
+    try { localStorage.setItem(REPLY_JA_KEY, replyShowJa() ? '0' : '1'); } catch { /* 保存できなくても切り替えは効かせる */ }
+    const card = area.querySelector('.rcard');
+    card.classList.toggle('hide-ja', !replyShowJa());
+    jb.classList.toggle('on', replyShowJa());
+  };
+}
+
+function answerReply(k) {
+  const t = rTalk(rRun.id);
+  const tn = t.turns[rRun.t];
+  const o = tn.o[k];
+  if (!o || rRun.tried.includes(k)) return;
+  if (o.x) {                               // 噛み合わない → 理由を出して選び直し
+    rRun.tried.push(k);
+    rRun.miss += 1;
+    renderReply();
+    return;
+  }
+  recordStudy(Math.min(Date.now() - rRun.shownAt, CARD_TIME_CAP));
+  const st = rstat.talks[t.id] || { runs: 0, miss: 0, last: '', picked: {} };
+  if (!st.picked) st.picked = {};
+  const pk = st.picked[rRun.t] || [];
+  if (!pk.includes(o.e)) pk.push(o.e);
+  st.picked[rRun.t] = pk;
+  rstat.talks[t.id] = st;
+  saveReplyStat();
+  rRun.log.push({ k });
+  rRun.t += 1;
+  if (rRun.t >= t.turns.length) {
+    speakList([o.e, o.r, t.c].filter(Boolean));
+    finishReplyTalk();
+    return;
+  }
+  speakList([o.e, o.r, t.turns[rRun.t].p]);   // 自分の返し → 相手の答え → 相手の次の一言
+  replyOpenTurn();
+}
+
+function replyLines(t) {
+  const out = [];
+  t.turns.forEach((tn, i) => { const o = tn.o[rRun.log[i].k]; out.push(tn.p, o.e, o.r); });
+  if (t.c) out.push(t.c);
+  return out;
+}
+function finishReplyTalk() {
+  const t = rTalk(rRun.id);
+  rRun.done = true;
+  const st = rstat.talks[t.id] || { runs: 0, miss: 0, last: '', picked: {} };
+  st.runs += 1;
+  st.miss = rRun.miss;
+  st.last = todayISO();
+  rstat.talks[t.id] = st;
+  const done = replyDoneToday().slice();
+  if (!done.includes(t.id)) done.push(t.id);
+  rstat.day = { date: todayISO(), done };
+  saveReplyStat();
+  const next = rChain.length ? rTalk(rChain[0]) : null;
+  const routes = t.turns.reduce((n, tn, i) => n + (((st.picked || {})[i] || []).length), 0);
+  const all = t.turns.reduce((n, tn) => n + tn.o.filter(o => o.r).length, 0);
+  const area = document.getElementById('replyArea');
+  area.innerHTML = `
+    <div class="mcard rcard${replyShowJa() ? '' : ' hide-ja'}">
+      <div class="mtop"><span>${esc(t.tag || '')}</span>
+        <button class="r-ja-btn${replyShowJa() ? ' on' : ''}" id="rJaBtn">日本語</button></div>
+      <div class="r-log">
+        ${replyLogHtml(t, t.turns.length)}
+        ${t.c ? `<div class="r-close-h">しめの一言</div>` + rBubble('me', t.c, t.cj, ' cur') : ''}
+      </div>
+      <div class="r-done">
+        <div class="r-done-line">${rRun.miss ? `会話がつながった。噛み合わない返しを ${rRun.miss} 回選んだ。` : '会話がつながった。噛み合わない返しは 0 回。'}</div>
+        <div class="r-done-sub">この話で通った返し ${routes} / ${all}</div>
+        <button class="big-btn secondary" id="rListenBtn">🔊 通しで聞く</button>
+        <button class="big-btn secondary" id="rAgainBtn">別の返しでもう一度</button>
+        ${next ? `<button class="big-btn" id="rNextBtn">次の話へ（残り ${rChain.length}）</button>` : `<button class="big-btn" id="rHomeBtn">おわる</button>`}
+      </div>
+    </div>`;
+  wireReplyCommon(area);
+  document.getElementById('rListenBtn').onclick = () => speakList(replyLines(t));
+  document.getElementById('rAgainBtn').onclick = () => startReplyTalk(t.id);
+  const nb = document.getElementById('rNextBtn');
+  if (nb) nb.onclick = () => startReplyTalk(rChain.shift());
+  const hb = document.getElementById('rHomeBtn');
+  if (hb) hb.onclick = goHome;
+  document.getElementById('dueCount').textContent = '–';
+  const cur = area.querySelector('.rb.cur');
+  if (cur) cur.scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+
+// 話の一覧から選ぶ
+function openReplyList() {
+  rRun = null; rChain = [];
+  showView('replyView');
+  const area = document.getElementById('replyArea');
+  area.innerHTML = `
+    <div class="mresult">
+      <h1>聞き返しで会話を続ける</h1>
+      <p class="sub">全 ${RTALKS.length} 話。押すとその話がはじまる。</p>
+      ${RTALKS.map(t => {
+        const st = rTalkStat(t.id);
+        return `<button class="tb-slot${st.runs ? ' passed' : ''}" data-id="${esc(t.id)}">
+          <span>${esc(t.title)}<br><small class="r-list-tag">${esc(t.tag || '')}</small></span>
+          <span class="meta">${st.runs ? `✓ ${st.runs} 回` : 'まだ'}</span>
+        </button>`; }).join('')}
+      <button class="big-btn secondary" style="margin-top:20px" id="rHomeBtn">ホームへ</button>
+    </div>`;
+  area.querySelectorAll('.tb-slot').forEach(b => { b.onclick = () => startReplyTalk(b.dataset.id); });
+  document.getElementById('rHomeBtn').onclick = goHome;
+  document.getElementById('dueCount').textContent = '–';
+  window.scrollTo(0, 0);
+}
+
+// ホームの箱
+function renderReplyHome() {
+  const box = document.getElementById('replyBox');
+  if (!box) return;
+  box.hidden = !RTALKS.length;
+  if (!RTALKS.length) return;
+  const n = replyDoneToday().length;
+  const played = RTALKS.filter(t => rTalkStat(t.id).runs).length;
+  document.getElementById('replyCount').textContent = n >= REPLY_DAILY ? `今日 ${n} 話 ✓` : `今日 ${n} / ${REPLY_DAILY}`;
+  document.getElementById('replyBar').style.width = Math.round(played / RTALKS.length * 100) + '%';
+  document.getElementById('replyHint2').textContent = `やった話 ${played} / ${RTALKS.length}`;
+  const btn = document.getElementById('replyTodayBtn');
+  btn.textContent = n >= REPLY_DAILY ? `もう ${REPLY_DAILY} 話やる` : (n ? `続きをやる（残り ${REPLY_DAILY - n} 話）` : `今日の ${REPLY_DAILY} 話をやる`);
+  btn.classList.toggle('secondary', n >= REPLY_DAILY);
 }
 
 /* ---------- 助動詞の反射（場面 → 助動詞をタップ・反応時間を計る） ----------
@@ -2704,10 +2964,12 @@ async function init() {
   loadDrill();
   loadModalStat();
   loadVerbStat();
+  loadReplyStat();
   loadTextbook();
   await loadData();
   await loadModals();
   await loadVerbs();
+  await loadReplies();
 
   document.querySelectorAll('#modeSwitch button').forEach(b => {
     b.onclick = () => {
@@ -2733,6 +2995,8 @@ async function init() {
   document.getElementById('startModalBtn').onclick = startModal;
   document.getElementById('goModalMapBtn').onclick = goModalMap;
   document.getElementById('verbTodayBtn').onclick = () => startVerb(0);
+  document.getElementById('replyTodayBtn').onclick = startReplyToday;
+  document.getElementById('replyListBtn').onclick = openReplyList;
   document.getElementById('tbListBtn').onclick = () => openTbList();
   document.getElementById('tbImportBtn').onclick = () => { const f = document.getElementById('tbFile'); f.value = ''; f.click(); };
   document.getElementById('tbFile').onchange = (e) => handleTbFile(e.target.files[0]);
