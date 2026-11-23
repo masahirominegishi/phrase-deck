@@ -60,6 +60,17 @@ GitHub Pages で配信 → iPhone Safari で開く → 共有 →「ホーム画
 - 段を押すと 15 個の一覧（タップで 3 つ続けて読み上げ）。「このステップだけで 50 問」もできる。
 - 問題は `data/verbs.json`（Claude が用意。`q` = 3 枚の問題。カタカナはおおよその読み）。成績は端末内 `phrasedeck.verb.v1`（バックアップに含む）。ふだんの復習や一覧には混ざらない。
 
+### 受けのお約束（2026-11-23〜）
+相手の一言には決まった受けがある（GABA Snapshots L4-17 Responding と、レッスンで先生に直された形）。それを反射で言えるようにする。ホームの箱「受けのお約束」に 2 つ入っている。
+
+**お約束の反射**（主役）: 相手の一言（読み上げ）→ すぐ口に出す →「答えを見る」→ 受けの文・その種類・ほかの言い方 →「言えた／言えなかった」。動詞の 3 つの形と同じ手触り。
+- お約束は 12 種類: 悪い知らせ（Oh no. What happened?）／病気・つらい話（I'm sorry to hear that.）／良い知らせ（That's great! Congratulations!）／びっくりする話（You're kidding!）／気になる一言（Oh really? What is it?）／〜しない・できない（Really? How come?）／これからの予定（Who are you going with?）／済んだこと（How was it?）／人が出てきた（What is he like?）／場所・物（What is it like?）／ぼやき（I know how you feel.）／誘い（Sounds good!）。
+- 毎日ランダムに 20 問（苦手ほど出やすい・同じ種類は続けない）。言えなかった 1 枚は 3 枚あとにもう一度。続けて 2 回言えたら覚えた。
+- 「お約束の一覧」= 12 種類の早見（例・受け・ほかの言い方。押すと読み上げ）。
+- 中身は `data/replies.json` の `rules`（お約束）と `cards`（66 枚。`p` 相手の一言 → `a` 返し）。成績は `phrasedeck.reply.v1` の `cards`・`cdays`。
+
+**会話で使う**（下の「聞き返しで会話を続ける」）: お約束を 4 往復の会話の中で選んで使う。
+
 ### 聞き返しで会話を続ける（2026-11-23〜）
 相手の一言に Who / Where / What / How long / How come / What is ~ like で返して、会話を続ける反射をつける（GABA Snapshots L4-17「知らせに反応する・聞き返す」の型）。
 - ホームの「聞き返しで会話を続ける」→「今日の 3 話をやる」。1 話 = 4 往復。相手の一言が読み上げられる → 返しをすぐ選ぶ（2 つか 3 つ）。ボタンは質問だけの短い形と日本語。選ぶと受けの一言つきの全文（Really? Who are you going with?）が吹き出しになって読み上げられる。

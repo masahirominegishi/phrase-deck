@@ -1579,7 +1579,7 @@ function startReview() {
   if (!queue.length) { renderDone(); return; }
   nextCard();
 }
-function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; vcur = null; tbRun = null; tbChain = []; rRun = null; rChain = []; showView('homeView'); renderHome(); }
+function goHome() { drillMode = false; drillPackNo = 0; clearTimeout(mAutoTimer); mcur = null; vcur = null; tbRun = null; tbChain = []; rRun = null; rChain = []; ycur = null; showView('homeView'); renderHome(); }
 function goRegister() {
   showView('registerView');
   pendingItems = null;
@@ -1654,7 +1654,7 @@ function applyBackup(obj) {
   if (obj.tbstat && typeof obj.tbstat === 'object') { tbstat = normTbStat(obj.tbstat); saveTbStat(); }
   if (obj.modal && typeof obj.modal === 'object') { mstat = obj.modal; if (!mstat.items) mstat.items = {}; if (!Array.isArray(mstat.sessions)) mstat.sessions = []; saveModalStat(); }
   if (obj.verb && typeof obj.verb === 'object') { vstat = obj.verb; if (!vstat.items) vstat.items = {}; if (!Array.isArray(vstat.sessions)) vstat.sessions = []; if (!vstat.days) vstat.days = {}; saveVerbStat(); }
-  if (obj.reply && typeof obj.reply === 'object') { rstat = obj.reply; if (!rstat.talks) rstat.talks = {}; if (!rstat.day) rstat.day = {}; saveReplyStat(); }
+  if (obj.reply && typeof obj.reply === 'object') { rstat = obj.reply; if (!rstat.talks) rstat.talks = {}; if (!rstat.day) rstat.day = {}; if (!rstat.cards) rstat.cards = {}; if (!rstat.cdays) rstat.cdays = {}; saveReplyStat(); }
   if (obj.settings) {
     if (obj.settings.voice) localStorage.setItem(VOICE_KEY, obj.settings.voice);
     if (obj.settings.rate) { localStorage.setItem(RATE_KEY, obj.settings.rate); speechRate = parseFloat(obj.settings.rate) || speechRate; }
@@ -1980,7 +1980,7 @@ const REPLY_DAILY = 3;                         // 1 日の話の数
 const REPLY_JA_KEY = 'phrasedeck.reply.showja'; // '0' なら日本語を隠す。初期は出す
 
 let RTALKS = [];
-let rstat = { talks: {}, day: {} };   // talks[id] = {runs, miss, last, picked: {turn: [e…]}}・day = {date, done: []}
+let rstat = { talks: {}, day: {}, cards: {}, cdays: {} };   // talks[id] = {runs, miss, last, picked: {turn: [e…]}}・day = {date, done: []}
 let rRun = null;                      // { id, t, log: [{k}], miss, open, order, tried: [], shownAt, turnMiss }
 let rChain = [];                      // 「今日の 3 話」の残り
 
@@ -1990,6 +1990,8 @@ function loadReplyStat() {
   catch { rstat = { talks: {}, day: {} }; }
   if (!rstat.talks || typeof rstat.talks !== 'object') rstat.talks = {};
   if (!rstat.day || typeof rstat.day !== 'object') rstat.day = {};
+  if (!rstat.cards || typeof rstat.cards !== 'object') rstat.cards = {};   // お約束の反射: cards[id] = {n, ok, streak, last}
+  if (!rstat.cdays || typeof rstat.cdays !== 'object') rstat.cdays = {};   // cdays['2026-11-23'] = こなした枚数
 }
 function saveReplyStat() { localStorage.setItem(REPLY_KEY, JSON.stringify(rstat)); }
 async function loadReplies() {
@@ -1999,6 +2001,8 @@ async function loadReplies() {
     j = await res.json();
   } catch { /* オフラインで取れなければ箱を出さない */ }
   RTALKS = (j.talks || []).filter(t => Array.isArray(t.turns) && t.turns.length);
+  RRULES = j.rules || [];
+  RCARDS = (j.cards || []).filter(c => c.id && c.p && c.a);
 }
 function rTalk(id) { return RTALKS.find(t => t.id === id) || null; }
 function rTalkStat(id) { return rstat.talks[id] || { runs: 0, miss: 0, last: '', picked: {} }; }
@@ -2209,16 +2213,212 @@ function openReplyList() {
 function renderReplyHome() {
   const box = document.getElementById('replyBox');
   if (!box) return;
-  box.hidden = !RTALKS.length;
-  if (!RTALKS.length) return;
+  box.hidden = !RTALKS.length && !RCARDS.length;
+  if (box.hidden) return;
+  // お約束の反射（主役）
+  const y = yakuToday();
+  const got = RCARDS.filter(c => yDone(c.id)).length;
+  document.getElementById('replyCount').textContent = y >= YAKU_DAILY ? `今日 ${y} 問 ✓` : `今日 ${y} / ${YAKU_DAILY}`;
+  document.getElementById('replyBar').style.width = (RCARDS.length ? Math.round(got / RCARDS.length * 100) : 0) + '%';
+  document.getElementById('replyHint2').textContent = `覚えた ${got} / ${RCARDS.length}`;
+  const yb = document.getElementById('yakuTodayBtn');
+  yb.textContent = y >= YAKU_DAILY ? `もう ${YAKU_DAILY} 問やる` : (y ? `続きをやる（残り ${YAKU_DAILY - y} 問）` : `お約束の反射 ${YAKU_DAILY} 問をやる`);
+  yb.classList.toggle('secondary', y >= YAKU_DAILY);
+  // 会話で使う（今日の 3 話）
   const n = replyDoneToday().length;
-  const played = RTALKS.filter(t => rTalkStat(t.id).runs).length;
-  document.getElementById('replyCount').textContent = n >= REPLY_DAILY ? `今日 ${n} 話 ✓` : `今日 ${n} / ${REPLY_DAILY}`;
-  document.getElementById('replyBar').style.width = Math.round(played / RTALKS.length * 100) + '%';
-  document.getElementById('replyHint2').textContent = `やった話 ${played} / ${RTALKS.length}`;
   const btn = document.getElementById('replyTodayBtn');
-  btn.textContent = n >= REPLY_DAILY ? `もう ${REPLY_DAILY} 話やる` : (n ? `続きをやる（残り ${REPLY_DAILY - n} 話）` : `今日の ${REPLY_DAILY} 話をやる`);
-  btn.classList.toggle('secondary', n >= REPLY_DAILY);
+  btn.textContent = n >= REPLY_DAILY ? `会話で使う ✓（もう ${REPLY_DAILY} 話）` : (n ? `会話で使う（残り ${REPLY_DAILY - n} 話）` : `会話で使う（今日の ${REPLY_DAILY} 話）`);
+}
+
+/* ---------- お約束の反射（相手の一言 → 決まった受けを口に出す → 答えを見る） ----------
+   悪い知らせ = Oh no. What happened? ／ 〜しない = Really? How come? ／ 人が出てきた = What is he like? …
+   教科書 L4-17（Responding）と GABA のノートのお約束。動詞の 3 つの形と同じ手触り（答えを見る → 言えた／言えなかった）。
+   データは data/replies.json の rules・cards。進捗は rstat.cards / rstat.cdays。 */
+const YAKU_DAILY = 20;            // 1 日にこなす枚数
+const YAKU_DONE_STREAK = 2;       // 続けてこの回数「言えた」で覚えた
+const YAKU_REQUEUE_GAP = 3;       // 言えなかった 1 枚が再登場するまでの枚数
+let RRULES = [];
+let RCARDS = [];
+let yqueue = [];                  // [{id, re}]
+let ycur = null;
+let yRound = { n: 0, ok: 0, log: [] };
+let yShownAt = 0;
+
+function yRule(key) { return RRULES.find(r => r.key === key) || { key, name: '', how: '', say: '', alts: [] }; }
+function yCard(id) { return RCARDS.find(c => c.id === id) || null; }
+function yStat(id) { return rstat.cards[id]; }
+function yDone(id) { const s = yStat(id); return !!s && s.streak >= YAKU_DONE_STREAK; }
+function yakuToday() { return rstat.cdays[todayISO()] || 0; }
+function yWeight(id) {
+  const s = yStat(id);
+  if (!s || !s.n) return 3;
+  if (s.streak === 0) return 6;
+  if (s.streak < YAKU_DONE_STREAK) return 3;
+  return 1;
+}
+// n 枚をランダムに（苦手ほど出やすい）。同じお約束は続けない。
+function buildYakuQueue(n) {
+  const out = [];
+  let bag = [];
+  let guard = 0;
+  while (out.length < n && RCARDS.length && guard++ < n * 30) {
+    if (!bag.length) bag = RCARDS.map(c => ({ id: c.id, rule: c.rule, w: yWeight(c.id) }));
+    let r = Math.random() * bag.reduce((a, x) => a + x.w, 0);
+    let k = 0;
+    for (; k < bag.length - 1; k++) { r -= bag[k].w; if (r <= 0) break; }
+    const c = bag[k];
+    const last = out[out.length - 1];
+    if (last && last.rule === c.rule && bag.some(x => x.rule !== c.rule)) continue;
+    bag.splice(k, 1);
+    out.push({ id: c.id, rule: c.rule, re: false });
+  }
+  return out;
+}
+function startYaku() {
+  rRun = null; rChain = [];
+  yRound = { n: 0, ok: 0, log: [] };
+  const done = yakuToday();
+  yqueue = buildYakuQueue(done < YAKU_DAILY ? YAKU_DAILY - done : YAKU_DAILY);
+  showView('replyView');
+  nextYaku();
+}
+function nextYaku() {
+  const c = yqueue.shift();
+  if (!c) { finishYaku(false); return; }
+  if (!yCard(c.id)) { nextYaku(); return; }
+  ycur = c;
+  yShownAt = Date.now();
+  renderYaku(false);
+  speak(yCard(c.id).p);
+  window.scrollTo(0, 0);
+}
+function renderYaku(revealed) {
+  const c = yCard(ycur.id);
+  const rule = yRule(c.rule);
+  const area = document.getElementById('replyArea');
+  document.getElementById('dueCount').textContent = yqueue.length + 1;
+  const top = `<div class="mtop"><span>${yRound.n + 1} / ${yRound.n + 1 + yqueue.length}${ycur.re ? '　もう一度' : ''}</span>
+      <button class="r-ja-btn${replyShowJa() ? ' on' : ''}" id="rJaBtn">日本語</button></div>`;
+  const them = `<div class="y-them" id="yThem">
+      <div class="y-who">相手</div>
+      <div class="y-p">${esc(c.p)}</div>
+      <div class="rb-ja">${esc(c.pj)}</div>
+    </div>
+    ${c.cue ? `<div class="y-cue">（${esc(c.cue)}）</div>` : ''}`;
+  if (!revealed) {
+    area.innerHTML = `
+      <div class="mcard rcard ycard${replyShowJa() ? '' : ' hide-ja'}">
+        ${top}${them}
+        <div class="y-ask">すぐ口に出す → 答えを見る</div>
+        <button class="big-btn vshow" id="yShowBtn">答えを見る</button>
+        <button class="link-btn mquit" id="yQuitBtn">やめる（ここまでを記録）</button>
+      </div>`;
+    document.getElementById('yShowBtn').onclick = () => { renderYaku(true); speak(c.a); };
+    document.getElementById('yQuitBtn').onclick = () => { ycur = null; if (yRound.n) finishYaku(true); else goHome(); };
+  } else {
+    const alts = [rule.say].concat(rule.alts || []).filter(x => x && x !== c.a);
+    area.innerHTML = `
+      <div class="mcard rcard ycard${replyShowJa() ? '' : ' hide-ja'}">
+        ${top}${them}
+        <div class="y-ans" id="yAns">
+          <div class="y-a">${esc(c.a)}</div>
+          <div class="rb-ja">${esc(c.aj)}</div>
+        </div>
+        <div class="y-rule"><b>${esc(rule.name)}</b>　${esc(rule.how)}</div>
+        ${alts.length ? `<div class="y-alts">${alts.map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div>` : ''}
+        <div class="vgrade">
+          <button class="vg-ng" id="yNgBtn">言えなかった</button>
+          <button class="vg-ok" id="yOkBtn">言えた</button>
+        </div>
+      </div>`;
+    document.getElementById('yAns').onclick = () => speak(c.a);
+    area.querySelectorAll('.y-alts span').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+    document.getElementById('yOkBtn').onclick = () => answerYaku(true);
+    document.getElementById('yNgBtn').onclick = () => answerYaku(false);
+  }
+  document.getElementById('yThem').onclick = () => speak(c.p);
+  wireReplyCommon(area);
+}
+function answerYaku(ok) {
+  const c = ycur;
+  if (!c) return;
+  const s = rstat.cards[c.id] || { n: 0, ok: 0, streak: 0, last: '' };
+  s.n += 1;
+  if (ok) { s.ok += 1; s.streak += 1; } else s.streak = 0;
+  s.last = todayISO();
+  rstat.cards[c.id] = s;
+  if (!c.re) rstat.cdays[todayISO()] = yakuToday() + 1;   // やり直しの分は数えない
+  saveReplyStat();
+  recordStudy(Math.min(Date.now() - yShownAt, CARD_TIME_CAP));
+  yRound.n += 1;
+  if (ok) yRound.ok += 1;
+  yRound.log.push({ id: c.id, ok });
+  if (!ok) yqueue.splice(Math.min(YAKU_REQUEUE_GAP, yqueue.length), 0, { id: c.id, rule: c.rule, re: true });
+  nextYaku();
+}
+function finishYaku(quit) {
+  ycur = null;
+  const r = yRound;
+  const keep = Object.keys(rstat.cdays).sort().slice(-60);
+  rstat.cdays = Object.fromEntries(keep.map(d => [d, rstat.cdays[d]]));
+  saveReplyStat();
+  const seen = new Set();
+  const miss = r.log.filter(l => !l.ok && !seen.has(l.id) && seen.add(l.id));
+  const today = yakuToday();
+  const area = document.getElementById('replyArea');
+  area.innerHTML = `
+    <div class="mresult">
+      <div class="empty" style="padding:30px 20px 10px">
+        <div class="big">${quit ? '🏁' : (miss.length ? '🎉' : '⚡')}</div>
+        <div>${quit ? 'ここまでを記録しました' : (today >= YAKU_DAILY ? `今日の ${YAKU_DAILY} 問、おわり` : 'おわり')}</div>
+      </div>
+      <div class="stats-summary">
+        <div class="ss-item"><div class="ss-num">${r.ok}</div><div class="ss-lab">言えた</div></div>
+        <div class="ss-item"><div class="ss-num">${miss.length}</div><div class="ss-lab">言えなかった</div></div>
+        <div class="ss-item"><div class="ss-num">${today}</div><div class="ss-lab">今日こなした枚数</div></div>
+      </div>
+      ${miss.length ? `<h3>言えなかった ${miss.length} 枚（タップで聞く）</h3>` + miss.map(l => {
+        const c = yCard(l.id);
+        return `<div class="mrow yrow" data-say="${esc(c.a)}">
+          <div class="en">${esc(c.a)}</div>
+          <div class="meta">${esc(c.p)}　─　${esc(yRule(c.rule).name)}</div>
+        </div>`; }).join('') : ''}
+      <button class="big-btn" style="margin-top:24px" id="yAgainBtn">${today < YAKU_DAILY ? `続きをやる（残り ${YAKU_DAILY - today} 問）` : `もう ${YAKU_DAILY} 問`}</button>
+      <button class="big-btn secondary" id="yHomeBtn">ホームへ</button>
+    </div>`;
+  area.querySelectorAll('.yrow').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+  document.getElementById('yAgainBtn').onclick = startYaku;
+  document.getElementById('yHomeBtn').onclick = goHome;
+  document.getElementById('dueCount').textContent = '–';
+  window.scrollTo(0, 0);
+}
+// お約束の一覧（どんな一言に、どう受けるか）。眺めて聞くための場所。
+function openYakuMap() {
+  rRun = null; rChain = []; ycur = null;
+  showView('replyView');
+  const area = document.getElementById('replyArea');
+  area.innerHTML = `
+    <div class="mresult">
+      <h1>お約束の一覧</h1>
+      <p class="sub">相手の一言がどの種類かで、受け方が決まる。押すと読み上げ。</p>
+      ${RRULES.map(r => {
+        const cs = RCARDS.filter(c => c.rule === r.key);
+        const ex = cs[0];
+        return `<div class="mrow ymap">
+          <div class="ymap-h"><b>${esc(r.name)}</b><span>${cs.filter(c => yDone(c.id)).length} / ${cs.length}</span></div>
+          ${ex ? `<div class="meta">例：${esc(ex.p)}</div>` : ''}
+          <div class="en" data-say="${esc(r.say)}">→ ${esc(r.say)}</div>
+          <div class="y-alts">${(r.alts || []).map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div>
+          <div class="meta">${esc(r.how)}</div>
+        </div>`; }).join('')}
+      <button class="big-btn" style="margin-top:20px" id="yStartBtn">お約束の反射 ${YAKU_DAILY} 問をやる</button>
+      <button class="big-btn secondary" id="yHomeBtn">ホームへ</button>
+    </div>`;
+  area.querySelectorAll('[data-say]').forEach(el => { el.onclick = () => speak(el.dataset.say); });
+  document.getElementById('yStartBtn').onclick = startYaku;
+  document.getElementById('yHomeBtn').onclick = goHome;
+  document.getElementById('dueCount').textContent = '–';
+  window.scrollTo(0, 0);
 }
 
 /* ---------- 助動詞の反射（場面 → 助動詞をタップ・反応時間を計る） ----------
@@ -2991,6 +3191,8 @@ async function init() {
   document.getElementById('verbTodayBtn').onclick = () => startVerb(0);
   document.getElementById('replyTodayBtn').onclick = startReplyToday;
   document.getElementById('replyListBtn').onclick = openReplyList;
+  document.getElementById('yakuTodayBtn').onclick = startYaku;
+  document.getElementById('yakuMapBtn').onclick = openYakuMap;
   document.getElementById('tbListBtn').onclick = () => openTbList();
   document.getElementById('tbImportBtn').onclick = () => { const f = document.getElementById('tbFile'); f.value = ''; f.click(); };
   document.getElementById('tbFile').onchange = (e) => handleTbFile(e.target.files[0]);

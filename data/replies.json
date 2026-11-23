@@ -1,6 +1,6 @@
 {
- "version": 2,
- "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。 s・sj=ボタンに出す短い形（無ければ e・j）。f=1 は形の間違いの誤答（いまは出さない）。",
+ "version": 3,
+ "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。 s・sj=ボタンに出す短い形（無ければ e・j）。f=1 は形の間違いの誤答（いまは出さない）。 rules=お約束（どんな一言にどう受けるか）・cards=お約束の反射の問題（p 相手の一言 → a 返し）。教科書 L4-17 の Practice と GABA のノートから。",
  "talks": [
   {
    "id": "r-hawaii",
@@ -2195,6 +2195,667 @@
    ],
    "c": "Well, have a great New Year!",
    "cj": "じゃあ、良いお年を！"
+  }
+ ],
+ "rules": [
+  {
+   "key": "bad",
+   "name": "悪い知らせ",
+   "how": "受けてから、何があったかを聞く。",
+   "say": "Oh no. What happened?",
+   "alts": [
+    "Really? What happened?",
+    "That's terrible. What happened?",
+    "Oh no. How come?"
+   ]
+  },
+  {
+   "key": "sorry",
+   "name": "病気・つらい話",
+   "how": "気の毒に、と言う。病気なら「早く良くなりますように」まで。",
+   "say": "I'm sorry to hear that.",
+   "alts": [
+    "Sorry to hear that.",
+    "That's too bad.",
+    "I hope she gets better soon."
+   ]
+  },
+  {
+   "key": "good",
+   "name": "良い知らせ",
+   "how": "一緒に喜ぶ。そのあと質問を 1 つ。",
+   "say": "That's great! Congratulations!",
+   "alts": [
+    "Oh, good!",
+    "I'm happy to hear that.",
+    "That's good news."
+   ]
+  },
+  {
+   "key": "surprise",
+   "name": "びっくりする話",
+   "how": "信じられない、と驚く。そのあと Why? / How come?",
+   "say": "You're kidding!",
+   "alts": [
+    "Are you serious?",
+    "No way!",
+    "What? Really?"
+   ]
+  },
+  {
+   "key": "interest",
+   "name": "気になる一言",
+   "how": "興味を示して、中身を聞く。",
+   "say": "Oh really? What is it?",
+   "alts": [
+    "Oh yeah? What is it?",
+    "Really?"
+   ]
+  },
+  {
+   "key": "howcome",
+   "name": "〜しない・できない",
+   "how": "理由を聞く。Why より How come がやわらかい。",
+   "say": "Really? How come?",
+   "alts": [
+    "Oh, how come?",
+    "Why not?"
+   ]
+  },
+  {
+   "key": "plan",
+   "name": "これからの予定",
+   "how": "誰と・どのくらい、を聞く。形は are you ~ing。",
+   "say": "Who are you going with?",
+   "alts": [
+    "How long are you staying?",
+    "How long are you going for?",
+    "What are you going to do there?"
+   ]
+  },
+  {
+   "key": "past",
+   "name": "済んだこと",
+   "how": "どうだった・どこ・誰と・何を、を聞く。形は did you ~ / How was it?",
+   "say": "Oh really? How was it?",
+   "alts": [
+    "Where did you go?",
+    "Who did you go with?",
+    "What did you do?"
+   ]
+  },
+  {
+   "key": "person",
+   "name": "人が出てきた",
+   "how": "どんな人かを聞く。What is ~ like?（How は使わない）",
+   "say": "What is he like?",
+   "alts": [
+    "What is she like?",
+    "What are they like?"
+   ]
+  },
+  {
+   "key": "place",
+   "name": "場所・物が出てきた",
+   "how": "どんな所かを聞く。What is it like?",
+   "say": "What is it like?",
+   "alts": [
+    "What was it like?",
+    "What's it like?"
+   ]
+  },
+  {
+   "key": "empathy",
+   "name": "ぼやき・苦手の話",
+   "how": "分かるよ、と寄りそう。",
+   "say": "I know how you feel.",
+   "alts": [
+    "I know what you mean.",
+    "I've experienced the same thing.",
+    "Me too."
+   ]
+  },
+  {
+   "key": "invite",
+   "name": "誘い・時間の提案",
+   "how": "乗る = Sounds good! ／ 断る = Sounds good, but ~。",
+   "say": "Sounds good!",
+   "alts": [
+    "I'd love to.",
+    "Sounds great, but I have other plans.",
+    "2 p.m. works for me."
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "id": "c-bad-1",
+   "rule": "bad",
+   "p": "I had a terrible weekend.",
+   "pj": "ひどい週末だったよ。",
+   "a": "Really? What happened?",
+   "aj": "ほんと？何があったの？"
+  },
+  {
+   "id": "c-bad-2",
+   "rule": "bad",
+   "p": "I have some bad news.",
+   "pj": "悪い知らせがあるんだ。",
+   "a": "Oh no. What is it?",
+   "aj": "ええっ。何？"
+  },
+  {
+   "id": "c-bad-3",
+   "rule": "bad",
+   "p": "I had a terrible day at work.",
+   "pj": "今日は仕事で最悪だった。",
+   "a": "Oh no. What happened?",
+   "aj": "ええっ。何があったの？"
+  },
+  {
+   "id": "c-bad-4",
+   "rule": "bad",
+   "p": "I missed my flight this morning.",
+   "pj": "今朝、飛行機に乗り遅れたんだ。",
+   "a": "Oh no! What happened?",
+   "aj": "ええっ！何があったの？"
+  },
+  {
+   "id": "c-bad-5",
+   "rule": "bad",
+   "p": "My trip was a disaster.",
+   "pj": "旅行はさんざんだったよ。",
+   "a": "Really? What happened?",
+   "aj": "ほんと？何があったの？"
+  },
+  {
+   "id": "c-bad-6",
+   "rule": "bad",
+   "p": "I couldn't sleep at all last night.",
+   "pj": "昨日の夜は全然眠れなかった。",
+   "a": "Oh no. How come?",
+   "aj": "ええっ。どうして？"
+  },
+  {
+   "id": "c-sorry-1",
+   "rule": "sorry",
+   "p": "My mother is in the hospital.",
+   "pj": "母が入院しているんだ。",
+   "a": "I'm sorry to hear that. What happened?",
+   "aj": "それは大変だね。何があったの？"
+  },
+  {
+   "id": "c-sorry-2",
+   "rule": "sorry",
+   "p": "My daughter has a bad cold.",
+   "pj": "娘がひどい風邪をひいていて。",
+   "a": "Sorry to hear that. I hope she gets better soon.",
+   "aj": "それは大変だね。早く良くなるといいね。"
+  },
+  {
+   "id": "c-sorry-3",
+   "rule": "sorry",
+   "p": "My dog died last week.",
+   "pj": "先週、うちの犬が死んだんだ。",
+   "a": "I'm so sorry to hear that.",
+   "aj": "それは本当にお気の毒に。"
+  },
+  {
+   "id": "c-sorry-4",
+   "rule": "sorry",
+   "p": "I have a terrible headache today.",
+   "pj": "今日はひどい頭痛がする。",
+   "a": "That's too bad. I hope you feel better soon.",
+   "aj": "それはつらいね。早く良くなるといいね。"
+  },
+  {
+   "id": "c-sorry-5",
+   "rule": "sorry",
+   "p": "My son broke his leg.",
+   "pj": "息子が脚を折ったんだ。",
+   "a": "That's terrible. I hope he gets better soon.",
+   "aj": "それは大変だ。早く良くなるといいね。"
+  },
+  {
+   "id": "c-sorry-6",
+   "rule": "sorry",
+   "p": "I didn't get the job.",
+   "pj": "あの仕事、だめだった。",
+   "a": "That's too bad. Sorry to hear that.",
+   "aj": "それは残念。気の毒に。"
+  },
+  {
+   "id": "c-good-1",
+   "rule": "good",
+   "p": "I got a new job!",
+   "pj": "新しい仕事が決まった！",
+   "a": "That's great! When do you start?",
+   "aj": "すごいね！いつから？"
+  },
+  {
+   "id": "c-good-2",
+   "rule": "good",
+   "p": "I passed the test!",
+   "pj": "試験に受かった！",
+   "a": "Congratulations! That's great news.",
+   "aj": "おめでとう！いい知らせだね。"
+  },
+  {
+   "id": "c-good-3",
+   "rule": "good",
+   "p": "My son got into university.",
+   "pj": "息子が大学に受かったんだ。",
+   "a": "Congratulations! I'm happy to hear that.",
+   "aj": "おめでとう！それはうれしいね。"
+  },
+  {
+   "id": "c-good-4",
+   "rule": "good",
+   "p": "We got the big project.",
+   "pj": "あの大きな案件が取れたよ。",
+   "a": "That's great! Congratulations!",
+   "aj": "すごい！おめでとう！"
+  },
+  {
+   "id": "c-good-5",
+   "rule": "good",
+   "p": "I'm getting married.",
+   "pj": "結婚するんだ。",
+   "a": "Congratulations! When is the wedding?",
+   "aj": "おめでとう！式はいつ？"
+  },
+  {
+   "id": "c-good-6",
+   "rule": "good",
+   "p": "I have good news.",
+   "pj": "良い知らせがあるんだ。",
+   "a": "Oh, good! What is it?",
+   "aj": "お、いいね！何？"
+  },
+  {
+   "id": "c-surprise-1",
+   "rule": "surprise",
+   "p": "I quit my job yesterday.",
+   "pj": "昨日、会社を辞めた。",
+   "a": "You're kidding! Why?",
+   "aj": "うそでしょ！なんで？"
+  },
+  {
+   "id": "c-surprise-2",
+   "rule": "surprise",
+   "p": "I'm moving to Brazil next month.",
+   "pj": "来月ブラジルに引っ越すんだ。",
+   "a": "Are you serious? How come?",
+   "aj": "本気？どうして？"
+  },
+  {
+   "id": "c-surprise-3",
+   "rule": "surprise",
+   "p": "I won a million yen in the lottery.",
+   "pj": "宝くじで 100 万円当たった。",
+   "a": "No way! Are you serious?",
+   "aj": "うそ！本当に？"
+  },
+  {
+   "id": "c-surprise-4",
+   "rule": "surprise",
+   "p": "I met Lewis Hamilton in Ginza.",
+   "pj": "銀座でルイス・ハミルトンに会った。",
+   "a": "You're kidding! Really?",
+   "aj": "うそでしょ！ほんとに？"
+  },
+  {
+   "id": "c-surprise-5",
+   "rule": "surprise",
+   "p": "We don't have enough money for the party.",
+   "pj": "パーティーのお金が足りないんだ。",
+   "a": "What? Are you serious?",
+   "aj": "何だって？本気？"
+  },
+  {
+   "id": "c-surprise-6",
+   "rule": "surprise",
+   "p": "I left home at 1 a.m. to go fishing.",
+   "pj": "釣りに行くのに夜中の 1 時に家を出た。",
+   "a": "No way! 1 a.m.?",
+   "aj": "うそ！1 時？"
+  },
+  {
+   "id": "c-interest-1",
+   "rule": "interest",
+   "p": "I have a new hobby.",
+   "pj": "新しい趣味ができたんだ。",
+   "a": "Oh really? What is it?",
+   "aj": "へえ、そうなの？何？"
+  },
+  {
+   "id": "c-interest-2",
+   "rule": "interest",
+   "p": "I love Japan.",
+   "pj": "日本が大好きなんだ。",
+   "a": "Oh really? What do you love about Japan?",
+   "aj": "へえ、そうなの？日本のどこが好き？"
+  },
+  {
+   "id": "c-interest-3",
+   "rule": "interest",
+   "p": "I have an idea.",
+   "pj": "考えがあるんだ。",
+   "a": "Oh yeah? What is it?",
+   "aj": "へえ？何？"
+  },
+  {
+   "id": "c-interest-4",
+   "rule": "interest",
+   "p": "I started something new this month.",
+   "pj": "今月、新しいことを始めたんだ。",
+   "a": "Oh yeah? What is it?",
+   "aj": "へえ？何？"
+  },
+  {
+   "id": "c-interest-5",
+   "rule": "interest",
+   "p": "I bought something expensive yesterday.",
+   "pj": "昨日、高い物を買ったんだ。",
+   "a": "Oh really? What did you buy?",
+   "aj": "へえ、そうなの？何を買ったの？"
+  },
+  {
+   "id": "c-interest-6",
+   "rule": "interest",
+   "p": "There's good news and bad news.",
+   "pj": "良い知らせと悪い知らせがある。",
+   "a": "Really? What's the good news?",
+   "aj": "へえ？良い知らせは？"
+  },
+  {
+   "id": "c-howcome-1",
+   "rule": "howcome",
+   "p": "I never eat breakfast.",
+   "pj": "朝ごはんは食べないんだ。",
+   "a": "Really? How come?",
+   "aj": "ほんと？どうして？"
+  },
+  {
+   "id": "c-howcome-2",
+   "rule": "howcome",
+   "p": "I can't come to the party.",
+   "pj": "パーティーに行けないんだ。",
+   "a": "Oh no. How come?",
+   "aj": "ええっ。どうして？"
+  },
+  {
+   "id": "c-howcome-3",
+   "rule": "howcome",
+   "p": "I don't like sushi.",
+   "pj": "寿司は好きじゃないんだ。",
+   "a": "Really? How come?",
+   "aj": "ほんと？どうして？"
+  },
+  {
+   "id": "c-howcome-4",
+   "rule": "howcome",
+   "p": "I can't take a lesson next week.",
+   "pj": "来週はレッスンを受けられない。",
+   "a": "Oh, how come?",
+   "aj": "あ、どうして？"
+  },
+  {
+   "id": "c-howcome-5",
+   "rule": "howcome",
+   "p": "I stopped drinking.",
+   "pj": "お酒をやめたんだ。",
+   "a": "Really? How come?",
+   "aj": "ほんと？どうして？"
+  },
+  {
+   "id": "c-plan-1",
+   "rule": "plan",
+   "p": "I'm going to Hawaii next month.",
+   "pj": "来月ハワイに行くんだ。",
+   "a": "Nice! Who are you going with?",
+   "aj": "いいね！誰と行くの？"
+  },
+  {
+   "id": "c-plan-2",
+   "rule": "plan",
+   "p": "I'm going to Kyoto this weekend.",
+   "pj": "今週末、京都に行くんだ。",
+   "a": "Sounds fun! Who are you going with?",
+   "aj": "楽しそう！誰と行くの？"
+  },
+  {
+   "id": "c-plan-3",
+   "rule": "plan",
+   "p": "I'm going on a business trip next week.",
+   "pj": "来週、出張なんだ。",
+   "a": "Oh, where are you going?",
+   "aj": "へえ、どこに行くの？"
+  },
+  {
+   "id": "c-plan-4",
+   "rule": "plan",
+   "p": "I'm going to London in the spring.",
+   "pj": "春にロンドンに行くんだ。",
+   "a": "Lucky you! How long are you staying?",
+   "aj": "いいなあ！どのくらいいるの？"
+  },
+  {
+   "id": "c-plan-5",
+   "rule": "plan",
+   "p": "I'm taking a week off in December.",
+   "pj": "12 月に 1 週間休みを取るんだ。",
+   "a": "Nice! What are you going to do?",
+   "aj": "いいね！何をするの？"
+  },
+  {
+   "id": "c-plan-6",
+   "rule": "plan",
+   "p": "I'm going to Takamatsu on business tomorrow.",
+   "pj": "明日、仕事で高松に行くんだ。",
+   "a": "Oh, how long are you going for?",
+   "aj": "へえ、どのくらい行くの？"
+  },
+  {
+   "id": "c-past-1",
+   "rule": "past",
+   "p": "I went to Okinawa last week.",
+   "pj": "先週、沖縄に行ったんだ。",
+   "a": "Oh really? How was it?",
+   "aj": "へえ、そうなの？どうだった？"
+  },
+  {
+   "id": "c-past-2",
+   "rule": "past",
+   "p": "I saw a movie yesterday.",
+   "pj": "昨日、映画を観たんだ。",
+   "a": "Oh, what did you see?",
+   "aj": "へえ、何を観たの？"
+  },
+  {
+   "id": "c-past-3",
+   "rule": "past",
+   "p": "I went to a concert on Saturday.",
+   "pj": "土曜にコンサートに行ったんだ。",
+   "a": "Nice! Who did you go with?",
+   "aj": "いいね！誰と行ったの？"
+  },
+  {
+   "id": "c-past-4",
+   "rule": "past",
+   "p": "I went on a trip last weekend.",
+   "pj": "先週末、旅行に行ったんだ。",
+   "a": "Really? Where did you go?",
+   "aj": "ほんと？どこに行ったの？"
+  },
+  {
+   "id": "c-past-5",
+   "rule": "past",
+   "p": "I tried a new restaurant last night.",
+   "pj": "昨日の夜、新しい店に行ってみた。",
+   "a": "Oh yeah? How was it?",
+   "aj": "へえ？どうだった？"
+  },
+  {
+   "id": "c-past-6",
+   "rule": "past",
+   "p": "I went shopping yesterday.",
+   "pj": "昨日、買い物に行ったんだ。",
+   "a": "Oh, what did you buy?",
+   "aj": "へえ、何を買ったの？"
+  },
+  {
+   "id": "c-person-1",
+   "rule": "person",
+   "p": "We got a new boss. He's from Osaka.",
+   "pj": "新しい上司が来たんだ。大阪から来た人。",
+   "a": "Oh really? What is he like?",
+   "aj": "へえ、そうなの？どんな人？"
+  },
+  {
+   "id": "c-person-2",
+   "rule": "person",
+   "p": "I met my daughter's boyfriend yesterday.",
+   "pj": "昨日、娘の彼氏に会ったんだ。",
+   "a": "Really? What is he like?",
+   "aj": "ほんと？どんな人？"
+  },
+  {
+   "id": "c-person-3",
+   "rule": "person",
+   "p": "We have a new teacher. Her name is Anna.",
+   "pj": "新しい先生が来たんだ。アンナっていうの。",
+   "a": "Oh yeah? What is she like?",
+   "aj": "へえ？どんな人？"
+  },
+  {
+   "id": "c-person-4",
+   "rule": "person",
+   "p": "I had dinner with my new clients.",
+   "pj": "新しいお客さんたちと夕食を食べたんだ。",
+   "a": "Oh really? What are they like?",
+   "aj": "へえ、そうなの？どんな人たち？"
+  },
+  {
+   "id": "c-place-1",
+   "rule": "place",
+   "p": "I moved to Odaiba.",
+   "pj": "お台場に引っ越したんだ。",
+   "a": "Oh really? What is it like?",
+   "aj": "へえ、そうなの？どんな所？"
+  },
+  {
+   "id": "c-place-2",
+   "rule": "place",
+   "p": "I went to Fukui for the first time.",
+   "pj": "初めて福井に行ったんだ。",
+   "a": "Oh yeah? What is it like?",
+   "aj": "へえ？どんな所？"
+  },
+  {
+   "id": "c-place-3",
+   "rule": "place",
+   "p": "I stayed at a new hotel in Takamatsu.",
+   "pj": "高松の新しいホテルに泊まったんだ。",
+   "a": "Really? What was it like?",
+   "aj": "ほんと？どんな感じだった？"
+  },
+  {
+   "id": "c-place-4",
+   "rule": "place",
+   "p": "My office moved to a new building.",
+   "pj": "会社が新しいビルに移ったんだ。",
+   "a": "Oh really? What is it like?",
+   "aj": "へえ、そうなの？どんな感じ？"
+  },
+  {
+   "id": "c-empathy-1",
+   "rule": "empathy",
+   "p": "I'm so tired. I worked until midnight.",
+   "pj": "すごく疲れた。夜中の 12 時まで働いたんだ。",
+   "a": "I know how you feel.",
+   "aj": "気持ちは分かるよ。"
+  },
+  {
+   "id": "c-empathy-2",
+   "rule": "empathy",
+   "p": "I'm not good at speaking on the phone.",
+   "pj": "電話で話すのが苦手なんだ。",
+   "a": "I know how you feel. Me too.",
+   "aj": "分かるよ。僕もだよ。"
+  },
+  {
+   "id": "c-empathy-3",
+   "rule": "empathy",
+   "p": "I always drink too much at parties.",
+   "pj": "飲み会ではいつも飲みすぎてしまう。",
+   "a": "I know how you feel. I've experienced the same thing.",
+   "aj": "分かるよ。僕も同じ経験がある。"
+  },
+  {
+   "id": "c-empathy-4",
+   "rule": "empathy",
+   "p": "Japanese grammar is so difficult.",
+   "pj": "日本語の文法は本当に難しい。",
+   "a": "I know what you mean.",
+   "aj": "言いたいことは分かるよ。"
+  },
+  {
+   "id": "c-empathy-5",
+   "rule": "empathy",
+   "p": "I hate crowded trains.",
+   "pj": "満員電車が大嫌いなんだ。",
+   "a": "I know how you feel. Me too.",
+   "aj": "分かるよ。僕もだよ。"
+  },
+  {
+   "id": "c-invite-1",
+   "rule": "invite",
+   "p": "Do you want to go for a drink tonight?",
+   "pj": "今夜、飲みに行かない？",
+   "a": "Sure, sounds good!",
+   "aj": "うん、いいね！"
+  },
+  {
+   "id": "c-invite-2",
+   "rule": "invite",
+   "p": "Would you like to come to dinner on Saturday?",
+   "pj": "土曜の夕食に来ませんか？",
+   "a": "I'd love to. Thanks for inviting me!",
+   "aj": "ぜひ。誘ってくれてありがとう！"
+  },
+  {
+   "id": "c-invite-3",
+   "rule": "invite",
+   "p": "Let's catch up sometime.",
+   "pj": "そのうちゆっくり話そうよ。",
+   "a": "Sounds great!",
+   "aj": "いいね！"
+  },
+  {
+   "id": "c-invite-4",
+   "rule": "invite",
+   "p": "Do you want to see a movie tonight?",
+   "pj": "今夜、映画を観に行かない？",
+   "a": "Sounds good, but I have other plans tonight.",
+   "aj": "いいね、でも今夜は別の予定があるんだ。",
+   "cue": "断る"
+  },
+  {
+   "id": "c-invite-5",
+   "rule": "invite",
+   "p": "Is 2 p.m. OK?",
+   "pj": "午後 2 時でいい？",
+   "a": "2 p.m. sounds good.",
+   "aj": "2 時でいいよ。"
+  },
+  {
+   "id": "c-invite-6",
+   "rule": "invite",
+   "p": "How about Monday afternoon?",
+   "pj": "月曜の午後はどう？",
+   "a": "Monday afternoon works for me.",
+   "aj": "月曜の午後で大丈夫。"
   }
  ]
 }

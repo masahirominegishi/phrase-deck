@@ -613,7 +613,8 @@ body.in-modal #modeSwitch { display: none; }
 /* ---------- 聞き返しで会話を続ける ---------- */
 .reply-box .big-btn.secondary { margin-top: 10px; }
 .reply-box #replyHint2 { display: block; margin-top: 6px; color: var(--good); }
-.reply-box #replyTodayBtn.secondary { background: var(--bg); border: 1px solid var(--panel2); }
+.reply-box #yakuTodayBtn.secondary { background: var(--bg); border: 1px solid var(--panel2); margin-top: 0; }
+.reply-box .link-btn { display: block; margin: 12px auto 0; }
 .rcard .mtop { align-items: center; }
 .r-ja-btn { background: var(--panel); color: var(--muted); border: none; border-radius: 999px; padding: 6px 14px; font-size: 12px; }
 .r-ja-btn.on { color: var(--text); outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -647,3 +648,23 @@ body.in-modal #modeSwitch { display: none; }
 .r-list-tag { color: var(--muted); font-size: 12px; }
 .r-opts button { padding: 16px 14px; font-size: 19px; }
 .r-opt-ja { font-size: 13px; }
+
+/* お約束の反射 */
+.y-them { align-self: flex-start; max-width: 92%; background: var(--panel); border-radius: 18px; border-bottom-left-radius: 4px; padding: 14px 16px; margin-top: 6vh; }
+.y-who { font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+.y-p { font-size: 24px; font-weight: 700; line-height: 1.35; }
+.y-cue { font-size: 14px; color: var(--hard); font-weight: 700; margin-top: 10px; }
+.y-ask { text-align: center; color: var(--accent); font-size: 14px; margin-top: 28px; }
+.ycard .vshow { margin-top: auto; }
+.y-ans { align-self: flex-end; max-width: 92%; background: #0c4a6e; border-radius: 18px; border-bottom-right-radius: 4px; padding: 14px 16px; margin-top: 18px; }
+.y-a { font-size: 26px; font-weight: 800; line-height: 1.3; color: var(--good); }
+.y-rule { margin-top: 18px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.y-rule b { color: var(--hard); }
+.y-alts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.y-alts span { background: var(--panel); border-radius: 999px; padding: 6px 12px; font-size: 13px; }
+.ymap .y-alts span { background: var(--bg); }
+.ymap-h { display: flex; justify-content: space-between; align-items: baseline; }
+.ymap-h b { color: var(--hard); }
+.ymap-h span { font-size: 12px; color: var(--good); }
+.ymap .en { font-size: 18px; margin: 6px 0 2px; }
+.yrow .en { font-size: 17px; }
