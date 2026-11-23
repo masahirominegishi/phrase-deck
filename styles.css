@@ -668,3 +668,5 @@ body.in-modal #modeSwitch { display: none; }
 .ymap-h span { font-size: 12px; color: var(--good); }
 .ymap .en { font-size: 18px; margin: 6px 0 2px; }
 .yrow .en { font-size: 17px; }
+.y-note { margin-top: 16px; font-size: 15px; line-height: 1.7; background: var(--panel); border-left: 3px solid var(--hard); border-radius: 8px; padding: 10px 12px; }
+.y-note + .y-rule { margin-top: 12px; }

@@ -2324,6 +2324,7 @@ function renderYaku(revealed) {
           <div class="y-a">${esc(c.a)}</div>
           <div class="rb-ja">${esc(c.aj)}</div>
         </div>
+        ${c.n ? `<div class="y-note">${esc(c.n)}</div>` : ''}
         <div class="y-rule"><b>${esc(rule.name)}</b>　${esc(rule.how)}</div>
         ${alts.length ? `<div class="y-alts">${alts.map(x => `<span data-say="${esc(x)}">${esc(x)}</span>`).join('')}</div>` : ''}
         <div class="vgrade">
@@ -2382,6 +2383,7 @@ function finishYaku(quit) {
         return `<div class="mrow yrow" data-say="${esc(c.a)}">
           <div class="en">${esc(c.a)}</div>
           <div class="meta">${esc(c.p)}　─　${esc(yRule(c.rule).name)}</div>
+          ${c.n ? `<div class="deep">${esc(c.n)}</div>` : ''}
         </div>`; }).join('') : ''}
       <button class="big-btn" style="margin-top:24px" id="yAgainBtn">${today < YAKU_DAILY ? `続きをやる（残り ${YAKU_DAILY - today} 問）` : `もう ${YAKU_DAILY} 問`}</button>
       <button class="big-btn secondary" id="yHomeBtn">ホームへ</button>

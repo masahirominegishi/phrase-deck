@@ -1,5 +1,5 @@
 {
- "version": 3,
+ "version": 4,
  "note": "聞き返しで会話を続ける。p=相手の一言 / o=返しの選択肢（r があれば会話が続く・x は噛み合わない理由）/ c=しめの一言。Claude が用意（GABA Snapshots L4-17 の型と、レッスンで話した話題から）。 s・sj=ボタンに出す短い形（無ければ e・j）。f=1 は形の間違いの誤答（いまは出さない）。 rules=お約束（どんな一言にどう受けるか）・cards=お約束の反射の問題（p 相手の一言 → a 返し）。教科書 L4-17 の Practice と GABA のノートから。",
  "talks": [
   {
@@ -2334,7 +2334,8 @@
    "p": "I had a terrible weekend.",
    "pj": "ひどい週末だったよ。",
    "a": "Really? What happened?",
-   "aj": "ほんと？何があったの？"
+   "aj": "ほんと？何があったの？",
+   "n": "Really? で「えっ？」と受けて、What happened? で中身を聞く。terrible と言われたら、まず何があったかを聞くのが決まり。"
   },
   {
    "id": "c-bad-2",
@@ -2342,7 +2343,8 @@
    "p": "I have some bad news.",
    "pj": "悪い知らせがあるんだ。",
    "a": "Oh no. What is it?",
-   "aj": "ええっ。何？"
+   "aj": "ええっ。何？",
+   "n": "中身がまだ分からない知らせには What is it?（それは何？）。What happened? でもよい。"
   },
   {
    "id": "c-bad-3",
@@ -2350,7 +2352,8 @@
    "p": "I had a terrible day at work.",
    "pj": "今日は仕事で最悪だった。",
    "a": "Oh no. What happened?",
-   "aj": "ええっ。何があったの？"
+   "aj": "ええっ。何があったの？",
+   "n": "Oh no. は「ええっ」「うわあ」。悪い話にまず一言そえてから、What happened?（何があったの？）。"
   },
   {
    "id": "c-bad-4",
@@ -2358,7 +2361,8 @@
    "p": "I missed my flight this morning.",
    "pj": "今朝、飛行機に乗り遅れたんだ。",
    "a": "Oh no! What happened?",
-   "aj": "ええっ！何があったの？"
+   "aj": "ええっ！何があったの？",
+   "n": "Oh no! と強めに驚く。乗り遅れたいきさつを聞くので What happened?。"
   },
   {
    "id": "c-bad-5",
@@ -2366,7 +2370,8 @@
    "p": "My trip was a disaster.",
    "pj": "旅行はさんざんだったよ。",
    "a": "Really? What happened?",
-   "aj": "ほんと？何があったの？"
+   "aj": "ほんと？何があったの？",
+   "n": "disaster（さんざん）と聞いたら、Really? と受けて What happened?。「どうだった？」と聞き直さない。"
   },
   {
    "id": "c-bad-6",
@@ -2374,7 +2379,8 @@
    "p": "I couldn't sleep at all last night.",
    "pj": "昨日の夜は全然眠れなかった。",
    "a": "Oh no. How come?",
-   "aj": "ええっ。どうして？"
+   "aj": "ええっ。どうして？",
+   "n": "眠れなかった理由を聞くので How come?（どうして？）。Why? より気づかう感じが出る。"
   },
   {
    "id": "c-sorry-1",
@@ -2382,7 +2388,8 @@
    "p": "My mother is in the hospital.",
    "pj": "母が入院しているんだ。",
    "a": "I'm sorry to hear that. What happened?",
-   "aj": "それは大変だね。何があったの？"
+   "aj": "それは大変だね。何があったの？",
+   "n": "I'm sorry to hear that. は「それはお気の毒に」。謝っているのではない。続けて What happened? と聞く。"
   },
   {
    "id": "c-sorry-2",
@@ -2390,7 +2397,8 @@
    "p": "My daughter has a bad cold.",
    "pj": "娘がひどい風邪をひいていて。",
    "a": "Sorry to hear that. I hope she gets better soon.",
-   "aj": "それは大変だね。早く良くなるといいね。"
+   "aj": "それは大変だね。早く良くなるといいね。",
+   "n": "Sorry to hear that. は I'm を省いた気軽な形。病気の人には I hope she gets better soon.（早く良くなりますように）まで言う。"
   },
   {
    "id": "c-sorry-3",
@@ -2398,7 +2406,8 @@
    "p": "My dog died last week.",
    "pj": "先週、うちの犬が死んだんだ。",
    "a": "I'm so sorry to hear that.",
-   "aj": "それは本当にお気の毒に。"
+   "aj": "それは本当にお気の毒に。",
+   "n": "so を入れると気持ちが強くなる。亡くなった話には質問を続けず、これだけでよい。"
   },
   {
    "id": "c-sorry-4",
@@ -2406,7 +2415,8 @@
    "p": "I have a terrible headache today.",
    "pj": "今日はひどい頭痛がする。",
    "a": "That's too bad. I hope you feel better soon.",
-   "aj": "それはつらいね。早く良くなるといいね。"
+   "aj": "それはつらいね。早く良くなるといいね。",
+   "n": "That's too bad. は「それはつらいね」。相手本人の体調なら I hope you feel better soon.（feel better = 気分が良くなる）。"
   },
   {
    "id": "c-sorry-5",
@@ -2414,7 +2424,8 @@
    "p": "My son broke his leg.",
    "pj": "息子が脚を折ったんだ。",
    "a": "That's terrible. I hope he gets better soon.",
-   "aj": "それは大変だ。早く良くなるといいね。"
+   "aj": "それは大変だ。早く良くなるといいね。",
+   "n": "That's terrible. は大きな悪い知らせに。息子の話なので he、I hope he gets better soon.。"
   },
   {
    "id": "c-sorry-6",
@@ -2422,7 +2433,8 @@
    "p": "I didn't get the job.",
    "pj": "あの仕事、だめだった。",
    "a": "That's too bad. Sorry to hear that.",
-   "aj": "それは残念。気の毒に。"
+   "aj": "それは残念。気の毒に。",
+   "n": "That's too bad.（残念だね）と Sorry to hear that. を重ねて、気持ちを伝える。"
   },
   {
    "id": "c-good-1",
@@ -2430,7 +2442,8 @@
    "p": "I got a new job!",
    "pj": "新しい仕事が決まった！",
    "a": "That's great! When do you start?",
-   "aj": "すごいね！いつから？"
+   "aj": "すごいね！いつから？",
+   "n": "That's great! で喜んでから、質問を 1 つ。仕事なら When do you start?（いつから？）がお約束。"
   },
   {
    "id": "c-good-2",
@@ -2438,7 +2451,8 @@
    "p": "I passed the test!",
    "pj": "試験に受かった！",
    "a": "Congratulations! That's great news.",
-   "aj": "おめでとう！いい知らせだね。"
+   "aj": "おめでとう！いい知らせだね。",
+   "n": "Congratulations! は必ず s を付ける。That's great news. で「いい知らせだね」。"
   },
   {
    "id": "c-good-3",
@@ -2446,7 +2460,8 @@
    "p": "My son got into university.",
    "pj": "息子が大学に受かったんだ。",
    "a": "Congratulations! I'm happy to hear that.",
-   "aj": "おめでとう！それはうれしいね。"
+   "aj": "おめでとう！それはうれしいね。",
+   "n": "I'm happy to hear that. は「それを聞いてうれしい」。sorry to hear that の反対の形。"
   },
   {
    "id": "c-good-4",
@@ -2454,7 +2469,8 @@
    "p": "We got the big project.",
    "pj": "あの大きな案件が取れたよ。",
    "a": "That's great! Congratulations!",
-   "aj": "すごい！おめでとう！"
+   "aj": "すごい！おめでとう！",
+   "n": "That's great! と Congratulations! を重ねてよい。仕事の成功にも Congratulations が使える。"
   },
   {
    "id": "c-good-5",
@@ -2462,7 +2478,8 @@
    "p": "I'm getting married.",
    "pj": "結婚するんだ。",
    "a": "Congratulations! When is the wedding?",
-   "aj": "おめでとう！式はいつ？"
+   "aj": "おめでとう！式はいつ？",
+   "n": "結婚には Congratulations!。続けて When is the wedding?（式はいつ？）。"
   },
   {
    "id": "c-good-6",
@@ -2470,7 +2487,8 @@
    "p": "I have good news.",
    "pj": "良い知らせがあるんだ。",
    "a": "Oh, good! What is it?",
-   "aj": "お、いいね！何？"
+   "aj": "お、いいね！何？",
+   "n": "Oh, good! は「お、いいね」。中身がまだなので What is it?（何？）と聞く。"
   },
   {
    "id": "c-surprise-1",
@@ -2478,7 +2496,8 @@
    "p": "I quit my job yesterday.",
    "pj": "昨日、会社を辞めた。",
    "a": "You're kidding! Why?",
-   "aj": "うそでしょ！なんで？"
+   "aj": "うそでしょ！なんで？",
+   "n": "You're kidding! は「うそでしょ！」。相手を疑っているのではなく驚きの表現。続けて Why?。"
   },
   {
    "id": "c-surprise-2",
@@ -2486,7 +2505,8 @@
    "p": "I'm moving to Brazil next month.",
    "pj": "来月ブラジルに引っ越すんだ。",
    "a": "Are you serious? How come?",
-   "aj": "本気？どうして？"
+   "aj": "本気？どうして？",
+   "n": "Are you serious? は「本気？」。信じられない話に。理由は How come?。"
   },
   {
    "id": "c-surprise-3",
@@ -2494,7 +2514,8 @@
    "p": "I won a million yen in the lottery.",
    "pj": "宝くじで 100 万円当たった。",
    "a": "No way! Are you serious?",
-   "aj": "うそ！本当に？"
+   "aj": "うそ！本当に？",
+   "n": "No way! は「まさか！」「うそ！」。Are you serious? を重ねて驚きを強める。"
   },
   {
    "id": "c-surprise-4",
@@ -2502,7 +2523,8 @@
    "p": "I met Lewis Hamilton in Ginza.",
    "pj": "銀座でルイス・ハミルトンに会った。",
    "a": "You're kidding! Really?",
-   "aj": "うそでしょ！ほんとに？"
+   "aj": "うそでしょ！ほんとに？",
+   "n": "You're kidding! のあとに Really? を重ねる。有名人に会った、のような話に。"
   },
   {
    "id": "c-surprise-5",
@@ -2510,7 +2532,8 @@
    "p": "We don't have enough money for the party.",
    "pj": "パーティーのお金が足りないんだ。",
    "a": "What? Are you serious?",
-   "aj": "何だって？本気？"
+   "aj": "何だって？本気？",
+   "n": "What? は「何だって？」。困る知らせに驚くとき。教科書の David の受け方そのまま。"
   },
   {
    "id": "c-surprise-6",
@@ -2518,7 +2541,8 @@
    "p": "I left home at 1 a.m. to go fishing.",
    "pj": "釣りに行くのに夜中の 1 時に家を出た。",
    "a": "No way! 1 a.m.?",
-   "aj": "うそ！1 時？"
+   "aj": "うそ！1 時？",
+   "n": "No way! のあと、驚いた所だけをくり返す（1 a.m.?）。これだけで相手は続きを話してくれる。"
   },
   {
    "id": "c-interest-1",
@@ -2526,7 +2550,8 @@
    "p": "I have a new hobby.",
    "pj": "新しい趣味ができたんだ。",
    "a": "Oh really? What is it?",
-   "aj": "へえ、そうなの？何？"
+   "aj": "へえ、そうなの？何？",
+   "n": "Oh really? は興味を示す受け。語尾を上げる。中身を聞く What is it? までがセット。"
   },
   {
    "id": "c-interest-2",
@@ -2534,7 +2559,8 @@
    "p": "I love Japan.",
    "pj": "日本が大好きなんだ。",
    "a": "Oh really? What do you love about Japan?",
-   "aj": "へえ、そうなの？日本のどこが好き？"
+   "aj": "へえ、そうなの？日本のどこが好き？",
+   "n": "Oh really? のあと、What do you love about ~?（〜のどこが好き？）。相手の動詞（love）をそのまま使う。"
   },
   {
    "id": "c-interest-3",
@@ -2542,7 +2568,8 @@
    "p": "I have an idea.",
    "pj": "考えがあるんだ。",
    "a": "Oh yeah? What is it?",
-   "aj": "へえ？何？"
+   "aj": "へえ？何？",
+   "n": "Oh yeah? は Really? より軽い「へえ？」。友だち同士の受け。What is it? で中身を聞く。"
   },
   {
    "id": "c-interest-4",
@@ -2550,7 +2577,8 @@
    "p": "I started something new this month.",
    "pj": "今月、新しいことを始めたんだ。",
    "a": "Oh yeah? What is it?",
-   "aj": "へえ？何？"
+   "aj": "へえ？何？",
+   "n": "something new（何か新しいこと）と言われたら What is it?。Oh yeah? は語尾を上げる。"
   },
   {
    "id": "c-interest-5",
@@ -2558,7 +2586,8 @@
    "p": "I bought something expensive yesterday.",
    "pj": "昨日、高い物を買ったんだ。",
    "a": "Oh really? What did you buy?",
-   "aj": "へえ、そうなの？何を買ったの？"
+   "aj": "へえ、そうなの？何を買ったの？",
+   "n": "済んだ話なので What did you buy?（did ＋ 原形）。something と言われたら、その中身を聞く。"
   },
   {
    "id": "c-interest-6",
@@ -2566,7 +2595,8 @@
    "p": "There's good news and bad news.",
    "pj": "良い知らせと悪い知らせがある。",
    "a": "Really? What's the good news?",
-   "aj": "へえ？良い知らせは？"
+   "aj": "へえ？良い知らせは？",
+   "n": "良い知らせと悪い知らせ、と言われたら What's the good news? と良い方から聞くのが定番。"
   },
   {
    "id": "c-howcome-1",
@@ -2574,7 +2604,8 @@
    "p": "I never eat breakfast.",
    "pj": "朝ごはんは食べないんだ。",
    "a": "Really? How come?",
-   "aj": "ほんと？どうして？"
+   "aj": "ほんと？どうして？",
+   "n": "「〜しない」と聞いたら How come?（どうして？）。Why? より柔らかく、責める感じがない。"
   },
   {
    "id": "c-howcome-2",
@@ -2582,7 +2613,8 @@
    "p": "I can't come to the party.",
    "pj": "パーティーに行けないんだ。",
    "a": "Oh no. How come?",
-   "aj": "ええっ。どうして？"
+   "aj": "ええっ。どうして？",
+   "n": "来られないのは残念なので Oh no. で受ける。理由は How come?。"
   },
   {
    "id": "c-howcome-3",
@@ -2590,7 +2622,8 @@
    "p": "I don't like sushi.",
    "pj": "寿司は好きじゃないんだ。",
    "a": "Really? How come?",
-   "aj": "ほんと？どうして？"
+   "aj": "ほんと？どうして？",
+   "n": "意外な好みには Really? と驚いてから How come?。"
   },
   {
    "id": "c-howcome-4",
@@ -2598,7 +2631,8 @@
    "p": "I can't take a lesson next week.",
    "pj": "来週はレッスンを受けられない。",
    "a": "Oh, how come?",
-   "aj": "あ、どうして？"
+   "aj": "あ、どうして？",
+   "n": "Oh, で軽く受けて how come?。先生に理由を聞くときも Why? よりこちらが自然。"
   },
   {
    "id": "c-howcome-5",
@@ -2606,7 +2640,8 @@
    "p": "I stopped drinking.",
    "pj": "お酒をやめたんだ。",
    "a": "Really? How come?",
-   "aj": "ほんと？どうして？"
+   "aj": "ほんと？どうして？",
+   "n": "やめた理由を聞く。How come? だけで文になる（How come you stopped? の省略）。"
   },
   {
    "id": "c-plan-1",
@@ -2614,7 +2649,8 @@
    "p": "I'm going to Hawaii next month.",
    "pj": "来月ハワイに行くんだ。",
    "a": "Nice! Who are you going with?",
-   "aj": "いいね！誰と行くの？"
+   "aj": "いいね！誰と行くの？",
+   "n": "これからの旅行には Who are you going with?（誰と？）。最後の with を落とさない。"
   },
   {
    "id": "c-plan-2",
@@ -2622,7 +2658,8 @@
    "p": "I'm going to Kyoto this weekend.",
    "pj": "今週末、京都に行くんだ。",
    "a": "Sounds fun! Who are you going with?",
-   "aj": "楽しそう！誰と行くの？"
+   "aj": "楽しそう！誰と行くの？",
+   "n": "Sounds fun! は「楽しそう！」。まだ行っていない話なので are you going（これからの形）。"
   },
   {
    "id": "c-plan-3",
@@ -2630,7 +2667,8 @@
    "p": "I'm going on a business trip next week.",
    "pj": "来週、出張なんだ。",
    "a": "Oh, where are you going?",
-   "aj": "へえ、どこに行くの？"
+   "aj": "へえ、どこに行くの？",
+   "n": "行き先がまだ分からないので Where are you going?。出張に Nice! は付けなくてよい。"
   },
   {
    "id": "c-plan-4",
@@ -2638,7 +2676,8 @@
    "p": "I'm going to London in the spring.",
    "pj": "春にロンドンに行くんだ。",
    "a": "Lucky you! How long are you staying?",
-   "aj": "いいなあ！どのくらいいるの？"
+   "aj": "いいなあ！どのくらいいるの？",
+   "n": "Lucky you! は「いいなあ！」。滞在の長さは How long are you staying?。"
   },
   {
    "id": "c-plan-5",
@@ -2646,7 +2685,8 @@
    "p": "I'm taking a week off in December.",
    "pj": "12 月に 1 週間休みを取るんだ。",
    "a": "Nice! What are you going to do?",
-   "aj": "いいね！何をするの？"
+   "aj": "いいね！何をするの？",
+   "n": "休みを取る、と聞いたら What are you going to do?（何をするの？）。"
   },
   {
    "id": "c-plan-6",
@@ -2654,7 +2694,8 @@
    "p": "I'm going to Takamatsu on business tomorrow.",
    "pj": "明日、仕事で高松に行くんだ。",
    "a": "Oh, how long are you going for?",
-   "aj": "へえ、どのくらい行くの？"
+   "aj": "へえ、どのくらい行くの？",
+   "n": "行き先は分かっているので長さを聞く。How long are you going for?（最後の for がお約束）。"
   },
   {
    "id": "c-past-1",
@@ -2662,7 +2703,8 @@
    "p": "I went to Okinawa last week.",
    "pj": "先週、沖縄に行ったんだ。",
    "a": "Oh really? How was it?",
-   "aj": "へえ、そうなの？どうだった？"
+   "aj": "へえ、そうなの？どうだった？",
+   "n": "済んだ話には How was it?（どうだった？）。How のときは like を付けない。"
   },
   {
    "id": "c-past-2",
@@ -2670,7 +2712,8 @@
    "p": "I saw a movie yesterday.",
    "pj": "昨日、映画を観たんだ。",
    "a": "Oh, what did you see?",
-   "aj": "へえ、何を観たの？"
+   "aj": "へえ、何を観たの？",
+   "n": "済んだ話なので What did you see?（did ＋ 原形の see。saw にしない）。"
   },
   {
    "id": "c-past-3",
@@ -2678,7 +2721,8 @@
    "p": "I went to a concert on Saturday.",
    "pj": "土曜にコンサートに行ったんだ。",
    "a": "Nice! Who did you go with?",
-   "aj": "いいね！誰と行ったの？"
+   "aj": "いいね！誰と行ったの？",
+   "n": "Nice! で受けて、Who did you go with?（誰と行ったの？）。with を落とさない。"
   },
   {
    "id": "c-past-4",
@@ -2686,7 +2730,8 @@
    "p": "I went on a trip last weekend.",
    "pj": "先週末、旅行に行ったんだ。",
    "a": "Really? Where did you go?",
-   "aj": "ほんと？どこに行ったの？"
+   "aj": "ほんと？どこに行ったの？",
+   "n": "行き先がまだ分からないので Where did you go?（did ＋ 原形の go）。"
   },
   {
    "id": "c-past-5",
@@ -2694,7 +2739,8 @@
    "p": "I tried a new restaurant last night.",
    "pj": "昨日の夜、新しい店に行ってみた。",
    "a": "Oh yeah? How was it?",
-   "aj": "へえ？どうだった？"
+   "aj": "へえ？どうだった？",
+   "n": "Oh yeah? で受けて How was it?。店・映画・旅行、何にでも使える。"
   },
   {
    "id": "c-past-6",
@@ -2702,7 +2748,8 @@
    "p": "I went shopping yesterday.",
    "pj": "昨日、買い物に行ったんだ。",
    "a": "Oh, what did you buy?",
-   "aj": "へえ、何を買ったの？"
+   "aj": "へえ、何を買ったの？",
+   "n": "What did you buy?（何を買ったの？）。bought にしない。"
   },
   {
    "id": "c-person-1",
@@ -2710,7 +2757,8 @@
    "p": "We got a new boss. He's from Osaka.",
    "pj": "新しい上司が来たんだ。大阪から来た人。",
    "a": "Oh really? What is he like?",
-   "aj": "へえ、そうなの？どんな人？"
+   "aj": "へえ、そうなの？どんな人？",
+   "n": "What is he like? は「どんな人？」。性格や雰囲気を聞く形。How is he? は「元気？」で別の意味。"
   },
   {
    "id": "c-person-2",
@@ -2718,7 +2766,8 @@
    "p": "I met my daughter's boyfriend yesterday.",
    "pj": "昨日、娘の彼氏に会ったんだ。",
    "a": "Really? What is he like?",
-   "aj": "ほんと？どんな人？"
+   "aj": "ほんと？どんな人？",
+   "n": "人が出てきたら What is he like?。like は「好き」ではなく「〜のような」。"
   },
   {
    "id": "c-person-3",
@@ -2726,7 +2775,8 @@
    "p": "We have a new teacher. Her name is Anna.",
    "pj": "新しい先生が来たんだ。アンナっていうの。",
    "a": "Oh yeah? What is she like?",
-   "aj": "へえ？どんな人？"
+   "aj": "へえ？どんな人？",
+   "n": "女の人なので she。What is she like?。"
   },
   {
    "id": "c-person-4",
@@ -2734,7 +2784,8 @@
    "p": "I had dinner with my new clients.",
    "pj": "新しいお客さんたちと夕食を食べたんだ。",
    "a": "Oh really? What are they like?",
-   "aj": "へえ、そうなの？どんな人たち？"
+   "aj": "へえ、そうなの？どんな人たち？",
+   "n": "複数なので What are they like?（are と they）。"
   },
   {
    "id": "c-place-1",
@@ -2742,7 +2793,8 @@
    "p": "I moved to Odaiba.",
    "pj": "お台場に引っ越したんだ。",
    "a": "Oh really? What is it like?",
-   "aj": "へえ、そうなの？どんな所？"
+   "aj": "へえ、そうなの？どんな所？",
+   "n": "場所にも What is it like?（どんな所？）。今も住んでいるので is。"
   },
   {
    "id": "c-place-2",
@@ -2750,7 +2802,8 @@
    "p": "I went to Fukui for the first time.",
    "pj": "初めて福井に行ったんだ。",
    "a": "Oh yeah? What is it like?",
-   "aj": "へえ？どんな所？"
+   "aj": "へえ？どんな所？",
+   "n": "行った先がどんな所かを聞く。福井は今もそうなので is でよい。"
   },
   {
    "id": "c-place-3",
@@ -2758,7 +2811,8 @@
    "p": "I stayed at a new hotel in Takamatsu.",
    "pj": "高松の新しいホテルに泊まったんだ。",
    "a": "Really? What was it like?",
-   "aj": "ほんと？どんな感じだった？"
+   "aj": "ほんと？どんな感じだった？",
+   "n": "泊まったときの感じを聞くので was。What was it like?（どんな感じだった？）。"
   },
   {
    "id": "c-place-4",
@@ -2766,7 +2820,8 @@
    "p": "My office moved to a new building.",
    "pj": "会社が新しいビルに移ったんだ。",
    "a": "Oh really? What is it like?",
-   "aj": "へえ、そうなの？どんな感じ？"
+   "aj": "へえ、そうなの？どんな感じ？",
+   "n": "新しいビルは今の話なので is。What is it like?。"
   },
   {
    "id": "c-empathy-1",
@@ -2774,7 +2829,8 @@
    "p": "I'm so tired. I worked until midnight.",
    "pj": "すごく疲れた。夜中の 12 時まで働いたんだ。",
    "a": "I know how you feel.",
-   "aj": "気持ちは分かるよ。"
+   "aj": "気持ちは分かるよ。",
+   "n": "I know how you feel. は「気持ちは分かるよ」。how のあとは you feel の順（do を入れない）。"
   },
   {
    "id": "c-empathy-2",
@@ -2782,7 +2838,8 @@
    "p": "I'm not good at speaking on the phone.",
    "pj": "電話で話すのが苦手なんだ。",
    "a": "I know how you feel. Me too.",
-   "aj": "分かるよ。僕もだよ。"
+   "aj": "分かるよ。僕もだよ。",
+   "n": "Me too. を足すと「私も同じ」。苦手の話にはまず寄りそう。"
   },
   {
    "id": "c-empathy-3",
@@ -2790,7 +2847,8 @@
    "p": "I always drink too much at parties.",
    "pj": "飲み会ではいつも飲みすぎてしまう。",
    "a": "I know how you feel. I've experienced the same thing.",
-   "aj": "分かるよ。僕も同じ経験がある。"
+   "aj": "分かるよ。僕も同じ経験がある。",
+   "n": "I've experienced the same thing. は「私も同じ経験がある」。11/22 のレッスンで出た形。"
   },
   {
    "id": "c-empathy-4",
@@ -2798,7 +2856,8 @@
    "p": "Japanese grammar is so difficult.",
    "pj": "日本語の文法は本当に難しい。",
    "a": "I know what you mean.",
-   "aj": "言いたいことは分かるよ。"
+   "aj": "言いたいことは分かるよ。",
+   "n": "I know what you mean. は「言いたいことは分かる」。意見やぼやきに。feel は気持ち、mean は言っている中身。"
   },
   {
    "id": "c-empathy-5",
@@ -2806,7 +2865,8 @@
    "p": "I hate crowded trains.",
    "pj": "満員電車が大嫌いなんだ。",
    "a": "I know how you feel. Me too.",
-   "aj": "分かるよ。僕もだよ。"
+   "aj": "分かるよ。僕もだよ。",
+   "n": "I know how you feel. のあとに Me too.。嫌いな物の話に合わせるとき。"
   },
   {
    "id": "c-invite-1",
@@ -2814,7 +2874,8 @@
    "p": "Do you want to go for a drink tonight?",
    "pj": "今夜、飲みに行かない？",
    "a": "Sure, sounds good!",
-   "aj": "うん、いいね！"
+   "aj": "うん、いいね！",
+   "n": "誘いに乗るときは Sure, sounds good!。Sounds good は「（それは）良さそう」。"
   },
   {
    "id": "c-invite-2",
@@ -2822,7 +2883,8 @@
    "p": "Would you like to come to dinner on Saturday?",
    "pj": "土曜の夕食に来ませんか？",
    "a": "I'd love to. Thanks for inviting me!",
-   "aj": "ぜひ。誘ってくれてありがとう！"
+   "aj": "ぜひ。誘ってくれてありがとう！",
+   "n": "ていねいな誘い（Would you like to ~?）には I'd love to.（ぜひ）。Thanks for inviting me! まで言えると良い。"
   },
   {
    "id": "c-invite-3",
@@ -2830,7 +2892,8 @@
    "p": "Let's catch up sometime.",
    "pj": "そのうちゆっくり話そうよ。",
    "a": "Sounds great!",
-   "aj": "いいね！"
+   "aj": "いいね！",
+   "n": "Sounds great! だけで「いいね！ぜひ」。sometime（そのうち）の誘いは軽く受ける。"
   },
   {
    "id": "c-invite-4",
@@ -2839,7 +2902,8 @@
    "pj": "今夜、映画を観に行かない？",
    "a": "Sounds good, but I have other plans tonight.",
    "aj": "いいね、でも今夜は別の予定があるんだ。",
-   "cue": "断る"
+   "cue": "断る",
+   "n": "断るときも、まず Sounds good と受けてから but ~。いきなり No と言わない。I have other plans は「別の予定がある」。"
   },
   {
    "id": "c-invite-5",
@@ -2847,7 +2911,8 @@
    "p": "Is 2 p.m. OK?",
    "pj": "午後 2 時でいい？",
    "a": "2 p.m. sounds good.",
-   "aj": "2 時でいいよ。"
+   "aj": "2 時でいいよ。",
+   "n": "時間の提案には、その時間をくり返して sounds good。2 p.m. is fine. でもよい。"
   },
   {
    "id": "c-invite-6",
@@ -2855,7 +2920,8 @@
    "p": "How about Monday afternoon?",
    "pj": "月曜の午後はどう？",
    "a": "Monday afternoon works for me.",
-   "aj": "月曜の午後で大丈夫。"
+   "aj": "月曜の午後で大丈夫。",
+   "n": "~ works for me. は「それで都合がつく」。予定を決めるときの決まり文句。"
   }
  ]
 }

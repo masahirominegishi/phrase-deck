@@ -67,7 +67,8 @@ GitHub Pages で配信 → iPhone Safari で開く → 共有 →「ホーム画
 - お約束は 12 種類: 悪い知らせ（Oh no. What happened?）／病気・つらい話（I'm sorry to hear that.）／良い知らせ（That's great! Congratulations!）／びっくりする話（You're kidding!）／気になる一言（Oh really? What is it?）／〜しない・できない（Really? How come?）／これからの予定（Who are you going with?）／済んだこと（How was it?）／人が出てきた（What is he like?）／場所・物（What is it like?）／ぼやき（I know how you feel.）／誘い（Sounds good!）。
 - 毎日ランダムに 20 問（苦手ほど出やすい・同じ種類は続けない）。言えなかった 1 枚は 3 枚あとにもう一度。続けて 2 回言えたら覚えた。
 - 「お約束の一覧」= 12 種類の早見（例・受け・ほかの言い方。押すと読み上げ）。
-- 中身は `data/replies.json` の `rules`（お約束）と `cards`（66 枚。`p` 相手の一言 → `a` 返し）。成績は `phrasedeck.reply.v1` の `cards`・`cdays`。
+- 答えの面に日本語の解説が 1 枚ずつ付く（なぜその受けか・形の注意。`cards` の `n`）。言えなかった一覧にも出る。
+- 中身は `data/replies.json` の `rules`（お約束）と `cards`（66 枚。`p` 相手の一言 → `a` 返し・`n` 解説）。成績は `phrasedeck.reply.v1` の `cards`・`cdays`。
 
 **会話で使う**（下の「聞き返しで会話を続ける」）: お約束を 4 往復の会話の中で選んで使う。
 
